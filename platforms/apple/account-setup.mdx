@@ -1,106 +1,611 @@
 ---
 title: "Apple Search Ads Account Setup"
-description: "How to create and configure your Apple Search Ads account in under 15 minutes."
+description: "Complete step-by-step guide to creating your Apple Search Ads account, configuring billing, setting up team roles, and integrating the Attribution API in your app."
 ---
 
-## The simplest ad account you'll ever set up
+## Everything you need before your first ad dollar is spent
 
-Apple keeps things refreshingly simple. No Business Manager, no linked accounts maze, no pixel installation. If you have an Apple ID and a live app, you're 10 minutes from being ready.
+Apple Search Ads has the simplest account setup of any major ad platform. No Business Manager. No pixel installation. No domain verification. If you have an Apple ID and a live app, you can be ready in 15 minutes.
 
-## What you'll learn
+But there are important details that trip people up — payment configuration, team permissions, budget controls, and (if you want attribution data in your app) the Search Ads Attribution API. This guide covers all of it.
 
-- How to create your Apple Search Ads account
-- How to configure billing and budget limits
-- How to invite team members
-- How to optimize your App Store listing (your ad creative)
+## Prerequisites
 
-## Account creation
+Before you begin, make sure you have:
+
+| Requirement | Details | How to get it |
+|------------|---------|--------------|
+| **Apple Developer account** | The $99/year program that lets you publish apps | [developer.apple.com](https://developer.apple.com) |
+| **A live app in the App Store** | Your app must be published and available for download | Submit through App Store Connect |
+| **An Apple ID** | Preferably the one that owns the app in App Store Connect | You already have one if you have a Developer account |
+| **A credit or debit card** | Visa, Mastercard, or AMEX | Personal or business card |
+
+<Note>
+  **You do NOT need a separate business entity or business verification.** Unlike Meta or TikTok, Apple does not require business documents. Any individual with an Apple Developer account can run Search Ads.
+</Note>
+
+## Step 1: Create your Apple Search Ads account
 
 <Steps>
   <Step title="Go to searchads.apple.com">
-    Visit [searchads.apple.com](https://searchads.apple.com) and click **Start**.
+    Open your browser and visit [searchads.apple.com](https://searchads.apple.com). Click the **Start** button.
   </Step>
   <Step title="Sign in with your Apple ID">
-    Use the Apple ID associated with your App Store Connect account. This automatically gives you access to your apps.
+    Use the Apple ID that is associated with your App Store Connect account. This is critical — it automatically links your apps.
+
+    **If you use a different Apple ID:** You will not see your apps. You will need to be invited by the account admin in App Store Connect, which adds unnecessary complexity.
   </Step>
-  <Step title="Choose Basic or Advanced">
-    Pick **Search Ads Basic** if you're new (you can upgrade anytime). Pick **Advanced** if you want keyword-level control from the start.
+  <Step title="Choose your account type">
+    Apple will ask if you want **Search Ads Basic** or **Search Ads Advanced**.
+
+    - Choose **Basic** if you want to start simple (you can add Advanced later)
+    - Choose **Advanced** if you want full keyword control from day one
+    - You can run BOTH simultaneously — they are separate dashboards
+
+    <Tip>
+      You can create both a Basic and Advanced account with the same Apple ID. Many developers run Basic for one campaign and Advanced for another.
+    </Tip>
   </Step>
-  <Step title="Add payment information">
-    Add a credit or debit card. Apple charges you based on actual spend (no prepayment required).
+  <Step title="Accept the Apple Advertising Terms">
+    Read and accept the terms of service. This is a standard agreement covering Apple's advertising policies, payment terms, and content guidelines.
   </Step>
-  <Step title="Accept the terms">
-    Review and accept Apple's advertising terms. Done — you have an account.
+  <Step title="Your account is created">
+    That is it for account creation. You now have access to the Apple Search Ads dashboard. The next steps are configuring payment and settings.
+  </Step>
+</Steps>
+
+## Step 2: Set up payment
+
+Apple charges you based on actual spend — there is no prepayment required. You provide a credit card, and Apple charges it as you spend.
+
+<Steps>
+  <Step title="Navigate to payment settings">
+    **For Basic:** Go to **Settings** (gear icon) > **Payment**
+
+    **For Advanced:** Go to **Account Settings** > **Billing** > **Payment Methods**
+  </Step>
+  <Step title="Add your credit or debit card">
+    Enter your card details:
+    - Card number
+    - Expiration date
+    - CVV
+    - Billing address (must match your card's billing address)
+
+    Apple accepts Visa, Mastercard, and American Express.
+  </Step>
+  <Step title="Set your billing threshold (Advanced only)">
+    Apple charges your card when your spending reaches a billing threshold OR at the end of the month, whichever comes first. The initial threshold is typically $500 and increases as you build payment history.
+  </Step>
+</Steps>
+
+<Warning>
+  **Make sure your card has sufficient funds and no spending limits that would block charges.** If a charge fails, Apple will pause all your campaigns until payment is resolved. This can cost you days of lost traffic.
+</Warning>
+
+### Understanding billing
+
+| Billing aspect | How it works |
+|---------------|-------------|
+| **When you are charged** | When you hit your billing threshold OR at month end |
+| **Initial threshold** | Typically $500 (increases over time) |
+| **Currency** | Billed in your local currency based on your billing address |
+| **Tax** | Varies by country. In the US, no sales tax on ad spend |
+| **Refunds** | Apple does not refund ad spend. Be careful with budget settings |
+| **Payment failure** | All campaigns pause immediately until resolved |
+
+## Step 3: Set up budget controls (Advanced)
+
+Budget controls are your safety net. They prevent accidental overspending, which is especially important when you are learning.
+
+### Budget orders
+
+A budget order is an account-level spending cap that overrides everything else.
+
+<Steps>
+  <Step title="Go to budget orders">
+    In Search Ads Advanced, navigate to **Account Settings** > **Budget Orders**.
+  </Step>
+  <Step title="Create a new budget order">
+    Click **Create Budget Order** and fill in:
+    - **Order name:** Something descriptive like "Q1 2026 Budget"
+    - **Budget amount:** The maximum total spend (e.g., $1,000)
+    - **Start date:** When spending can begin
+    - **End date:** When to stop spending
+    - **PO number** (optional): For your own accounting reference
+  </Step>
+  <Step title="Assign campaigns to the budget order">
+    When you create campaigns, you will assign them to this budget order. Total campaign spending cannot exceed the budget order amount.
   </Step>
 </Steps>
 
 <Tip>
-  **Use the same Apple ID that owns your app** in App Store Connect. This gives you automatic access to your app for advertising. If you use a different Apple ID, you'll need to request access through your app's admin.
+  **Always create a budget order before your first campaign.** Set it to an amount you are comfortable losing entirely while learning. A good starting budget order is $500-1,000 for your first month.
 </Tip>
 
-## Configure your settings
+### Campaign-level budget controls
 
-### Budget controls
+In addition to budget orders, each campaign has its own controls:
 
-Set account-level budget limits to protect yourself:
+| Control | What it does | Recommendation |
+|---------|-------------|----------------|
+| **Campaign budget** | Total lifetime spend for the campaign | Set to match your budget order |
+| **Daily cap** | Maximum spend per day | Start with $15-25/day |
 
-1. Go to **Settings** > **Budget Orders**
-2. Create a budget order with a maximum spend amount
-3. Set a start and end date
+<Note>
+  **How daily caps work:** If you set a $20 daily cap, Apple will try to spend up to $20 per day. On some days, Apple may spend slightly more or less, but the average will be near your cap. Apple may overspend by up to 2x on a single day but will balance it over the month.
+</Note>
 
-This ensures you never accidentally overspend, even if individual campaign budgets are set higher.
+## Step 4: Configure campaign groups (Advanced)
 
-### Invite team members
+Campaign groups are an optional organizational layer that helps you manage multiple campaigns.
 
-1. Go to **Settings** > **User Management**
-2. Click **Invite User**
-3. Enter their Apple ID email and assign a role:
+Think of them like folders:
 
-| Role | Permissions | Best for |
-|------|------------|----------|
-| **Account Admin** | Full access, manage users | Founders |
-| **Campaign Manager** | Create/edit campaigns | Marketing team |
-| **Read Only** | View reports | Stakeholders |
+```
+Account
+├── Campaign Group: US Market
+│   ├── Campaign: US - Brand Keywords
+│   ├── Campaign: US - Category Keywords
+│   └── Campaign: US - Discovery
+├── Campaign Group: UK Market
+│   ├── Campaign: UK - Brand Keywords
+│   └── Campaign: UK - Category Keywords
+└── Campaign Group: Test Campaigns
+    └── Campaign: New Keywords Test
+```
 
-## Optimize your App Store listing first
+To create a campaign group:
 
-Here's what makes Apple Search Ads unique: **your App Store page IS your ad.** Apple uses your existing app listing — icon, name, subtitle, screenshots — as the ad creative. You can't upload custom images.
+1. In Search Ads Advanced, go to the **Campaigns** dashboard
+2. Click **Create Campaign Group**
+3. Name it something descriptive
+4. Assign campaigns to it during campaign creation
 
-This means your App Store Optimization (ASO) directly impacts your ad performance:
+<Tip>
+  **You do not need campaign groups when starting out.** They become useful when you have 5+ campaigns and need to organize by country, strategy, or app.
+</Tip>
 
-<CardGroup cols={2}>
-  <Card title="App Icon" icon="image">
-    This is the first thing users see. Make it clean, recognizable, and stand out from competitors.
-  </Card>
-  <Card title="App Name & Subtitle" icon="text">
-    Include your most important keyword in the name or subtitle. Keep it clear and descriptive.
-  </Card>
-  <Card title="Screenshots" icon="images">
-    Your first 2-3 screenshots appear in the ad. Make them show your app's best features with clear, readable text overlays.
-  </Card>
-  <Card title="Ratings & Reviews" icon="star">
-    Apps with 4.0+ stars and solid review counts convert significantly better. Focus on your in-app rating prompt.
-  </Card>
-</CardGroup>
+## Step 5: Set up team roles and permissions
+
+If you work with a team or agency, you can invite others to your Apple Search Ads account with specific permissions.
+
+<Steps>
+  <Step title="Navigate to user management">
+    Go to **Account Settings** > **User Management**.
+  </Step>
+  <Step title="Click Invite User">
+    Enter the Apple ID email of the person you want to invite.
+  </Step>
+  <Step title="Assign a role">
+    Choose the appropriate role for each team member.
+  </Step>
+</Steps>
+
+### Available roles
+
+| Role | What they can do | Best for |
+|------|-----------------|----------|
+| **Account Admin** | Full access: create/edit/delete campaigns, manage billing, invite users, access API | Founders, lead marketers |
+| **Campaign Manager** | Create and edit campaigns, view reports, manage keywords. Cannot manage billing or users | Marketing team members |
+| **Read Only** | View campaigns and reports. Cannot make changes | Stakeholders, investors, clients |
+
+<Note>
+  **Each person needs their own Apple ID.** You cannot share login credentials. Apple IDs are free to create — the person does not need an Apple Developer account to be invited to your Search Ads account.
+</Note>
+
+### Managing agency access
+
+If you hire an agency or freelancer:
+
+1. Invite them with **Campaign Manager** role (not Admin)
+2. Create a separate budget order for their campaigns
+3. Set daily caps to limit spending
+4. Review their activity weekly in the change history log
+5. Remove access immediately when the engagement ends
+
+## Step 6: Set up the Apple Search Ads Attribution API (in your app)
+
+The Attribution API lets your app know when a user installed because of an Apple Search Ads ad. This is optional but very valuable — it lets you track which keywords and campaigns drive not just installs, but in-app actions like signups and purchases.
+
+<Tabs>
+  <Tab title="Swift (iOS Native)">
+    ### Step 1: Import the framework
+
+    The `AdServices` framework is available in iOS 14.3+ and replaces the older `iAd` framework.
+
+    ```swift
+    import AdServices
+    ```
+
+    ### Step 2: Request the attribution token
+
+    Call this as early as possible after app launch, typically in your `AppDelegate` or initial view controller:
+
+    ```swift
+    import AdServices
+    import UIKit
+
+    class AppDelegate: UIResponder, UIApplicationDelegate {
+
+        func application(
+            _ application: UIApplication,
+            didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+        ) -> Bool {
+
+            // Request Apple Search Ads attribution
+            requestSearchAdsAttribution()
+            return true
+        }
+
+        func requestSearchAdsAttribution() {
+            // AdServices framework (iOS 14.3+)
+            if #available(iOS 14.3, *) {
+                do {
+                    let token = try AAAttribution.attributionToken()
+                    // Send this token to your server for attribution lookup
+                    sendTokenToServer(token: token)
+                } catch {
+                    print("Failed to get attribution token: \(error)")
+                }
+            }
+        }
+
+        func sendTokenToServer(token: String) {
+            // Send the token to Apple's Attribution API endpoint
+            // via your backend server
+            guard let url = URL(string: "https://yourserver.com/api/attribution") else { return }
+
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+            let body: [String: String] = ["attributionToken": token]
+            request.httpBody = try? JSONSerialization.data(withJSONObject: body)
+
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    print("Attribution upload failed: \(error)")
+                    return
+                }
+                print("Attribution token sent successfully")
+            }.resume()
+        }
+    }
+    ```
+
+    ### Step 3: Server-side token resolution
+
+    Your server sends the token to Apple's API to get attribution data:
+
+    ```swift
+    // Server-side code (can be in any language)
+    // POST https://api-adservices.apple.com/api/v1/
+
+    // Request:
+    // Header: Content-Type: text/plain
+    // Body: the attribution token string
+
+    // Response (JSON):
+    // {
+    //   "attribution": true,
+    //   "orgId": 1234567890,
+    //   "campaignId": 1234567890,
+    //   "conversionType": "Download",
+    //   "adGroupId": 1234567890,
+    //   "keywordId": 1234567890,
+    //   "creativeSetId": 1234567890,
+    //   "region": "US",
+    //   "clickDate": "2026-02-19T12:00:00Z"
+    // }
+    ```
+  </Tab>
+  <Tab title="React Native">
+    ### Option A: Using react-native-apple-ads-attribution
+
+    Install the community library:
+
+    ```bash
+    npm install react-native-apple-ads-attribution
+    cd ios && pod install
+    ```
+
+    Use it in your app:
+
+    ```typescript
+    import { getAttributionToken } from 'react-native-apple-ads-attribution';
+
+    // Call this on app startup
+    async function checkSearchAdsAttribution(): Promise<void> {
+      try {
+        // Get the attribution token (iOS 14.3+)
+        const token: string = await getAttributionToken();
+
+        // Send token to your backend for resolution
+        await fetch('https://yourserver.com/api/attribution', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ attributionToken: token }),
+        });
+
+        console.log('Attribution token sent successfully');
+      } catch (error) {
+        // This will fail on Android or iOS < 14.3
+        console.log('Attribution not available:', error);
+      }
+    }
+
+    // Call on app launch
+    checkSearchAdsAttribution();
+    ```
+
+    ### Option B: Using a native module (if the library doesn't meet your needs)
+
+    Create a native module bridge:
+
+    ```swift
+    // ios/SearchAdsAttribution.swift
+    import Foundation
+    import AdServices
+
+    @objc(SearchAdsAttribution)
+    class SearchAdsAttribution: NSObject {
+
+      @objc
+      func getAttributionToken(
+        _ resolve: @escaping RCTPromiseResolveBlock,
+        rejecter reject: @escaping RCTPromiseRejectBlock
+      ) {
+        if #available(iOS 14.3, *) {
+          do {
+            let token = try AAAttribution.attributionToken()
+            resolve(token)
+          } catch {
+            reject("ATTRIBUTION_ERROR", "Failed to get token", error)
+          }
+        } else {
+          reject("UNSUPPORTED", "Requires iOS 14.3+", nil)
+        }
+      }
+
+      @objc
+      static func requiresMainQueueSetup() -> Bool {
+        return false
+      }
+    }
+    ```
+
+    ```objc
+    // ios/SearchAdsAttribution.m
+    #import <React/RCTBridgeModule.h>
+
+    @interface RCT_EXTERN_MODULE(SearchAdsAttribution, NSObject)
+
+    RCT_EXTERN_METHOD(getAttributionToken:
+                      (RCTPromiseResolveBlock)resolve
+                      rejecter:(RCTPromiseRejectBlock)reject)
+
+    @end
+    ```
+
+    Then use it in TypeScript:
+
+    ```typescript
+    import { NativeModules, Platform } from 'react-native';
+
+    const { SearchAdsAttribution } = NativeModules;
+
+    async function getAppleSearchAdsAttribution(): Promise<string | null> {
+      if (Platform.OS !== 'ios') return null;
+
+      try {
+        const token: string = await SearchAdsAttribution.getAttributionToken();
+        return token;
+      } catch (error) {
+        console.log('Search Ads attribution not available:', error);
+        return null;
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="Flutter">
+    ### Using the ad_services plugin
+
+    ```bash
+    flutter pub add ad_services
+    ```
+
+    ```dart
+    import 'package:ad_services/ad_services.dart';
+    import 'dart:io';
+
+    Future<void> checkSearchAdsAttribution() async {
+      if (!Platform.isIOS) return;
+
+      try {
+        // Get attribution token (iOS 14.3+)
+        final String? token = await AdServices.getAttributionToken();
+
+        if (token != null) {
+          // Send token to your backend
+          // Your backend calls Apple's API to resolve the token
+          print('Attribution token: $token');
+        }
+      } catch (e) {
+        print('Attribution not available: $e');
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
 
 <Warning>
-  **Don't launch Apple Search Ads with a weak App Store page.** Since you can't customize the ad creative, your listing needs to sell the app on its own. Spend time on your screenshots and description before spending money on ads.
+  **The attribution token must be resolved server-side.** Your app gets a token, but you must send it to Apple's API (`https://api-adservices.apple.com/api/v1/`) from your server to get the actual attribution data (campaign ID, keyword, etc.). Do NOT call Apple's API directly from the app.
 </Warning>
+
+### What you get from the Attribution API
+
+When you resolve a token, Apple returns data that tells you:
+
+| Field | What it tells you |
+|-------|------------------|
+| `attribution` | `true` if the install came from an Apple Search Ads ad |
+| `campaignId` | Which campaign drove the install |
+| `adGroupId` | Which ad group within the campaign |
+| `keywordId` | Which keyword triggered the ad |
+| `creativeSetId` | Which creative set was shown |
+| `region` | Which country the user was in |
+| `conversionType` | "Download" (new) or "Redownload" |
+
+<Tip>
+  **If you use a third-party MMP** (AppsFlyer, Adjust, Branch, Singular, etc.), they handle all of this automatically. You do not need to implement the Attribution API manually — your MMP's SDK does it for you and provides unified attribution across all your ad channels.
+</Tip>
+
+## Step 7: Set up the Apple Search Ads API (for automation)
+
+If you want to programmatically manage campaigns, pull reports, or build dashboards, Apple provides a full REST API.
+
+<Steps>
+  <Step title="Generate API credentials">
+    In Search Ads Advanced, go to **Account Settings** > **API**.
+
+    Click **Create API Certificate**. Download the certificate files:
+    - Private key file (`.key`)
+    - Public certificate file (`.pem`)
+  </Step>
+  <Step title="Note your credentials">
+    You will need:
+    - **Client ID**
+    - **Team ID**
+    - **Key ID**
+    - Your private key file
+  </Step>
+  <Step title="Authenticate via OAuth 2.0">
+    Apple Search Ads API uses OAuth 2.0 with JSON Web Tokens (JWT):
+
+    ```python
+    # Python example for generating a JWT token
+    import jwt
+    import datetime
+
+    # Your credentials from Apple Search Ads
+    CLIENT_ID = "SEARCHADS.your-client-id"
+    TEAM_ID = "your-team-id"
+    KEY_ID = "your-key-id"
+
+    # Read your private key
+    with open("private-key.pem", "r") as f:
+        private_key = f.read()
+
+    # Generate the JWT
+    now = datetime.datetime.utcnow()
+    payload = {
+        "sub": CLIENT_ID,
+        "aud": "https://appleid.apple.com",
+        "iat": now,
+        "exp": now + datetime.timedelta(hours=1),
+        "iss": TEAM_ID,
+    }
+    headers = {
+        "kid": KEY_ID,
+        "alg": "ES256",
+    }
+
+    token = jwt.encode(payload, private_key, algorithm="ES256", headers=headers)
+    print(f"Bearer token: {token}")
+    ```
+  </Step>
+  <Step title="Make API calls">
+    Use the token to call the Search Ads API:
+
+    ```bash
+    # Example: Get all campaigns
+    curl -X GET "https://api.searchads.apple.com/api/v5/campaigns" \
+      -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+      -H "X-AP-Context: orgId=YOUR_ORG_ID"
+    ```
+  </Step>
+</Steps>
+
+<Note>
+  **You do not need the API to get started.** The API is for advanced automation — building custom dashboards, automatically adjusting bids, or syncing data with your analytics tools. You can manage everything through the web interface when starting out.
+</Note>
+
+## Step 8: Optimize your App Store listing (your ad creative)
+
+This step is so important it deserves its own section. On Apple Search Ads, **your App Store page IS your ad.** You cannot upload custom ad images or videos. Apple generates your ad from your existing listing.
+
+This means your App Store Optimization (ASO) directly determines your ad's performance.
+
+### What Apple uses to build your ad
+
+| Element | Where it appears in the ad | Optimization tips |
+|---------|--------------------------|------------------|
+| **App icon** | Thumbnail on the left | Make it clean, recognizable, and distinct from competitors. Avoid text in the icon. |
+| **App name** | Main headline | Include your primary keyword (e.g., "Clarity - Meditation & Sleep"). 30 character limit. |
+| **Subtitle** | Below the name | Include a secondary keyword or value proposition. 30 character limit. |
+| **Screenshots (first 3)** | Displayed when ad is expanded | Make the first 3 screenshots your strongest — they are what users see in the ad. Use clear text overlays. |
+| **Star rating** | Next to the name | Apps with 4.5+ stars convert significantly better. Focus on your in-app rating prompt. |
+| **Price/Free label** | Next to the name | Free apps get more taps. If your app is paid, ensure the value is clear. |
+
+### Screenshot optimization for Search Ads
+
+Your screenshots are the single biggest factor in conversion rate. Here is what to do:
+
+<AccordionGroup>
+  <Accordion title="Screenshot 1: Lead with your strongest feature">
+    The first screenshot is the most important — it is always visible in the ad. Show your app's primary value proposition. Use a clear text overlay that says what the app does in 5 words or less.
+  </Accordion>
+  <Accordion title="Screenshot 2: Show social proof or a key benefit">
+    Show something compelling: user count, a unique feature, or a before/after. This screenshot appears in the expanded ad view.
+  </Accordion>
+  <Accordion title="Screenshot 3: Demonstrate the experience">
+    Show the actual app interface doing something useful. Users want to see what they will get after installing.
+  </Accordion>
+  <Accordion title="Screenshots 4-10: Complete the story">
+    These do not appear in Search Ads but matter for your App Store page (where users land after tapping the ad). Cover all major features, settings, and use cases.
+  </Accordion>
+</AccordionGroup>
+
+### Custom product pages (Advanced only)
+
+With Search Ads Advanced, you can create **Custom Product Pages** in App Store Connect. These are alternate versions of your app listing with different screenshots and promotional text.
+
+Why this matters: You can show different screenshots to different audiences. For example:
+- Users searching "workout app" see fitness-focused screenshots
+- Users searching "nutrition tracker" see food-tracking screenshots
+- Both search queries lead to the same app, but with tailored messaging
+
+<Steps>
+  <Step title="Create custom product pages in App Store Connect">
+    Go to App Store Connect > Your App > **Custom Product Pages**. Create up to 35 different page variations.
+  </Step>
+  <Step title="Link them to ad groups in Search Ads Advanced">
+    In your campaign, you can assign a custom product page to a specific ad group. When users in that ad group tap your ad, they see your custom page instead of the default listing.
+  </Step>
+</Steps>
 
 ## Pre-launch checklist
 
-Before creating your first campaign:
+Before you create your first campaign, verify everything is in place:
 
-- [ ] Account created at searchads.apple.com
-- [ ] Payment method added
-- [ ] Budget order created with a spending cap
-- [ ] App Store listing optimized (icon, screenshots, description)
-- [ ] App has 4.0+ star rating (ideal, not required)
+- [ ] Apple Search Ads account created at [searchads.apple.com](https://searchads.apple.com)
+- [ ] Payment method added and verified
+- [ ] Budget order created with a maximum spend cap (Advanced)
+- [ ] Team members invited with appropriate roles (if applicable)
+- [ ] App Store listing optimized:
+  - [ ] App icon is clean and recognizable
+  - [ ] App name includes primary keyword
+  - [ ] Subtitle includes secondary keyword or value proposition
+  - [ ] First 3 screenshots are compelling with text overlays
+  - [ ] Description is complete and keyword-rich
+  - [ ] App has ratings (4.0+ stars ideal)
+- [ ] Attribution API integrated in your app (optional but recommended)
+- [ ] Custom product pages created (optional, Advanced only)
 
 <Card
   title="Your First Apple Search Ads Campaign"
   icon="arrow-right"
   href="/platforms/apple/first-campaign"
 >
-  Account ready? Let's launch your first campaign.
+  Account ready? Let's launch your first campaign — step by step.
 </Card>

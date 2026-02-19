@@ -1,128 +1,542 @@
 ---
 title: "Targeting"
-description: "How to find the right people for your ads. Because showing a vegan recipe app to steak lovers is a waste of money."
+description: "How to find the right people for your ads — every targeting type explained, platform differences, audience sizing, and strategies that actually work."
 ---
 
 ## What is targeting?
 
-Targeting means telling the ad platform: **"Show my ad to people like THIS."**
+Targeting is the art of telling an ad platform **exactly who** should see your ad. Instead of showing your ad to the entire internet, you narrow it down to people who are most likely to care about your product.
 
-It's the difference between:
-- Shouting in a crowded mall: "HEY EVERYONE, DOWNLOAD MY APP!" ❌
-- Tapping someone on the shoulder: "Hey, I noticed you're into fitness. Want a free workout tracker?" ✅
+Think of it this way:
+- **No targeting:** Standing in Times Square shouting "Download my app!" to millions of random people.
+- **Good targeting:** Walking into a yoga studio and saying "I built a meditation app — want to try it?" to people who are already interested.
 
-## The 5 types of targeting
+The better your targeting, the less money you waste on people who will never become your users.
+
+<Note>
+  Modern ad platforms (especially Meta) have gotten incredibly smart at finding the right users automatically. In many cases, **broad targeting with good creatives** outperforms hyper-specific manual targeting. But you still need to understand targeting to make informed decisions.
+</Note>
+
+---
+
+## All targeting types explained
 
 ### 1. Demographic targeting
 
-The basics: who are they?
+The most basic form of targeting — filtering by who people **are**.
 
-| Parameter | Examples |
-|-----------|----------|
-| Age | 18-24, 25-34, 35-44 |
-| Gender | All, Male, Female |
-| Location | Country, State, City, Radius |
-| Language | English, Korean, Spanish |
+| Parameter | Description | Available on |
+|-----------|------------|-------------|
+| **Age** | Age ranges (e.g., 18-24, 25-34) | Meta, Google, TikTok |
+| **Gender** | Male, Female, All | Meta, Google, TikTok |
+| **Location** | Country, state, city, zip code, radius | All platforms |
+| **Language** | User's device or profile language | Meta, Google, TikTok |
+| **Income** | Household income brackets | Google (US only), Meta (limited) |
+| **Education** | Education level | Meta |
+| **Relationship status** | Single, married, etc. | Meta |
+| **Job title / Industry** | Professional information | Meta, LinkedIn |
+| **Parental status** | Has children, age of children | Meta, Google |
 
 <Tip>
-  **Start with location + age only.** Don't over-narrow demographics on your first campaign.
-  Let the platform's algorithm figure out who responds best.
+  **Location targeting is the most important demographic setting.** If your app is only available in English and only serves the US market, showing ads to users in countries where they can not use your app is a direct waste of money.
 </Tip>
+
+#### Location targeting options
+
+Most platforms offer several location modes:
+
+| Mode | What it means | Use when |
+|------|-------------|----------|
+| **People living in** | Permanent residents of the area | Most campaigns (default) |
+| **People recently in** | Anyone who was recently in the area | Local businesses, events |
+| **People traveling to** | Visitors, not residents | Tourism, travel apps |
+| **Radius targeting** | Everyone within X miles of a point | Local services, store-based |
+
+<Warning>
+  **Common mistake:** Leaving location set to "All countries" on your first campaign. This will spend your budget on users in countries with very low CPMs (cheap impressions) who may never convert. Always set specific countries or regions.
+</Warning>
+
+---
 
 ### 2. Interest-based targeting
 
-What do they like? What pages do they follow? What apps do they use?
+Interest targeting lets you reach people based on their **hobbies, preferences, and affinities** — as inferred by the platform from their behavior.
 
-**Examples:**
-- "Fitness" → people who engage with fitness content
-- "Cooking" → people who watch recipe videos
-- "Technology" → people who follow tech news
+#### How platforms determine interests
+
+The platform builds an interest profile for each user based on:
+- Pages and accounts they follow
+- Content they engage with (likes, comments, shares, saves)
+- Apps they have installed
+- Websites they visit (via tracking pixels)
+- Ads they have clicked on before
+- Groups they belong to
+- Videos they watch and for how long
+
+#### Interest categories
+
+| Category | Example interests | Good for |
+|----------|------------------|----------|
+| **Fitness & Wellness** | Yoga, running, gym, nutrition, meditation | Health apps |
+| **Technology** | Smartphones, AI, gaming, coding, startups | Tech/productivity apps |
+| **Entertainment** | Music, movies, streaming, celebrities, memes | Entertainment apps |
+| **Business** | Entrepreneurship, marketing, finance, investing | B2B/finance apps |
+| **Food & Drink** | Cooking, restaurants, veganism, coffee | Food/recipe apps |
+| **Shopping** | Fashion, deals, luxury, online shopping | E-commerce apps |
+| **Travel** | Adventure, beaches, backpacking, luxury travel | Travel apps |
+| **Education** | Online learning, languages, science, books | Education apps |
 
 <Note>
-  Interest targeting is a **suggestion**, not a guarantee.
-  "Interested in fitness" might include someone who liked one gym post 6 months ago.
-  That's okay — the algorithm gets smarter with more data.
+  **Interest targeting is a signal, not a guarantee.** Someone categorized as "interested in fitness" might have liked one gym post three months ago. The algorithm uses interests as a starting signal and then refines based on actual ad performance.
 </Note>
+
+---
 
 ### 3. Behavioral targeting
 
-What have they actually done?
+While interest targeting is about what people **like**, behavioral targeting is about what people **do**. It targets users based on actual actions and purchase patterns.
 
-- Recently purchased a new phone
-- Traveled internationally in the last month
-- Engaged with apps similar to yours
-- Frequent online shoppers
-
-This is more precise than interests because it's based on **actions**, not just likes.
-
-### 4. Keyword targeting (Google & Apple)
-
-What are they searching for right now?
-
-```
-User types: "best meditation app"
-Your ad appears at the top of the search results.
-```
-
-This is the most powerful targeting because the user is **actively looking for something**. They have intent.
+| Behavior | Description | Platform |
+|----------|------------|----------|
+| **Recent purchasers** | People who bought something recently | Meta, Google |
+| **Frequent travelers** | People who travel often (based on location data) | Meta |
+| **Device switchers** | People who recently got a new phone | Meta |
+| **Early adopters** | People who install new apps quickly | Meta |
+| **Online shoppers** | People who frequently buy online | Meta, Google |
+| **Mobile gamers** | People who actively play mobile games | Meta, TikTok |
+| **High-value purchasers** | People who spend more than average in apps | Google, Meta |
 
 <Tip>
-  **This is why Apple Search Ads and Google Search Ads convert so well.**
-  The user is literally telling you what they want.
+  **Behavioral targeting is often more powerful than interest targeting** because it is based on what people actually do, not just what they claim to be interested in. A "frequent online shopper" is more likely to convert than someone "interested in shopping."
 </Tip>
 
-### 5. Custom & Lookalike audiences
+---
 
-This is where it gets magical (once you have some data):
+### 4. Contextual targeting
 
-**Custom Audience:** Upload a list of your existing users → the platform shows ads to them (great for re-engagement).
+Instead of targeting people based on who they are, contextual targeting places your ad next to **relevant content**. The ad matches the context of what the user is currently viewing.
 
-**Lookalike Audience:** Give the platform your best users → it finds **new people who look like them**.
+| Contextual method | How it works | Platform |
+|-------------------|-------------|----------|
+| **Topic targeting** | Your ad appears on pages about specific topics | Google Display |
+| **Keyword targeting** | Your ad appears when specific words are searched or present on a page | Google Search, Apple Search Ads |
+| **Content category** | Your ad appears in specific app or content categories | Ad networks, TikTok |
+| **Channel targeting** | Your ad appears on specific YouTube channels or websites | Google (YouTube + Display) |
 
-```
-Your best 100 users → Platform analyzes their traits → Finds 1M similar people → Shows your ad to them
-```
+#### Search keyword targeting (Google and Apple)
+
+This is the most powerful form of contextual targeting because the user is **actively searching** for something.
+
+<Tabs>
+  <Tab title="Google Search Ads">
+    Google offers three keyword match types:
+
+    | Match type | Syntax | What it matches | Example |
+    |-----------|--------|----------------|---------|
+    | **Broad match** | `meditation app` | Related searches, synonyms, related concepts | "mindfulness tool," "calm app," "stress relief" |
+    | **Phrase match** | `"meditation app"` | Searches containing the phrase or close variants | "best meditation app," "meditation app for sleep" |
+    | **Exact match** | `[meditation app]` | The exact term or very close variants | "meditation app," "meditation apps" |
+
+    <Tip>
+      **Start with phrase match and exact match.** Broad match can spend your budget on loosely related searches. As you get more data, you can expand to broad match with smart bidding.
+    </Tip>
+  </Tab>
+  <Tab title="Apple Search Ads">
+    Apple offers two match types:
+
+    | Match type | What it does |
+    |-----------|-------------|
+    | **Search Match** | Apple automatically matches your ad to relevant searches based on your app metadata |
+    | **Exact Match** | Your ad appears only for the specific keyword you choose |
+    | **Broad Match** | Your ad appears for the keyword and related terms |
+
+    Apple Search Ads also lets you add **negative keywords** — terms you do NOT want your ad to appear for. Example: If you have a paid meditation app, you might add "free" as a negative keyword.
+  </Tab>
+</Tabs>
+
+---
+
+### 5. Geographic targeting (Geo-targeting)
+
+Going beyond basic country selection, geo-targeting lets you get very specific about where your audience is.
+
+| Geo level | What you can target | Use case |
+|-----------|-------------------|----------|
+| **Country** | Entire nations | Global app launches |
+| **State/Region** | Provinces, states | Regional services |
+| **City** | Specific cities | Urban-focused apps |
+| **DMA (Designated Market Area)** | TV market regions (US) | Media/entertainment |
+| **Zip/Postal code** | Specific neighborhoods | Hyperlocal targeting |
+| **Radius** | Circle around a point (1-50+ miles) | Local businesses |
+| **Exclude locations** | Remove specific areas | Avoid low-performing regions |
+
+<Note>
+  **Geo-targeting affects cost significantly.** US, UK, Canada, Australia, and Western Europe have the highest CPMs. Southeast Asia, Africa, and South America have much lower CPMs. A $10/day budget in the US might get 3-5 installs, but in India it might get 30-50.
+</Note>
+
+---
+
+### 6. Device and technical targeting
+
+Target users based on their device, operating system, or connection type.
+
+| Parameter | Options | Why it matters |
+|-----------|---------|---------------|
+| **Operating system** | iOS, Android | Target the right platform for your app |
+| **OS version** | iOS 16+, Android 12+ | Ensure compatibility |
+| **Device model** | iPhone 14, Samsung Galaxy, etc. | Premium vs. budget devices |
+| **Connection type** | Wi-Fi, Cellular (3G/4G/5G) | Important for large app downloads |
+| **Carrier** | Specific mobile carriers | Rare, but available on some platforms |
+
+<Tip>
+  **If your app is iOS-only, always set device targeting to iOS.** This sounds obvious, but forgetting this setting is more common than you would expect and wastes entire budgets showing ads to Android users who cannot install your app.
+</Tip>
+
+---
+
+### 7. Custom audiences (First-party data)
+
+Custom audiences let you target people **you already know** — your existing users, website visitors, or customer lists.
+
+<AccordionGroup>
+  <Accordion title="Customer list upload">
+    Upload a list of email addresses, phone numbers, or device IDs. The platform matches them to user accounts and shows your ads to those specific people.
+
+    **Use cases:**
+    - Re-engage users who have not opened your app in 30 days
+    - Upsell premium features to free users
+    - Exclude existing users from install campaigns (save budget)
+    - Target users who abandoned checkout
+
+    **Minimum list size:** Usually 100-1,000 users, depending on the platform. Match rates vary from 30-70%.
+  </Accordion>
+
+  <Accordion title="Website / App activity audiences">
+    Create audiences based on what people did on your website or app:
+
+    - Visited your website in the last 7 days
+    - Added to cart but did not purchase
+    - Viewed a specific product page
+    - Completed a tutorial but did not subscribe
+    - Reached level 5 in your game
+    - Opened the app in the last 3 days but did not make a purchase
+
+    **Requires:** A pixel (for web) or SDK (for app) installed and sending events.
+  </Accordion>
+
+  <Accordion title="Engagement audiences">
+    Target people who have engaged with your content on the platform itself:
+
+    - Watched 50%+ of your video ad
+    - Engaged with your Instagram profile
+    - Opened a lead form but did not submit
+    - Interacted with your Facebook page
+
+    **Advantage:** No pixel needed — the platform tracks this natively.
+  </Accordion>
+</AccordionGroup>
 
 <Warning>
-  You need **at least 100 users** (ideally 1,000+) before lookalike audiences work well.
-  Don't worry about this for your first campaign. Come back to it later.
+  **Privacy regulations matter.** When uploading customer lists, ensure you have proper consent (GDPR, CCPA compliance). The platform will hash the data before matching, but you need legal basis to use the data in the first place.
 </Warning>
 
-## Our targeting recommendation for beginners
+---
+
+### 8. Lookalike / Similar audiences
+
+This is one of the most powerful targeting tools in digital advertising. You give the platform a "seed" audience (your best customers), and it finds **new people who share similar characteristics**.
+
+```mermaid
+graph LR
+    A["Your best 1,000 users<br/>(Seed Audience)"] --> B["Platform analyzes:<br/>demographics, interests,<br/>behaviors, purchase patterns"]
+    B --> C["Finds 1-10 million<br/>similar people<br/>(Lookalike Audience)"]
+    C --> D["Shows your ads<br/>to these new people"]
+
+    style A fill:#4A90D9,color:#fff
+    style B fill:#7B68EE,color:#fff
+    style C fill:#2ECC71,color:#fff
+    style D fill:#FFA500,color:#fff
+```
+
+#### Lookalike audience sizes
+
+| Platform | Name | Size options | How it works |
+|----------|------|-------------|-------------|
+| **Meta** | Lookalike Audience | 1% to 10% of a country | 1% = most similar (smallest), 10% = broader (largest) |
+| **Google** | Similar Segments (being deprecated) / Optimized Targeting | Automatic | Google automatically expands to similar users |
+| **TikTok** | Lookalike Audience | Narrow, Balanced, Broad | Three levels of similarity |
+| **Apple** | Not available directly | N/A | Apple uses Search Match and keyword relevance instead |
+
+#### Best practices for lookalike audiences
 
 <Steps>
-  <Step title="Start broad">
-    Pick your country + age range + 2-3 relevant interests. That's it.
+  <Step title="Use high-quality seed audiences">
+    Your seed should be your **best** users, not just any users. Use purchasers, highly engaged users, or users with high lifetime value. Garbage in = garbage out.
   </Step>
-  <Step title="Let the algorithm learn">
-    Modern ad platforms (especially Meta) are incredibly good at finding the right people.
-    Give them room to work. Don't over-restrict.
+  <Step title="Seed size matters">
+    **Minimum:** 100 users (platform requirement), but results are poor below 500.
+    **Sweet spot:** 1,000-10,000 users for the best quality.
+    **Too large:** 50,000+ users dilute the pattern the platform looks for.
   </Step>
-  <Step title="Look at the data after 3-5 days">
-    Who's clicking? Who's installing? What age group? What placement?
+  <Step title="Start with smaller percentages">
+    On Meta, start with a **1% lookalike** (most similar users). This will be your highest-quality audience. Expand to 2-5% as you scale.
   </Step>
-  <Step title="Narrow based on data">
-    Now you can make informed decisions about who to target more (or less).
+  <Step title="Refresh regularly">
+    Your best users evolve over time. Update your seed audience monthly to keep the lookalike fresh and relevant.
   </Step>
 </Steps>
 
-## Common beginner mistakes
+---
 
-| Mistake | Why it's bad | What to do instead |
+### 9. Retargeting (Remarketing)
+
+Retargeting shows ads to people who have **already interacted with your brand** but have not converted yet. They visited your site, opened your app, or engaged with your content — but left without completing the desired action.
+
+| Retargeting type | Who you target | Example |
+|-----------------|---------------|---------|
+| **Website retargeting** | People who visited your site | "You viewed our pricing page but did not sign up" |
+| **App retargeting** | People who installed but are not active | "Come back! We added new features" |
+| **Cart abandonment** | People who added items but did not buy | "You left something in your cart" |
+| **Video viewers** | People who watched your video ad | "Liked our video? Try the app" |
+| **Engagement retargeting** | People who engaged with your social content | "You liked our post — here's a special offer" |
+| **Cross-platform retargeting** | Retarget across different channels | Saw ad on Instagram, retarget on Google Display |
+
+<Note>
+  **Retargeting typically has the lowest CPA (cost per acquisition)** of any targeting method because these users already know your brand. They are "warm" leads. Expect retargeting CPAs to be 30-60% lower than prospecting campaigns.
+</Note>
+
+#### Retargeting best practices
+
+- **Set frequency caps:** Do not show the same ad to the same person 20 times. 3-7 impressions per user per week is a good range.
+- **Use different creatives for retargeting:** Do not show them the same ad they already saw. Address objections, offer incentives, or highlight different features.
+- **Set recency windows:** Someone who visited your site 3 days ago is more valuable than someone who visited 60 days ago. Create separate audience windows.
+- **Exclude converters:** Always exclude people who already converted. Showing install ads to people who already installed your app wastes money and annoys users.
+
+---
+
+## How each platform implements targeting differently
+
+<Tabs>
+  <Tab title="Meta (Facebook/Instagram)">
+    **Meta's approach:** The most granular manual targeting options, but increasingly pushing toward **Advantage+ Audience** (automated targeting).
+
+    **Unique features:**
+    - Detailed interest and behavior categories (thousands of options)
+    - Advantage+ Audience: You provide targeting suggestions, but Meta can go beyond them
+    - Advantage+ Shopping Campaigns: Fully automated targeting for e-commerce
+    - Special Ad Categories: Restricted targeting for housing, credit, employment, politics
+    - Cross-platform targeting: Facebook + Instagram + Messenger + Audience Network
+
+    **Meta's recommendation:** Use broad targeting and let the algorithm optimize. Meta's system has data on 3B+ users and is very good at finding converters.
+
+    <Tip>
+      On Meta, **broad targeting + strong creative** often outperforms hyper-specific interest targeting. The algorithm knows more about users than the interest categories can express. Test broad vs. interest-based and compare results.
+    </Tip>
+  </Tab>
+  <Tab title="Google Ads">
+    **Google's approach:** Different targeting methods depending on campaign type.
+
+    **Search campaigns:** Keyword-based targeting (you target search queries, not people directly).
+
+    **Display/YouTube campaigns:**
+    - Audience segments (in-market, affinity, custom)
+    - Demographics
+    - Topics and placements
+    - Content keywords
+
+    **Performance Max:** Minimal targeting input — Google's AI handles everything. You provide audience "signals" as hints, but Google decides who to target.
+
+    **App campaigns:** Very limited manual targeting. You basically provide creatives, budget, and geographic/language settings. Google does the rest.
+
+    **Unique features:**
+    - In-market audiences (people actively researching a purchase)
+    - Affinity audiences (long-term interest categories)
+    - Custom intent audiences (based on search keywords and URLs)
+    - Optimized targeting (automatically expands beyond your selections)
+  </Tab>
+  <Tab title="TikTok">
+    **TikTok's approach:** Interest and behavior targeting combined with strong creative-driven optimization.
+
+    **Unique features:**
+    - Interest categories based on TikTok content engagement
+    - Behavior targeting: video interactions, creator interactions, hashtag interactions
+    - Smart Targeting: TikTok automatically broadens targeting if your audience is too narrow
+    - Spark Ads targeting: Promote organic TikTok posts to targeted audiences
+    - Hashtag targeting: Reach users who engage with specific hashtags
+
+    **TikTok's recommendation:** Creative quality matters more than targeting on TikTok. A great TikTok-native ad with broad targeting will outperform a mediocre ad with perfect targeting.
+  </Tab>
+  <Tab title="Apple Search Ads">
+    **Apple's approach:** Entirely keyword-based. No demographic or interest targeting (with some exceptions).
+
+    **Targeting options:**
+    - Keywords (exact and broad match)
+    - Search Match (automatic keyword matching)
+    - Demographics: Age, Gender (limited)
+    - Device type: iPhone, iPad
+    - Customer type: New users, returning users, users of your other apps
+    - Location
+
+    **Unique advantage:** The highest intent targeting available. Users are literally searching the App Store for apps — they are ready to install.
+
+    **Limitation:** You cannot target by interests or behaviors. Targeting is purely based on what the user searches for and basic demographics.
+  </Tab>
+</Tabs>
+
+---
+
+## Audience size guidelines
+
+Getting the right audience size is critical. Too small and the platform cannot optimize. Too large and you dilute performance.
+
+| Platform | Minimum recommended | Sweet spot | Too large (diminishing returns) |
+|----------|-------------------|-----------|-------------------------------|
+| **Meta** | 500K people | 2M-20M people | 100M+ (unless truly broad) |
+| **Google Display** | 100K people | 500K-5M people | 50M+ |
+| **Google Search** | N/A (keyword volume matters) | 1K-100K monthly searches per keyword | N/A |
+| **TikTok** | 500K people | 5M-50M people | 200M+ |
+| **Apple Search Ads** | N/A (keyword-based) | Keywords with 100+ monthly searches | N/A |
+
+<Warning>
+  **If a platform shows your estimated audience size below 500K:** Your targeting is probably too narrow. The algorithm will struggle to find enough people, your CPMs will be high, and results will be inconsistent. Broaden your targeting.
+</Warning>
+
+### How to check audience size
+
+- **Meta:** The Audience Definition gauge in Ad Set creation shows estimated reach
+- **Google:** The "Audience Insights" tool shows estimated size
+- **TikTok:** The "Estimated Audience Size" meter in Ad Group creation
+- **Apple:** The "Suggested" bid range gives an indirect signal (higher bids = more competitive keywords = more volume)
+
+---
+
+## Targeting strategy tips
+
+<AccordionGroup>
+  <Accordion title="Strategy 1: Start broad, then narrow">
+    Launch with broad targeting (geo + age only). Let the campaign run for 7-14 days. Analyze which demographics, placements, and audience segments performed best. Create new, narrower ad sets targeting those winning segments.
+
+    This is called a **"cast a wide net, then refine"** approach, and it is the most reliable method for finding your audience when you are starting from scratch.
+  </Accordion>
+
+  <Accordion title="Strategy 2: Funnel-based targeting">
+    Create different campaigns for different stages of the customer journey:
+
+    | Funnel stage | Audience | Ad message |
+    |-------------|---------|------------|
+    | **Top (Awareness)** | Broad or interest-based | "Did you know...?" / Educational |
+    | **Middle (Consideration)** | Engaged video viewers, website visitors | "Here's how it works..." / Feature-focused |
+    | **Bottom (Conversion)** | Retargeting, cart abandoners, engaged users | "Sign up today" / Direct CTA with incentive |
+
+    This strategy works best with larger budgets ($50+/day) because you need to fund all three stages.
+  </Accordion>
+
+  <Accordion title="Strategy 3: Competitor targeting">
+    Target users of competing apps or people interested in competitor brands.
+
+    - **Meta:** Use interest targeting for competitor brand names (if available) or target people who use similar apps
+    - **Google Search:** Bid on competitor brand keywords (legal, but expensive)
+    - **Apple Search Ads:** Bid on competitor app names as keywords (very effective)
+    - **TikTok:** Target users who engage with content related to competitor categories
+
+    <Tip>
+      **Apple Search Ads competitor targeting** is one of the highest-ROI strategies in app marketing. When someone searches for a competitor by name, your ad appears as an alternative. These users have high intent and are open to options.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="Strategy 4: Layered targeting (AND logic)">
+    Combine multiple targeting criteria to create a highly specific audience:
+
+    ```
+    Location: United States
+    AND Age: 25-44
+    AND Interest: Personal Finance
+    AND Behavior: Recently purchased a new smartphone
+    AND Device: iOS
+    ```
+
+    **Warning:** Each layer reduces your audience size. Monitor the audience size meter carefully to avoid going too narrow.
+  </Accordion>
+
+  <Accordion title="Strategy 5: Exclusion targeting">
+    Sometimes who you **exclude** is as important as who you include:
+
+    - Exclude existing customers from install campaigns
+    - Exclude users under 18 if your app is not for minors
+    - Exclude countries where your app is not available
+    - Exclude recent converters from retargeting (give them a break)
+    - Exclude low-performing placements (e.g., Audience Network on Meta if it performs poorly for you)
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Common targeting mistakes
+
+| Mistake | Why it is bad | What to do instead |
 |---------|-------------|-------------------|
-| Targeting too narrow | Not enough people to show ads to | Start broad, narrow later |
-| Targeting too many interests at once | Confusing signal for the algorithm | Pick 2-3 related interests |
-| Only targeting your own demographic | Your users might surprise you | Let data guide you |
-| Ignoring location | Paying for users who can't use your app | Always set relevant locations |
+| **Targeting too narrow** | Not enough people for the algorithm to optimize | Start with 1M+ audience size, narrow later |
+| **Stacking too many interests** | Conflicting signals confuse the algorithm | Pick 2-3 closely related interests or go broad |
+| **Only targeting your own demographic** | Your actual users might surprise you | Let data reveal your best audience |
+| **Forgetting to exclude existing users** | Paying to acquire users you already have | Always create exclusion audiences |
+| **Not setting location targeting** | Spending budget in irrelevant countries | Set specific countries/regions |
+| **Ignoring device targeting** | Showing iOS app ads to Android users | Match device targeting to your app |
+| **Copying targeting across platforms** | Each platform's audiences behave differently | Customize targeting per platform |
+| **Never refreshing audiences** | Lookalike and custom audiences go stale | Update seed audiences monthly |
+| **Setting and forgetting** | Audience performance changes over time | Review targeting weekly, adjust monthly |
+| **Over-relying on manual targeting** | Fighting the algorithm instead of working with it | Trust algorithmic optimization, especially on Meta |
+
+---
+
+## The future of targeting
+
+Targeting is rapidly evolving due to privacy changes:
+
+| Trend | Impact | What to do |
+|-------|--------|------------|
+| **Third-party cookie deprecation** | Less cross-site tracking for web ads | Invest in first-party data collection |
+| **iOS App Tracking Transparency (ATT)** | Reduced audience data on iOS | Rely more on contextual and broad targeting |
+| **Google Privacy Sandbox** | Changes to Android tracking | Prepare for less granular device-level targeting |
+| **AI-powered targeting** | Platforms doing more targeting automatically | Provide good creative and data signals, let AI optimize |
+| **First-party data importance** | Your own data becomes your biggest asset | Build robust CDP/CRM systems, encourage user logins |
+| **Contextual renaissance** | Contextual targeting gaining importance again | Test contextual campaigns alongside audience-based |
+
+<Note>
+  **The direction is clear:** Manual, granular targeting is becoming less important. **Creative quality and first-party data** are becoming more important. The platforms are moving toward automated targeting where you provide audience signals and good creative, and the algorithm does the rest.
+</Note>
+
+---
+
+## Key takeaways
+
+<Steps>
+  <Step title="Understand all targeting types">
+    Demographic, interest, behavioral, contextual, geographic, device, custom audiences, lookalikes, and retargeting. Each has its place.
+  </Step>
+  <Step title="Start broad, narrow with data">
+    Do not over-target on day one. Launch broad, collect data for 7-14 days, then refine based on what the data tells you.
+  </Step>
+  <Step title="Platforms differ — adapt accordingly">
+    Meta is best for interest/behavior targeting. Google Search is best for intent (keywords). Apple Search Ads has the highest intent. TikTok is creative-driven. Tailor your approach to each.
+  </Step>
+  <Step title="Audience size matters">
+    Too small (under 500K) starves the algorithm. Too large (100M+) dilutes relevance. Find the sweet spot.
+  </Step>
+  <Step title="Build your first-party data advantage">
+    Custom audiences and lookalikes from your own data are your most powerful targeting tools. Start collecting data from day one.
+  </Step>
+</Steps>
+
+---
 
 ## Next up
 
-You know who to target. Now let's talk about money.
+You know who to target. Now let's talk about money — how much to spend and how bidding works.
 
 <Card
-  title="Bidding & Budget →"
+  title="Bidding & Budget"
   icon="arrow-right"
   href="/concepts/bidding-and-budget"
 >
-  How much to spend, how bidding works, and how not to waste money.
+  How auctions work, what bid strategies to use, and how to manage your budget like a pro.
 </Card>

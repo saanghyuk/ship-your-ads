@@ -1,146 +1,686 @@
 ---
 title: "Your First Apple Search Ads Campaign"
-description: "Step-by-step walkthrough for launching your first Apple Search Ads campaign, from keyword selection to going live."
+description: "Screen-by-screen walkthrough for launching Apple Search Ads Basic and Advanced campaigns, including keyword research, bid strategy, audience targeting, Creative Sets, and optimization."
 ---
 
-## Let's get you some installs
+## Time to get installs
 
-Apple Search Ads campaigns are the fastest to set up of any ad platform. If you're using Basic, you can be live in 5 minutes. If you're using Advanced, give yourself 20-30 minutes.
+You have your account set up, your App Store listing optimized, and your payment method configured. Now it is time to launch your first campaign and start getting installs.
 
-## What you'll learn
+This guide walks you through every screen, every setting, and every decision — for both Basic and Advanced. Nothing is skipped.
 
-- How to create a campaign in both Basic and Advanced
-- How to choose the right keywords
-- How to set bids and budgets
-- What settings to use (and what to skip)
-- What to expect in your first week
+## Choose your path
 
-## Option A: Search Ads Basic (the fast track)
+<Tabs>
+  <Tab title="Search Ads Basic (Beginner-Friendly)">
 
-If you chose Basic, the process is delightfully simple:
+    ## Search Ads Basic — the 5-minute campaign
 
-<Steps>
-  <Step title="Select your app">
-    Pick the app you want to promote from the dropdown.
-  </Step>
-  <Step title="Set your monthly budget">
-    Start with $100-500/month. You can change this anytime.
-  </Step>
-  <Step title="Set your max CPI (Cost Per Install)">
-    This is the maximum you're willing to pay per install. Apple suggests a range — start at or slightly below their suggestion.
-  </Step>
-  <Step title="Choose countries">
-    Select the countries where you want your ads to appear. Start with your primary market.
-  </Step>
-  <Step title="Launch">
-    That's it. Apple handles keywords, bidding, and targeting automatically.
-  </Step>
-</Steps>
+    Basic is the fastest way to start advertising on the App Store. Apple handles keywords, bidding, and targeting. You just set your budget and go.
+
+    <Steps>
+      <Step title="Open Search Ads Basic dashboard">
+        Go to [searchads.apple.com](https://searchads.apple.com) and make sure you are in the **Basic** dashboard (not Advanced). If you see a complex interface with campaigns and ad groups, click your name in the top-right corner and switch to Basic.
+      </Step>
+      <Step title="Click 'Promote this app'">
+        Click the blue **Promote this app** button. If you have multiple apps, you will see all your apps listed. Click the one you want to promote.
+
+        **If your app is not listed:** Make sure you signed in with the same Apple ID that manages the app in App Store Connect. If you used a different Apple ID, you need to be invited as a user in App Store Connect first.
+      </Step>
+      <Step title="Select your app">
+        Click on the app you want to promote. You will see a preview of how your ad will look in search results. This is pulled directly from your App Store listing — your icon, name, subtitle, and screenshots.
+
+        **Review this preview carefully.** If anything looks wrong (bad screenshot, outdated name), go fix it in App Store Connect first. You cannot customize the ad appearance in Basic.
+      </Step>
+      <Step title="Set your monthly budget">
+        Apple asks for a **monthly budget** — the maximum you want to spend per month.
+
+        **Recommended starting budgets:**
+        | Your situation | Monthly budget |
+        |---------------|---------------|
+        | Just testing | $100 - $200 |
+        | Small indie developer | $200 - $500 |
+        | Serious about growth | $500 - $2,000 |
+        | Scaling aggressively | $2,000 - $10,000 |
+
+        The maximum monthly budget in Basic is $10,000 per app per country.
+
+        <Tip>
+          **Start small.** You can always increase later. $200/month is enough to learn whether Apple Search Ads works for your app.
+        </Tip>
+      </Step>
+      <Step title="Set your max CPI (Cost Per Install)">
+        This is the maximum amount you are willing to pay for a single install. Apple will show a **suggested range** based on your app's category and competition.
+
+        **How to choose your max CPI:**
+
+        1. Look at Apple's suggested range (e.g., $1.50 - $3.00)
+        2. Start at or slightly below the middle of the range
+        3. If you know your LTV (lifetime value per user), set your max CPI to 30-50% of LTV
+
+        **Example:** If your app earns $5 per user over their lifetime, set your max CPI to $1.50 - $2.50.
+
+        <Note>
+          **You will usually pay less than your max CPI.** Apple's auction system means you pay just enough to win, not your maximum. Setting your max CPI to $2.00 might result in actual CPIs of $0.80 - $1.50.
+        </Note>
+      </Step>
+      <Step title="Choose countries and regions">
+        Select where you want your ads to appear. You can choose individual countries or regions.
+
+        **Start with your primary market** — usually the country where most of your current users are. If you are unsure, start with:
+        - **United States** — largest market, most expensive
+        - **United Kingdom** — good market, moderate cost
+        - **Canada** — English-speaking, moderate cost
+        - **Australia** — English-speaking, moderate cost
+
+        You can add more countries later.
+
+        <Warning>
+          **Each country is a separate campaign in Basic.** If you select 5 countries, Apple creates 5 independent campaigns, each with its own budget. A $500 monthly budget across 5 countries means $100 per country, which may be too thin.
+        </Warning>
+      </Step>
+      <Step title="Review and launch">
+        Review your settings:
+        - App name
+        - Monthly budget
+        - Max CPI
+        - Countries
+
+        Click **Start Promoting**. Your campaign is now live.
+
+        Apple starts showing your ad immediately (or within a few hours). You will see impressions, taps, and installs in the Basic dashboard within 24 hours.
+      </Step>
+    </Steps>
+
+    ### What happens behind the scenes in Basic
+
+    When you launch a Basic campaign, Apple:
+
+    1. Analyzes your app's metadata (title, subtitle, keywords, description)
+    2. Identifies relevant search terms people use in the App Store
+    3. Automatically bids on those search terms for you
+    4. Adjusts bids in real time to stay within your max CPI
+    5. Optimizes delivery to maximize installs within your budget
+
+    You do NOT see which keywords Apple chose. You only see aggregate results: total impressions, taps, installs, spend, and average CPI.
+
+    ### Managing your Basic campaign
+
+    After launching, you can:
+    - **Adjust your monthly budget** up or down
+    - **Change your max CPI** if costs are too high or too low
+    - **Pause or resume** the campaign
+    - **Add or remove countries**
+
+    That is the full extent of control in Basic. For more, switch to Advanced.
+
+  </Tab>
+  <Tab title="Search Ads Advanced (Full Control)">
+
+    ## Search Ads Advanced — complete walkthrough
+
+    Advanced gives you full control over keywords, bids, audiences, and creative. This walkthrough covers every screen and setting.
+
+    ### Phase 1: Create the campaign
+
+    <Steps>
+      <Step title="Open Search Ads Advanced dashboard">
+        Go to [searchads.apple.com](https://searchads.apple.com) and make sure you are in the **Advanced** dashboard. You should see a navigation bar with Campaigns, Ad Groups, Keywords, etc.
+      </Step>
+      <Step title="Click 'Create Campaign'">
+        Click the blue **Create Campaign** button in the top-right corner.
+      </Step>
+      <Step title="Select your app">
+        Search for and select the app you want to promote. Type the app name or paste the App Store URL.
+      </Step>
+      <Step title="Choose the ad placement">
+        Apple asks where you want your ad to appear:
+
+        | Placement | Best for | Recommended for beginners |
+        |-----------|---------|--------------------------|
+        | **Search Results** | Direct response, installs | Yes — start here |
+        | **Search Tab** | Brand awareness, broader reach | Not yet |
+        | **Today Tab** | Premium brand awareness | Not yet |
+        | **Product Pages** | Competitor conquesting | Not yet |
+
+        Select **Search Results** for your first campaign. This is where the highest-intent users are.
+      </Step>
+      <Step title="Choose countries and regions">
+        Select the countries where your ad should appear. Unlike Basic, you can create one campaign for multiple countries OR separate campaigns per country.
+
+        **Recommendation:** Create separate campaigns per country (or per country group). This gives you independent budgets and performance data for each market.
+
+        For your first campaign, pick one country — your primary market.
+      </Step>
+      <Step title="Name your campaign">
+        Use a descriptive naming convention. You will have many campaigns eventually.
+
+        **Good naming pattern:** `[Country] - [Strategy] - [Match Type]`
+
+        Examples:
+        - `US - Brand Defense - Exact`
+        - `US - Category Keywords - Broad`
+        - `UK - Discovery - Search Match`
+        - `US - Competitors - Exact`
+
+        For your first campaign, name it something like: `US - First Campaign` or `US - All Keywords`.
+      </Step>
+      <Step title="Set the campaign budget">
+        This is the **total lifetime budget** for this campaign. Once it is spent, the campaign stops.
+
+        | Your situation | Campaign budget |
+        |---------------|----------------|
+        | Testing | $500 |
+        | Learning | $1,000 |
+        | Growth mode | $5,000+ |
+
+        You can increase this anytime, so start conservative.
+      </Step>
+      <Step title="Set the daily cap">
+        The daily cap limits how much the campaign can spend per day. This controls the pace of spending.
+
+        **Recommended starting daily caps:**
+        - $15/day if testing cautiously
+        - $25/day for moderate pace
+        - $50/day if you want data fast
+
+        <Note>
+          **Daily cap math:** A $25/day cap means roughly $750/month in spend. Make sure your campaign budget and budget order can support this.
+        </Note>
+      </Step>
+      <Step title="Assign to a campaign group (optional)">
+        If you created campaign groups during account setup, assign this campaign to one. Otherwise, skip this.
+      </Step>
+    </Steps>
+
+    ### Phase 2: Create an ad group
+
+    After setting up the campaign, you create one or more ad groups within it. Ad groups contain your keywords and targeting settings.
+
+    <Steps>
+      <Step title="Name the ad group">
+        Use descriptive names that tell you what this ad group contains:
+        - `Brand Terms - Exact Match`
+        - `Category Keywords - Broad Match`
+        - `Discovery - Search Match`
+
+        For your first campaign, use: `All Keywords` or `General`.
+      </Step>
+      <Step title="Set the default max CPT (Cost Per Tap) bid">
+        This is the maximum you will pay each time someone **taps** your ad. Not per install — per tap.
+
+        **How to choose your starting CPT bid:**
+
+        | Keyword type | Starting CPT bid |
+        |-------------|-----------------|
+        | Brand keywords (your name) | $1.00 - $2.00 |
+        | Category keywords (generic) | $0.50 - $1.50 |
+        | Competitor keywords | $0.50 - $1.00 |
+        | Discovery / Search Match | $0.30 - $0.75 |
+
+        Remember, you will typically pay LESS than your max bid (second-price auction). Start in the middle of the range and adjust after seeing data.
+      </Step>
+      <Step title="Configure audience targeting (optional but powerful)">
+        This is where Advanced shines. You can narrow who sees your ads.
+
+        **Demographics:**
+
+        | Setting | Options | Recommendation |
+        |---------|---------|----------------|
+        | **Age** | 18-24, 25-34, 35-44, 45-54, 55-64, 65+ | Start with All Ages unless you know your audience |
+        | **Gender** | Male, Female, All | Start with All unless your app is gender-specific |
+
+        **Customer types:**
+
+        This is one of the most powerful targeting features:
+
+        | Customer type | Who they are | When to use |
+        |-------------|-------------|-------------|
+        | **All users** | Everyone | Default, broadest reach |
+        | **New users** | People who have never downloaded your app | Growth campaigns |
+        | **Returning users** | People who downloaded but deleted your app | Re-engagement |
+        | **Users of my other apps** | People who use your other apps | Cross-promotion |
+
+        <Tip>
+          **For your first campaign, target "New users" only.** This avoids paying to re-acquire people who already have your app. You can create a separate "Returning users" campaign later with different messaging.
+        </Tip>
+
+        **Device types:**
+
+        | Option | When to use |
+        |--------|-------------|
+        | **iPhone** | If your app is iPhone-optimized |
+        | **iPad** | If your app has a great iPad experience |
+        | **Both** | Default — reach everyone |
+      </Step>
+      <Step title="Set the ad group schedule (optional)">
+        You can schedule the ad group to run on specific dates or days of the week. For your first campaign, leave this as "Run continuously" — you need data from all times to see patterns.
+      </Step>
+    </Steps>
+
+    ### Phase 3: Add keywords
+
+    This is the most important part of Advanced campaign setup. Keywords determine when your ad appears.
+
+    <Steps>
+      <Step title="Understand match types first">
+        Before adding keywords, understand the two match types:
+
+        | Match type | How it works | Example |
+        |-----------|-------------|---------|
+        | **Exact Match** | Your ad shows ONLY when someone searches this exact term (and very close variations like plurals) | Keyword: `meditation app` shows for "meditation app" and "meditation apps" |
+        | **Broad Match** | Your ad shows for the keyword AND related terms that Apple considers similar | Keyword: `meditation app` shows for "mindfulness app," "calm meditation," "relaxation app," etc. |
+
+        **Notation:** Exact Match keywords are shown in [brackets]. Broad Match keywords have no brackets.
+
+        <Warning>
+          **Broad Match can be surprisingly broad.** Apple decides what is "related," and sometimes the matches are not great. Always monitor broad match terms and add negative keywords for irrelevant matches.
+        </Warning>
+      </Step>
+      <Step title="Use Apple's keyword suggestions">
+        In the keyword entry screen, Apple provides a **Recommended** tab with suggested keywords based on your app's metadata. This is a great starting point.
+
+        Go through the suggestions and:
+        1. Add relevant keywords
+        2. Skip irrelevant ones
+        3. Note the **popularity score** (higher = more search volume, but also more competition)
+      </Step>
+      <Step title="Add your brand keywords">
+        Add your own app name and variations as Exact Match:
+
+        ```
+        [your app name]
+        [your app name typo 1]
+        [your app name typo 2]
+        [your app abbreviation]
+        ```
+
+        **Why bid on your own name?** Because competitors will. If someone searches for your app and sees a competitor's ad first, you lose that install.
+
+        Set a HIGH bid on brand keywords ($1.50 - $3.00). You will pay very little because your relevance is maximum.
+      </Step>
+      <Step title="Add category keywords">
+        These are generic terms that describe what your app does:
+
+        **For a meditation app:**
+        ```
+        [meditation app]
+        [mindfulness app]
+        [breathing exercises]
+        [guided meditation]
+        [sleep meditation]
+        [anxiety relief app]
+        [stress relief]
+        [calm app]
+        [relaxation app]
+        [mental health app]
+        ```
+
+        Add these as both Exact Match and Broad Match in separate ad groups (or mix them in one ad group to start).
+      </Step>
+      <Step title="Add competitor keywords">
+        Search the App Store for your category. Note the top 5-10 competing apps. Their names become your keywords:
+
+        **For a meditation app:**
+        ```
+        [Headspace]
+        [Calm]
+        [Insight Timer]
+        [Balance meditation]
+        [Ten Percent Happier]
+        ```
+
+        <Note>
+          **Competitor keywords are more expensive** because your app has lower relevance to someone else's name. Set moderate bids ($0.50 - $1.00) and monitor closely. Pause any competitor keyword that costs too much relative to its conversion rate.
+        </Note>
+      </Step>
+      <Step title="Enable Search Match (for discovery)">
+        Search Match is Apple's automatic keyword matching. When enabled, Apple will show your ad for search terms it considers relevant — even terms you did not add as keywords.
+
+        **Enable Search Match in a dedicated ad group** with a lower bid ($0.30 - $0.50). This ad group acts as your keyword discovery engine. Check it weekly to find converting terms, then move those terms to your main ad groups as Exact Match.
+
+        <Tip>
+          **Crucial: Add all your existing keywords as negative keywords in the Search Match ad group.** This prevents Search Match from competing with your manual keywords. You want Search Match to only find NEW terms.
+        </Tip>
+      </Step>
+    </Steps>
+
+    ### Phase 4: Add negative keywords
+
+    Negative keywords prevent your ad from showing for specific searches. They are critical for controlling costs.
+
+    **Campaign-level negative keywords:** Apply to all ad groups in the campaign.
+
+    **Ad group-level negative keywords:** Apply only to that ad group.
+
+    **When to add negative keywords:**
+    - Before launch: Add obviously irrelevant terms
+    - After launch: Check Search Match and Broad Match reports for irrelevant terms, then add them as negatives
+
+    **Example negative keywords for a paid meditation app:**
+    ```
+    [free meditation]
+    [free mindfulness]
+    [meditation music]
+    [meditation youtube]
+    ```
+
+    ### Phase 5: Set up Creative Sets (optional but recommended)
+
+    Creative Sets let you create multiple ad variations using different combinations of your App Store screenshots and preview videos.
+
+    <Steps>
+      <Step title="Make sure you have multiple screenshot sets">
+        In App Store Connect, you should have screenshots for different device sizes. Creative Sets use these existing screenshots — you cannot upload new images specifically for ads.
+      </Step>
+      <Step title="Create a Creative Set in your ad group">
+        In your ad group, go to the **Creative Sets** section and click **Create Creative Set**.
+      </Step>
+      <Step title="Choose screenshots">
+        Select which screenshots and app previews to include in this variation. You can reorder them to test different leading screenshots.
+
+        **Example:** Create two Creative Sets:
+        - **Set A:** Screenshots 1, 2, 3 (your default order)
+        - **Set B:** Screenshots 4, 1, 2 (leading with a different feature)
+      </Step>
+      <Step title="Monitor performance">
+        After running for 1-2 weeks, check which Creative Set has a higher conversion rate. Pause the loser, create new variations to test.
+      </Step>
+    </Steps>
+
+    ### Phase 6: Link custom product pages (optional)
+
+    If you created custom product pages in App Store Connect, you can link them to specific ad groups.
+
+    This means when someone taps your ad from a specific keyword group, they land on a custom App Store page tailored to their search.
+
+    **Example:**
+    - User searches "workout app" → sees your fitness-focused product page
+    - User searches "nutrition tracker" → sees your food-tracking product page
+    - Same app, but the landing page matches their intent
+
+    To link:
+    1. In your ad group settings, look for **Ad** or **Creative** section
+    2. Select your custom product page from the dropdown
+    3. The ad will automatically use the screenshots from that custom page
+
+    ### Phase 7: Review and launch
+
+    <Steps>
+      <Step title="Review campaign settings">
+        Verify:
+        - Campaign name and budget
+        - Daily cap
+        - Countries
+      </Step>
+      <Step title="Review ad group settings">
+        Verify:
+        - Default CPT bid
+        - Audience targeting
+        - Device targeting
+      </Step>
+      <Step title="Review keywords">
+        Verify:
+        - All keywords added with correct match types
+        - Negative keywords in place
+        - Search Match enabled in discovery ad group
+        - Individual keyword bids adjusted (if different from default)
+      </Step>
+      <Step title="Launch">
+        Click **Start Campaign**. Your ad enters Apple's review (usually instant for search result ads) and begins serving.
+      </Step>
+    </Steps>
+
+  </Tab>
+</Tabs>
+
+## Keyword research methodology
+
+Finding the right keywords is the biggest factor in Apple Search Ads success. Here is a systematic approach.
+
+### Step 1: Start with your app's metadata
+
+Open App Store Connect and look at:
+- Your **app name** and **subtitle**
+- Your **keyword field** (100 characters, comma-separated)
+- Your **app description**
+
+List every term from these fields. These are your "seed keywords."
+
+### Step 2: Expand with Apple's suggestions
+
+In the Search Ads keyword entry screen, Apple suggests related keywords. Go through every suggestion and note:
+- **Relevance** — is this actually related to your app?
+- **Popularity** — higher numbers mean more search volume
+- **Suggested bid** — higher bids mean more competition
+
+### Step 3: Search the App Store manually
+
+Open the App Store on your phone and type the beginning of category terms. Apple's autocomplete shows you what people actually search:
+
+```
+"medit..." → meditation app, meditation for sleep, meditation music
+"mind..." → mindfulness app, mindfulness exercises, mindful breathing
+"calm..." → calm app, calm music, calming games
+```
+
+Each autocomplete suggestion is a real search term that people use. Add relevant ones to your keyword list.
+
+### Step 4: Research competitors
+
+Search for your category in the App Store. Note the top 10 apps:
+1. Their app names (potential competitor keywords)
+2. Their subtitles (category keywords they target)
+3. Their descriptions (more keyword ideas)
+
+### Step 5: Use keyword research tools (optional)
+
+Several third-party tools provide App Store keyword data:
+
+| Tool | What it offers | Price |
+|------|---------------|-------|
+| **AppTweak** | Search volume, keyword suggestions, competitor analysis | From $69/month |
+| **Sensor Tower** | Keyword intelligence, app rankings, market data | From $79/month |
+| **AppFollow** | Keyword tracking, reviews monitoring | From $111/month |
+| **SearchAds.com** | Apple Search Ads specific keyword tools | Free tier available |
 
 <Tip>
-  **Basic is genuinely effective.** Many developers run Basic campaigns profitably for months without switching to Advanced. Don't feel pressured to upgrade unless you need more control.
+  **You do not need paid tools to start.** Apple's built-in keyword suggestions and App Store autocomplete give you plenty of keywords for your first few months. Consider paid tools when you are spending $1,000+/month and need deeper competitive intelligence.
 </Tip>
 
-## Option B: Search Ads Advanced (full control)
+### Step 6: Organize keywords into buckets
 
-For those who want keyword-level control:
+Take your full keyword list and organize into categories:
 
-<Steps>
-  <Step title="Create a new campaign">
-    Click **Create Campaign** > select your app > choose your campaign type (Search Results is the main one).
-  </Step>
-  <Step title="Configure campaign settings">
-    - **Campaign name:** Use a descriptive name (e.g., "Brand Keywords - US")
-    - **Budget:** Start with $500-1,000 total budget
-    - **Daily cap:** Set to $15-25/day to control spending pace
-    - **Locations:** Select your target countries/regions
-  </Step>
-  <Step title="Create an ad group">
-    - **Ad group name:** Theme-based (e.g., "Exact - Brand Terms")
-    - **Default max CPT bid:** Start with $0.50-1.00
-    - **Audience:** Leave broad for now (or narrow by age/gender if you know your demo)
-  </Step>
-  <Step title="Add keywords">
-    Choose your targeting keywords (we'll cover strategy below). Add at least 10-20 keywords to start.
-  </Step>
-  <Step title="Set match types">
-    For each keyword, choose **Exact Match** or **Broad Match**.
-  </Step>
-  <Step title="Launch">
-    Review everything and hit **Start Campaign**.
-  </Step>
-</Steps>
+| Bucket | Keywords | Match type | Bid level |
+|--------|---------|------------|-----------|
+| **Brand** | Your app name, variations, typos | Exact Match | High ($1.50+) |
+| **Category - Head** | Top 5-10 most popular category terms | Exact Match | Medium-High ($0.75 - $1.50) |
+| **Category - Long tail** | Specific, niche category terms | Exact Match | Medium ($0.50 - $1.00) |
+| **Competitor** | Top 5-10 competitor app names | Exact Match | Medium ($0.50 - $1.00) |
+| **Discovery** | None (Search Match) | Search Match | Low ($0.30 - $0.50) |
 
-## Keyword strategy
+## Recommended campaign structure for beginners
 
-### The three keyword buckets
+Here is the exact structure to build for your first Advanced setup:
 
-| Bucket | Examples | Priority |
-|--------|---------|----------|
-| **Brand keywords** | Your app name, variations, common misspellings | Highest (defend your brand) |
-| **Category keywords** | "meditation app," "budget tracker," "fitness app" | High (core audience) |
-| **Competitor keywords** | Competitor app names | Medium (steal share) |
-
-### Finding keywords
-
-1. **Search Match** — Apple's auto-targeting that shows your ad for relevant queries. Turn it on for one ad group to discover new keywords.
-2. **Keyword suggestions** — Apple suggests keywords in the campaign builder based on your app metadata.
-3. **Competitor analysis** — Search the App Store for your category and note the top apps. Their names become your competitor keywords.
+```
+Campaign: [Country] - Brand Defense
+├── Ad Group: Brand - Exact Match
+│   ├── Keywords: [your app name], [your app typos]
+│   ├── Default CPT bid: $1.50
+│   ├── Search Match: OFF
+│   └── Negative keywords: none needed
+│
+Campaign: [Country] - Category
+├── Ad Group: Category - Exact Match
+│   ├── Keywords: [meditation app], [mindfulness app], etc.
+│   ├── Default CPT bid: $1.00
+│   ├── Search Match: OFF
+│   └── Negative keywords: your brand terms
+│
+├── Ad Group: Category - Broad Match
+│   ├── Keywords: meditation, mindfulness, relaxation
+│   ├── Default CPT bid: $0.75
+│   ├── Search Match: OFF
+│   └── Negative keywords: all exact match terms + brand terms
+│
+Campaign: [Country] - Competitors
+├── Ad Group: Competitor Names - Exact Match
+│   ├── Keywords: [Headspace], [Calm], etc.
+│   ├── Default CPT bid: $0.75
+│   ├── Search Match: OFF
+│   └── Negative keywords: your brand terms
+│
+Campaign: [Country] - Discovery
+└── Ad Group: Search Match Discovery
+    ├── Keywords: NONE
+    ├── Default CPT bid: $0.50
+    ├── Search Match: ON
+    └── Negative keywords: ALL keywords from all other campaigns
+```
 
 <Note>
-  **Always run brand keywords as Exact Match.** You don't want competitors showing up when people search for your app. Bid high on your own brand terms — the CPI will be low because of high relevance.
+  **Why 4 campaigns instead of 1 campaign with 4 ad groups?** Separate campaigns give each strategy its own daily budget. If brand keywords are cheap and category keywords are expensive, you do not want one strategy eating the other's budget.
 </Note>
 
-### Keyword match types
+## First-week guide
 
-| Match Type | Example keyword | Shows for |
-|-----------|----------------|-----------|
-| **Exact Match** | "meditation app" | Only "meditation app" and close variants |
-| **Broad Match** | "meditation app" | meditation app, mindfulness app, relaxation app, etc. |
+### Day 1: Launch day
 
-### Recommended campaign structure
+- Launch all campaigns
+- Set conservative daily caps ($15-25/day per campaign)
+- Do NOT make changes — let the data flow
 
-```
-Campaign: US - All Keywords
-├── Ad Group: Brand - Exact
-│   Keywords: [your app name], [app name typos]
-│   Bid: $1.00+ (defend aggressively)
-├── Ad Group: Category - Exact
-│   Keywords: [meditation app], [mindfulness app]
-│   Bid: $0.75
-├── Ad Group: Competitors - Exact
-│   Keywords: [competitor names]
-│   Bid: $0.50
-└── Ad Group: Discovery - Search Match
-    Keywords: None (Search Match ON)
-    Bid: $0.50
-    Purpose: Find new keywords automatically
-```
+### Day 2-3: Early signals
 
-## First-week expectations
+- Check that impressions are flowing (if not, your bids might be too low)
+- Look at tap-through rates — if below 5%, your app listing may need work
+- Do NOT pause or change anything yet
 
-| Day | What happens |
-|-----|-------------|
-| **Day 1** | Campaign starts delivering. Results may be slow at first. |
-| **Day 2-3** | Impressions and taps start flowing. First installs come in. |
-| **Day 4-7** | You have enough data to see which keywords perform. |
-| **Week 2** | Pause underperforming keywords. Increase bids on winners. |
+### Day 4-7: First meaningful data
 
-## Optimization quick tips
+After 4-7 days, you should have enough data to see patterns:
 
-- **Check Search Match terms** — go to your Discovery ad group and find winning search terms. Add them as Exact Match in your other ad groups.
-- **Raise bids on high-converting keywords** — if a keyword converts well but has low impression share, bid higher.
-- **Add negative keywords** — any irrelevant terms from Search Match should become negatives.
-- **Test Creative Sets** (Advanced only) — you can create custom ad variations using different screenshot sets to test what resonates.
+| What to check | What to do |
+|---------------|-----------|
+| **Keywords with 0 taps after 1,000+ impressions** | Your ad is not compelling for that term. Pause or lower bid. |
+| **Keywords with taps but 0 installs after 20+ taps** | The App Store page is not converting for that audience. Consider the keyword's relevance. |
+| **Keywords with installs at a good CPI** | These are winners. Increase their bids by 10-20% to get more volume. |
+| **Search Match terms in your discovery ad group** | Review every search term. Move winners to your exact match ad groups. Add losers as negative keywords. |
+
+### Week 2: First optimization
+
+- Pause keywords that have spent $20+ with zero installs
+- Increase bids on keywords with a CPI below your target
+- Move winning Search Match terms to exact match ad groups
+- Add negative keywords for irrelevant Search Match discoveries
+- Check Creative Sets — is one outperforming?
 
 <Warning>
-  **Don't over-optimize in week 1.** Apple's algorithm also needs a bit of time to learn. Make initial adjustments after 7 days, then optimize weekly.
+  **Do NOT over-optimize in the first week.** Apple's algorithm needs time to learn. Making big changes too early restarts the learning process. Follow the schedule above: observe for 7 days, then make measured changes.
 </Warning>
+
+## Bid strategy deep dive
+
+### How to think about bids
+
+Your CPT (Cost Per Tap) bid is not what you pay — it is the **maximum** you are willing to pay. The actual cost is determined by the auction (second-price).
+
+**The formula for deciding bids:**
+
+```
+Max CPT bid = Target CPI x Expected conversion rate
+
+Example:
+- You want to pay at most $2.00 per install (target CPI)
+- Your conversion rate is 50% (half the people who tap will install)
+- Max CPT bid = $2.00 x 0.50 = $1.00
+```
+
+### Bid adjustments over time
+
+| Scenario | Action |
+|----------|--------|
+| Keyword CPI is below target and impression share is high | Keep bid as-is (it is working) |
+| Keyword CPI is below target but impression share is low | Increase bid by 10-20% to win more auctions |
+| Keyword CPI is at target | Monitor, no changes needed |
+| Keyword CPI is above target | Decrease bid by 10-20% |
+| Keyword has spent 2x your target CPI with zero installs | Pause the keyword |
+
+### What is impression share?
+
+Impression share tells you what percentage of available impressions you are winning. If your impression share is 30%, you are winning 30 out of every 100 available auctions. To increase impression share, raise your bid.
+
+## Advanced optimization techniques
+
+Once your campaigns are running and you have 2-4 weeks of data, consider these optimizations:
+
+<AccordionGroup>
+  <Accordion title="Graduated keyword management">
+    Run this process weekly:
+    1. Check Search Match ad group for new converting terms
+    2. Add winning terms as Exact Match in your category or competitor ad groups
+    3. Add the same terms as Exact Match negative keywords in Search Match
+    4. This ensures each keyword is managed in the right ad group with the right bid
+  </Accordion>
+  <Accordion title="Dayparting (time-based bidding)">
+    After 4+ weeks of data, check your performance by hour of day. If installs are cheaper at certain times, use ad scheduling to focus budget on those hours.
+  </Accordion>
+  <Accordion title="Audience layering">
+    Create duplicate ad groups with different audience settings:
+    - One for ages 18-34
+    - One for ages 35+
+
+    After two weeks, see which age group converts better and at what cost. Allocate more budget to the winner.
+  </Accordion>
+  <Accordion title="Custom Product Page testing">
+    Create 2-3 custom product pages in App Store Connect with different screenshot orders or messaging. Assign each to a different ad group. Measure which landing page has the highest conversion rate.
+  </Accordion>
+  <Accordion title="Geographic expansion">
+    Once you are profitable in your primary market, duplicate your campaign structure in new countries. Start with English-speaking markets (UK, Canada, Australia), then expand to Europe and Asia. Costs are typically 30-70% lower outside the US.
+  </Accordion>
+</AccordionGroup>
+
+## Common mistakes to avoid
+
+| Mistake | Why it hurts | What to do instead |
+|---------|-------------|-------------------|
+| **Bidding too low** | You win no auctions and get no data | Start at Apple's suggested bid, then optimize down |
+| **Not defending brand keywords** | Competitors steal your organic traffic | Always run a brand campaign with high bids |
+| **One giant ad group with all keywords** | Cannot control bids or budgets per strategy | Separate into brand, category, competitor, discovery |
+| **Ignoring Search Match negatives** | You pay for irrelevant searches | Review Search Match terms weekly and add negatives |
+| **Not optimizing App Store page first** | Low conversion rate wastes your ad spend | Fix screenshots and metadata before spending on ads |
+| **Changing bids every day** | Algorithm never stabilizes | Make changes weekly, not daily |
+| **Setting daily cap too low** | Too little data to optimize | At least $15/day per campaign |
+| **Running only Broad Match** | Lots of irrelevant matches, hard to optimize | Start with Exact Match, add Broad Match for discovery |
+
+## Measuring success
+
+| Metric | Good | Average | Needs work |
+|--------|------|---------|-----------|
+| **TTR (Tap-Through Rate)** | 10%+ | 5-10% | Below 5% |
+| **CR (Conversion Rate)** | 55%+ | 40-55% | Below 40% |
+| **CPI (Cost Per Install)** | Below LTV target | At LTV target | Above LTV target |
+| **Impression Share** | 50%+ for brand | 20-50% for category | Below 10% |
+
+<Tip>
+  **What is LTV?** Lifetime Value — the total revenue one user generates over their time using your app. If your LTV is $5, your CPI should be below $5 to be profitable. Ideally, your CPI is 30-50% of LTV to leave room for other costs.
+</Tip>
+
+## Next steps
+
+Once your Apple Search Ads are running profitably:
+
+1. **Scale** — increase budgets on winning campaigns
+2. **Expand** — add new countries, new keywords, new match types
+3. **Optimize** — test Creative Sets, custom product pages, audience segments
+4. **Diversify** — add another ad platform to your mix
 
 <Card
   title="TikTok Ads Overview"
   icon="arrow-right"
   href="/platforms/tiktok/overview"
 >
-  Want to reach Gen Z? Check out TikTok Ads.
+  Ready to diversify? TikTok Ads reaches a massive young audience with a completely different approach.
 </Card>

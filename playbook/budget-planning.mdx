@@ -1,86 +1,223 @@
 ---
 title: "Budget Planning"
-description: "How to plan your ad budget, allocate across platforms, and make sure you're spending enough to get meaningful results."
+description: "The complete guide to planning your ad budget — from your first $300 to $100K/month. Calculate CPI targets, plan monthly spend, allocate across platforms, and know when to scale up or cut back."
 ---
 
 ## How much should you spend?
 
-This is the #1 question every new advertiser asks. The honest answer: **it depends.** But we can give you a practical framework so you're not guessing.
+This is the #1 question every new advertiser asks. The honest answer: **it depends.** But we can give you a complete framework so you're not guessing — you're making data-driven decisions.
 
 The goal isn't to spend the most — it's to spend **enough to learn** what works, then scale what's profitable.
 
-## What you'll learn
+<Note>
+  **Think of your ad budget like a science experiment budget.** The first dollars you spend aren't buying users — they're buying *data*. That data tells you what works, who your best users are, and how much you can afford to pay per install. Without that data, every future decision is a guess.
+</Note>
 
-- How to determine your starting budget
-- How to allocate budget across platforms
-- How to calculate your target CPI and ROAS
-- When to increase, decrease, or redistribute budget
-- Common budgeting mistakes to avoid
+## Understanding unit economics first
+
+Before you spend a single dollar, you need to understand the math behind app advertising. This section is the foundation everything else builds on.
+
+### The core equation
+
+```
+Revenue per User (LTV) > Cost to Acquire User (CAC)
+
+If LTV > CAC → You make money
+If LTV < CAC → You lose money
+If LTV = CAC → You break even (not sustainable)
+```
+
+**LTV** stands for Lifetime Value — how much revenue a single user generates over their entire time using your app. **CAC** (Customer Acquisition Cost) is what you pay to get that user — in app advertising, this is essentially your CPI (Cost Per Install).
+
+### How LTV works in practice
+
+LTV isn't a single number — it grows over time as users continue to engage with your app:
+
+| Time period | What to measure | Example (subscription app at $9.99/mo) |
+|-------------|----------------|----------------------------------------|
+| **Day 0 LTV** | Revenue on install day | $0 (trial period) |
+| **Day 7 LTV** | Revenue in first week | $0 (still on trial) |
+| **Day 30 LTV** | Revenue in first month | $4.99 (50% convert after trial) |
+| **Day 90 LTV** | Revenue in first 3 months | $12.47 (accounting for churn) |
+| **Day 365 LTV** | Revenue in first year | $35.96 (more churn over time) |
+
+<Tip>
+  **You don't need to wait a year to know your LTV.** Most experienced advertisers use Day 7 or Day 30 LTV as a proxy. If you know that Day 7 LTV is typically 20% of Day 365 LTV for your app, you can predict long-term value early.
+</Tip>
+
+### Break-even analysis
+
+Your break-even CPI is the maximum you can pay per install without losing money:
+
+```
+Break-even CPI = LTV
+
+Example:
+  Your Day 90 LTV is $12.00
+  Break-even CPI = $12.00
+
+  But you want PROFIT, not just break-even.
+
+  Target CPI = LTV ÷ Target ROAS
+  Target CPI = $12.00 ÷ 2.0 = $6.00
+
+  This means: for every $6 you spend acquiring a user,
+  you expect to make $12 back — a 2x return.
+```
+
+### Setting your target CPI by app type
+
+If you don't know your LTV yet (most early-stage apps don't), use these benchmarks:
+
+| App monetization model | Typical LTV range | Suggested starting CPI | Target ROAS |
+|----------------------|-------------------|----------------------|-------------|
+| **Free + in-app ads** | $1-5 | $0.30-1.50 | 2-3x |
+| **Freemium (in-app purchases)** | $3-20 | $1.00-5.00 | 2-3x |
+| **Subscription (monthly)** | $10-60 | $3.00-15.00 | 2-3x |
+| **Subscription (annual)** | $20-120 | $5.00-30.00 | 2-3x |
+| **Paid app** | App price | Below app price | N/A |
+| **E-commerce** | $15-100+ | $3.00-20.00 | 3-5x |
+
+<Warning>
+  **These are rough starting points, not guarantees.** Your actual CPI will depend on your app category, target market, creative quality, and competition. A meditation app in the US will have very different numbers than a utility app in Southeast Asia.
+</Warning>
 
 ## The minimum viable budget
 
-You need enough budget for the ad platform's algorithm to learn. Below certain thresholds, you're just burning money slowly.
+You need enough budget for the ad platform's algorithm to **exit its learning phase**. Below certain thresholds, you're just burning money slowly without getting enough data for the algorithm to optimize.
 
-| Platform | Minimum daily budget | Minimum monthly budget | Why |
-|----------|--------------------|-----------------------|-----|
-| **Meta** | $10/day | $300/month | Need 50 conversions/week for algorithm optimization |
-| **Google** | $10/day | $300/month | Similar learning requirements |
-| **Apple Search Ads** | $5/day | $150/month | Lower minimums, higher intent |
-| **TikTok** | $20/day | $600/month | Higher minimums, needs volume |
+### How the learning phase works
 
-<Note>
-  **If your total budget is under $500/month**, pick ONE platform and focus. Spreading $500 across 4 platforms gives none of them enough data to optimize. Start with Meta or Apple Search Ads.
-</Note>
+Every ad platform uses machine learning to find the best users for your app. When you launch a campaign, the algorithm enters a "learning phase" where it tests different people, placements, and times to figure out who's most likely to install.
 
-## How to set your target CPI
-
-Your target Cost Per Install should be based on what a user is worth to you:
+The learning phase typically requires **50 conversion events per week** to complete. Here's what that means for your budget:
 
 ```
-LTV (Lifetime Value of a user) × Target ROAS = Maximum CPI
+Minimum weekly budget = 50 conversions × your target CPI
 
 Example:
-  Average user generates $8 in revenue over their lifetime
-  You want 2x return on ad spend
-  Max CPI = $8 ÷ 2 = $4.00
+  Target CPI = $3.00
+  Minimum weekly budget = 50 × $3.00 = $150/week
+  Minimum monthly budget = $150 × 4.3 = $645/month
+  Minimum daily budget = $645 ÷ 30 = ~$21.50/day
 ```
 
-### If you don't know your LTV yet
+### Platform-specific minimums
 
-That's okay — most early-stage apps don't. Use these starting points:
+| Platform | Minimum daily budget | Minimum monthly budget | Learning phase requirement | Notes |
+|----------|--------------------|-----------------------|---------------------------|-------|
+| **Meta (Facebook/Instagram)** | $10-20/day | $300-600/month | 50 conversions/week per ad set | Most forgiving algorithm, works at lower budgets |
+| **Google Ads (App campaigns)** | $10-30/day | $300-900/month | 100 conversions/month | Needs more volume, but strong automation |
+| **Apple Search Ads** | $5-10/day | $150-300/month | No formal learning phase | Lower minimums, works with less data |
+| **TikTok Ads** | $20-50/day | $600-1,500/month | 50 conversions/week per ad group | Higher minimums, needs creative volume |
 
-| App monetization | Rough LTV estimate | Suggested starting CPI |
-|-----------------|-------------------|----------------------|
-| **In-app purchases** | $3-15 | $1-5 |
-| **Subscription** | $10-50 | $3-15 |
-| **Ad-supported (free)** | $1-5 | $0.50-2 |
-| **Paid app** | App price × 1 | Below app price |
+<Note>
+  **If your total budget is under $500/month**, pick ONE platform and focus everything there. Spreading $500 across 4 platforms gives none of them enough data to optimize. Start with Meta (most versatile) or Apple Search Ads (easiest setup, highest intent).
+</Note>
 
-<Tip>
-  **Track your LTV from day one.** Even rough numbers are better than nothing. Use cohort analysis to see how much revenue users generate at 7 days, 30 days, and 90 days after install. This data becomes your most valuable budgeting tool.
-</Tip>
+## Monthly and quarterly budget planning
+
+### Monthly budget template
+
+Here's a practical template for planning your monthly ad budget. Copy this to a spreadsheet:
+
+| Line item | Month 1 | Month 2 | Month 3 |
+|-----------|---------|---------|---------|
+| **Total budget** | $500 | $750 | $1,000 |
+| Platform 1 (Meta) | $500 (100%) | $500 (67%) | $600 (60%) |
+| Platform 2 (Apple Search Ads) | — | $250 (33%) | $250 (25%) |
+| Creative testing reserve | Included above | Included above | $150 (15%) |
+| **Target CPI** | $4.00 | $3.50 | $3.00 |
+| **Expected installs** | 125 | 214 | 333 |
+| **Target Day 30 LTV** | Measuring | $6.00 | $6.00 |
+| **Expected Day 30 revenue** | Unknown | $1,284 | $1,998 |
+| **Expected ROAS (Day 30)** | Unknown | 1.7x | 2.0x |
+
+### Quarterly budget planning
+
+Think in quarters, not just months. Here's how your budget should evolve:
+
+<Accordion title="Q1: Testing Quarter ($1,500-3,000 total)">
+**Goal:** Find what works. Identify your best platform, audience, and creative approach.
+
+```
+Month 1: $500  → One platform, 3-5 creatives, broad targeting
+Month 2: $500  → Same platform, iterate on winners, test new creatives
+Month 3: $500-1,000 → Add second platform if Month 1-2 showed promise
+
+Key metrics to hit:
+- Identify at least 1-2 winning creatives
+- Establish baseline CPI on primary platform
+- Begin measuring Day 7 and Day 30 retention
+```
+</Accordion>
+
+<Accordion title="Q2: Validation Quarter ($3,000-7,500 total)">
+**Goal:** Confirm profitability. Validate that winning campaigns stay profitable as you increase spend.
+
+```
+Month 4: $1,000  → Scale winning campaigns on primary platform
+Month 5: $1,000-2,000  → Add second platform, continue creative testing
+Month 6: $1,000-3,000  → Optimize based on 90-day LTV data from Q1 users
+
+Key metrics to hit:
+- CPI stays within 20% of target as budget increases
+- Day 30 ROAS above 1.0 (or trending toward profitability)
+- At least 2 platforms running
+```
+</Accordion>
+
+<Accordion title="Q3: Growth Quarter ($7,500-20,000 total)">
+**Goal:** Predictable growth. You know your numbers and you're scaling what works.
+
+```
+Month 7: $2,500  → Multi-platform, multiple campaigns per platform
+Month 8: $2,500-5,000  → Horizontal scaling (new audiences, geos)
+Month 9: $2,500-10,000  → Full funnel (prospecting + retargeting)
+
+Key metrics to hit:
+- Blended ROAS above 1.5x
+- 3+ platforms running profitably
+- Retargeting campaigns active
+```
+</Accordion>
+
+<Accordion title="Q4: Scale Quarter ($20,000+ total)">
+**Goal:** Maximize profitable volume. Spend as much as you can while maintaining target ROAS.
+
+```
+Month 10: $5,000-15,000  → Maximum budget on proven campaigns
+Month 11: $5,000-20,000  → International expansion
+Month 12: $5,000-30,000  → Full scale, creative volume, automation
+
+Key metrics to hit:
+- Blended ROAS above 2.0x
+- International campaigns contributing
+- Automated reporting and optimization
+```
+</Accordion>
 
 ## Budget allocation across platforms
 
 Once you have a monthly budget, here's how to split it:
 
-### For beginners ($300-1,000/month)
+### Beginner: $300-1,000/month
 
 ```
 100% → One platform (Meta or Apple Search Ads)
 ```
 
-Focus and learn. Don't spread thin.
+Focus and learn. Don't spread thin. Pick Meta if you want broad reach; pick Apple Search Ads if your app solves a problem people actively search for.
 
-### For growing apps ($1,000-5,000/month)
+### Growing: $1,000-5,000/month
 
 ```
 60% → Primary platform (your best performer)
-25% → Secondary platform (testing)
-15% → Experimental (new platform or creative tests)
+25% → Secondary platform (testing and validation)
+15% → Creative testing and experimental campaigns
 ```
 
-### For scaling apps ($5,000+/month)
+### Scaling: $5,000-20,000/month
 
 ```
 40% → Meta (broad reach + retargeting)
@@ -89,48 +226,328 @@ Focus and learn. Don't spread thin.
 15% → TikTok or other channels
 ```
 
-## The budget scaling framework
+### Advanced: $20,000+/month
+
+```
+35% → Meta (prospecting + retargeting + lookalikes)
+25% → Google (search + display + YouTube)
+20% → Apple Search Ads (brand + competitor + discovery)
+10% → TikTok (prospecting + creative testing)
+10% → Experimental (new platforms, new geos, new formats)
+```
+
+<Tip>
+  **Budget follows performance.** These percentages are starting points. Every month, shift more budget to your best-performing platforms and campaigns. If Google is delivering 3x ROAS and TikTok is delivering 0.8x, move money from TikTok to Google.
+</Tip>
+
+## Testing phase vs. scaling phase budgets
+
+Your budget strategy should be completely different in each phase:
+
+| | Testing phase | Scaling phase |
+|--|--------------|---------------|
+| **Goal** | Learn what works | Maximize what works |
+| **Budget size** | Small ($300-1,000/mo) | Large ($2,000+/mo) |
+| **Number of campaigns** | Few (1-3) | Many (5-20+) |
+| **Budget changes** | Stable (let tests run) | Dynamic (increase winners) |
+| **Creative approach** | Test diverse concepts | Iterate on proven winners |
+| **Audience approach** | Broad (let algorithm learn) | Both broad and targeted |
+| **Expected ROAS** | Below 1.0 (investing in learning) | Above 1.5x (profitable) |
+| **Timeline** | 4-8 weeks | Ongoing |
+| **Acceptable CPI** | 2x your target (still learning) | At or below target |
+
+<Warning>
+  **The first $500-1,000 is learning money.** Treat it as an investment in data, not a direct revenue generator. The insights you gain about your audience, creative, and platform are worth far more than the installs you get. If you're not willing to invest this learning budget, advertising may not be the right growth channel for you yet.
+</Warning>
+
+## Real-world budget examples
+
+### Example 1: Meditation app (subscription, $9.99/month)
+
+<Accordion title="Full budget breakdown">
+```
+App type: Meditation / wellness
+Monetization: Monthly subscription at $9.99/month
+Trial conversion rate: 40%
+Monthly churn rate: 12%
+Estimated Day 90 LTV: $18.50
+Target ROAS: 2.5x
+Target CPI: $18.50 ÷ 2.5 = $7.40
+
+Month 1 Budget: $750
+├── Meta Ads: $750 (100%)
+├── Expected installs: ~100 (at $7.40 CPI)
+├── Expected trial starts: ~60 (60% trial rate)
+├── Expected conversions: ~24 (40% trial → paid)
+├── Expected Month 1 revenue: $240
+├── Expected Day 90 revenue: $1,850
+└── Expected Day 90 ROAS: 2.5x ✓
+
+Month 3 Budget: $1,500
+├── Meta Ads: $1,000 (67%)
+├── Apple Search Ads: $500 (33%)
+├── Expected installs: ~200
+└── Scaling based on confirmed LTV data from Month 1 cohort
+```
+</Accordion>
+
+### Example 2: Productivity app (freemium)
+
+<Accordion title="Full budget breakdown">
+```
+App type: Task management / productivity
+Monetization: Freemium with $4.99/month pro plan
+Free-to-paid conversion: 5%
+Monthly churn rate: 8%
+Estimated Day 90 LTV: $5.20
+Target ROAS: 2x
+Target CPI: $5.20 ÷ 2 = $2.60
+
+Month 1 Budget: $500
+├── Meta Ads: $500 (100%)
+├── Expected installs: ~192 (at $2.60 CPI)
+├── Expected upgrades (90 days): ~10 (5%)
+├── Expected Day 90 revenue: $998
+└── Expected Day 90 ROAS: 2.0x ✓
+
+Month 3 Budget: $2,000
+├── Meta Ads: $1,000 (50%)
+├── Google Ads: $600 (30%)
+├── Apple Search Ads: $400 (20%)
+├── Expected installs: ~770
+└── CPI may vary by platform — monitor each separately
+```
+</Accordion>
+
+### Example 3: Casual game (ad-supported)
+
+<Accordion title="Full budget breakdown">
+```
+App type: Casual mobile game
+Monetization: In-app ads (interstitial + rewarded)
+Average sessions per user per day: 2.5
+Day 30 retention: 8%
+ARPDAU (Average Revenue Per Daily Active User): $0.05
+Estimated Day 90 LTV: $1.80
+Target ROAS: 3x (need higher margin due to low LTV)
+Target CPI: $1.80 ÷ 3 = $0.60
+
+Month 1 Budget: $300
+├── Meta Ads: $300 (100%)
+├── Expected installs: ~500 (at $0.60 CPI)
+├── Note: $0.60 CPI is aggressive — may need to target
+│   lower-cost geos (Southeast Asia, Latin America)
+├── US CPI may be $1.50-3.00 → need to adjust target
+└── Consider starting in Tier 2/3 geos for volume
+
+Month 3 Budget: $1,000
+├── Meta Ads: $600 (60%) — mix of US and international
+├── Google Ads: $250 (25%) — app campaigns in lower-cost geos
+├── TikTok: $150 (15%) — creative testing
+└── Expected installs: ~1,200 (blended CPI across geos)
+```
+</Accordion>
+
+## Budget monitoring and adjustment triggers
+
+Don't just set a budget and forget it. Here's when and how to adjust:
+
+### Daily monitoring checklist
+
+Check these numbers every day (takes 5 minutes):
+
+- Total spend vs. daily budget (is it spending as expected?)
+- CPI trend (rising, falling, or stable?)
+- Any campaigns stuck in learning or not spending?
+- Any sudden spikes in cost?
+
+### When to INCREASE budget
+
+<CardGroup cols={2}>
+  <Card title="CPI is 30%+ below target" icon="arrow-trend-down">
+    Your campaigns are acquiring users cheaper than expected. Increase budget by 20% every 3-4 days to capture more of this efficient audience.
+  </Card>
+  <Card title="ROAS is above 2x for 2+ weeks" icon="chart-line">
+    Sustained strong returns mean the campaign is finding profitable users. Scale gradually — this is the best signal for budget increase.
+  </Card>
+  <Card title="Day 7 retention is above benchmark" icon="users">
+    Users from ads are sticking around. Higher retention means higher LTV, which means you can afford to pay more per install.
+  </Card>
+  <Card title="You've exhausted a winning audience" icon="arrows-maximize">
+    If frequency is rising on a winning campaign, don't just add budget — expand to new audiences or platforms to find more similar users.
+  </Card>
+</CardGroup>
+
+### When to DECREASE budget
+
+<CardGroup cols={2}>
+  <Card title="CPI is 50%+ above target for 7+ days" icon="arrow-trend-up">
+    The campaign isn't finding users efficiently. Reduce budget or pause and investigate. Don't keep feeding a losing campaign.
+  </Card>
+  <Card title="ROAS is below 1.0 for 3+ weeks" icon="triangle-exclamation">
+    You're losing money on every user. Either improve your app (increase LTV) or reduce spend until you find a profitable approach.
+  </Card>
+  <Card title="Retention is declining over time" icon="arrow-trend-down">
+    If newer cohorts have worse retention than older ones, user quality is dropping. Often happens as you scale — pull back and investigate.
+  </Card>
+  <Card title="Creative fatigue is setting in" icon="face-tired">
+    CTR declining, frequency rising, CPI increasing. Time to refresh creatives before spending more. Pause spending on fatigued ads.
+  </Card>
+</CardGroup>
+
+### The weekly budget review process
+
+Every week (pick the same day), run through this checklist:
 
 <Steps>
-  <Step title="Test phase ($300-500/month)">
-    Run small campaigns on one platform. Goal: find winning creative and audiences. Expect to lose money here — it's tuition.
+  <Step title="Review last week's spend vs. budget">
+    Did you spend what you planned? Underspend often means your targeting is too narrow or bids are too low. Overspend means your limits aren't set right.
   </Step>
-  <Step title="Validation phase ($500-2,000/month)">
-    Scale winning campaigns. Confirm that your CPI stays below your target as you increase budget. Add a second platform.
+  <Step title="Calculate CPI by platform and campaign">
+    Which campaigns are efficient? Which are expensive? Rank all active campaigns by CPI and ROAS.
   </Step>
-  <Step title="Growth phase ($2,000-10,000/month)">
-    Multiple platforms, multiple campaigns. Optimize for ROAS, not just CPI. Budget follows performance — more money to what works.
+  <Step title="Check cohort data from 2-4 weeks ago">
+    How are users from earlier campaigns performing? Are they retaining and generating revenue? This is where real LTV data starts informing decisions.
   </Step>
-  <Step title="Scale phase ($10,000+/month)">
-    Broad testing, creative volume, full-funnel approach. You're now optimizing entire funnels, not just individual campaigns.
+  <Step title="Reallocate next week's budget">
+    Move 10-20% of budget from underperformers to overperformers. Kill campaigns that have been below target for 2+ weeks with no improvement.
+  </Step>
+  <Step title="Plan creative and audience tests">
+    Reserve 10-15% of budget for testing new things. Even when things are going well, you need to keep testing to find the next winner before your current ones fatigue.
   </Step>
 </Steps>
+
+## Seasonal budget adjustments
+
+Ad costs are NOT constant throughout the year. Knowing the seasonal patterns helps you plan:
+
+| Period | CPM impact | Why | Strategy |
+|--------|-----------|-----|----------|
+| **January** | -20-30% lower | Advertisers pull back after holidays | Great time to test — cheaper inventory |
+| **February** | Normal | Steady state | Business as usual |
+| **March-April** | Normal to +10% | Q1 end push | Monitor for cost creep |
+| **May-August** | -10-15% lower | Summer slowdown | Good for scaling and testing |
+| **September** | +10-15% higher | Back to school, Q4 prep | Start increasing budget for Q4 |
+| **October** | +20-30% higher | Q4 competition begins | Focus on efficient campaigns |
+| **November** | +40-80% higher | Black Friday, holiday ads | Reduce testing, focus on proven winners |
+| **December** | +50-100% higher | Peak holiday spending | Be very selective — only proven campaigns |
+
+<Tip>
+  **Smart budget planning accounts for seasonality.** If you have $12,000 for the year, don't split it evenly at $1,000/month. Spend more in January-February (cheap inventory) and less in November-December (expensive competition) — unless your app has a holiday-relevant angle.
+</Tip>
+
+### Seasonal budget allocation example
+
+```
+Annual budget: $12,000
+
+Jan:  $1,200 (cheap — great for testing)
+Feb:  $1,100
+Mar:  $1,000
+Apr:  $1,000
+May:  $1,100 (summer — good value)
+Jun:  $1,100
+Jul:  $1,100
+Aug:  $1,000
+Sep:  $900 (costs rising)
+Oct:  $800 (Q4 competition)
+Nov:  $600 (expensive — only proven campaigns)
+Dec:  $500 (most expensive month)
+Total: ~$11,400 (keep $600 as emergency reserve)
+```
+
+## Setting spending limits and safety nets
+
+<Warning>
+  **Always set spending limits.** One misconfigured campaign can drain your credit card overnight. Every platform lets you set account-level and campaign-level spending limits — use them.
+</Warning>
+
+### How to set safety limits on each platform
+
+| Platform | Where to set limits | Recommended setting |
+|----------|-------------------|-------------------|
+| **Meta** | Account Settings > Payment Settings > Account Spending Limit | Set to 120% of your monthly budget |
+| **Google** | Billing > Budget & budget alerts | Set monthly budget cap + email alerts at 80% |
+| **Apple Search Ads** | Campaign Settings > Daily Budget | Set daily cap on each campaign |
+| **TikTok** | Campaign Settings > Budget | Set lifetime or daily budget per campaign |
+
+### Emergency stop checklist
+
+If something goes wrong (spend is way over budget, CPI is 5x normal), here's what to do:
+
+1. **Pause all campaigns immediately** — don't wait to analyze, just pause
+2. Check for billing errors or unauthorized changes
+3. Review campaign settings for misconfiguration
+4. Investigate audience or placement changes
+5. Resume campaigns one at a time after fixing the issue
 
 ## Common budgeting mistakes
 
 <CardGroup cols={2}>
   <Card title="Spreading too thin" icon="arrows-split-up-and-left">
-    $100/month across 4 platforms = nothing works. Concentrate your budget until you find what works.
+    $100/month across 4 platforms = nothing works. Concentrate your budget on one platform until you find what works, then expand.
   </Card>
   <Card title="Cutting too early" icon="scissors">
-    Pausing a campaign after 3 days because "it's not working" doesn't give the algorithm time to learn. Wait at least 7 days.
+    Pausing a campaign after 3 days because "it's not working" doesn't give the algorithm time to learn. Wait at least 7 days and 50+ conversions.
   </Card>
   <Card title="No safety net" icon="parachute-box">
-    Always set spending limits. One misconfigured campaign can drain your credit card overnight.
+    Always set spending limits at the account and campaign level. One misconfigured campaign can drain your entire budget overnight.
   </Card>
   <Card title="Ignoring seasonality" icon="calendar">
-    Ad costs spike during Q4 (holidays), back-to-school, and major events. Plan your budget accordingly.
+    Ad costs spike 50-100% during Q4. Plan your annual budget with seasonal fluctuations in mind or you'll overspend in expensive months.
+  </Card>
+  <Card title="Not tracking LTV" icon="calculator">
+    Without LTV data, you can't calculate whether your spend is profitable. Start tracking revenue from day one, even if the numbers are small.
+  </Card>
+  <Card title="Budget = revenue expectation" icon="money-bill">
+    Your first $500-1,000 won't be profitable. It's an investment in learning. Setting revenue targets for the first month leads to disappointment and premature campaign kills.
   </Card>
 </CardGroup>
 
-<Warning>
-  **The first $500 is learning money.** Treat it as an investment in data, not a direct revenue generator. The insights you gain about your audience, creative, and platform are worth far more than the installs you get.
-</Warning>
+## Budget planning calculator
 
-<Card
-  title="Scaling Strategy"
-  icon="arrow-right"
-  href="/playbook/scaling-strategy"
->
-  Have a budget plan? Learn when and how to scale your campaigns.
-</Card>
+Use this formula to calculate your recommended starting budget:
+
+```
+Step 1: Determine your target CPI
+  If you know LTV: Target CPI = LTV ÷ Target ROAS (use 2x)
+  If you don't know LTV: Use the benchmarks table above
+
+Step 2: Calculate minimum monthly budget
+  Minimum = Target CPI × 50 conversions/week × 4.3 weeks
+
+Step 3: Add testing buffer (20%)
+  Recommended = Minimum × 1.2
+
+Step 4: Set your actual budget
+  Actual = MAX(Recommended, what you can afford)
+
+Full example:
+  Target CPI = $3.00
+  Minimum = $3.00 × 50 × 4.3 = $645/month
+  Recommended = $645 × 1.2 = $774/month
+  Rounded: $800/month or ~$27/day
+```
+
+<Note>
+  **Can't afford the recommended budget?** That's okay. Start with whatever you can — even $300/month on a single platform will teach you something. Just manage your expectations: with a smaller budget, it takes longer to collect meaningful data and optimize.
+</Note>
+
+## What's next
+
+<CardGroup cols={2}>
+  <Card
+    title="Scaling Strategy"
+    icon="arrow-up-right-dots"
+    href="/playbook/scaling-strategy"
+  >
+    Have a budget plan? Learn when and how to scale your campaigns without breaking what works.
+  </Card>
+  <Card
+    title="Analytics Setup"
+    icon="chart-bar"
+    href="/playbook/analytics-setup"
+  >
+    Set up the tracking you need to measure LTV, ROAS, and make budget decisions based on real data.
+  </Card>
+</CardGroup>

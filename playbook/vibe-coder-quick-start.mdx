@@ -1,128 +1,594 @@
 ---
 title: "Vibe Coder Quick Start"
-description: "The TL;DR for developers who want to run ads. Skip the theory, get to the practical stuff."
+description: "Launch your first ad campaign in 60 minutes. No marketing experience needed. Exact steps, exact code, exact settings — for developers who built a React Native app and want users."
 ---
 
 ## You build apps. Now let's get users.
 
-You're a developer. You don't need a 200-page marketing textbook. You need to know what to do, in what order, and how not to waste money. This page is your cheat sheet.
+You're a developer. You shipped a React Native app. It's live on the App Store and Google Play. Now you need people to actually use it. This page is your speed run — **from zero to running your first ad campaign in 60 minutes.**
 
-## What you'll learn
+No theory. No fluff. Just step-by-step instructions with exact code, exact settings, and exact budgets.
 
-- The fastest path from zero to running ads
-- Which platform to pick (just one, for now)
-- Exact steps to set up and launch
-- How much to spend and what to expect
-- The metrics that matter and what to ignore
+<Note>
+  **Prerequisites:** You have a React Native app published on the App Store and/or Google Play Store. You have a credit card. You have 60 minutes. That's it.
+</Note>
 
-## The 30-second version
+## The 30-second overview
 
 ```
-1. Pick Meta Ads (unless your app is iOS-only, then Apple Search Ads)
-2. Install the tracking SDK
-3. Create a campaign with $15/day budget
-4. Make 3-5 ad variations
-5. Wait 7 days
-6. Look at the data, kill losers, scale winners
-7. Repeat
+1. Create a Meta Business account          (10 minutes)
+2. Install the Meta SDK in your app        (20 minutes)
+3. Deploy the updated app                  (5 minutes)
+4. Create and launch your first campaign   (20 minutes)
+5. Set up basic tracking                   (5 minutes)
+
+Total: ~60 minutes
+Then: Wait 7 days. Don't touch anything.
+Then: Read the data and iterate.
 ```
 
-That's it. Everything else is optimization.
+We're using **Meta Ads** because it works for 90% of apps, has the best algorithm for beginners, and the lowest minimum budget. You can add other platforms later.
 
-## Step-by-step speed run
+## Step 1: Create your Meta Business account (10 minutes)
 
 <Steps>
-  <Step title="Pick your platform (5 minutes)">
-    | Your situation | Pick this |
-    |---------------|-----------|
-    | Any app, any platform | **Meta Ads** |
-    | iOS-only, people would search for it | **Apple Search Ads** |
-    | People Google your problem | **Google Ads** |
-    | Young audience, visual app | **TikTok Ads** |
-
-    **Don't overthink it.** Meta is the safe default for 90% of apps.
+  <Step title="Go to business.facebook.com">
+    Navigate to [business.facebook.com](https://business.facebook.com) and click **Create Account**. Use your real name and business information (Meta verifies this and will ban accounts with fake info).
   </Step>
-  <Step title="Set up your account (15 minutes)">
-    Create your ad account on your chosen platform. See our platform-specific setup guides for details. The key: use real business info, set a spending limit, and enable 2FA.
-  </Step>
-  <Step title="Install tracking (30-60 minutes)">
-    This is the most technical step, and it's worth doing right.
+  <Step title="Create an Ad Account">
+    Inside Business Manager, go to **Business Settings** > **Accounts** > **Ad Accounts** > **Add** > **Create a New Ad Account**.
 
-    **Meta:** Install the Meta SDK via SPM (iOS) or Gradle (Android)
-
-    **Google:** Install Firebase SDK
-
-    **Apple:** No SDK needed (tracking is automatic)
-
-    **TikTok:** Install TikTok SDK or connect your MMP
-
-    See our [SDK Integration Guide](/playbook/sdk-integration) for copy-paste code snippets.
-  </Step>
-  <Step title="Create your first campaign (30 minutes)">
-    Use these settings:
-
+    Settings to use:
     ```
-    Objective:    App Installs
-    Budget:       $15/day
-    Audience:     Broad (your country, ages 18-65)
-    Placements:   Automatic
-    Creative:     3-5 variations (images or short videos)
-    Duration:     Let it run for 7+ days
+    Ad Account Name:   [Your App Name] Ads
+    Time Zone:         Your local time zone
+    Currency:          Your local currency (USD recommended for benchmarking)
     ```
   </Step>
-  <Step title="Wait 7 days (hardest step)">
-    Seriously, don't touch it. The algorithm needs time to learn. Check your stats once a day, but change nothing.
+  <Step title="Add a payment method">
+    Go to **Payment Settings** and add a credit card. Set a **spending limit** of $500 for safety (you can increase it later).
+
+    ```
+    Payment Settings > Account Spending Limit > Set Limit: $500
+    ```
   </Step>
-  <Step title="Read the data and iterate">
-    After 7 days, check:
-    - **CPI (Cost Per Install):** Is it below your target? (Don't know your target? $3-5 is a reasonable starting point.)
-    - **Which ads are winning?** Pause the losers, make more creative like the winners.
-    - **Are installs being tracked?** If zero installs show in your dashboard, your tracking is broken — fix it first.
+  <Step title="Register your app with Meta">
+    Go to [developers.facebook.com](https://developers.facebook.com):
+
+    1. Click **My Apps** > **Create App**
+    2. Select **Business** as the app type
+    3. Enter your app name and contact email
+    4. On the dashboard, note your **App ID** and **Client Token** (you'll need these in Step 2)
+
+    Then add your platform:
+    - For iOS: Add your **Bundle ID** (e.g., `com.yourcompany.yourapp`)
+    - For Android: Add your **Package Name** and **Key Hash**
+  </Step>
+  <Step title="Enable 2FA on your account">
+    Go to **Business Settings** > **Security Center** and enable two-factor authentication. Meta requires this and will restrict accounts without it.
   </Step>
 </Steps>
 
-## The numbers you need to know
+<Warning>
+  **Use real business information.** Meta actively bans accounts with fake names, addresses, or business info. Getting banned means starting over from scratch, losing all your pixel data and audiences. Be honest from the start.
+</Warning>
 
-| Metric | What it means | What's "good" |
-|--------|--------------|---------------|
-| **CPI** | Cost per install | $1-5 (varies by category) |
-| **CTR** | % who click your ad | 1-3% (Meta), 5-15% (Apple) |
-| **ROAS** | Revenue / ad spend | Above 1.0 = profitable |
+## Step 2: Install the Meta SDK in your React Native app (20 minutes)
 
-Ignore everything else for now. Impressions, reach, frequency — they're useful later, but not yet.
+### Install the package
+
+```bash
+# Install the React Native Facebook SDK
+npm install react-native-fbsdk-next
+
+# Install pods for iOS
+cd ios && pod install && cd ..
+```
+
+### iOS configuration
+
+Add these to your `ios/[YourApp]/Info.plist` (inside the `<dict>` block):
+
+```xml
+<key>CFBundleURLTypes</key>
+<array>
+  <dict>
+    <key>CFBundleURLSchemes</key>
+    <array>
+      <string>fb{YOUR_APP_ID}</string>
+    </array>
+  </dict>
+</array>
+<key>FacebookAppID</key>
+<string>{YOUR_APP_ID}</string>
+<key>FacebookClientToken</key>
+<string>{YOUR_CLIENT_TOKEN}</string>
+<key>FacebookDisplayName</key>
+<string>{YOUR_APP_NAME}</string>
+<key>LSApplicationQueriesSchemes</key>
+<array>
+  <string>fbapi</string>
+  <string>fb-messenger-share-api</string>
+</array>
+
+<!-- App Tracking Transparency description (REQUIRED for iOS 14.5+) -->
+<key>NSUserTrackingUsageDescription</key>
+<string>This identifier will be used to show you personalized ads.</string>
+
+<!-- SKAdNetwork IDs for Meta -->
+<key>SKAdNetworkItems</key>
+<array>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>v9wttpbfk9.skadnetwork</string>
+  </dict>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>n38lu8286q.skadnetwork</string>
+  </dict>
+</array>
+```
+
+Update your `ios/[YourApp]/AppDelegate.mm` (or `.swift`):
+
+```objectivec
+// At the top of the file, add:
+#import <FBSDKCoreKit/FBSDKCoreKit-Swift.h>
+
+// Inside application:didFinishLaunchingWithOptions: add:
+[[FBSDKApplicationDelegate sharedInstance] application:application
+    didFinishLaunchingWithOptions:launchOptions];
+
+// Add this method to your AppDelegate:
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+  return [[FBSDKApplicationDelegate sharedInstance] application:app
+      openURL:url
+      sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+      annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+}
+```
+
+### Android configuration
+
+Add to `android/app/src/main/res/values/strings.xml`:
+
+```xml
+<string name="facebook_app_id">{YOUR_APP_ID}</string>
+<string name="facebook_client_token">{YOUR_CLIENT_TOKEN}</string>
+```
+
+Add to `android/app/src/main/AndroidManifest.xml` (inside `<application>`):
+
+```xml
+<meta-data
+    android:name="com.facebook.sdk.ApplicationId"
+    android:value="@string/facebook_app_id" />
+<meta-data
+    android:name="com.facebook.sdk.ClientToken"
+    android:value="@string/facebook_client_token" />
+```
+
+### Initialize in your React Native app
+
+Add this to your main `App.tsx` (or wherever your app initializes):
+
+```typescript
+import { useEffect } from 'react';
+import { Settings, AppEventsLogger } from 'react-native-fbsdk-next';
+import {
+  requestTrackingPermissionsAsync,
+} from 'expo-tracking-transparency';
+// If not using Expo, use react-native-tracking-transparency instead
+
+export default function App() {
+  useEffect(() => {
+    // Initialize Facebook SDK
+    Settings.initializeSDK();
+
+    // Request ATT permission on iOS (important for ad tracking)
+    // Wait until the user has seen some value first
+    const requestTracking = async () => {
+      const { status } = await requestTrackingPermissionsAsync();
+      if (status === 'granted') {
+        await Settings.setAdvertiserTrackingEnabled(true);
+      }
+    };
+
+    // Delay the tracking request — show it after onboarding, not on launch
+    // For now, we'll trigger it after a short delay as a demo
+    setTimeout(requestTracking, 2000);
+
+    // Log app activation (tells Meta the app was opened)
+    AppEventsLogger.logEvent('fb_mobile_activate_app');
+  }, []);
+
+  return (
+    // ... your app content
+  );
+}
+```
+
+### Add event tracking for key actions
+
+Track the events that matter most. For now, just track two things: sign-up and purchase.
+
+```typescript
+import { AppEventsLogger } from 'react-native-fbsdk-next';
+
+// When a user completes registration/sign-up:
+export function trackSignUp(method: string = 'email') {
+  AppEventsLogger.logEvent('fb_mobile_complete_registration', {
+    fb_registration_method: method,
+  });
+}
+
+// When a user makes a purchase:
+export function trackPurchase(amount: number, currency: string = 'USD') {
+  AppEventsLogger.logPurchase(amount, currency);
+}
+
+// When a user starts a free trial:
+export function trackStartTrial() {
+  AppEventsLogger.logEvent('StartTrial', {
+    fb_currency: 'USD',
+  });
+}
+
+// Usage in your components:
+// trackSignUp('google');
+// trackPurchase(9.99, 'USD');
+// trackStartTrial();
+```
+
+<Tip>
+  **Start with just these 2-3 events.** You don't need to track everything on day one. Install tracking, sign-up tracking, and purchase tracking cover 90% of what you need to optimize ads. Add more events later.
+</Tip>
+
+## Step 3: Deploy the updated app (5 minutes)
+
+Build and submit your updated app:
+
+```bash
+# Test locally first
+npx react-native run-ios
+npx react-native run-android
+
+# Then build and submit through your normal deployment process
+# (EAS Build, Xcode, Android Studio, etc.)
+```
+
+<Warning>
+  **You can start creating the campaign (Step 4) while your app update is in review.** Just don't launch the campaign until the SDK-enabled version is live in the stores. Running ads without the SDK means you can't track installs — and that means the algorithm can't optimize.
+</Warning>
+
+## Step 4: Create and launch your first campaign (20 minutes)
+
+### Prepare your creative assets first
+
+Before you open Ads Manager, prepare these assets:
+
+```
+REQUIRED:
+□ 3-5 images or short videos of your app
+  → Screenshots of key features (1080x1920 for Stories, 1080x1080 for Feed)
+  → Screen recordings showing the app in action (15-30 seconds)
+  → If you have nothing: use your App Store screenshots
+
+□ Ad copy:
+  → Primary text (125 characters — one clear sentence about what your app does)
+  → Headline (40 characters — the benefit or hook)
+  → Description (30 characters — supporting info)
+
+EXAMPLES:
+  Primary text: "Track your habits, build your streaks, change your life.
+                 Free to start — no credit card needed."
+  Headline: "Build Better Habits Today"
+  Description: "Free on iOS and Android"
+```
+
+### Create the campaign
+
+Go to [adsmanager.facebook.com](https://adsmanager.facebook.com) and follow these exact steps:
+
+<Steps>
+  <Step title="Click Create and choose your objective">
+    Select **App Promotion** > **App Installs**.
+
+    Name your campaign: `[App Name] - Launch Test - [Date]`
+  </Step>
+  <Step title="Configure campaign settings">
+    ```
+    Campaign Budget Optimization: ON
+    Campaign Budget:              $15/day
+    Bid Strategy:                 Lowest cost (default — don't change this)
+    ```
+  </Step>
+  <Step title="Configure your ad set">
+    ```
+    App:          Select your app (it should appear from Step 1)
+    App Store:    iOS App Store and/or Google Play
+    Location:     United States (or your primary market)
+    Age:          18-65+ (keep it broad — let the algorithm learn)
+    Gender:       All
+    Interests:    NONE (seriously, leave it broad)
+    Placements:   Advantage+ Placements (automatic — let Meta decide)
+    Optimization: App Installs
+    ```
+
+    **Why no interest targeting?** Meta's algorithm is very good at finding the right users on its own. Starting broad gives it the most data to learn from. Narrowing too early limits the algorithm and often increases CPI.
+  </Step>
+  <Step title="Create your ads (add 3-5 variations)">
+    Click **Create Ad** and add your prepared assets:
+
+    ```
+    Ad 1: Your best screenshot + benefit-focused copy
+    Ad 2: Screen recording of the app in action (15-30s video)
+    Ad 3: Different screenshot + problem-focused copy
+    Ad 4: (Optional) Carousel of 3-4 key features
+    Ad 5: (Optional) Another video variation with different hook
+    ```
+
+    For each ad:
+    ```
+    Primary Text:  [Your benefit statement or problem/solution]
+    Headline:      [Short hook — 40 characters]
+    Description:   [Supporting info — 30 characters]
+    CTA Button:    "Install Now"
+    URL:           Your App Store / Play Store link
+    ```
+  </Step>
+  <Step title="Review and publish">
+    Double-check everything:
+    - [ ] Budget is $15/day (not $15 total or $150/day)
+    - [ ] Location is correct (your target country)
+    - [ ] App links go to the right store
+    - [ ] All images/videos look good in preview
+    - [ ] No typos in ad copy
+
+    Click **Publish**. Your ads go into review (usually approved within 1-24 hours).
+  </Step>
+</Steps>
+
+<Note>
+  **Your total spend for the first week: approximately $105.** This is your learning investment. Think of it as paying for data about your audience — which creative resonates, who your app attracts, and what it costs to acquire a user.
+</Note>
+
+## Step 5: Set up basic tracking (5 minutes)
+
+While your campaign is in review, set up tracking so you can measure results:
+
+<Steps>
+  <Step title="Verify events in Meta Events Manager">
+    Go to [facebook.com/events_manager](https://www.facebook.com/events_manager):
+
+    1. Select your app
+    2. Click **Test Events**
+    3. Open your app on a real device
+    4. You should see `fb_mobile_activate_app` appear in real-time
+
+    If events appear: your SDK is working.
+    If nothing appears: check your SDK integration (go back to Step 2).
+  </Step>
+  <Step title="Create a simple tracking spreadsheet">
+    Open a new spreadsheet and create this template:
+
+    ```
+    | Date    | Spend | Installs | CPI   | CTR  | Best Ad | Notes          |
+    |---------|-------|----------|-------|------|---------|----------------|
+    | Day 1   |       |          |       |      |         |                |
+    | Day 2   |       |          |       |      |         |                |
+    | Day 3   |       |          |       |      |         |                |
+    | ...     |       |          |       |      |         |                |
+    | Day 7   |       |          |       |      |         | DECISION DAY   |
+    ```
+
+    Fill it in once per day. Don't make any changes to the campaign until Day 7.
+  </Step>
+</Steps>
+
+## The 7-day waiting period (the hardest part)
+
+Your campaign is live. Now you wait. Here's what to expect:
+
+### Day-by-day expectations
+
+| Day | What happens | What to do |
+|-----|-------------|-----------|
+| **Day 1** | Ads in review or just starting. Few or zero installs. | Nothing. Check that ads were approved. |
+| **Day 2** | Some impressions trickling in. Maybe 1-5 installs. High CPI. | Nothing. Log the numbers in your spreadsheet. |
+| **Day 3** | Algorithm starting to learn. CPI still unstable. | Nothing. Don't panic if CPI is high. |
+| **Day 4** | Performance improving. Algorithm finding better users. | Log numbers. Don't change anything. |
+| **Day 5** | Patterns emerging. Some ads performing better than others. | Log numbers. Resist the urge to pause losers. |
+| **Day 6** | Performance stabilizing. CPI coming down. | Log numbers. Start thinking about what you see. |
+| **Day 7** | **Decision day.** Enough data to make moves. | Analyze and make your first optimizations. |
+
+<Warning>
+  **Do not touch your campaign before Day 7.** Every change resets the learning phase. Pausing an ad after 2 days, changing budget on day 3, editing targeting on day 4 — all of these force the algorithm to start over. Set it, forget it, come back on Day 7.
+</Warning>
+
+## Day 7: Read the data and make decisions
+
+### What to check
+
+Open Ads Manager and look at your campaign's last 7 days:
+
+```
+CHECK 1: Are installs being tracked?
+  → Open Ads Manager > click your campaign > look at "Results" column
+  → If it shows installs: tracking is working
+  → If it shows 0 installs but has spend: tracking is BROKEN
+    → Fix your SDK before spending another dollar
+
+CHECK 2: What's your CPI?
+  → Look at "Cost per Result" column
+  → $1-3: Excellent for most apps
+  → $3-5: Good — normal for most categories
+  → $5-10: Okay — depends on your LTV
+  → $10+: High — may need better creative or different audience
+
+CHECK 3: Which ads are winning?
+  → Click into your ad set > look at individual ad performance
+  → Sort by CPI (lowest to highest)
+  → The top 1-2 ads are your winners
+
+CHECK 4: What's the CTR?
+  → Look at "CTR (link click-through rate)" column
+  → Above 1.5%: Good creative
+  → 0.5-1.5%: Average — room for improvement
+  → Below 0.5%: Creative isn't grabbing attention
+```
+
+### What to do based on results
+
+<Accordion title="Scenario A: CPI is below $5 and you're getting installs">
+**This is the good scenario.** Your campaign is working.
+
+Next steps:
+1. **Pause the 1-2 worst-performing ads** (highest CPI)
+2. **Create 2-3 new ads** that are similar to your winner (same style, different hook or visual)
+3. **Keep the budget at $15/day** for another week
+4. After Week 2, if CPI stays stable, increase budget by 20% ($18/day)
+5. Read the [Scaling Strategy](/playbook/scaling-strategy) guide
+</Accordion>
+
+<Accordion title="Scenario B: CPI is above $10 and you're not sure it's worth it">
+**Don't panic. This is normal for a first campaign.**
+
+Next steps:
+1. Check if one specific ad has a much lower CPI than others — if so, pause the others and create variations of the winner
+2. Create 3-5 completely new creative approaches (different concepts, not just tweaks)
+3. Check your App Store listing — a confusing or unappealing store listing kills conversion rate
+4. Keep the budget at $15/day and run the new creative for another week
+5. Read the [Creative Testing](/playbook/creative-testing) guide
+</Accordion>
+
+<Accordion title="Scenario C: Zero installs tracked despite spend">
+**Your tracking is broken. Fix this before spending more.**
+
+Debugging steps:
+1. Go to Meta Events Manager > Test Events > open your app on a real device
+2. If no events fire: your SDK isn't initialized correctly (go back to Step 2)
+3. If events fire in test but not in Ads Manager: the app in your campaign doesn't match the app in Events Manager
+4. Check that the app version live in the store has the Meta SDK (did your latest build deploy?)
+5. Pause the campaign until tracking is fixed
+6. Read the [SDK Integration Guide](/playbook/sdk-integration) for debugging help
+</Accordion>
+
+<Accordion title="Scenario D: Very few impressions (under 1,000)">
+**Your campaign isn't delivering. Common causes:**
+
+1. **Ads still in review** — check for any rejection notices in Ads Manager
+2. **Payment issue** — verify your credit card is charged and not declined
+3. **Targeting too narrow** — if you added interest targeting, remove it and go broad
+4. **Ad violates policy** — check for health claims, before/after images, or prohibited content
+5. **App not available** — make sure your app is live in the target country's store
+</Accordion>
+
+## What to do after launch: your first 30 days
+
+### Week 2: Iterate on creative
+
+```
+Day 8-9:    Create 3-5 new ad variations based on Week 1 learnings
+Day 10:     Launch new creative test
+Day 11-14:  Let it run, log daily numbers
+Day 14:     Evaluate — pause losers, keep winners
+```
+
+### Week 3: Optimize and start scaling
+
+```
+Day 15:     If CPI is stable and acceptable, increase budget by 20%
+Day 16-17:  Research Apple Search Ads or Google Ads as a second platform
+Day 18:     Set up a second platform account (don't launch yet)
+Day 19-21:  Continue running Meta, log numbers
+Day 21:     Evaluate — if Meta is profitable, prepare to launch Platform 2
+```
+
+### Week 4: Expand
+
+```
+Day 22:     Launch a small campaign on Platform 2 ($10/day)
+Day 23-28:  Run both platforms, track separately
+Day 28:     Full month review:
+            → Total spend
+            → Total installs
+            → Blended CPI
+            → Which platform performed better
+            → What creative worked best
+            → User retention (are ad-acquired users sticking around?)
+```
+
+## The metrics that matter (and what to ignore)
+
+| Metric | What it means | What's "good" | Priority |
+|--------|--------------|---------------|----------|
+| **CPI** | Cost per install | $1-5 (varies wildly by category) | Track this first |
+| **CTR** | % who click your ad | 1-3% (Meta), 5-15% (Apple) | Tells you if creative is working |
+| **ROAS** | Revenue / ad spend | Above 1.0 = profitable | Track once you have revenue data |
+| **Day 1 Retention** | % who open app next day | 25-40% | Tells you if users are quality |
+
+**Ignore everything else for now.** Impressions, reach, frequency, CPM, ThruPlay rate — they're useful later when you're optimizing at scale, but they'll just distract you right now.
 
 ## Common developer mistakes
 
 <CardGroup cols={2}>
-  <Card title="Building first, marketing later" icon="code">
-    Start learning ads before your app is "perfect." You can set up accounts, test creative, and build audiences while still developing.
-  </Card>
   <Card title="Over-engineering tracking" icon="gears">
-    You don't need to track 50 events on day one. Track installs and one key action (sign-up or purchase). Add more events later.
+    You don't need to track 50 events on day one. Track installs, one key action (sign-up), and purchases. Add more events later when you know what questions you're trying to answer.
   </Card>
   <Card title="Targeting too narrowly" icon="crosshairs">
-    Your instinct as a developer is to be precise. With ads, start broad and let the algorithm find your users. It's better at this than you are.
+    Your developer instinct says "be precise." With ads, start broad. Meta's algorithm is better at finding your users than you are at guessing who they are. Trust the algorithm.
   </Card>
-  <Card title="Giving up after a week" icon="flag">
-    Your first campaign probably won't be profitable. That's normal. The data you get from it is what makes your second campaign better.
+  <Card title="Changing things too fast" icon="bolt">
+    Modified the campaign on Day 3 because CPI was high? You just reset the learning phase. Now it needs another 7 days. Set it, forget it, evaluate weekly.
+  </Card>
+  <Card title="Ignoring the App Store listing" icon="mobile">
+    50% of people who click your ad decide whether to install based on your App Store page, not your ad. If your screenshots are bad, your description is confusing, or you have few reviews, fix that first.
+  </Card>
+  <Card title="Building first, marketing later" icon="code">
+    Start learning ads while your app is still in development. Set up accounts, study competitors, and test creative concepts. Don't wait until launch day.
+  </Card>
+  <Card title="Giving up after one week" icon="flag">
+    Your first campaign probably won't be profitable. That's normal. The data from your first campaign makes your second campaign better. The real learning happens in weeks 2-4.
   </Card>
 </CardGroup>
 
 ## Quick reference: platform comparison
 
-| | Meta | Google | Apple | TikTok |
-|--|------|--------|-------|--------|
+| | Meta | Google | Apple Search Ads | TikTok |
+|--|------|--------|-----------------|--------|
 | **Min budget** | $5/day | $10/day | $5/day | $20/day |
 | **Setup time** | 1-2 hours | 1-2 hours | 30 min | 1-2 hours |
 | **Best for** | Any app | Searchable problems | iOS apps | Young audience |
-| **Creative** | Image/video | Text/image | App Store page | Video (native) |
-| **Difficulty** | Medium | Medium-High | Low | Medium |
+| **Creative format** | Image + video | Text + image + video | App Store page (auto) | Short-form video |
+| **Learning difficulty** | Medium | Medium-high | Easy | Medium |
+| **Algorithm quality** | Excellent | Very good | Good | Good |
+| **Recommended order** | Start here | Add second or third | Add for iOS | Add for younger demos |
 
 <Tip>
-  **Developer advantage:** You can install tracking SDKs yourself, build custom landing pages, set up analytics, and automate reporting. Most non-technical marketers have to hire someone for all of that. Use your technical skills as a competitive edge.
+  **Developer advantage: you can do things marketers can't.** You can install SDKs yourself, build custom landing pages, set up Firebase analytics, automate reporting, and even build tools that help you manage campaigns. Most non-technical marketers have to hire someone for all of that. Use your technical skills as a competitive edge.
 </Tip>
 
-## What to do next
+## Your 60-minute checklist
+
+- [ ] Meta Business Manager account created
+- [ ] Ad account created with $500 spending limit
+- [ ] App registered on developers.facebook.com
+- [ ] `react-native-fbsdk-next` installed and configured
+- [ ] iOS: Info.plist updated with Facebook App ID and ATT description
+- [ ] Android: AndroidManifest.xml and strings.xml updated
+- [ ] SDK initialized in App.tsx with event tracking functions
+- [ ] App built and deployed with SDK
+- [ ] Events verified in Meta Events Manager (Test Events)
+- [ ] Campaign created: App Installs, $15/day, broad targeting, 3-5 ads
+- [ ] Campaign published and approved
+- [ ] Tracking spreadsheet created
+- [ ] Calendar reminder set for Day 7 evaluation
+
+## What to read next
 
 <CardGroup cols={2}>
   <Card
@@ -130,27 +596,27 @@ Ignore everything else for now. Impressions, reach, frequency — they're useful
     icon="code"
     href="/playbook/sdk-integration"
   >
-    Copy-paste code snippets for every major ad SDK.
+    Complete SDK setup for Meta, Google, TikTok, and Apple — including iOS and Android specifics.
   </Card>
   <Card
     title="Analytics Setup"
     icon="chart-bar"
     href="/playbook/analytics-setup"
   >
-    Set up the dashboards you need to track performance.
+    Set up Firebase and build dashboards to track what happens after users install.
   </Card>
   <Card
     title="Budget Planning"
     icon="calculator"
     href="/playbook/budget-planning"
   >
-    Figure out how much to spend and where.
+    Plan your budget beyond the first week. Calculate CPI targets and monthly spend.
   </Card>
   <Card
     title="Creative Testing"
     icon="flask"
     href="/playbook/creative-testing"
   >
-    Systematic approach to finding winning ads.
+    Learn the science of testing ad creatives to find what really works.
   </Card>
 </CardGroup>

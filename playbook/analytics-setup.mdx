@@ -1,196 +1,826 @@
 ---
 title: "Analytics Setup"
-description: "How to set up analytics for your app advertising so you can track performance, understand users, and make data-driven decisions."
+description: "Complete analytics setup guide — Firebase configuration, key events to track, custom dashboards, cohort analysis, ROAS calculation, and a data-driven decision framework for every stage of growth."
 ---
 
 ## You can't improve what you can't measure
 
 Running ads without proper analytics is like driving with your eyes closed. You might get somewhere, but probably not where you wanted. Analytics tell you what's working, what's not, and where to focus next.
 
-## What you'll learn
+This guide covers everything: from setting up Firebase to building reporting dashboards to making data-driven decisions at every stage of growth.
 
-- What analytics tools you need (and don't need)
-- How to set up a simple analytics stack
-- The key metrics and dashboards to build
-- How to connect ad platform data to app analytics
-- Cohort analysis basics for understanding user quality
+## The analytics stack: what you need
 
-## The analytics stack
+You need two types of analytics working together:
 
-You need two types of analytics:
-
-| Type | What it tells you | Tools |
-|------|------------------|-------|
-| **Ad platform analytics** | How your ads are performing (CPI, CTR, ROAS) | Meta Ads Manager, Google Ads, etc. |
-| **Product analytics** | What users do after installing (retention, revenue, engagement) | Firebase, Amplitude, Mixpanel, PostHog |
+| Type | What it tells you | Examples |
+|------|------------------|---------|
+| **Ad platform analytics** | How your ads are performing: impressions, clicks, CPI, ROAS | Meta Ads Manager, Google Ads, Apple Search Ads, TikTok Ads Manager |
+| **Product analytics** | What users do after installing: retention, revenue, engagement | Firebase Analytics, Amplitude, Mixpanel, PostHog |
 
 <Note>
-  **You need both.** Ad platforms tell you how much it costs to get a user. Product analytics tell you how much that user is worth. Together, they tell you whether you're making money.
+  **You need both.** Ad platforms tell you how much it costs to get a user. Product analytics tell you how much that user is worth. Together, they tell you whether you're making money. Separately, they each only tell you half the story.
 </Note>
+
+```
+┌──────────────────────────────────────────────────────────┐
+│                    THE ANALYTICS PICTURE                   │
+│                                                          │
+│  AD PLATFORMS                    PRODUCT ANALYTICS        │
+│  ────────────                    ─────────────────        │
+│  How much did we spend?    +     How much did users pay?  │
+│  How many installs?        +     Did they stick around?   │
+│  Which ads worked?         +     Which features do        │
+│  Which audiences worked?   +     they use?                │
+│           │                           │                   │
+│           └─────────┬─────────────────┘                   │
+│                     │                                     │
+│              THE ANSWER:                                  │
+│              Are we making money?                         │
+│              Which campaigns produce                      │
+│              the best long-term users?                    │
+│                                                          │
+└──────────────────────────────────────────────────────────┘
+```
 
 ## Recommended tools by stage
 
-### Just starting (free)
+<Tabs>
+  <Tab title="Just starting (free)">
+    ```
+    Ad analytics:      Each platform's built-in dashboard
+    Product analytics:  Firebase Analytics (free, unlimited events)
+    Attribution:        Direct SDK integration
+    Reporting:          Google Sheets (manual weekly updates)
+    Total cost:         $0
+    ```
 
-```
-Ad analytics:     Each platform's built-in dashboard
-Product analytics: Firebase Analytics (free, unlimited)
-Attribution:       Direct SDK integration
-```
+    This is everything you need for the first 3-6 months. Don't overcomplicate it.
+  </Tab>
+  <Tab title="Growing ($1K-10K/mo ad spend)">
+    ```
+    Ad analytics:      Platform dashboards + Google Sheets tracker
+    Product analytics:  Firebase Analytics + Amplitude free tier
+    Attribution:        Direct SDKs or starter MMP plan
+    Reporting:          Google Sheets or Notion dashboards
+    Total cost:         $0-500/month
+    ```
 
-### Growing ($50-500/month)
+    At this stage, consider adding Amplitude or Mixpanel for deeper product analysis — their free tiers are generous.
+  </Tab>
+  <Tab title="Scaling ($10K+/mo ad spend)">
+    ```
+    Ad analytics:      Automated via MMP + platform APIs
+    Product analytics:  Amplitude or Mixpanel (paid tier)
+    Attribution:        MMP (Adjust, AppsFlyer, Branch)
+    Reporting:          Looker, Metabase, or custom dashboards
+    Data warehouse:     BigQuery (Firebase auto-exports) or Snowflake
+    Total cost:         $1,000-5,000/month
+    ```
 
-```
-Ad analytics:     Platform dashboards + spreadsheet tracker
-Product analytics: Amplitude or Mixpanel (free tier)
-Attribution:       Consider an MMP (Adjust, AppsFlyer)
-```
+    Automation is key at scale. Manual reporting becomes unsustainable above $10K/month.
+  </Tab>
+</Tabs>
 
-### Scaling ($500+/month)
+## Setting up Firebase Analytics (complete guide)
 
-```
-Ad analytics:     Automated reporting (Looker, Supermetrics)
-Product analytics: Amplitude or Mixpanel (paid tier)
-Attribution:       MMP with full integration
-Data warehouse:    BigQuery or Snowflake
-```
+Firebase is the best free starting point. It's powerful, unlimited, and connects directly to Google Ads. Here's how to set it up properly.
 
-## Setting up Firebase Analytics
-
-Firebase is the best free starting point. Here's what to set up:
+### Step-by-step setup
 
 <Steps>
-  <Step title="Install the SDK">
-    If you followed the [SDK Integration Guide](/playbook/sdk-integration), you're already done.
+  <Step title="Create a Firebase project">
+    1. Go to [console.firebase.google.com](https://console.firebase.google.com)
+    2. Click **Add Project**
+    3. Enter your project name (use your app name)
+    4. Enable Google Analytics when prompted (this is the core analytics feature)
+    5. Select or create a Google Analytics account
+    6. Click **Create Project**
   </Step>
-  <Step title="Enable key reports">
-    In Firebase Console, go to **Analytics** and enable:
-    - **Realtime** — see events as they happen
-    - **Events** — all tracked events
-    - **Conversions** — mark key events as conversions
-    - **Audiences** — define user segments
+  <Step title="Add your app to the project">
+    **For iOS:**
+    1. Click **Add App** > iOS
+    2. Enter your **Bundle ID** (e.g., `com.yourcompany.yourapp`)
+    3. Download `GoogleService-Info.plist`
+    4. Add it to your Xcode project (or React Native ios/ directory)
+
+    **For Android:**
+    1. Click **Add App** > Android
+    2. Enter your **Package Name** (e.g., `com.yourcompany.yourapp`)
+    3. Download `google-services.json`
+    4. Place it in your `android/app/` directory
   </Step>
-  <Step title="Create custom audiences">
-    Build audiences based on behavior:
-    - **Engaged users** — opened app 3+ times in last 7 days
-    - **Purchasers** — made at least 1 purchase
-    - **At-risk** — haven't opened in 7+ days
-  </Step>
-  <Step title="Set up Funnel reports">
-    Track key user flows:
+  <Step title="Install the Firebase SDK">
+    If you haven't already, follow the [SDK Integration Guide](/playbook/sdk-integration) for complete installation instructions. The key packages:
+
+    ```bash
+    # React Native
+    npm install @react-native-firebase/app @react-native-firebase/analytics
+    cd ios && pod install && cd ..
     ```
-    Install → First Open → Sign Up → Key Action → Purchase
-    ```
-    This shows you where users drop off.
   </Step>
-  <Step title="Link to Google Ads">
-    In **Project Settings** > **Integrations** > **Google Ads**, link your accounts. This enables audience sharing and conversion import.
+  <Step title="Configure key events as conversions">
+    In Firebase Console > **Analytics** > **Events**:
+
+    1. Find these events and mark them as **Conversions** (toggle the switch):
+       - `first_open` (automatic — already tracks installs)
+       - `sign_up` (you track this)
+       - `purchase` (you track this)
+       - `start_trial` (if applicable)
+
+    Marking events as conversions does two things:
+    - Firebase prioritizes them in reports
+    - They become available for Google Ads optimization (if linked)
+  </Step>
+  <Step title="Enable data export to BigQuery (recommended)">
+    Firebase can automatically export all event data to Google BigQuery (free tier available). This gives you raw data access for custom analysis.
+
+    Go to **Project Settings** > **Integrations** > **BigQuery** > **Link**
+
+    BigQuery stores every event with full parameters. You can run SQL queries to answer questions like:
+    - "What's the average revenue per user from Meta vs. Google at day 30?"
+    - "Which onboarding flow leads to higher retention?"
+    - "What's the LTV curve for users who completed the tutorial vs. those who skipped it?"
+  </Step>
+  <Step title="Link Firebase to Google Ads">
+    This is critical if you're running Google Ads:
+
+    1. Go to **Project Settings** > **Integrations** > **Google Ads**
+    2. Click **Link** and select your Google Ads account
+    3. Enable audience sharing and conversion import
+
+    Once linked:
+    - Firebase conversion events appear in Google Ads as conversion actions
+    - Firebase audiences become available as targeting options in Google Ads
+    - Google Ads can optimize campaigns for Firebase events (not just installs)
   </Step>
 </Steps>
 
-## The metrics dashboard you need
+## Key events to track by app type
 
-Build a simple weekly dashboard with these numbers:
+Don't track everything — track what matters for your specific app type.
 
-### Acquisition metrics (from ad platforms)
+<Tabs>
+  <Tab title="Subscription app">
+    | Event | Firebase event name | When to fire | Why it matters |
+    |-------|-------------------|-------------|---------------|
+    | **Sign up** | `sign_up` | Account creation complete | Core conversion |
+    | **Tutorial complete** | `tutorial_complete` | Finished onboarding | Onboarding effectiveness |
+    | **Start trial** | `start_trial` | Free trial begins | Trial funnel tracking |
+    | **Purchase** | `purchase` | First subscription payment | Revenue tracking |
+    | **Subscription renew** | `purchase` (with params) | Each renewal | LTV tracking |
+    | **Cancel subscription** | `cancel_subscription` (custom) | User cancels | Churn analysis |
+    | **Feature used** | `feature_used` (custom) | Key feature engagement | Engagement depth |
 
-| Metric | Where to find it | Goal |
-|--------|-----------------|------|
-| **Total spend** | Each platform's dashboard | Within budget |
-| **Installs** | Each platform + your analytics | Growing week-over-week |
-| **CPI by platform** | Each platform's dashboard | Below your target |
-| **CPI by campaign** | Each platform's dashboard | Identify winners/losers |
-| **ROAS** | Calculated (revenue / spend) | Above 1.0 |
+    ```typescript
+    // React Native tracking code for subscription app
+    import analytics from '@react-native-firebase/analytics';
 
-### Engagement metrics (from product analytics)
+    // After successful sign-up
+    await analytics().logSignUp({ method: 'email' });
 
-| Metric | How to calculate | Good benchmark |
-|--------|-----------------|---------------|
-| **Day 1 retention** | % of installers who open next day | 25-40% |
-| **Day 7 retention** | % of installers who open on day 7 | 10-20% |
-| **Day 30 retention** | % of installers who open on day 30 | 5-10% |
-| **Activation rate** | % who complete key action | 20-50% |
-| **Conversion to paid** | % who make a purchase | 2-10% |
+    // After onboarding
+    await analytics().logTutorialComplete();
+
+    // Trial started
+    await analytics().logEvent('start_trial', {
+      trial_duration: '7_days',
+      plan_name: 'premium',
+    });
+
+    // Purchase / subscription
+    await analytics().logPurchase({
+      value: 9.99,
+      currency: 'USD',
+      items: [{ item_id: 'premium_monthly', item_name: 'Premium Monthly' }],
+    });
+
+    // Subscription renewal
+    await analytics().logPurchase({
+      value: 9.99,
+      currency: 'USD',
+      items: [{ item_id: 'premium_monthly', item_name: 'Premium Monthly Renewal' }],
+      transaction_id: 'renewal_xxx',
+    });
+    ```
+  </Tab>
+  <Tab title="E-commerce app">
+    | Event | Firebase event name | When to fire | Why it matters |
+    |-------|-------------------|-------------|---------------|
+    | **Sign up** | `sign_up` | Account creation | Core conversion |
+    | **View item** | `view_item` | Product page viewed | Browsing behavior |
+    | **Add to cart** | `add_to_cart` | Item added to cart | Purchase intent |
+    | **Begin checkout** | `begin_checkout` | Checkout flow started | Funnel tracking |
+    | **Purchase** | `purchase` | Order completed | Revenue |
+    | **Refund** | `refund` | Order refunded | Revenue accuracy |
+
+    ```typescript
+    import analytics from '@react-native-firebase/analytics';
+
+    // View product
+    await analytics().logViewItem({
+      items: [{
+        item_id: 'SKU_123',
+        item_name: 'Blue T-Shirt',
+        item_category: 'Clothing',
+        price: 29.99,
+      }],
+    });
+
+    // Add to cart
+    await analytics().logAddToCart({
+      items: [{
+        item_id: 'SKU_123',
+        item_name: 'Blue T-Shirt',
+        price: 29.99,
+        quantity: 1,
+      }],
+      value: 29.99,
+      currency: 'USD',
+    });
+
+    // Purchase
+    await analytics().logPurchase({
+      transaction_id: 'ORDER_456',
+      value: 59.98,
+      currency: 'USD',
+      items: [
+        { item_id: 'SKU_123', item_name: 'Blue T-Shirt', price: 29.99, quantity: 1 },
+        { item_id: 'SKU_456', item_name: 'Red Cap', price: 29.99, quantity: 1 },
+      ],
+    });
+    ```
+  </Tab>
+  <Tab title="Free app (ad-supported or utility)">
+    | Event | Firebase event name | When to fire | Why it matters |
+    |-------|-------------------|-------------|---------------|
+    | **Sign up** | `sign_up` | Account creation | Core conversion |
+    | **Tutorial complete** | `tutorial_complete` | Onboarding done | Onboarding effectiveness |
+    | **Key action** | Custom (e.g., `task_created`) | Core action completed | Engagement measurement |
+    | **Session start** | Automatic | Each app open | Usage frequency |
+    | **Ad viewed** | `ad_impression` | In-app ad shown | Ad revenue tracking |
+    | **Share** | `share` | User shares content | Viral growth potential |
+
+    ```typescript
+    import analytics from '@react-native-firebase/analytics';
+
+    // Core action (customize to your app)
+    await analytics().logEvent('task_created', {
+      task_category: 'personal',
+      has_due_date: true,
+    });
+
+    // In-app ad impression (if you show ads in your app)
+    await analytics().logEvent('ad_impression', {
+      ad_platform: 'admob',
+      ad_format: 'rewarded',
+      ad_value: 0.003, // estimated eCPM
+      currency: 'USD',
+    });
+
+    // Share
+    await analytics().logShare({
+      content_type: 'task_list',
+      item_id: 'list_123',
+      method: 'link',
+    });
+    ```
+  </Tab>
+  <Tab title="Game">
+    | Event | Firebase event name | When to fire | Why it matters |
+    |-------|-------------------|-------------|---------------|
+    | **Tutorial complete** | `tutorial_complete` | Tutorial finished | First-time experience |
+    | **Level start** | `level_start` | Level begins | Progression tracking |
+    | **Level end** | `level_end` | Level completed/failed | Difficulty analysis |
+    | **Purchase** | `purchase` | In-app purchase | Revenue |
+    | **Ad viewed** | `ad_impression` | Rewarded/interstitial shown | Ad revenue |
+    | **Earn virtual currency** | `earn_virtual_currency` | Coins/gems earned | Economy tracking |
+    | **Spend virtual currency** | `spend_virtual_currency` | Coins/gems spent | Economy tracking |
+
+    ```typescript
+    import analytics from '@react-native-firebase/analytics';
+
+    // Level complete
+    await analytics().logLevelEnd({
+      level_name: 'level_5',
+      success: 'true',
+    });
+
+    // In-app purchase
+    await analytics().logPurchase({
+      value: 4.99,
+      currency: 'USD',
+      items: [{ item_id: 'gem_pack_500', item_name: '500 Gems' }],
+    });
+
+    // Earn virtual currency
+    await analytics().logEarnVirtualCurrency({
+      virtual_currency_name: 'gems',
+      value: 100,
+    });
+    ```
+  </Tab>
+</Tabs>
+
+## Building your analytics dashboards
+
+### The weekly metrics dashboard
+
+Create this in a Google Sheet. Update it every Monday. This is the single most important reporting tool you'll have:
+
+```
+WEEKLY AD PERFORMANCE DASHBOARD
+════════════════════════════════
+
+Week of: [Date]
+
+SPEND & INSTALLS
+┌──────────┬────────┬──────────┬────────┬────────────┐
+│ Platform │ Spend  │ Installs │ CPI    │ Week/Week  │
+├──────────┼────────┼──────────┼────────┼────────────┤
+│ Meta     │ $XXX   │ XXX      │ $X.XX  │ ↑/↓ XX%    │
+│ Google   │ $XXX   │ XXX      │ $X.XX  │ ↑/↓ XX%    │
+│ Apple    │ $XXX   │ XXX      │ $X.XX  │ ↑/↓ XX%    │
+│ TikTok   │ $XXX   │ XXX      │ $X.XX  │ ↑/↓ XX%    │
+├──────────┼────────┼──────────┼────────┼────────────┤
+│ TOTAL    │ $XXX   │ XXX      │ $X.XX  │ ↑/↓ XX%    │
+└──────────┴────────┴──────────┴────────┴────────────┘
+
+CAMPAIGN BREAKDOWN (top 5 by spend)
+┌──────────────────────┬────────┬──────────┬────────┐
+│ Campaign             │ Spend  │ Installs │ CPI    │
+├──────────────────────┼────────┼──────────┼────────┤
+│ [Campaign 1]         │ $XXX   │ XXX      │ $X.XX  │
+│ [Campaign 2]         │ $XXX   │ XXX      │ $X.XX  │
+│ [Campaign 3]         │ $XXX   │ XXX      │ $X.XX  │
+│ [Campaign 4]         │ $XXX   │ XXX      │ $X.XX  │
+│ [Campaign 5]         │ $XXX   │ XXX      │ $X.XX  │
+└──────────────────────┴────────┴──────────┴────────┘
+
+USER QUALITY (from Firebase/Product Analytics)
+┌──────────────────────┬──────────┬──────────┬──────────┐
+│ Metric               │ This Week│ Last Week│ Change   │
+├──────────────────────┼──────────┼──────────┼──────────┤
+│ Day 1 Retention      │ XX%      │ XX%      │ ↑/↓ XX%  │
+│ Day 7 Retention      │ XX%      │ XX%      │ ↑/↓ XX%  │
+│ Activation Rate      │ XX%      │ XX%      │ ↑/↓ XX%  │
+│ Conversion to Paid   │ XX%      │ XX%      │ ↑/↓ XX%  │
+│ ARPU (30 day)        │ $X.XX    │ $X.XX    │ ↑/↓ XX%  │
+└──────────────────────┴──────────┴──────────┴──────────┘
+
+REVENUE & ROAS
+┌──────────────────────┬──────────┐
+│ Total Ad Spend       │ $XXX     │
+│ Total Revenue (30d)  │ $XXX     │
+│ Blended ROAS (30d)   │ X.Xx     │
+│ Blended CPI          │ $X.XX    │
+│ LTV:CAC Ratio        │ X.Xx     │
+└──────────────────────┴──────────┘
+
+CREATIVE PERFORMANCE
+┌─────────────────┬────────┬───────┬────────┬──────────┐
+│ Creative         │ Spend  │ CTR   │ CPI    │ Status   │
+├─────────────────┼────────┼───────┼────────┼──────────┤
+│ [Creative 1]     │ $XXX   │ X.X%  │ $X.XX  │ Winner   │
+│ [Creative 2]     │ $XXX   │ X.X%  │ $X.XX  │ Testing  │
+│ [Creative 3]     │ $XXX   │ X.X%  │ $X.XX  │ Paused   │
+└─────────────────┴────────┴───────┴────────┴──────────┘
+
+ACTIONS FOR THIS WEEK
+1. ________________________________
+2. ________________________________
+3. ________________________________
+```
+
+### The monthly reporting template
+
+At the end of each month, compile this summary:
+
+```
+MONTHLY AD PERFORMANCE REPORT
+══════════════════════════════
+Month: [Month Year]
+
+EXECUTIVE SUMMARY
+─────────────────
+Total spend:           $X,XXX
+Total installs:        X,XXX
+Blended CPI:           $X.XX (target: $X.XX → ✓/✗)
+Blended ROAS (30-day): X.Xx  (target: X.Xx  → ✓/✗)
+New paying users:      XXX
+Revenue from new users: $X,XXX
+
+MONTH-OVER-MONTH TRENDS
+────────────────────────
+Spend:      $X,XXX → $X,XXX (↑/↓ XX%)
+Installs:   X,XXX  → X,XXX  (↑/↓ XX%)
+CPI:        $X.XX  → $X.XX  (↑/↓ XX%)
+ROAS:       X.Xx   → X.Xx   (↑/↓ XX%)
+Retention:  XX%    → XX%    (↑/↓ XX%)
+
+TOP LEARNINGS
+─────────────
+1. [What worked and why]
+2. [What didn't work and why]
+3. [Key insight about audience/creative/platform]
+
+PLAN FOR NEXT MONTH
+────────────────────
+Budget:    $X,XXX (↑/↓ XX% from this month)
+Focus:     [Key priorities]
+Tests:     [Planned creative/audience/platform tests]
+Targets:   CPI < $X.XX, ROAS > X.Xx
+```
+
+## Understanding cohort analysis
+
+Cohort analysis is the most powerful (and underused) tool in your analytics toolkit. It answers the question: **are the users we're acquiring getting better or worse over time?**
+
+### What is a cohort?
+
+A cohort is a group of users who share a common trait — usually their install date. By grouping users into weekly cohorts, you can compare behavior across time periods, campaigns, and platforms.
+
+### How to read a cohort table
+
+```
+RETENTION COHORT TABLE (% of users returning)
+─────────────────────────────────────────────────
+                  Day 1   Day 7   Day 14  Day 30
+Install Week 1    35%     15%     10%     6%
+Install Week 2    32%     14%     9%      5%
+Install Week 3    38%     18%     12%     8%      ← Something improved!
+Install Week 4    36%     16%     11%     7%
+
+Read it like this:
+- Of users who installed in Week 1, 35% came back on Day 1
+- Of those same Week 1 users, only 6% were active on Day 30
+- Week 3 had notably better retention — investigate what changed
+  (new creative? different audience? app update?)
+```
+
+### Revenue cohort table
+
+Even more valuable than retention cohorts — revenue cohorts show you the actual money:
+
+```
+REVENUE COHORT TABLE (cumulative revenue per user)
+──────────────────────────────────────────────────────
+                    Day 7    Day 30   Day 60   Day 90
+Meta - Jan W1       $0.80    $2.50    $3.80    $4.50
+Meta - Jan W2       $0.75    $2.30    $3.50    $4.20
+Google - Jan W1     $1.10    $3.20    $4.90    $5.80   ← Best!
+TikTok - Jan W1     $0.40    $1.80    $2.50    $2.90   ← Lowest
+Apple - Jan W1      $0.95    $2.80    $4.20    $5.10
+
+Insights:
+- Google users generate the highest revenue per user
+- TikTok users are cheapest to acquire but least valuable
+- Need to compare revenue against CPI to calculate true ROAS
+```
+
+### How to build cohort analysis in Firebase
+
+<Steps>
+  <Step title="Go to Firebase Console > Analytics > Retention">
+    Firebase has a built-in retention cohort view. It shows Day 1, Day 7, and Day 30 retention by default.
+  </Step>
+  <Step title="Create custom audiences for campaign tracking">
+    To compare cohorts by campaign, create Firebase audiences that match your campaign timing:
+
+    - **Audience 1:** Users who first opened between Jan 1-7 (Week 1 cohort)
+    - **Audience 2:** Users who first opened between Jan 8-14 (Week 2 cohort)
+
+    Compare their retention and revenue in the Audiences report.
+  </Step>
+  <Step title="Export to BigQuery for advanced analysis">
+    For granular cohort analysis by campaign, creative, or platform, export Firebase data to BigQuery. Example SQL:
+
+    ```sql
+    -- Day 7 retention by traffic source
+    SELECT
+      traffic_source.source AS source,
+      traffic_source.medium AS medium,
+      COUNT(DISTINCT user_pseudo_id) AS total_users,
+      COUNT(DISTINCT CASE
+        WHEN event_timestamp >= install_timestamp + 7 * 86400000000
+        THEN user_pseudo_id
+      END) AS day_7_active,
+      ROUND(
+        COUNT(DISTINCT CASE
+          WHEN event_timestamp >= install_timestamp + 7 * 86400000000
+          THEN user_pseudo_id
+        END) * 100.0 / COUNT(DISTINCT user_pseudo_id), 1
+      ) AS day_7_retention_pct
+    FROM `your_project.analytics_XXXXXXX.events_*`
+    WHERE _TABLE_SUFFIX BETWEEN '20240101' AND '20240131'
+    GROUP BY 1, 2
+    ORDER BY total_users DESC
+    ```
+  </Step>
+</Steps>
 
 <Tip>
-  **Retention is your most important metric.** High retention means users love your app and will generate long-term revenue. If Day 1 retention is below 20%, focus on improving your app before spending more on ads — you're filling a leaky bucket.
+  **Check cohort data before making budget decisions.** A campaign with a $2 CPI and 5% Day 30 retention is less valuable than a campaign with a $4 CPI and 15% Day 30 retention. The "expensive" campaign produces users worth 3x more. Always check user quality, not just acquisition cost.
 </Tip>
 
-## Cohort analysis: the most underrated skill
+## ROAS calculation: the metric that matters most
 
-A cohort is a group of users who installed during the same period (usually a week). Cohort analysis lets you compare user quality across time periods, campaigns, and platforms.
+ROAS (Return on Ad Spend) tells you if your advertising is profitable. Here's how to calculate it correctly.
 
-### Example cohort table
+### Basic ROAS calculation
 
-| Install Week | Users | Day 1 Ret. | Day 7 Ret. | Revenue/User (30d) |
-|-------------|-------|-----------|-----------|-------------------|
-| Week 1 (Meta) | 500 | 35% | 15% | $2.50 |
-| Week 1 (Google) | 300 | 40% | 18% | $3.20 |
-| Week 2 (Meta) | 600 | 32% | 14% | $2.30 |
-| Week 2 (TikTok) | 400 | 28% | 10% | $1.80 |
+```
+ROAS = Revenue from Ad-Acquired Users ÷ Ad Spend
 
-This tells you:
-- Google users are higher quality (better retention and revenue)
-- TikTok users are cheaper but less valuable
-- Week 2 Meta users are slightly worse than Week 1 (creative fatigue?)
+Example:
+  You spent $1,000 on Meta Ads in January.
+  Users acquired from those ads generated $2,500 in revenue.
+  ROAS = $2,500 ÷ $1,000 = 2.5x
 
-<Note>
-  **Most analytics tools have built-in cohort reports.** Firebase, Amplitude, and Mixpanel all have cohort analysis features. Use them — they're one of the most powerful tools for understanding whether your ad spend is paying off.
-</Note>
+  For every $1 spent, you got $2.50 back.
+  That's a healthy ROAS.
+```
+
+### ROAS over time (this is the tricky part)
+
+ROAS changes depending on when you measure it:
+
+```
+Campaign: $1,000 spend in January, 250 installs
+
+Day 7 ROAS:    $300 revenue  ÷ $1,000 = 0.3x  (losing money!)
+Day 30 ROAS:   $800 revenue  ÷ $1,000 = 0.8x  (still losing, but improving)
+Day 60 ROAS:   $1,200 revenue ÷ $1,000 = 1.2x  (profitable!)
+Day 90 ROAS:   $1,600 revenue ÷ $1,000 = 1.6x  (solidly profitable)
+Day 180 ROAS:  $2,100 revenue ÷ $1,000 = 2.1x  (very profitable)
+
+KEY INSIGHT:
+Most campaigns aren't profitable at Day 7.
+The question is: at what point do they become profitable?
+This is your "payback period."
+```
+
+### Payback period
+
+The payback period is how long it takes for the revenue from acquired users to equal the cost of acquiring them:
+
+```
+If your payback period is:
+  < 30 days  → Excellent. You can scale aggressively.
+  30-60 days → Good. Scale with confidence but watch cash flow.
+  60-90 days → Okay. Sustainable if you have the runway.
+  90-180 days → Risky. Need strong unit economics and cash reserves.
+  > 180 days → Dangerous. Consider improving LTV before scaling.
+```
+
+### ROAS benchmarks by app type
+
+| App type | Day 7 ROAS | Day 30 ROAS | Day 90 ROAS | Notes |
+|----------|-----------|------------|------------|-------|
+| **Subscription** | 0.1-0.3x | 0.5-1.0x | 1.5-3.0x | Long payback but strong LTV |
+| **E-commerce** | 0.3-0.8x | 1.0-2.0x | 2.0-4.0x | Faster payback, repeat purchases |
+| **Freemium game** | 0.1-0.2x | 0.3-0.8x | 0.8-2.0x | Whale-dependent, variable |
+| **Ad-supported** | 0.05-0.1x | 0.2-0.5x | 0.5-1.5x | Slow revenue accumulation |
+| **Paid app** | 0.5-1.0x | Same | Same | Revenue at install, no growth |
+
+## Setting up Google Analytics 4 (for web)
+
+If your app has a website (landing page, web app, or marketing site), set up Google Analytics 4 (GA4) alongside Firebase.
+
+<Steps>
+  <Step title="Create a GA4 property">
+    Go to [analytics.google.com](https://analytics.google.com):
+    1. Click **Admin** (gear icon)
+    2. **Create Property** > enter your website name
+    3. Select **Web** as the platform
+    4. Enter your website URL
+  </Step>
+  <Step title="Install the tracking tag">
+    Add this to your website's `<head>`:
+
+    ```html
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    ```
+
+    Replace `G-XXXXXXXXXX` with your Measurement ID from GA4.
+  </Step>
+  <Step title="Set up conversion events">
+    In GA4 > **Admin** > **Events**, mark these as conversions:
+    - `app_store_click` (when someone clicks your App Store link)
+    - `sign_up` (if you have web-based sign-up)
+    - `page_view` on key pages (pricing, features)
+  </Step>
+  <Step title="Link to Google Ads">
+    In GA4 > **Admin** > **Google Ads Links**, connect your Google Ads account. This enables:
+    - Website conversion data flowing to Google Ads
+    - GA4 audiences usable as Google Ads targeting
+    - Web-to-app conversion tracking
+  </Step>
+</Steps>
 
 ## Connecting ad data to product data
 
-The holy grail: knowing which ad campaign produced the best long-term users.
+The holy grail: knowing which specific ad campaign produced the best long-term users.
 
-### With an MMP (recommended for scale)
+### With an MMP (recommended for $3K+/month ad spend)
 
-Your MMP (Adjust, AppsFlyer, etc.) attributes each install to a specific campaign. You can then:
+Your MMP (Adjust, AppsFlyer, Branch) attributes each install to a specific campaign. You can then:
 
-1. Export attribution data to your analytics tool
-2. Build cohorts by campaign, ad group, or creative
-3. Compare LTV across different traffic sources
+1. **Export attribution data** to your analytics tool (Firebase, Amplitude, BigQuery)
+2. **Build cohorts by campaign, ad group, or creative** — see which campaigns produce the best long-term users
+3. **Compare LTV across different traffic sources** — Meta users vs. Google users vs. TikTok users
+4. **Deduplicate attribution** — when a user saw ads on both Meta and TikTok, the MMP determines which platform actually drove the install
 
 ### Without an MMP (manual approach)
 
-1. Use UTM parameters on any web links
-2. Track the `first_open` event with campaign data from the ad platform SDK
-3. Build reports in Firebase that segment by traffic source
+If you're not using an MMP yet, you can still connect some data:
+
+<Steps>
+  <Step title="Use UTM parameters on web links">
+    If you send users to a website before the App Store:
+
+    ```
+    https://yourapp.com/download?utm_source=meta&utm_medium=cpc&utm_campaign=jan_test
+    ```
+
+    GA4 automatically captures these parameters.
+  </Step>
+  <Step title="Track first_open with campaign data">
+    The Meta SDK and Firebase SDK both capture some campaign data on first app open. In Firebase, check the `traffic_source` dimension in reports.
+  </Step>
+  <Step title="Build manual comparison reports">
+    Even without attribution linking, you can compare:
+
+    ```
+    Week 1: Ran Meta only → 200 installs → Day 30 retention 18%
+    Week 2: Ran Google only → 150 installs → Day 30 retention 22%
+    Week 3: Ran both → 300 installs → Day 30 retention 20%
+
+    Conclusion: Google users retain slightly better
+    ```
+
+    This isn't as precise as an MMP, but it's free and still useful.
+  </Step>
+</Steps>
+
+## Key metrics to track at each stage
+
+### Launch stage (months 1-2)
+
+| Metric | Target | Why |
+|--------|--------|-----|
+| **CPI** | Below your target (or within 2x) | Proving you can acquire users at a reasonable cost |
+| **Install tracking accuracy** | 100% match between platforms and analytics | Foundation for everything else |
+| **Day 1 retention** | >25% | Users find immediate value |
+| **Activation rate** | >30% | Onboarding is working |
+
+### Growth stage (months 3-6)
+
+| Metric | Target | Why |
+|--------|--------|-----|
+| **CPI by platform** | Below target on at least 1 platform | Identifying your best channel |
+| **Day 7 retention** | >12% | Users are forming habits |
+| **Day 30 ROAS** | >0.5x (trending toward 1.0x) | Path to profitability visible |
+| **LTV (Day 30)** | Known and growing | Understanding unit economics |
+| **Creative win rate** | 1 in 4 creatives beats baseline | Creative process is working |
+
+### Scale stage (months 6+)
+
+| Metric | Target | Why |
+|--------|--------|-----|
+| **Blended ROAS** | >1.5x (Day 30) or >2.0x (Day 90) | Sustainably profitable |
+| **Payback period** | <60 days | Cash flow positive quickly |
+| **Day 30 retention by source** | Know which platforms produce best users | Budget allocation optimization |
+| **LTV:CAC ratio** | >3.0x | Strong unit economics |
+| **Incremental ROAS** | Positive on each new platform | Each platform adds real value |
+| **Creative lifespan** | Track average days until fatigue | Creative production planning |
+
+## Data-driven decision framework
+
+When your data tells you something, here's what to do:
+
+### The decision matrix
+
+| Signal | What it means | Action |
+|--------|-------------|--------|
+| CPI rising, retention stable | Audience saturation or creative fatigue | Refresh creative, expand audiences |
+| CPI stable, retention dropping | Lower quality users being acquired | Tighten targeting, test new audiences |
+| CPI dropping, retention rising | Algorithm is optimizing well | Scale budget gradually |
+| CPI rising, retention dropping | Campaign is degrading | Pause, investigate, restructure |
+| ROAS above target for 2+ weeks | Sustainably profitable | Scale budget, expand to new platforms |
+| ROAS below 1.0 for 3+ weeks | Losing money consistently | Reduce budget, test new approaches |
+| Day 1 retention below 20% | Onboarding or targeting problem | Fix app experience before spending more |
+| One platform outperforming others by 50%+ | Clear channel winner | Shift budget toward the winner |
+
+### The weekly decision process
+
+<Steps>
+  <Step title="Pull the numbers (Monday morning, 15 minutes)">
+    Update your weekly dashboard with data from the past 7 days. Include spend, installs, CPI, ROAS, and retention.
+  </Step>
+  <Step title="Compare to targets and last week (15 minutes)">
+    Is each metric better or worse than last week? Is each metric above or below your target? Flag anything that changed more than 15%.
+  </Step>
+  <Step title="Identify the biggest lever (10 minutes)">
+    What single change would have the biggest impact this week? Common answers:
+    - Refresh the top-spending creative (it's fatiguing)
+    - Increase budget on the best campaign
+    - Pause the worst-performing campaign
+    - Launch a test on a new platform
+  </Step>
+  <Step title="Take one or two actions (20 minutes)">
+    Don't make 10 changes. Make 1-2 focused changes so you can measure their impact next week. More changes = more confusion about what caused results.
+  </Step>
+  <Step title="Document your decisions (5 minutes)">
+    Write down what you changed and why. Next week, you'll evaluate whether it worked. This builds your institutional knowledge over time.
+  </Step>
+</Steps>
 
 ## Common analytics mistakes
 
 <CardGroup cols={2}>
   <Card title="Tracking everything" icon="database">
-    Don't track 100 events on day one. Start with 5-10 key events and add more as you need them. Too many events creates noise.
+    Don't track 100 events on day one. Start with 5-8 key events and add more as you need them. Too many events creates noise and makes reports confusing.
   </Card>
   <Card title="Looking at averages only" icon="chart-line">
-    Averages hide the story. A $3 average CPI might mean $1 from Apple and $5 from TikTok. Always break down by source.
+    A $3 average CPI might mean $1 from Apple and $5 from TikTok. Always break down by source, campaign, and creative. Averages hide the story.
   </Card>
   <Card title="Ignoring retention" icon="arrow-trend-down">
-    A cheap install that churns immediately is worse than an expensive install that sticks around. Optimize for retention, not just volume.
+    A cheap install that churns immediately is worse than an expensive install that sticks around. If retention is below benchmarks, fix your app before spending more.
   </Card>
   <Card title="No baseline" icon="ruler">
-    Before running ads, establish organic baselines for retention and engagement. This helps you measure the true impact of paid users.
+    Before running ads, establish organic baselines for retention and engagement. Without baselines, you can't measure the true impact of paid users vs. organic.
+  </Card>
+  <Card title="Making decisions too fast" icon="bolt">
+    Saw a bad CPI on Tuesday and paused the campaign? Maybe Wednesday would have been great. Wait for a full week of data before making decisions.
+  </Card>
+  <Card title="Not linking accounts" icon="link-slash">
+    Firebase not linked to Google Ads? Meta Pixel not connected to your website? Every unlinked account is data you're not capturing. Connect everything.
   </Card>
 </CardGroup>
 
-## Your analytics checklist
+## Your analytics setup checklist
 
-- [ ] Product analytics tool installed (Firebase at minimum)
-- [ ] Key events tracked (install, sign-up, purchase)
-- [ ] Funnel report set up (install → activation → purchase)
-- [ ] Cohort analysis enabled
-- [ ] Weekly metrics dashboard created (even a spreadsheet works)
-- [ ] Ad platform accounts linked where possible
-- [ ] Baseline metrics recorded before ad spend begins
+### Before running ads (do these first)
+
+- [ ] Firebase project created and SDK installed
+- [ ] Key events tracked: `sign_up`, `purchase`, `tutorial_complete`
+- [ ] Key events marked as Conversions in Firebase
+- [ ] Firebase linked to Google Ads (if using Google)
+- [ ] BigQuery export enabled (for future custom analysis)
+- [ ] GA4 set up on website (if you have one)
+- [ ] Weekly dashboard spreadsheet created
+- [ ] Baseline metrics recorded (organic retention and engagement)
+
+### After running ads for 1 week
+
+- [ ] Verify install attribution is working (ad platform installs ≈ Firebase `first_open` events)
+- [ ] First weekly dashboard filled out
+- [ ] Day 1 retention tracked for ad-acquired users
+- [ ] CPI and CTR recorded per campaign
+
+### After running ads for 1 month
+
+- [ ] Day 7 and Day 30 retention measured per cohort
+- [ ] Revenue per user (ARPU) calculated per source
+- [ ] First ROAS calculation done
+- [ ] Monthly report completed
+- [ ] LTV estimate refined with real data
+
+### After running ads for 3 months
+
+- [ ] LTV model built from real data (not estimates)
+- [ ] Cohort analysis comparing sources, campaigns, and creatives
+- [ ] Payback period calculated
+- [ ] Budget allocation optimized based on data
+- [ ] Consider adding MMP for cross-platform attribution
 
 <Warning>
-  **Start your analytics setup BEFORE you start spending on ads.** If you launch campaigns without analytics, you'll have a blind spot in your earliest (and most instructive) data. Get tracking right first, then start spending.
+  **Start your analytics setup BEFORE you start spending on ads.** If you launch campaigns without analytics, you'll have a blind spot in your earliest (and most instructive) data. Incomplete data leads to bad decisions that waste budget. Get tracking right first, then start spending.
 </Warning>
 
-<Card
-  title="Back to Concepts"
-  icon="arrow-right"
-  href="/concepts/tracking-and-attribution"
->
-  Want a deeper understanding of tracking and attribution? Read the concepts guide.
-</Card>
+## What's next
+
+<CardGroup cols={2}>
+  <Card
+    title="Budget Planning"
+    icon="calculator"
+    href="/playbook/budget-planning"
+  >
+    Use your analytics data to plan budgets based on real CPI and LTV numbers.
+  </Card>
+  <Card
+    title="Tracking & Attribution Concepts"
+    icon="route"
+    href="/concepts/tracking-and-attribution"
+  >
+    Want a deeper understanding of how tracking and attribution work behind the scenes? Read the concepts guide.
+  </Card>
+</CardGroup>

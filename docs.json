@@ -123,6 +123,31 @@
         ]
       },
       {
+        "tab": "Ad Tech Deep Dive",
+        "groups": [
+          {
+            "group": "How Ad Tech Works",
+            "icon": "cpu",
+            "pages": [
+              "adtech/index",
+              "adtech/ecosystem-players",
+              "adtech/ad-servers-and-networks",
+              "adtech/programmatic"
+            ]
+          },
+          {
+            "group": "Under the Hood",
+            "icon": "settings",
+            "pages": [
+              "adtech/rtb",
+              "adtech/targeting-deep-dive",
+              "adtech/attribution-deep-dive",
+              "adtech/fraud-and-privacy"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Glossary",
         "groups": [
           {
