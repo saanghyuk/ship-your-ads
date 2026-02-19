@@ -29,6 +29,7 @@
             "icon": "rocket",
             "pages": [
               "index",
+              "playbook/vibe-coder-quick-start",
               "why-ads",
               "how-ads-work"
             ]
@@ -122,7 +123,6 @@
             "group": "For Vibe Coders",
             "icon": "code",
             "pages": [
-              "playbook/vibe-coder-quick-start",
               "playbook/sdk-integration",
               "playbook/analytics-setup"
             ]
