@@ -1,0 +1,151 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Ship Your Ads",
+  "description": "The friendliest digital advertising guide for vibe coders. Zero to hero, one step at a time.",
+  "colors": {
+    "primary": "#6366F1",
+    "light": "#818CF8",
+    "dark": "#4F46E5"
+  },
+  "icons": {
+    "library": "lucide"
+  },
+  "favicon": "/favicon.png",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guide",
+        "groups": [
+          {
+            "group": "Start Here",
+            "icon": "rocket",
+            "pages": [
+              "index",
+              "why-ads",
+              "how-ads-work"
+            ]
+          },
+          {
+            "group": "Core Concepts",
+            "icon": "lightbulb",
+            "pages": [
+              "concepts/ad-ecosystem",
+              "concepts/campaign-structure",
+              "concepts/targeting",
+              "concepts/bidding-and-budget",
+              "concepts/creatives",
+              "concepts/tracking-and-attribution"
+            ]
+          },
+          {
+            "group": "Your First Campaign",
+            "icon": "play",
+            "pages": [
+              "first-campaign/before-you-start",
+              "first-campaign/choose-your-platform",
+              "first-campaign/set-up-tracking",
+              "first-campaign/create-campaign",
+              "first-campaign/launch-checklist"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Platforms",
+        "groups": [
+          {
+            "group": "Meta (Facebook & Instagram)",
+            "icon": "square-m",
+            "pages": [
+              "platforms/meta/overview",
+              "platforms/meta/account-setup",
+              "platforms/meta/pixel-setup",
+              "platforms/meta/first-campaign",
+              "platforms/meta/audiences",
+              "platforms/meta/optimization"
+            ]
+          },
+          {
+            "group": "Google Ads",
+            "icon": "search",
+            "pages": [
+              "platforms/google/overview",
+              "platforms/google/account-setup",
+              "platforms/google/conversion-tracking",
+              "platforms/google/search-ads",
+              "platforms/google/display-ads",
+              "platforms/google/optimization"
+            ]
+          },
+          {
+            "group": "Apple Search Ads",
+            "icon": "apple",
+            "pages": [
+              "platforms/apple/overview",
+              "platforms/apple/account-setup",
+              "platforms/apple/first-campaign"
+            ]
+          },
+          {
+            "group": "TikTok Ads",
+            "icon": "music",
+            "pages": [
+              "platforms/tiktok/overview",
+              "platforms/tiktok/account-setup",
+              "platforms/tiktok/first-campaign"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Playbook",
+        "groups": [
+          {
+            "group": "Growth Recipes",
+            "icon": "flame",
+            "pages": [
+              "playbook/budget-planning",
+              "playbook/scaling-strategy",
+              "playbook/creative-testing",
+              "playbook/retargeting"
+            ]
+          },
+          {
+            "group": "For Vibe Coders",
+            "icon": "code",
+            "pages": [
+              "playbook/vibe-coder-quick-start",
+              "playbook/sdk-integration",
+              "playbook/analytics-setup"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Glossary",
+        "groups": [
+          {
+            "group": "Ad Terms A-Z",
+            "icon": "book-open",
+            "pages": [
+              "glossary/index"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "navbar": {
+    "primary": {
+      "type": "button",
+      "label": "Start Shipping",
+      "href": "/why-ads"
+    }
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/saanghyuk/ship-your-ads"
+    }
+  }
+}

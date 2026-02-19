@@ -1,0 +1,146 @@
+---
+title: "Your First Apple Search Ads Campaign"
+description: "Step-by-step walkthrough for launching your first Apple Search Ads campaign, from keyword selection to going live."
+---
+
+## Let's get you some installs
+
+Apple Search Ads campaigns are the fastest to set up of any ad platform. If you're using Basic, you can be live in 5 minutes. If you're using Advanced, give yourself 20-30 minutes.
+
+## What you'll learn
+
+- How to create a campaign in both Basic and Advanced
+- How to choose the right keywords
+- How to set bids and budgets
+- What settings to use (and what to skip)
+- What to expect in your first week
+
+## Option A: Search Ads Basic (the fast track)
+
+If you chose Basic, the process is delightfully simple:
+
+<Steps>
+  <Step title="Select your app">
+    Pick the app you want to promote from the dropdown.
+  </Step>
+  <Step title="Set your monthly budget">
+    Start with $100-500/month. You can change this anytime.
+  </Step>
+  <Step title="Set your max CPI (Cost Per Install)">
+    This is the maximum you're willing to pay per install. Apple suggests a range — start at or slightly below their suggestion.
+  </Step>
+  <Step title="Choose countries">
+    Select the countries where you want your ads to appear. Start with your primary market.
+  </Step>
+  <Step title="Launch">
+    That's it. Apple handles keywords, bidding, and targeting automatically.
+  </Step>
+</Steps>
+
+<Tip>
+  **Basic is genuinely effective.** Many developers run Basic campaigns profitably for months without switching to Advanced. Don't feel pressured to upgrade unless you need more control.
+</Tip>
+
+## Option B: Search Ads Advanced (full control)
+
+For those who want keyword-level control:
+
+<Steps>
+  <Step title="Create a new campaign">
+    Click **Create Campaign** > select your app > choose your campaign type (Search Results is the main one).
+  </Step>
+  <Step title="Configure campaign settings">
+    - **Campaign name:** Use a descriptive name (e.g., "Brand Keywords - US")
+    - **Budget:** Start with $500-1,000 total budget
+    - **Daily cap:** Set to $15-25/day to control spending pace
+    - **Locations:** Select your target countries/regions
+  </Step>
+  <Step title="Create an ad group">
+    - **Ad group name:** Theme-based (e.g., "Exact - Brand Terms")
+    - **Default max CPT bid:** Start with $0.50-1.00
+    - **Audience:** Leave broad for now (or narrow by age/gender if you know your demo)
+  </Step>
+  <Step title="Add keywords">
+    Choose your targeting keywords (we'll cover strategy below). Add at least 10-20 keywords to start.
+  </Step>
+  <Step title="Set match types">
+    For each keyword, choose **Exact Match** or **Broad Match**.
+  </Step>
+  <Step title="Launch">
+    Review everything and hit **Start Campaign**.
+  </Step>
+</Steps>
+
+## Keyword strategy
+
+### The three keyword buckets
+
+| Bucket | Examples | Priority |
+|--------|---------|----------|
+| **Brand keywords** | Your app name, variations, common misspellings | Highest (defend your brand) |
+| **Category keywords** | "meditation app," "budget tracker," "fitness app" | High (core audience) |
+| **Competitor keywords** | Competitor app names | Medium (steal share) |
+
+### Finding keywords
+
+1. **Search Match** — Apple's auto-targeting that shows your ad for relevant queries. Turn it on for one ad group to discover new keywords.
+2. **Keyword suggestions** — Apple suggests keywords in the campaign builder based on your app metadata.
+3. **Competitor analysis** — Search the App Store for your category and note the top apps. Their names become your competitor keywords.
+
+<Note>
+  **Always run brand keywords as Exact Match.** You don't want competitors showing up when people search for your app. Bid high on your own brand terms — the CPI will be low because of high relevance.
+</Note>
+
+### Keyword match types
+
+| Match Type | Example keyword | Shows for |
+|-----------|----------------|-----------|
+| **Exact Match** | "meditation app" | Only "meditation app" and close variants |
+| **Broad Match** | "meditation app" | meditation app, mindfulness app, relaxation app, etc. |
+
+### Recommended campaign structure
+
+```
+Campaign: US - All Keywords
+├── Ad Group: Brand - Exact
+│   Keywords: [your app name], [app name typos]
+│   Bid: $1.00+ (defend aggressively)
+├── Ad Group: Category - Exact
+│   Keywords: [meditation app], [mindfulness app]
+│   Bid: $0.75
+├── Ad Group: Competitors - Exact
+│   Keywords: [competitor names]
+│   Bid: $0.50
+└── Ad Group: Discovery - Search Match
+    Keywords: None (Search Match ON)
+    Bid: $0.50
+    Purpose: Find new keywords automatically
+```
+
+## First-week expectations
+
+| Day | What happens |
+|-----|-------------|
+| **Day 1** | Campaign starts delivering. Results may be slow at first. |
+| **Day 2-3** | Impressions and taps start flowing. First installs come in. |
+| **Day 4-7** | You have enough data to see which keywords perform. |
+| **Week 2** | Pause underperforming keywords. Increase bids on winners. |
+
+## Optimization quick tips
+
+- **Check Search Match terms** — go to your Discovery ad group and find winning search terms. Add them as Exact Match in your other ad groups.
+- **Raise bids on high-converting keywords** — if a keyword converts well but has low impression share, bid higher.
+- **Add negative keywords** — any irrelevant terms from Search Match should become negatives.
+- **Test Creative Sets** (Advanced only) — you can create custom ad variations using different screenshot sets to test what resonates.
+
+<Warning>
+  **Don't over-optimize in week 1.** Apple's algorithm also needs a bit of time to learn. Make initial adjustments after 7 days, then optimize weekly.
+</Warning>
+
+<Card
+  title="TikTok Ads Overview"
+  icon="arrow-right"
+  href="/platforms/tiktok/overview"
+>
+  Want to reach Gen Z? Check out TikTok Ads.
+</Card>

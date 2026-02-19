@@ -1,0 +1,138 @@
+---
+title: "TikTok Ads Account Setup"
+description: "How to create your TikTok Ads Manager account, install the TikTok Pixel or SDK, and configure everything for app campaigns."
+---
+
+## Getting started with TikTok Ads Manager
+
+TikTok's ad platform is relatively new compared to Meta and Google, but it's matured quickly. The setup process is similar to Meta's Business Manager — you'll create an account, install tracking, and configure your settings.
+
+## What you'll learn
+
+- How to create a TikTok Ads Manager account
+- How to install the TikTok Pixel (web) or SDK (app)
+- How to configure events and conversion tracking
+- How to set up payment and budget controls
+- How to verify everything is working
+
+## Account creation
+
+<Steps>
+  <Step title="Go to TikTok Ads Manager">
+    Visit [ads.tiktok.com](https://ads.tiktok.com) and click **Create an Ad** or **Get Started**.
+  </Step>
+  <Step title="Register your account">
+    Enter your email and create a password. You don't need a TikTok account to run ads (though having one helps).
+  </Step>
+  <Step title="Enter business information">
+    - Business name (legal business name)
+    - Industry category
+    - Business website or app store URL
+    - Business address and phone number
+  </Step>
+  <Step title="Wait for approval">
+    TikTok reviews new accounts, usually within 24 hours. Some accounts are approved instantly.
+  </Step>
+  <Step title="Set up payment">
+    Add a credit card or set up automatic payments. TikTok also supports PayPal in some regions.
+  </Step>
+</Steps>
+
+<Warning>
+  **Use real business information.** Like Meta, TikTok bans accounts that look fraudulent. Mismatched business names, fake addresses, or suspicious payment methods can get your account rejected or banned.
+</Warning>
+
+## Installing tracking
+
+### For mobile apps: TikTok SDK
+
+TikTok's SDK tracks app installs and in-app events:
+
+<Steps>
+  <Step title="Create an App in TikTok Events Manager">
+    In Ads Manager, go to **Assets** > **Events** > **App Events** > **Create App**.
+  </Step>
+  <Step title="Choose your integration method">
+    **Option A: TikTok SDK** — direct integration
+
+    **Option B: Third-party MMP** (Adjust, AppsFlyer, Branch, etc.) — if you already use one
+
+    Most developers with an existing MMP should use Option B for cleaner attribution.
+  </Step>
+  <Step title="Install the SDK (if using Option A)">
+    **iOS (CocoaPods):**
+    ```ruby
+    pod 'TikTokBusinessSDK'
+    ```
+
+    **Android (Gradle):**
+    ```groovy
+    implementation 'com.tiktok.business.sdk:tiktok-business-android-sdk:latest.release'
+    ```
+  </Step>
+  <Step title="Initialize the SDK">
+    Follow TikTok's initialization code for your platform. You'll need your **App ID** from the TikTok Ads dashboard.
+  </Step>
+  <Step title="Configure events">
+    Set up the key events TikTok should track (install, registration, purchase, etc.).
+  </Step>
+</Steps>
+
+### For websites: TikTok Pixel
+
+If you drive traffic to a landing page first:
+
+```html
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];
+  ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];
+  ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};
+  for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
+  ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e};
+  ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";
+  ttq._i=ttq._i||{};ttq._i[e]=[];ttq._i[e]._u=i;ttq._t=ttq._t||{};ttq._t[e+\"_\"+n]=+new Date;
+  (document.getElementsByTagName("head")[0]||document.body).appendChild(document.createElement("script")).src=i+"?sdkid="+e+"&lib="+t};
+  ttq.load('YOUR_PIXEL_ID');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+```
+
+## Key events to configure
+
+| Event | When to fire | Priority |
+|-------|-------------|----------|
+| `InstallApp` | App is installed | High (automatic with SDK) |
+| `CompleteRegistration` | User signs up | High |
+| `CompletePurchase` | User makes a purchase | High |
+| `AddToCart` | User adds item to cart | Medium |
+| `ViewContent` | User views key content | Medium |
+
+<Note>
+  If you're using a third-party MMP, events are configured in your MMP dashboard and forwarded to TikTok automatically. This is generally more reliable than direct SDK integration.
+</Note>
+
+## Verify your setup
+
+1. Go to **Events Manager** in TikTok Ads Manager
+2. Check that your app or pixel shows as **Active**
+3. Use the **Test Events** tool to send test events from your device
+4. Verify events are received within a few minutes
+
+## Account setup checklist
+
+- [ ] TikTok Ads Manager account created and approved
+- [ ] Payment method added
+- [ ] TikTok SDK or Pixel installed
+- [ ] Key events configured
+- [ ] Events verified in Events Manager
+- [ ] Budget limit set (recommended)
+
+<Card
+  title="Your First TikTok Campaign"
+  icon="arrow-right"
+  href="/platforms/tiktok/first-campaign"
+>
+  Everything set up? Let's create your first TikTok campaign.
+</Card>

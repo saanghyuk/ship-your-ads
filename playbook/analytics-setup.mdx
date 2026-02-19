@@ -1,0 +1,196 @@
+---
+title: "Analytics Setup"
+description: "How to set up analytics for your app advertising so you can track performance, understand users, and make data-driven decisions."
+---
+
+## You can't improve what you can't measure
+
+Running ads without proper analytics is like driving with your eyes closed. You might get somewhere, but probably not where you wanted. Analytics tell you what's working, what's not, and where to focus next.
+
+## What you'll learn
+
+- What analytics tools you need (and don't need)
+- How to set up a simple analytics stack
+- The key metrics and dashboards to build
+- How to connect ad platform data to app analytics
+- Cohort analysis basics for understanding user quality
+
+## The analytics stack
+
+You need two types of analytics:
+
+| Type | What it tells you | Tools |
+|------|------------------|-------|
+| **Ad platform analytics** | How your ads are performing (CPI, CTR, ROAS) | Meta Ads Manager, Google Ads, etc. |
+| **Product analytics** | What users do after installing (retention, revenue, engagement) | Firebase, Amplitude, Mixpanel, PostHog |
+
+<Note>
+  **You need both.** Ad platforms tell you how much it costs to get a user. Product analytics tell you how much that user is worth. Together, they tell you whether you're making money.
+</Note>
+
+## Recommended tools by stage
+
+### Just starting (free)
+
+```
+Ad analytics:     Each platform's built-in dashboard
+Product analytics: Firebase Analytics (free, unlimited)
+Attribution:       Direct SDK integration
+```
+
+### Growing ($50-500/month)
+
+```
+Ad analytics:     Platform dashboards + spreadsheet tracker
+Product analytics: Amplitude or Mixpanel (free tier)
+Attribution:       Consider an MMP (Adjust, AppsFlyer)
+```
+
+### Scaling ($500+/month)
+
+```
+Ad analytics:     Automated reporting (Looker, Supermetrics)
+Product analytics: Amplitude or Mixpanel (paid tier)
+Attribution:       MMP with full integration
+Data warehouse:    BigQuery or Snowflake
+```
+
+## Setting up Firebase Analytics
+
+Firebase is the best free starting point. Here's what to set up:
+
+<Steps>
+  <Step title="Install the SDK">
+    If you followed the [SDK Integration Guide](/playbook/sdk-integration), you're already done.
+  </Step>
+  <Step title="Enable key reports">
+    In Firebase Console, go to **Analytics** and enable:
+    - **Realtime** — see events as they happen
+    - **Events** — all tracked events
+    - **Conversions** — mark key events as conversions
+    - **Audiences** — define user segments
+  </Step>
+  <Step title="Create custom audiences">
+    Build audiences based on behavior:
+    - **Engaged users** — opened app 3+ times in last 7 days
+    - **Purchasers** — made at least 1 purchase
+    - **At-risk** — haven't opened in 7+ days
+  </Step>
+  <Step title="Set up Funnel reports">
+    Track key user flows:
+    ```
+    Install → First Open → Sign Up → Key Action → Purchase
+    ```
+    This shows you where users drop off.
+  </Step>
+  <Step title="Link to Google Ads">
+    In **Project Settings** > **Integrations** > **Google Ads**, link your accounts. This enables audience sharing and conversion import.
+  </Step>
+</Steps>
+
+## The metrics dashboard you need
+
+Build a simple weekly dashboard with these numbers:
+
+### Acquisition metrics (from ad platforms)
+
+| Metric | Where to find it | Goal |
+|--------|-----------------|------|
+| **Total spend** | Each platform's dashboard | Within budget |
+| **Installs** | Each platform + your analytics | Growing week-over-week |
+| **CPI by platform** | Each platform's dashboard | Below your target |
+| **CPI by campaign** | Each platform's dashboard | Identify winners/losers |
+| **ROAS** | Calculated (revenue / spend) | Above 1.0 |
+
+### Engagement metrics (from product analytics)
+
+| Metric | How to calculate | Good benchmark |
+|--------|-----------------|---------------|
+| **Day 1 retention** | % of installers who open next day | 25-40% |
+| **Day 7 retention** | % of installers who open on day 7 | 10-20% |
+| **Day 30 retention** | % of installers who open on day 30 | 5-10% |
+| **Activation rate** | % who complete key action | 20-50% |
+| **Conversion to paid** | % who make a purchase | 2-10% |
+
+<Tip>
+  **Retention is your most important metric.** High retention means users love your app and will generate long-term revenue. If Day 1 retention is below 20%, focus on improving your app before spending more on ads — you're filling a leaky bucket.
+</Tip>
+
+## Cohort analysis: the most underrated skill
+
+A cohort is a group of users who installed during the same period (usually a week). Cohort analysis lets you compare user quality across time periods, campaigns, and platforms.
+
+### Example cohort table
+
+| Install Week | Users | Day 1 Ret. | Day 7 Ret. | Revenue/User (30d) |
+|-------------|-------|-----------|-----------|-------------------|
+| Week 1 (Meta) | 500 | 35% | 15% | $2.50 |
+| Week 1 (Google) | 300 | 40% | 18% | $3.20 |
+| Week 2 (Meta) | 600 | 32% | 14% | $2.30 |
+| Week 2 (TikTok) | 400 | 28% | 10% | $1.80 |
+
+This tells you:
+- Google users are higher quality (better retention and revenue)
+- TikTok users are cheaper but less valuable
+- Week 2 Meta users are slightly worse than Week 1 (creative fatigue?)
+
+<Note>
+  **Most analytics tools have built-in cohort reports.** Firebase, Amplitude, and Mixpanel all have cohort analysis features. Use them — they're one of the most powerful tools for understanding whether your ad spend is paying off.
+</Note>
+
+## Connecting ad data to product data
+
+The holy grail: knowing which ad campaign produced the best long-term users.
+
+### With an MMP (recommended for scale)
+
+Your MMP (Adjust, AppsFlyer, etc.) attributes each install to a specific campaign. You can then:
+
+1. Export attribution data to your analytics tool
+2. Build cohorts by campaign, ad group, or creative
+3. Compare LTV across different traffic sources
+
+### Without an MMP (manual approach)
+
+1. Use UTM parameters on any web links
+2. Track the `first_open` event with campaign data from the ad platform SDK
+3. Build reports in Firebase that segment by traffic source
+
+## Common analytics mistakes
+
+<CardGroup cols={2}>
+  <Card title="Tracking everything" icon="database">
+    Don't track 100 events on day one. Start with 5-10 key events and add more as you need them. Too many events creates noise.
+  </Card>
+  <Card title="Looking at averages only" icon="chart-line">
+    Averages hide the story. A $3 average CPI might mean $1 from Apple and $5 from TikTok. Always break down by source.
+  </Card>
+  <Card title="Ignoring retention" icon="arrow-trend-down">
+    A cheap install that churns immediately is worse than an expensive install that sticks around. Optimize for retention, not just volume.
+  </Card>
+  <Card title="No baseline" icon="ruler">
+    Before running ads, establish organic baselines for retention and engagement. This helps you measure the true impact of paid users.
+  </Card>
+</CardGroup>
+
+## Your analytics checklist
+
+- [ ] Product analytics tool installed (Firebase at minimum)
+- [ ] Key events tracked (install, sign-up, purchase)
+- [ ] Funnel report set up (install → activation → purchase)
+- [ ] Cohort analysis enabled
+- [ ] Weekly metrics dashboard created (even a spreadsheet works)
+- [ ] Ad platform accounts linked where possible
+- [ ] Baseline metrics recorded before ad spend begins
+
+<Warning>
+  **Start your analytics setup BEFORE you start spending on ads.** If you launch campaigns without analytics, you'll have a blind spot in your earliest (and most instructive) data. Get tracking right first, then start spending.
+</Warning>
+
+<Card
+  title="Back to Concepts"
+  icon="arrow-right"
+  href="/concepts/tracking-and-attribution"
+>
+  Want a deeper understanding of tracking and attribution? Read the concepts guide.
+</Card>

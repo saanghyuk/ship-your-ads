@@ -1,0 +1,119 @@
+---
+title: "Tracking & Attribution"
+description: "How to know which ads bring you users. Without tracking, you're throwing money into a black hole."
+---
+
+## Why tracking matters
+
+Imagine this: you're running ads on Meta AND Google. You get 100 installs today. But which platform drove them? Which ad? Which audience?
+
+Without tracking, you have **no idea**.
+
+<Warning>
+  Running ads without tracking is like driving with your eyes closed.
+  You might get somewhere, but you'll probably crash.
+</Warning>
+
+## What is attribution?
+
+**Attribution** = figuring out which ad led to which install (or purchase, or sign-up).
+
+```
+User sees your Instagram ad
+  → Clicks it
+    → Goes to App Store
+      → Installs your app
+        → Opens the app
+
+Attribution connects all these dots:
+  "This install came from Instagram Ad #3, targeting fitness enthusiasts"
+```
+
+## The two types of tracking
+
+### 1. Platform tracking (Built-in)
+
+Each ad platform has its own tracking tool:
+
+| Platform | Tracking tool | What it does |
+|----------|--------------|--------------|
+| Meta | **Meta Pixel** (web) / **SDK** (app) | Tracks actions from Meta ads |
+| Google | **Google Conversion Tag** / **Firebase** | Tracks actions from Google ads |
+| TikTok | **TikTok Pixel** / **SDK** | Tracks actions from TikTok ads |
+| Apple | **Apple Search Ads Attribution API** | Tracks installs from Apple ads |
+
+<Note>
+  Each platform only tracks **its own ads**. Meta doesn't know about your Google installs, and vice versa.
+</Note>
+
+### 2. Third-party tracking (MMP)
+
+An **MMP** (Mobile Measurement Partner) tracks across ALL platforms in one place.
+
+| MMP | Best for | Pricing |
+|-----|----------|---------|
+| **AppsFlyer** | Most popular, great docs | Free up to 10K conversions |
+| **Adjust** | Strong fraud protection | Paid |
+| **Branch** | Deep linking + attribution | Free tier available |
+| **Singular** | Cost aggregation + attribution | Paid |
+
+### Do you need an MMP?
+
+| Situation | Recommendation |
+|-----------|---------------|
+| Running ads on **1 platform only** | Platform tracking is enough for now |
+| Running ads on **2+ platforms** | You'll want an MMP eventually |
+| **Just starting out** | Start with platform tracking, add MMP later |
+
+<Tip>
+  **For your first campaign:** Just use the platform's built-in tracking.
+  It's free, it works, and it's the fastest way to get started.
+  You can add an MMP when you scale to multiple platforms.
+</Tip>
+
+## The privacy landscape (important context)
+
+In recent years, privacy changes have made tracking harder:
+
+| Change | Impact | What to know |
+|--------|--------|-------------|
+| **iOS 14.5+ ATT** | Users must opt-in to tracking on iOS | ~25-35% opt-in rate |
+| **SKAdNetwork (SKAN)** | Apple's privacy-friendly attribution | Limited data, delayed reporting |
+| **Google Privacy Sandbox** | Android's version of ATT (coming) | Still evolving |
+
+<Note>
+  **Don't panic about privacy changes.** They make tracking less precise, not impossible.
+  Platforms have adapted. You'll still get enough data to optimize your campaigns.
+  Just know that reported numbers might be ~20-30% lower than reality on iOS.
+</Note>
+
+## What to track (your essential events)
+
+At minimum, set up tracking for these events:
+
+| Event | What it means | Priority |
+|-------|--------------|----------|
+| **Install** | User downloads and opens your app | Must have |
+| **Registration** | User creates an account | Must have |
+| **Key action** | The main thing users do in your app | Must have |
+| **Purchase** | User pays for something | If applicable |
+
+<Tip>
+  The "key action" depends on your app:
+  - Fitness app → Completed a workout
+  - Notes app → Created a note
+  - Social app → Added a friend
+  - E-commerce → Added to cart
+</Tip>
+
+## Next up
+
+You now understand all the building blocks. Let's put them together and launch your first campaign.
+
+<Card
+  title="Before You Start →"
+  icon="arrow-right"
+  href="/first-campaign/before-you-start"
+>
+  A quick checklist before you launch your first campaign.
+</Card>

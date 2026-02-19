@@ -1,0 +1,156 @@
+---
+title: "Vibe Coder Quick Start"
+description: "The TL;DR for developers who want to run ads. Skip the theory, get to the practical stuff."
+---
+
+## You build apps. Now let's get users.
+
+You're a developer. You don't need a 200-page marketing textbook. You need to know what to do, in what order, and how not to waste money. This page is your cheat sheet.
+
+## What you'll learn
+
+- The fastest path from zero to running ads
+- Which platform to pick (just one, for now)
+- Exact steps to set up and launch
+- How much to spend and what to expect
+- The metrics that matter and what to ignore
+
+## The 30-second version
+
+```
+1. Pick Meta Ads (unless your app is iOS-only, then Apple Search Ads)
+2. Install the tracking SDK
+3. Create a campaign with $15/day budget
+4. Make 3-5 ad variations
+5. Wait 7 days
+6. Look at the data, kill losers, scale winners
+7. Repeat
+```
+
+That's it. Everything else is optimization.
+
+## Step-by-step speed run
+
+<Steps>
+  <Step title="Pick your platform (5 minutes)">
+    | Your situation | Pick this |
+    |---------------|-----------|
+    | Any app, any platform | **Meta Ads** |
+    | iOS-only, people would search for it | **Apple Search Ads** |
+    | People Google your problem | **Google Ads** |
+    | Young audience, visual app | **TikTok Ads** |
+
+    **Don't overthink it.** Meta is the safe default for 90% of apps.
+  </Step>
+  <Step title="Set up your account (15 minutes)">
+    Create your ad account on your chosen platform. See our platform-specific setup guides for details. The key: use real business info, set a spending limit, and enable 2FA.
+  </Step>
+  <Step title="Install tracking (30-60 minutes)">
+    This is the most technical step, and it's worth doing right.
+
+    **Meta:** Install the Meta SDK via SPM (iOS) or Gradle (Android)
+
+    **Google:** Install Firebase SDK
+
+    **Apple:** No SDK needed (tracking is automatic)
+
+    **TikTok:** Install TikTok SDK or connect your MMP
+
+    See our [SDK Integration Guide](/playbook/sdk-integration) for copy-paste code snippets.
+  </Step>
+  <Step title="Create your first campaign (30 minutes)">
+    Use these settings:
+
+    ```
+    Objective:    App Installs
+    Budget:       $15/day
+    Audience:     Broad (your country, ages 18-65)
+    Placements:   Automatic
+    Creative:     3-5 variations (images or short videos)
+    Duration:     Let it run for 7+ days
+    ```
+  </Step>
+  <Step title="Wait 7 days (hardest step)">
+    Seriously, don't touch it. The algorithm needs time to learn. Check your stats once a day, but change nothing.
+  </Step>
+  <Step title="Read the data and iterate">
+    After 7 days, check:
+    - **CPI (Cost Per Install):** Is it below your target? (Don't know your target? $3-5 is a reasonable starting point.)
+    - **Which ads are winning?** Pause the losers, make more creative like the winners.
+    - **Are installs being tracked?** If zero installs show in your dashboard, your tracking is broken — fix it first.
+  </Step>
+</Steps>
+
+## The numbers you need to know
+
+| Metric | What it means | What's "good" |
+|--------|--------------|---------------|
+| **CPI** | Cost per install | $1-5 (varies by category) |
+| **CTR** | % who click your ad | 1-3% (Meta), 5-15% (Apple) |
+| **ROAS** | Revenue / ad spend | Above 1.0 = profitable |
+
+Ignore everything else for now. Impressions, reach, frequency — they're useful later, but not yet.
+
+## Common developer mistakes
+
+<CardGroup cols={2}>
+  <Card title="Building first, marketing later" icon="code">
+    Start learning ads before your app is "perfect." You can set up accounts, test creative, and build audiences while still developing.
+  </Card>
+  <Card title="Over-engineering tracking" icon="gears">
+    You don't need to track 50 events on day one. Track installs and one key action (sign-up or purchase). Add more events later.
+  </Card>
+  <Card title="Targeting too narrowly" icon="crosshairs">
+    Your instinct as a developer is to be precise. With ads, start broad and let the algorithm find your users. It's better at this than you are.
+  </Card>
+  <Card title="Giving up after a week" icon="flag">
+    Your first campaign probably won't be profitable. That's normal. The data you get from it is what makes your second campaign better.
+  </Card>
+</CardGroup>
+
+## Quick reference: platform comparison
+
+| | Meta | Google | Apple | TikTok |
+|--|------|--------|-------|--------|
+| **Min budget** | $5/day | $10/day | $5/day | $20/day |
+| **Setup time** | 1-2 hours | 1-2 hours | 30 min | 1-2 hours |
+| **Best for** | Any app | Searchable problems | iOS apps | Young audience |
+| **Creative** | Image/video | Text/image | App Store page | Video (native) |
+| **Difficulty** | Medium | Medium-High | Low | Medium |
+
+<Tip>
+  **Developer advantage:** You can install tracking SDKs yourself, build custom landing pages, set up analytics, and automate reporting. Most non-technical marketers have to hire someone for all of that. Use your technical skills as a competitive edge.
+</Tip>
+
+## What to do next
+
+<CardGroup cols={2}>
+  <Card
+    title="SDK Integration Guide"
+    icon="code"
+    href="/playbook/sdk-integration"
+  >
+    Copy-paste code snippets for every major ad SDK.
+  </Card>
+  <Card
+    title="Analytics Setup"
+    icon="chart-bar"
+    href="/playbook/analytics-setup"
+  >
+    Set up the dashboards you need to track performance.
+  </Card>
+  <Card
+    title="Budget Planning"
+    icon="calculator"
+    href="/playbook/budget-planning"
+  >
+    Figure out how much to spend and where.
+  </Card>
+  <Card
+    title="Creative Testing"
+    icon="flask"
+    href="/playbook/creative-testing"
+  >
+    Systematic approach to finding winning ads.
+  </Card>
+</CardGroup>

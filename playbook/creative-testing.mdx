@@ -1,0 +1,144 @@
+---
+title: "Creative Testing"
+description: "A systematic approach to testing ad creatives so you can find winners faster and keep your campaigns fresh."
+---
+
+## Creative is your biggest lever
+
+On platforms like Meta and TikTok, **creative determines 50-80% of your ad performance.** The same audience and budget with different creative can produce wildly different results. Testing creative systematically is the single most impactful thing you can do.
+
+## What you'll learn
+
+- Why creative testing matters more than anything else
+- A structured framework for testing creative variations
+- How to isolate variables and measure results
+- How many variations to test and when to rotate
+- Tools and workflows for producing creative at scale
+
+## The creative testing framework
+
+### Step 1: Define what to test
+
+Test one variable at a time across these categories (in priority order):
+
+| Priority | Variable | Examples |
+|----------|---------|---------|
+| **1 (Highest)** | Concept/angle | Problem-focused vs. benefit-focused vs. social proof |
+| **2** | Format | Static image vs. video vs. carousel |
+| **3** | Hook | Different opening 2 seconds (video) or headline (image) |
+| **4** | Visual style | Real footage vs. animation vs. UGC vs. screen recording |
+| **5** | Copy | Different body text, CTAs, descriptions |
+
+<Note>
+  **Test big differences first.** Testing "Install Now" vs. "Download Free" is a low-impact test. Testing a testimonial video vs. a product demo video is a high-impact test. Start with concepts, then refine details.
+</Note>
+
+### Step 2: Structure your tests
+
+For each test, create a dedicated setup:
+
+```
+Campaign: Creative Test - February
+├── Ad Set: Target Audience (same for all ads)
+│   ├── Ad A: Concept 1 - Problem-focused video
+│   ├── Ad B: Concept 2 - Benefit-focused video
+│   ├── Ad C: Concept 3 - UGC testimonial
+│   └── Ad D: Concept 4 - Screen recording walkthrough
+```
+
+**Same audience, same budget, different creative.** This isolates creative as the only variable.
+
+### Step 3: Run and evaluate
+
+<Steps>
+  <Step title="Launch with equal budget distribution">
+    Give each ad variation an equal chance. Most platforms do this automatically, but check that budget isn't concentrating on one ad too early.
+  </Step>
+  <Step title="Wait for statistical significance">
+    Each ad needs at least 1,000 impressions (ideally 5,000+) before you can draw conclusions. This usually takes 3-5 days.
+  </Step>
+  <Step title="Identify the winner">
+    Compare CPI (primary) and CTR (secondary). The ad with the lowest CPI and sufficient volume is your winner.
+  </Step>
+  <Step title="Iterate on the winner">
+    Take the winning concept and create 3-5 new variations that explore it further. If the UGC testimonial won, make more testimonials with different people, scripts, or hooks.
+  </Step>
+</Steps>
+
+## How many creatives do you need?
+
+| Monthly ad spend | Creatives to test per month | Active at any time |
+|-----------------|---------------------------|-------------------|
+| < $1,000 | 4-6 | 3-4 |
+| $1,000-5,000 | 8-12 | 4-6 |
+| $5,000-20,000 | 15-25 | 6-10 |
+| $20,000+ | 30+ | 10-20 |
+
+<Tip>
+  **Creative fatigue is real.** Even your best-performing ads will decline after 2-4 weeks (faster on TikTok, slower on Google). Always have new creative in the pipeline before your current winners start fading.
+</Tip>
+
+## Creative production: practical tips
+
+### You don't need a studio
+
+Most high-performing app ads are made with:
+
+- A smartphone (recent model with a decent camera)
+- Natural lighting (near a window works great)
+- A simple editing app (CapCut, InShot, or even iMovie)
+- Screen recording (built into iOS and Android)
+
+### The 3-1-3 method
+
+A simple weekly creative workflow:
+
+```
+Monday:    Brainstorm 3 new concepts
+Tuesday:   Produce 1 batch (shoot/record/design)
+Wednesday: Edit and finalize 3 ad variations
+Thursday:  Launch the new creative test
+Friday:    Review last week's test results
+```
+
+### Creative angles that consistently work for apps
+
+<CardGroup cols={2}>
+  <Card title="Problem → Solution" icon="lightbulb">
+    "Tired of [problem]? [App name] makes it easy to [solution]."
+    Show the frustration, then the relief.
+  </Card>
+  <Card title="Before → After" icon="arrows-left-right">
+    Show life without the app vs. with the app. Works for productivity, fitness, finance, education.
+  </Card>
+  <Card title="Social Proof" icon="users">
+    "Join 100K+ users who [benefit]." Numbers, testimonials, ratings. Leverage the bandwagon effect.
+  </Card>
+  <Card title="How-To / Tutorial" icon="graduation-cap">
+    Show exactly how to use the app in 15-30 seconds. Reduces uncertainty and makes installation feel low-risk.
+  </Card>
+</CardGroup>
+
+## Measuring creative performance
+
+Track these metrics for each creative:
+
+| Metric | What it tells you | Action |
+|--------|------------------|--------|
+| **CTR** | Is the ad grabbing attention? | Low CTR = hook/visual problem |
+| **CPI** | Is the ad driving installs? | High CPI = conversion problem |
+| **Hook rate** (video) | % who watch past 3 seconds | Low = opening is weak |
+| **Hold rate** (video) | % who watch 50%+ | Low = middle content is weak |
+| **ThruPlay rate** | % who watch to the end | Low = too long or losing interest |
+
+<Warning>
+  **Don't fall in love with your creatives.** The data decides what works, not your personal taste. Some of your "worst" ideas will outperform your "best" ones. Let the numbers guide you.
+</Warning>
+
+<Card
+  title="Retargeting"
+  icon="arrow-right"
+  href="/playbook/retargeting"
+>
+  Got great creative? Learn how to use it to bring users back with retargeting.
+</Card>

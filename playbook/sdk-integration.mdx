@@ -1,0 +1,275 @@
+---
+title: "SDK Integration Guide"
+description: "Technical guide for integrating ad platform SDKs into your iOS and Android app, with copy-paste code snippets."
+---
+
+## The developer's guide to ad SDKs
+
+This page is the technical reference you wish existed when you started. Copy-paste code snippets, dependency setup, and initialization for every major ad platform SDK — all in one place.
+
+## What you'll learn
+
+- How to install and initialize SDKs for Meta, Google, TikTok, and Apple
+- How to configure standard events for each platform
+- How to handle iOS App Tracking Transparency (ATT)
+- How to use a third-party MMP instead of individual SDKs
+- Testing and debugging tips
+
+## Quick decision: Direct SDK vs. MMP
+
+| Approach | When to use | Pros | Cons |
+|----------|------------|------|------|
+| **Direct SDKs** | 1-2 platforms, simple setup | Free, straightforward | Multiple SDKs to manage |
+| **MMP** (Adjust, AppsFlyer, Branch) | 3+ platforms, need unified attribution | Single SDK, deduplication | Monthly cost ($$$) |
+
+<Tip>
+  **Starting with 1-2 platforms?** Use direct SDKs. **Scaling to 3+?** Consider an MMP — it'll save you from SDK bloat and attribution conflicts.
+</Tip>
+
+## Meta SDK
+
+### iOS (Swift Package Manager)
+
+```swift
+// 1. Add package: https://github.com/facebook/facebook-ios-sdk
+// Select: FacebookCore, FacebookLogin (optional)
+
+// 2. Info.plist
+// FacebookAppID: YOUR_APP_ID
+// FacebookClientToken: YOUR_CLIENT_TOKEN
+
+// 3. AppDelegate.swift
+import FacebookCore
+
+func application(_ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+    return true
+}
+
+// 4. Log events
+import FacebookCore
+
+// Registration event
+AppEvents.shared.logEvent(.completedRegistration)
+
+// Purchase event
+AppEvents.shared.logPurchase(amount: 9.99, currency: "USD")
+```
+
+### Android (Gradle)
+
+```kotlin
+// 1. build.gradle (app level)
+implementation 'com.facebook.android:facebook-android-sdk:latest.release'
+
+// 2. strings.xml
+// <string name="facebook_app_id">YOUR_APP_ID</string>
+// <string name="facebook_client_token">YOUR_CLIENT_TOKEN</string>
+
+// 3. AndroidManifest.xml
+// <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+// <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
+
+// 4. Application class
+import com.facebook.FacebookSdk
+import com.facebook.appevents.AppEventsLogger
+
+class MyApp : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        FacebookSdk.sdkInitialize(applicationContext)
+        AppEventsLogger.activateApp(this)
+    }
+}
+
+// 5. Log events
+val logger = AppEventsLogger.newLogger(context)
+logger.logEvent("CompletedRegistration")
+logger.logPurchase(BigDecimal(9.99), Currency.getInstance("USD"))
+```
+
+## Firebase (Google Ads)
+
+### iOS
+
+```swift
+// 1. Add package: https://github.com/firebase/firebase-ios-sdk
+// Select: FirebaseAnalytics
+
+// 2. Add GoogleService-Info.plist to your project
+
+// 3. AppDelegate.swift
+import FirebaseCore
+
+func application(_ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    FirebaseApp.configure()
+    return true
+}
+
+// 4. Log events
+import FirebaseAnalytics
+
+Analytics.logEvent(AnalyticsEventSignUp, parameters: [
+    AnalyticsParameterMethod: "email"
+])
+
+Analytics.logEvent(AnalyticsEventPurchase, parameters: [
+    AnalyticsParameterValue: 9.99,
+    AnalyticsParameterCurrency: "USD"
+])
+```
+
+### Android
+
+```kotlin
+// 1. build.gradle (project level)
+classpath 'com.google.gms:google-services:4.4.0'
+
+// build.gradle (app level)
+apply plugin: 'com.google.gms.google-services'
+implementation platform('com.google.firebase:firebase-bom:32.0.0')
+implementation 'com.google.firebase:firebase-analytics'
+
+// 2. Add google-services.json to app/ directory
+
+// 3. Log events (auto-initialized)
+import com.google.firebase.analytics.FirebaseAnalytics
+
+val analytics = FirebaseAnalytics.getInstance(context)
+
+analytics.logEvent(FirebaseAnalytics.Event.SIGN_UP) {
+    param(FirebaseAnalytics.Param.METHOD, "email")
+}
+
+analytics.logEvent(FirebaseAnalytics.Event.PURCHASE) {
+    param(FirebaseAnalytics.Param.VALUE, 9.99)
+    param(FirebaseAnalytics.Param.CURRENCY, "USD")
+}
+```
+
+## TikTok SDK
+
+### iOS
+
+```swift
+// 1. CocoaPods
+// pod 'TikTokBusinessSDK'
+
+// 2. AppDelegate.swift
+import TikTokBusinessSDK
+
+func application(_ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+    let config = TikTokConfig(appId: "YOUR_APP_ID", tiktokAppId: "YOUR_TIKTOK_APP_ID")
+    TikTokBusiness.initializeSdk(config)
+    return true
+}
+
+// 3. Log events
+TikTokBusiness.trackEvent("CompleteRegistration")
+TikTokBusiness.trackEvent("Purchase", withProperties: ["value": 9.99, "currency": "USD"])
+```
+
+### Android
+
+```kotlin
+// 1. build.gradle
+implementation 'com.tiktok.business.sdk:tiktok-business-android-sdk:latest.release'
+
+// 2. Application class
+import com.tiktok.TikTokBusinessSdk
+
+class MyApp : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        val config = TikTokBusinessSdk.TTConfig(applicationContext)
+            .setAppId("YOUR_APP_ID")
+            .setTTAppId("YOUR_TIKTOK_APP_ID")
+        TikTokBusinessSdk.initializeSdk(config)
+    }
+}
+
+// 3. Log events
+TikTokBusinessSdk.trackEvent("CompleteRegistration")
+TikTokBusinessSdk.trackEvent("Purchase", JSONObject().put("value", 9.99).put("currency", "USD"))
+```
+
+## iOS App Tracking Transparency (ATT)
+
+**Required for all ad SDKs on iOS 14.5+:**
+
+```swift
+import AppTrackingTransparency
+
+func requestTrackingPermission() {
+    // Wait until after the user has seen value in your app
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        ATTrackingManager.requestTrackingAuthorization { status in
+            switch status {
+            case .authorized:
+                // Full tracking enabled - best ad performance
+                print("Tracking authorized")
+            case .denied, .restricted:
+                // Limited tracking - ads will still work, just less optimized
+                print("Tracking denied/restricted")
+            case .notDetermined:
+                print("Not determined")
+            @unknown default:
+                break
+            }
+        }
+    }
+}
+```
+
+<Warning>
+  **Don't show the ATT prompt on first launch.** Users who haven't experienced your app yet almost always deny tracking. Wait until they've completed onboarding or experienced a key feature — opt-in rates can jump from 15% to 40%+.
+</Warning>
+
+### Info.plist entry (required)
+
+```xml
+<key>NSUserTrackingUsageDescription</key>
+<string>We use this to show you relevant ads and improve your experience.</string>
+```
+
+## Standard events reference
+
+| Action | Meta | Firebase | TikTok |
+|--------|------|---------|--------|
+| Install | Automatic | `first_open` (auto) | Automatic |
+| Sign Up | `CompletedRegistration` | `sign_up` | `CompleteRegistration` |
+| Purchase | `logPurchase()` | `purchase` | `Purchase` |
+| Add to Cart | `AddedToCart` | `add_to_cart` | `AddToCart` |
+| View Content | `ViewedContent` | `view_item` | `ViewContent` |
+| Start Trial | `StartTrial` | `start_trial` | `Subscribe` |
+
+## Testing your integration
+
+### Debug mode
+
+| Platform | How to enable |
+|----------|-------------|
+| **Meta** | Enable "Advertiser Testing" mode in Facebook app settings |
+| **Firebase** | Run with `-FIRAnalyticsDebugEnabled` launch argument |
+| **TikTok** | Use test mode in TikTok Events Manager |
+
+### Verification checklist
+
+- [ ] SDK initializes without errors on app launch
+- [ ] Install event fires on first open
+- [ ] Custom events appear in the platform's event manager
+- [ ] Events include correct parameters (value, currency, etc.)
+- [ ] ATT prompt shows at the right moment (iOS)
+- [ ] No duplicate events firing
+
+<Card
+  title="Analytics Setup"
+  icon="arrow-right"
+  href="/playbook/analytics-setup"
+>
+  SDKs installed? Set up your analytics dashboard to track everything in one place.
+</Card>

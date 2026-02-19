@@ -1,0 +1,140 @@
+---
+title: "Meta Audiences"
+description: "How to build custom, lookalike, and saved audiences in Meta Ads to reach exactly the right people."
+---
+
+## The audience is everything
+
+You can have the best ad creative in the world, but if it's shown to the wrong people, it won't work. Meta gives you three powerful audience types, and knowing when to use each one is a superpower.
+
+## What you'll learn
+
+- The three audience types and when to use each
+- How to create custom audiences from your own data
+- How to build lookalike audiences that find similar users
+- How to set up saved audiences for quick reuse
+- Audience strategy for different stages of growth
+
+## The three audience types
+
+<CardGroup cols={3}>
+  <Card title="Custom Audiences" icon="database">
+    Built from **your own data** — app users, website visitors, email lists. These are people who already know you.
+  </Card>
+  <Card title="Lookalike Audiences" icon="clone">
+    Meta finds **new people similar** to your custom audience. This is how you scale to millions of relevant users.
+  </Card>
+  <Card title="Saved Audiences" icon="bookmark">
+    Built from **demographics and interests** you define manually. Good for cold targeting when you don't have data yet.
+  </Card>
+</CardGroup>
+
+## Custom audiences
+
+Custom audiences are groups of people who've already interacted with your business. They're your most valuable targeting tool because they're based on real behavior.
+
+### Sources for custom audiences
+
+| Source | What it includes | Best for |
+|--------|-----------------|----------|
+| **App Activity** | People who installed, opened, or took actions in your app | Retargeting existing users |
+| **Website Traffic** | People who visited specific pages | Retargeting website visitors |
+| **Customer List** | Email addresses or phone numbers you upload | Targeting existing customers |
+| **Video Engagement** | People who watched your video ads | Building warm audiences |
+| **Instagram/Facebook Engagement** | People who interacted with your profiles | Nurturing interested users |
+
+### How to create a custom audience
+
+1. Go to **Audiences** in Ads Manager
+2. Click **Create Audience** > **Custom Audience**
+3. Choose your source
+4. Define the parameters (e.g., "people who installed the app in the last 30 days")
+5. Name it clearly (e.g., "App Installers - Last 30 Days")
+
+<Tip>
+  **Create multiple custom audiences with different time windows.** "Installers - Last 7 Days" vs. "Installers - Last 90 Days" behave very differently. Recent users are warmer and more likely to convert on re-engagement campaigns.
+</Tip>
+
+## Lookalike audiences
+
+This is where Meta's data really shines. You give Meta a "seed" audience (a custom audience), and it finds new people who look just like them.
+
+### How lookalike audiences work
+
+```
+Your best users (seed audience)
+    → Meta analyzes their demographics, interests, and behaviors
+        → Meta finds new people who match that profile
+            → You get an audience of 1-10M+ similar people
+```
+
+### Creating effective lookalikes
+
+| Setting | Recommendation | Why |
+|---------|---------------|-----|
+| **Seed audience** | Your best customers (purchasers > installers) | Higher quality seed = higher quality lookalike |
+| **Seed size** | 1,000-50,000 people | Enough for Meta to find patterns |
+| **Lookalike percentage** | 1% to start | Most similar to your seed (smaller but better quality) |
+| **Location** | One country at a time | Lookalikes work best within a single country |
+
+<Note>
+  **The 1% lookalike** in the US is about 2.6 million people. That's plenty to start with. Only go to 2-5% when you need more reach and are willing to trade some quality for scale.
+</Note>
+
+### Lookalike strategy by stage
+
+- **Just starting (< 1,000 installs):** Use saved audiences or broad targeting. You don't have enough data for good lookalikes yet.
+- **Growing (1,000-10,000 installs):** Create a 1% lookalike based on all installers. This is your first scaling tool.
+- **Scaling (10,000+ installs):** Create lookalikes based on *high-value users* (purchasers, power users). Test 1%, 2%, and 3%.
+
+## Saved audiences
+
+Saved audiences are the classic "pick your demographics and interests" approach. They're your starting point when you don't have custom audience data yet.
+
+### Building a saved audience
+
+Key targeting options:
+
+- **Location** — Countries, states, cities, or radius around a point
+- **Age & Gender** — Narrow only if you're confident in your demographic
+- **Interests** — Hobbies, behaviors, pages liked, job titles
+- **Exclusions** — Remove people (e.g., exclude current app users)
+
+### Interest targeting tips
+
+<CardGroup cols={2}>
+  <Card title="Do" icon="check">
+    - Target interests related to your app's *problem*
+    - Use competitor brand names as interests
+    - Start with 3-5 interests per ad set
+    - Test interest groups separately
+  </Card>
+  <Card title="Don't" icon="x">
+    - Stack 20+ interests in one ad set
+    - Only target obvious interests (everyone does that)
+    - Make your audience smaller than 500K people
+    - Forget to exclude existing customers
+  </Card>
+</CardGroup>
+
+## Audience strategy: putting it all together
+
+Here's a simple framework for using all three audience types:
+
+| Stage | Primary audience | Budget allocation |
+|-------|-----------------|-------------------|
+| **Prospecting** | Lookalike or broad saved audiences | 70-80% of budget |
+| **Retargeting** | Custom audiences (visitors, engagers) | 15-25% of budget |
+| **Re-engagement** | Custom audiences (lapsed users) | 5-10% of budget |
+
+<Warning>
+  **Always exclude your custom audiences from prospecting campaigns.** If you don't, you'll waste money showing ads to people who already installed your app. Create an exclusion custom audience of all installers and apply it to every prospecting campaign.
+</Warning>
+
+<Card
+  title="Optimizing Meta Campaigns"
+  icon="arrow-right"
+  href="/platforms/meta/optimization"
+>
+  Now that you know audiences, learn how to optimize your campaigns for better results.
+</Card>

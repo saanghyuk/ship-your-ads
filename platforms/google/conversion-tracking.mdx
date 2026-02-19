@@ -1,0 +1,140 @@
+---
+title: "Google Conversion Tracking"
+description: "How to set up conversion tracking for Google Ads using Firebase, Google Analytics, and Google Tag so you can measure what matters."
+---
+
+## Measure it or it didn't happen
+
+Google's ad algorithm optimizes toward conversions — but only if it can see them. Without proper conversion tracking, Google is flying blind, and you're wasting money.
+
+## What you'll learn
+
+- The different conversion tracking options for Google Ads
+- How to set up Firebase for app conversion tracking
+- How to install the Google Tag for web conversions
+- How to define and prioritize conversion events
+- How to verify your tracking is working
+
+## Tracking options for apps
+
+| Method | Best for | Complexity |
+|--------|---------|------------|
+| **Firebase SDK** | Android and iOS apps | Medium |
+| **Google Play integration** | Android only (installs) | Low |
+| **Third-party SDK** (Adjust, AppsFlyer, etc.) | Multi-platform attribution | Medium-High |
+| **Google Tag** | Websites and web apps | Low |
+
+<Tip>
+  **For most app developers, Firebase is the recommended approach.** It's free, integrates natively with Google Ads, and gives you analytics beyond just ad tracking. If you're already using a third-party MMP (like Adjust or AppsFlyer), you can use that instead.
+</Tip>
+
+## Setting up Firebase
+
+<Steps>
+  <Step title="Create a Firebase project">
+    Go to [console.firebase.google.com](https://console.firebase.google.com) and create a new project (or use an existing one). Enable Google Analytics when prompted.
+  </Step>
+  <Step title="Add your app to Firebase">
+    Click **Add App** and follow the setup for iOS and/or Android. Download the config file:
+    - **Android:** `google-services.json` → place in `app/` directory
+    - **iOS:** `GoogleService-Info.plist` → place in your Xcode project
+  </Step>
+  <Step title="Install the Firebase SDK">
+    **Android (Gradle):**
+    ```groovy
+    implementation platform('com.google.firebase:firebase-bom:32.0.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    ```
+
+    **iOS (Swift Package Manager):**
+    Add `https://github.com/firebase/firebase-ios-sdk` and select `FirebaseAnalytics`.
+  </Step>
+  <Step title="Link Firebase to Google Ads">
+    In Firebase Console: **Project Settings** > **Integrations** > **Google Ads** > **Link**.
+
+    In Google Ads: **Tools & Settings** > **Linked Accounts** > **Firebase** > confirm the link.
+  </Step>
+  <Step title="Import conversion events">
+    In Google Ads: **Tools & Settings** > **Conversions** > **New Conversion Action** > **App** > **Firebase**.
+
+    Select the events you want to track as conversions.
+  </Step>
+</Steps>
+
+## Key events to track
+
+Not every event should be a "conversion" in Google Ads. Mark only the events that represent real value:
+
+| Event | Firebase Event Name | Track as conversion? |
+|-------|-------------------|---------------------|
+| App Install | `first_open` | Yes |
+| Sign Up | `sign_up` | Yes |
+| Tutorial Complete | `tutorial_complete` | Maybe |
+| Purchase | `purchase` | Yes (primary) |
+| Add to Cart | `add_to_cart` | Optional |
+| Level Complete | `level_up` | No (too frequent) |
+
+<Note>
+  **Set one "primary" conversion** that represents real business value — usually `purchase` or `sign_up`. Google Ads optimizes hardest toward your primary conversion. Having too many conversion types dilutes optimization.
+</Note>
+
+## Setting up Google Tag (for websites)
+
+If you drive traffic to a website or landing page before the app store:
+
+```html
+<!-- Google Tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-XXXXXXXXX');
+</script>
+```
+
+Track specific page actions as conversions:
+
+```javascript
+// Track when someone clicks "Download App"
+gtag('event', 'conversion', {
+  'send_to': 'AW-XXXXXXXXX/AbC123',
+  'event_callback': function() {
+    window.location = 'https://apps.apple.com/your-app';
+  }
+});
+```
+
+## Verifying your setup
+
+### For Firebase
+1. Enable **DebugView** in Firebase Console
+2. Run your app and trigger events
+3. Check that events appear in real-time in DebugView
+4. Wait 24 hours, then verify events show in Google Ads under **Conversions**
+
+### For Google Tag
+1. Install the **Google Tag Assistant** Chrome extension
+2. Visit your website and check for the tag firing
+3. Trigger a test conversion and verify it in Google Ads
+
+<Warning>
+  **Firebase events can take up to 24 hours to appear in Google Ads.** Don't panic if you don't see them immediately. Use Firebase DebugView for real-time verification, and check Google Ads the next day.
+</Warning>
+
+## Conversion tracking checklist
+
+- [ ] Firebase (or third-party SDK) installed in your app
+- [ ] Firebase project linked to Google Ads
+- [ ] Key events defined and imported as conversions
+- [ ] Primary conversion set (usually purchase or sign_up)
+- [ ] Events verified in DebugView or Tag Assistant
+- [ ] Google Tag installed on website (if applicable)
+
+<Card
+  title="Google Search Ads"
+  icon="arrow-right"
+  href="/platforms/google/search-ads"
+>
+  Tracking set up? Let's create your first Search Ads campaign.
+</Card>

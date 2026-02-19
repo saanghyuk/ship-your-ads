@@ -1,0 +1,176 @@
+---
+title: "Meta Pixel & SDK Setup"
+description: "How to install Meta's tracking tools so your campaigns can measure installs, events, and conversions."
+---
+
+## Why tracking matters
+
+Without tracking, running ads is like throwing money into a black hole. You won't know which ads drive installs, which users are valuable, or how to improve. **Tracking is non-negotiable.**
+
+Meta uses two main tracking tools:
+
+- **Meta Pixel** — for websites and landing pages
+- **Meta SDK** — for mobile apps
+
+If you're running app install ads, you need the SDK. If you're sending traffic to a website first, you need the Pixel too.
+
+## What you'll learn
+
+- The difference between the Meta Pixel and Meta SDK
+- How to install the Meta SDK in your iOS and Android app
+- How to set up key events (install, purchase, sign-up, etc.)
+- How to verify your tracking is working correctly
+- How to handle iOS 14+ privacy changes (ATT framework)
+
+## Which one do you need?
+
+| Scenario | What to install |
+|----------|----------------|
+| App install ads (direct to store) | Meta SDK only |
+| Website/landing page → app store | Meta Pixel + Meta SDK |
+| Web app (no mobile app) | Meta Pixel only |
+
+<Tip>
+  **Most app developers need the Meta SDK.** If you also have a landing page or website, add the Pixel there too. The more data Meta has, the better it optimizes.
+</Tip>
+
+## Installing the Meta SDK
+
+### For iOS (Swift)
+
+<Steps>
+  <Step title="Add the SDK via Swift Package Manager">
+    In Xcode, go to **File** > **Add Packages** and add:
+    ```
+    https://github.com/facebook/facebook-ios-sdk
+    ```
+    Select the `FacebookCore` package at minimum.
+  </Step>
+  <Step title="Configure your Info.plist">
+    Add your Facebook App ID and Client Token to your `Info.plist`:
+    ```xml
+    <key>FacebookAppID</key>
+    <string>YOUR_APP_ID</string>
+    <key>FacebookClientToken</key>
+    <string>YOUR_CLIENT_TOKEN</string>
+    ```
+  </Step>
+  <Step title="Initialize in AppDelegate">
+    ```swift
+    import FacebookCore
+
+    func application(_ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        return true
+    }
+    ```
+  </Step>
+</Steps>
+
+### For Android (Kotlin)
+
+<Steps>
+  <Step title="Add the SDK dependency">
+    In your app-level `build.gradle`:
+    ```groovy
+    implementation 'com.facebook.android:facebook-android-sdk:latest.release'
+    ```
+  </Step>
+  <Step title="Configure AndroidManifest.xml">
+    ```xml
+    <meta-data
+        android:name="com.facebook.sdk.ApplicationId"
+        android:value="@string/facebook_app_id"/>
+    <meta-data
+        android:name="com.facebook.sdk.ClientToken"
+        android:value="@string/facebook_client_token"/>
+    ```
+  </Step>
+  <Step title="Initialize the SDK">
+    ```kotlin
+    import com.facebook.FacebookSdk
+
+    class MyApplication : Application() {
+        override fun onCreate() {
+            super.onCreate()
+            FacebookSdk.sdkInitialize(applicationContext)
+        }
+    }
+    ```
+  </Step>
+</Steps>
+
+## Setting up key events
+
+Meta tracks **standard events** that help it optimize your campaigns. Here are the most important ones:
+
+| Event | When to fire it | Why it matters |
+|-------|----------------|---------------|
+| `Install` | Automatic with SDK | Tracks new installs |
+| `CompleteRegistration` | User signs up | Tracks activation |
+| `Purchase` | User makes a purchase | Tracks revenue |
+| `AddToCart` | User adds item to cart | Tracks purchase intent |
+| `ViewContent` | User views key content | Tracks engagement |
+
+<Note>
+  The **Install** event fires automatically when you install the SDK. You don't need to code it manually. For other events, you'll need to add event logging calls in your app code.
+</Note>
+
+## Handling iOS 14+ (App Tracking Transparency)
+
+Since iOS 14.5, Apple requires apps to ask permission before tracking. This is the ATT (App Tracking Transparency) prompt.
+
+**You must implement ATT** or Meta will have very limited data on iOS users:
+
+```swift
+import AppTrackingTransparency
+
+func requestTrackingPermission() {
+    ATTrackingManager.requestTrackingAuthorization { status in
+        // Meta SDK automatically uses this status
+    }
+}
+```
+
+<Warning>
+  Show the ATT prompt at a moment that makes sense — not immediately on first launch. Users who understand *why* you're asking are more likely to allow tracking. Consider showing it after they've experienced value in your app.
+</Warning>
+
+## Verifying your setup
+
+After installing the SDK, verify everything works:
+
+1. **Events Manager** — Go to Meta Events Manager and check that events are flowing in
+2. **Test Events tool** — Use the Test Events tab to send test events from your device
+3. **SDK Diagnostics** — Check for any warnings or errors in the diagnostics tab
+
+Your tracking is working when you see events appearing in Events Manager within a few minutes of triggering them in your app.
+
+## Installing the Meta Pixel (for websites)
+
+If you have a landing page or website, add the Pixel too:
+
+```html
+<!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'YOUR_PIXEL_ID');
+  fbq('track', 'PageView');
+</script>
+```
+
+<Card
+  title="Your First Meta Campaign"
+  icon="arrow-right"
+  href="/platforms/meta/first-campaign"
+>
+  Tracking installed? Let's create your first campaign.
+</Card>

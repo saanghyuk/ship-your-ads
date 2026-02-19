@@ -1,0 +1,189 @@
+---
+title: "Set Up Tracking"
+description: "Install tracking before spending money. This 15-minute setup saves you from flying blind."
+---
+
+## Why this comes before ads
+
+<Warning>
+  If you skip this step and run ads without tracking, you'll have **no idea** which ads work.
+  You'll be guessing. And guessing with money = losing money.
+</Warning>
+
+## Quick setup by platform
+
+Pick the platform you chose and follow the steps:
+
+<Tabs>
+  <Tab title="Meta (Facebook)">
+    ### Step 1: Create a Meta Business Account
+    1. Go to [business.facebook.com](https://business.facebook.com)
+    2. Click "Create Account"
+    3. Fill in your business name (your app name works)
+    4. Add your payment method
+
+    ### Step 2: Register your app
+    1. Go to [developers.facebook.com](https://developers.facebook.com)
+    2. Create a new app → Choose "Business" type
+    3. Add your app's bundle ID (iOS) or package name (Android)
+
+    ### Step 3: Install the Meta SDK
+    Add to your app:
+
+    ```bash
+    # React Native
+    npm install react-native-fbsdk-next
+
+    # iOS (CocoaPods)
+    pod 'FBSDKCoreKit'
+
+    # Android (Gradle)
+    implementation 'com.facebook.android:facebook-android-sdk:latest.release'
+    ```
+
+    ### Step 4: Initialize and log events
+
+    ```javascript
+    // React Native example
+    import { Settings, AppEventsLogger } from 'react-native-fbsdk-next';
+
+    // Initialize (in your App.js)
+    Settings.initializeSDK();
+
+    // Log a custom event
+    AppEventsLogger.logEvent('CompletedRegistration');
+    ```
+
+    <Tip>
+      At minimum, Meta auto-tracks app installs and app opens.
+      You only need to add code for custom events (registration, purchase, etc.).
+    </Tip>
+  </Tab>
+
+  <Tab title="Google Ads">
+    ### Step 1: Set up Firebase
+    1. Go to [console.firebase.google.com](https://console.firebase.google.com)
+    2. Create a new project (or add to existing)
+    3. Add your iOS/Android app
+    4. Download the config file (`GoogleService-Info.plist` or `google-services.json`)
+
+    ### Step 2: Install Firebase SDK
+
+    ```bash
+    # React Native
+    npm install @react-native-firebase/app @react-native-firebase/analytics
+
+    # iOS (CocoaPods)
+    pod 'FirebaseAnalytics'
+
+    # Android (Gradle)
+    implementation 'com.google.firebase:firebase-analytics'
+    ```
+
+    ### Step 3: Link Firebase to Google Ads
+    1. In Firebase Console → Project Settings → Integrations
+    2. Link your Google Ads account
+    3. Enable conversion tracking
+
+    ### Step 4: Log conversion events
+
+    ```javascript
+    // React Native example
+    import analytics from '@react-native-firebase/analytics';
+
+    // Log an event
+    await analytics().logEvent('sign_up', {
+      method: 'email',
+    });
+    ```
+  </Tab>
+
+  <Tab title="Apple Search Ads">
+    ### Step 1: The easiest setup ever
+    Apple Search Ads tracks installs **automatically** through the App Store.
+    You don't need to install any SDK for basic attribution.
+
+    ### Step 2: (Optional) Advanced attribution
+
+    ```swift
+    // For more detailed attribution data
+    import AdServices
+
+    if let token = try? AAAttribution.attributionToken() {
+      // Send this token to your server for attribution
+    }
+    ```
+
+    <Tip>
+      **This is why Apple Search Ads is great for beginners.**
+      Zero SDK setup needed for basic install tracking.
+    </Tip>
+  </Tab>
+
+  <Tab title="TikTok">
+    ### Step 1: Create a TikTok Ads account
+    1. Go to [ads.tiktok.com](https://ads.tiktok.com)
+    2. Create an account
+
+    ### Step 2: Register your app
+    1. In TikTok Ads Manager → Assets → Events
+    2. Create a new app event
+    3. Add your app's store URL
+
+    ### Step 3: Install TikTok SDK
+
+    ```bash
+    # iOS (CocoaPods)
+    pod 'TikTokBusinessSDK'
+
+    # Android (Gradle)
+    implementation 'com.tiktok.business.sdk:tiktok-business-android-sdk:latest'
+    ```
+
+    ### Step 4: Initialize
+
+    ```swift
+    // iOS example
+    let config = TikTokConfig(appId: "YOUR_APP_ID", tiktokAppId: "YOUR_TIKTOK_APP_ID")
+    TikTokBusiness.initializeSdk(config)
+    ```
+  </Tab>
+</Tabs>
+
+## Verify tracking is working
+
+Before moving on, make sure tracking works:
+
+<Steps>
+  <Step title="Install your app on a test device">
+    Use a real device, not a simulator.
+  </Step>
+  <Step title="Open the app">
+    This triggers the install event.
+  </Step>
+  <Step title="Check the platform's dashboard">
+    It can take 15-60 minutes for events to appear.
+    Look for "Test Events" or "Diagnostics" in the platform's developer tools.
+  </Step>
+  <Step title="Trigger a custom event">
+    Complete a registration or key action in your app.
+    Verify it shows up in the dashboard.
+  </Step>
+</Steps>
+
+<Note>
+  **Don't stress if it takes a few tries.** Tracking setup is the most technical part of running ads.
+  Once it's done, you never have to do it again.
+</Note>
+
+## Next up
+
+Tracking is live! Time to create your first campaign.
+
+<Card
+  title="Create Your Campaign →"
+  icon="arrow-right"
+  href="/first-campaign/create-campaign"
+>
+  The step-by-step guide to launching your first ad.
+</Card>

@@ -1,0 +1,130 @@
+---
+title: "Google Ads Account Setup"
+description: "How to create your Google Ads account, link your app, and configure the essential settings before launching campaigns."
+---
+
+## Setting up for success
+
+Google Ads has a lot of settings. The good news is that most of them have sensible defaults. We'll walk through only the ones that matter and skip the noise.
+
+## What you'll learn
+
+- How to create your Google Ads account (and avoid the "Smart Campaign" trap)
+- How to link your app via Google Play or Firebase
+- How to configure billing and budget controls
+- How to set up proper account structure
+- How to grant team access
+
+## Step 1: Create your Google Ads account
+
+<Steps>
+  <Step title="Go to ads.google.com">
+    Visit [ads.google.com](https://ads.google.com) and click **Start Now**.
+  </Step>
+  <Step title="Skip the guided setup">
+    Google will try to walk you through creating your first campaign immediately. **Don't do this.** Look for "Switch to Expert Mode" or "Create an account without a campaign" at the bottom of the page.
+  </Step>
+  <Step title="Choose your account settings">
+    - **Billing country:** Your business's country
+    - **Time zone:** Your primary market's timezone (can't change later)
+    - **Currency:** The currency you want to pay in (can't change later)
+  </Step>
+  <Step title="Complete account creation">
+    Submit and confirm your email. You now have an Expert Mode Google Ads account.
+  </Step>
+</Steps>
+
+<Warning>
+  **Do NOT use "Smart Mode" or let Google auto-create your first campaign.** Smart campaigns give you almost zero control and make it hard to learn what's working. Always use Expert Mode.
+</Warning>
+
+## Step 2: Link your app
+
+For app campaigns, Google needs access to your app listing:
+
+### For Android (Google Play)
+1. Go to **Tools & Settings** > **Linked Accounts**
+2. Click **Google Play** > **Link**
+3. Sign in with your Google Play developer account
+4. Select the app you want to advertise
+
+### For iOS (App Store)
+1. Go to **Tools & Settings** > **Linked Accounts**
+2. Click **Third-party app analytics** or set up **Firebase**
+3. Add your iOS app using its App Store ID
+
+<Note>
+  **Android apps benefit the most from Google Ads** because of the direct Google Play integration. For iOS, consider pairing Google Ads with Apple Search Ads for the best coverage.
+</Note>
+
+## Step 3: Set up billing
+
+1. Go to **Tools & Settings** > **Billing** > **Settings**
+2. Add a payment method (credit card, debit card, or bank account)
+3. Set your **billing threshold** — this is the amount at which Google charges you
+
+### Budget safety tips
+
+- Start with a **low daily budget** ($10-20) until you're comfortable
+- Set up **budget alerts** in Billing to get notified at spending thresholds
+- Review the **billing summary** weekly during your first month
+
+<Tip>
+  Unlike Meta, Google Ads doesn't have a global account spending limit. Your safety net is the daily campaign budget. Set it conservatively and increase only when you're ready.
+</Tip>
+
+## Step 4: Account structure
+
+A clean account structure saves you headaches later:
+
+```
+Google Ads Account
+├── Campaign: App Installs - US
+│   ├── Ad Group: Broad keywords
+│   └── Ad Group: Competitor keywords
+├── Campaign: App Installs - EU
+│   ├── Ad Group: English keywords
+│   └── Ad Group: Local language keywords
+└── Campaign: Retargeting - Global
+    └── Ad Group: Past visitors
+```
+
+### Naming conventions
+
+Use consistent, descriptive names:
+```
+[Type] - [Geo] - [Targeting] - [Date]
+Example: UAC - US - Broad - 2026-02
+Example: Search - UK - Competitor Keywords - 2026-02
+```
+
+## Step 5: Team access
+
+1. Go to **Tools & Settings** > **Access and Security**
+2. Click **+** to invite team members
+3. Choose the right access level:
+
+| Access Level | Can do | Best for |
+|-------------|--------|----------|
+| **Admin** | Everything + manage access | Account owner |
+| **Standard** | Create/edit campaigns | Marketing team |
+| **Read only** | View reports | Stakeholders |
+| **Billing** | Manage payment settings | Finance team |
+
+## Your setup checklist
+
+Before moving on:
+
+- [ ] Google Ads account created in Expert Mode
+- [ ] App linked (Google Play and/or Firebase)
+- [ ] Payment method added
+- [ ] Budget alerts configured
+- [ ] Naming convention decided
+
+<Card
+  title="Google Conversion Tracking"
+  icon="arrow-right"
+  href="/platforms/google/conversion-tracking"
+>
+  Account ready? Let's set up conversion tracking next.
+</Card>

@@ -1,0 +1,152 @@
+---
+title: "Optimizing Meta Campaigns"
+description: "How to read your campaign data, identify what's working, and improve Meta ad performance over time."
+---
+
+## Good campaigns aren't born — they're optimized
+
+Your first campaign won't be your best. That's expected. The difference between advertisers who succeed and those who waste money is **systematic optimization.** Read the data, make smart changes, repeat.
+
+## What you'll learn
+
+- Which metrics actually matter (and which to ignore)
+- How to diagnose underperforming campaigns
+- When and how to make changes without resetting the algorithm
+- Creative optimization strategies
+- Budget scaling techniques
+
+## The metrics that matter
+
+There are dozens of metrics in Ads Manager. Focus on these:
+
+| Metric | What it means | Good range (app installs) |
+|--------|--------------|--------------------------|
+| **CPI (Cost Per Install)** | How much you pay per app install | $1-5 (varies by category) |
+| **CTR (Click-Through Rate)** | % of people who click your ad | 1-3% |
+| **CVR (Conversion Rate)** | % of clicks that become installs | 20-40% |
+| **CPM (Cost Per 1,000 Impressions)** | How much it costs to reach 1,000 people | $5-15 |
+| **ROAS (Return on Ad Spend)** | Revenue generated per dollar spent | > 1.0 to be profitable |
+| **Frequency** | Average times each person sees your ad | Keep below 3-4 |
+
+<Note>
+  **CPI alone doesn't tell the full story.** Track downstream metrics too — what do users do after they install? A high CPI with great retention might be better than a low CPI with massive churn.
+</Note>
+
+## The optimization decision tree
+
+When performance dips, diagnose the problem systematically:
+
+```
+Low results?
+├── Low impressions?
+│   → Budget too low or audience too small
+├── Low CTR?
+│   → Creative or targeting problem — people see your ad but don't care
+├── High CTR but low CVR?
+│   → App store page problem — people click but don't install
+└── Good installs but bad ROAS?
+    → Targeting quality problem — wrong users are installing
+```
+
+## Creative optimization
+
+Creative is the #1 lever for improving Meta ad performance. The algorithm can only work with what you give it.
+
+### The testing framework
+
+<Steps>
+  <Step title="Start with 3-5 ad variations">
+    Same audience, different creatives. Test different images, videos, headlines, or copy angles.
+  </Step>
+  <Step title="Run for 5-7 days">
+    Give each variation enough time and budget to get statistically meaningful results (aim for 1,000+ impressions per ad).
+  </Step>
+  <Step title="Identify the winner">
+    Look at CPI and CTR. The ad with the lowest CPI and decent volume is your winner.
+  </Step>
+  <Step title="Iterate on the winner">
+    Take what worked and create new variations. If a video of your app in action won, make 3 more videos with different hooks.
+  </Step>
+  <Step title="Repeat weekly">
+    Creative fatigue is real. Even great ads decline after 2-4 weeks. Always have fresh creative in the pipeline.
+  </Step>
+</Steps>
+
+### What to test (in priority order)
+
+1. **Visual format** — Image vs. video vs. carousel
+2. **Hook** — The first 3 seconds of a video or the main image concept
+3. **Copy angle** — Problem-focused vs. benefit-focused vs. social proof
+4. **Call to action** — "Install Now" vs. "Learn More" vs. "Try Free"
+5. **Headline** — Different value propositions
+
+<Tip>
+  **Test one variable at a time.** If you change the image AND the copy AND the audience all at once, you won't know what caused the improvement (or decline).
+</Tip>
+
+## Budget optimization
+
+### When to increase budget
+
+Increase budget when a campaign has:
+- Been out of learning phase for 3+ days
+- Consistent CPI within your target range
+- Positive ROAS (if you're tracking revenue)
+
+### How to increase budget safely
+
+The golden rule: **increase by no more than 20% every 3-4 days.** Larger jumps can reset the learning phase and destabilize performance.
+
+```
+Week 1: $15/day (testing)
+Week 2: $18/day (+20%)
+Week 3: $22/day (+20%)
+Week 4: $26/day (+20%)
+```
+
+### When to pause or kill a campaign
+
+Pause a campaign if:
+- CPI is 2x+ your target after 7 days
+- Zero installs after 3 days with sufficient budget
+- Frequency is above 4 (audience saturation)
+- ROAS is consistently below 0.5
+
+## Common mistakes to avoid
+
+<CardGroup cols={2}>
+  <Card title="Editing during learning" icon="rotate">
+    Making significant changes during the learning phase (first 50 conversions) resets the algorithm. Be patient.
+  </Card>
+  <Card title="Too many ad sets" icon="layer-group">
+    Running 10 ad sets with $5 each gives worse results than 2 ad sets with $25 each. Consolidate for better optimization.
+  </Card>
+  <Card title="Ignoring creative fatigue" icon="battery-quarter">
+    Every ad has a shelf life. When CTR drops and frequency rises, it's time for fresh creative — not more budget.
+  </Card>
+  <Card title="Optimizing too early" icon="clock">
+    Making decisions based on 2 days of data is like judging a book by its cover. Wait for statistical significance.
+  </Card>
+</CardGroup>
+
+## Weekly optimization routine
+
+Here's a simple weekly checklist:
+
+| Day | Action |
+|-----|--------|
+| **Monday** | Review last week's performance. Pause underperformers. |
+| **Wednesday** | Launch new creative tests. Adjust budgets on winners. |
+| **Friday** | Check frequency and audience overlap. Plan next week's creative. |
+
+<Warning>
+  **Don't check your ads every hour.** It's tempting, but it leads to anxiety and premature changes. Check once or twice a day, optimize weekly.
+</Warning>
+
+<Card
+  title="Budget Planning"
+  icon="arrow-right"
+  href="/playbook/budget-planning"
+>
+  Ready to think bigger? Learn how to plan your overall ad budget strategically.
+</Card>
