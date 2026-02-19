@@ -3,10 +3,11 @@
   "theme": "mint",
   "name": "Ship Your Ads",
   "description": "The friendliest digital advertising guide for vibe coders. Zero to hero, one step at a time.",
+  "appearance": "dark",
   "colors": {
-    "primary": "#8B5CF6",
-    "light": "#A78BFA",
-    "dark": "#7C3AED"
+    "primary": "#3B82F6",
+    "light": "#60A5FA",
+    "dark": "#2563EB"
   },
   "icons": {
     "library": "lucide"
