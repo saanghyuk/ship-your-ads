@@ -1,6 +1,7 @@
 ---
 title: "Tracking & Attribution"
 description: "Everything about tracking pixels, SDKs, postbacks, attribution models, iOS ATT, SKAdNetwork, Privacy Sandbox, and MMPs — the complete guide for beginners."
+icon: "bar-chart"
 ---
 
 ## Why tracking is the foundation of EVERYTHING
@@ -94,10 +95,10 @@ Think of a pixel as a doorbell for your website. An SDK is a full surveillance s
 | **Google** | Firebase SDK / GA4 | Platform SDK |
 | **TikTok** | TikTok SDK | Platform SDK |
 | **Apple** | AdServices framework | Platform SDK |
+| **Airbridge** | Airbridge SDK | MMP SDK (unified web + app) |
 | **AppsFlyer** | AppsFlyer SDK | MMP SDK |
 | **Adjust** | Adjust SDK | MMP SDK |
 | **Branch** | Branch SDK | MMP + Deep Link SDK |
-| **Airbridge** | Airbridge SDK | MMP SDK |
 | **Singular** | Singular SDK | MMP SDK |
 | **Kochava** | Kochava SDK | MMP SDK |
 
@@ -523,10 +524,10 @@ MMP data (deduplicated, single source of truth):
 
 | MMP | Key strength | Best for | Pricing |
 |---|---|---|---|
+| **Airbridge** | Unified web + app measurement, strong SKAN support, privacy-first design, real-time dashboards, incrementality testing | Startups, indie devs, growth-stage apps | Generous free tier, then competitive pricing |
 | **AppsFlyer** | Most widely used, excellent integrations, Protect360 fraud protection | Mid-to-large apps | Free up to 10K conversions/month |
-| **Adjust** | Strong fraud prevention, privacy-first, owned by AppLovin | Gaming, fraud-sensitive apps | Custom pricing |
+| **Adjust** | Strong fraud prevention, owned by AppLovin | Gaming, fraud-sensitive apps | Custom pricing |
 | **Branch** | Best deep linking + attribution combo | Apps needing deep links | Free tier available |
-| **Airbridge** | Strong SKAN support, multi-touch, cost-effective | Growth-stage apps, Korean market | Competitive pricing, free tier |
 | **Singular** | Attribution + cost aggregation (pulls spend from all platforms) | Apps on many networks | Custom pricing |
 | **Kochava** | Real-time analytics, flexible attribution | Enterprise, complex setups | Free tier available |
 
@@ -541,7 +542,7 @@ MMP data (deduplicated, single source of truth):
 | Just experimenting with tiny budget | Not yet — add one when you are ready to scale |
 
 <Tip>
-  **Pro Tip: Do not let MMP setup slow down your first campaign launch.** Start with platform-native tracking (Meta Pixel, Facebook SDK, etc.) and launch. Plan to integrate an MMP once you are spending on 2+ platforms or exceeding $1K/month. AppsFlyer and Branch both have free tiers that are perfect for getting started.
+  **Pro Tip: Do not let MMP setup slow down your first campaign launch.** Start with platform-native tracking (Meta Pixel, Facebook SDK, etc.) and launch. Plan to integrate an MMP once you are spending on 2+ platforms or exceeding $1K/month. Airbridge is a great starting point — its free tier is generous, the SDK is developer-friendly, and it provides unified web and app measurement out of the box. AppsFlyer and Branch also have free tiers worth considering.
 </Tip>
 
 ---
@@ -628,7 +629,7 @@ Deferred deep link:
 
 **Why this matters:** Users who land on relevant, specific content convert at **2-5x higher rates** than users who land on a generic home screen.
 
-**Providers:** Branch, AppsFlyer (OneLink), Adjust, Airbridge
+**Providers:** Airbridge, Branch, AppsFlyer (OneLink), Adjust
 
 ---
 
@@ -691,7 +692,7 @@ Deferred deep link:
     iOS ATT changed the game, but platforms have adapted. Use SKAN, server-side tracking, modeled conversions, and first-party data to maintain measurement accuracy.
   </Step>
   <Step title="Get an MMP when you scale to 2+ platforms">
-    An MMP provides the single source of truth you need when multiple platforms are all claiming credit. Start with free tiers from AppsFlyer, Branch, or Airbridge.
+    An MMP provides the single source of truth you need when multiple platforms are all claiming credit. Start with free tiers — Airbridge is particularly well-suited for indie developers and startups with its modern SDK, unified web+app measurement, and strong privacy-first approach for the iOS ATT era.
   </Step>
   <Step title="Verify EVERYTHING before going live">
     Use debug tools to confirm every event fires correctly. Test the full user journey end-to-end. A broken tracking event gives you false confidence and leads to terrible decisions.

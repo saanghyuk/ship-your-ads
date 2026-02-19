@@ -1,6 +1,7 @@
 ---
 title: "Your First Apple Search Ads Campaign"
 description: "Screen-by-screen walkthrough for launching Apple Search Ads Basic and Advanced campaigns, including keyword research, bid strategy, audience targeting, Creative Sets, and optimization."
+icon: "play"
 ---
 
 # Your First Apple Search Ads Campaign
@@ -185,6 +186,69 @@ If your app has been live for a while, App Store Connect shows which search term
 
 <Tip>
 **Pro Tip**: Creative Sets are one of the most underused features in Apple Search Ads. Most advertisers just use their default screenshots for everything. By matching your visuals to the searcher's intent, you can significantly improve your conversion rate — which means more installs for the same spend.
+</Tip>
+
+---
+
+## Campaign Optimization Tiers: How Apple Search Ads Is Different
+
+If you are coming from Meta, Google, or TikTok, you might expect Apple Search Ads to have a similar optimization ladder (Install Optimization → AEO → VO → tROAS). **It does not.** Apple Search Ads works fundamentally differently because it is keyword-based, not algorithm-based.
+
+### Why Apple Search Ads Has No AEO/VO/ROAS Tiers
+
+On Meta, Google, and TikTok, the algorithm decides WHO sees your ad based on behavioral predictions. You can tell those platforms "find me people who will purchase" and they use machine learning to identify those users.
+
+Apple Search Ads does not work that way. Your ad shows up when someone **searches a specific keyword** in the App Store. Apple does not predict which searcher will make an in-app purchase or which searcher is a high-value user. It simply matches your ad to search queries and charges you for taps.
+
+### What Apple Search Ads Offers Instead
+
+| Tier | What It Is | How It Works | When to Use It |
+|---|---|---|---|
+| **Basic** | Set a max CPI (Cost Per Install). Apple optimizes everything else automatically. | You set the maximum you will pay per install. Apple chooses keywords, targets audiences, and manages bids for you. | Beginners. You want the simplest possible setup and are okay with less control. |
+| **Advanced (CPT Bidding)** | Keyword-level bidding with CPT (Cost Per Tap). You control every detail. | You choose specific keywords, set max CPT bids for each, target specific audiences, and use Creative Sets. Optimization is manual — you adjust bids based on performance data. | When you want full control. You optimize by adjusting keyword bids, adding negatives, and testing Creative Sets. |
+
+### The Apple Search Ads "Optimization" Is Manual
+
+Instead of telling an algorithm "optimize for purchases," you optimize Apple Search Ads manually by:
+
+1. **Finding high-converting keywords** — Keywords where people search, tap, install, AND spend money in your app
+2. **Increasing bids on winners** — Spend more on keywords that drive quality installs
+3. **Decreasing bids or pausing losers** — Stop spending on keywords that drive installs but no revenue
+4. **Adding negative keywords** — Block irrelevant searches from eating your budget
+5. **Using Creative Sets** — Show different screenshots for different keyword themes to improve conversion rates
+
+```mermaid
+graph TD
+    A["Launch Basic or Advanced Campaign"] --> B["Collect Data\n(5-7 days)"]
+    B --> C["Review Search Terms Report"]
+    C --> D["Increase bids on\nhigh-converting keywords"]
+    C --> E["Pause or reduce bids on\nlow-converting keywords"]
+    C --> F["Add negative keywords\nfor irrelevant terms"]
+    D --> G["Repeat Weekly"]
+    E --> G
+    F --> G
+
+    style A fill:#4CAF50,color:#fff
+    style G fill:#2196F3,color:#fff
+```
+
+### Compared to Other Platforms
+
+| Feature | Meta / Google / TikTok | Apple Search Ads |
+|---|---|---|
+| **Optimization Goal** | Algorithm-driven (Install → AEO → VO → tROAS) | Manual keyword bidding |
+| **Who Sees Your Ad** | Algorithm chooses based on user behavior | People who search specific keywords |
+| **AEO (Event Optimization)** | Available | Not available |
+| **Value Optimization** | Available | Not available |
+| **Target ROAS** | Available | Not available |
+| **Primary Optimization Lever** | Choosing the right optimization goal | Choosing the right keywords and bids |
+
+<Tip>
+**The upside of Apple Search Ads' simplicity:** Because it is keyword-based, Apple Search Ads captures users with extremely high intent. Someone who types "meditation app" into the App Store is ready to install RIGHT NOW. This is why Apple Search Ads often has the highest conversion rates (40-60% tap-to-install) of any ad platform. You do not need AEO or VO because the user intent is already baked in.
+</Tip>
+
+<Tip>
+**If you want post-install optimization on Apple Search Ads**, connect it to a Mobile Measurement Partner (MMP) like Airbridge, AppsFlyer, or Adjust. Your MMP can show you which keywords drive the highest-value users, and you can then manually adjust bids accordingly. This is the closest you get to "value optimization" on Apple Search Ads.
 </Tip>
 
 ---

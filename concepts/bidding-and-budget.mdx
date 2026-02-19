@@ -1,6 +1,7 @@
 ---
 title: "Bidding & Budget"
 description: "Everything about how ad auctions work, bid strategies, budget types, pacing, scaling, and how to spend your money wisely — explained for complete beginners."
+icon: "wallet"
 ---
 
 ## The two money decisions you always make
@@ -509,6 +510,106 @@ Example:
 
 <Tip>
   **Pro Tip for your first budget: Allocate $200-500 total for your very first campaign.** Run it for 7-14 days. The goal is LEARNING, not scaling. You want to discover your CPI, which creatives resonate, and which audiences convert. That data is worth its weight in gold. Once you have it, you can make smart scaling decisions instead of guessing.
+</Tip>
+
+---
+
+## Cross-platform optimization tiers: the complete comparison
+
+One of the most confusing things for beginners is that **every platform uses different names for the same concept.** Meta calls it "Performance Goal," Google calls it "Bidding Strategy," TikTok calls it "Optimization Goal," and Apple Search Ads does not have it at all. But underneath the naming differences, the core idea is the same: you are telling the platform how sophisticated you want its targeting to be.
+
+This section puts all four platforms side by side so you can see the equivalents at a glance.
+
+### Where Optimization Is Set (This Catches Everyone Off Guard)
+
+| Platform | Where You Set It | What This Means |
+|---|---|---|
+| **Meta** | **Ad Set** level | You can have multiple ad sets in one campaign with different optimization goals. |
+| **Google** | **Campaign** level | You need separate campaigns for each optimization tier. Ad Groups can optionally override CPA/ROAS targets. |
+| **TikTok** | **Ad Group** level | Like Meta, you can have multiple ad groups in one campaign with different optimization goals. |
+| **Apple Search Ads** | N/A (keyword-based) | No algorithm-driven optimization tiers. You optimize manually through keyword bids. |
+
+### The Optimization Ladder Across All Platforms
+
+```mermaid
+graph TD
+    subgraph "Step 1: Campaign Objective"
+        M1["Meta: App Promotion (ODAX)"]
+        G1["Google: App Campaign"]
+        T1["TikTok: App Promotion"]
+        A1["Apple: Search Results Campaign"]
+    end
+
+    subgraph "Step 2: Install Optimization"
+        M2["Meta (Ad Set):\nPerformance Goal =\nConversions → App Install"]
+        G2["Google (Campaign):\nMaximize Conversions\nor Target CPI"]
+        T2["TikTok (Ad Group):\nOptimization Goal =\nInstall"]
+        A2["Apple:\nMax CPI (Basic) or\nCPT Bids (Advanced)"]
+    end
+
+    subgraph "Step 3: Event Optimization (AEO)"
+        M3["Meta (Ad Set):\nPerformance Goal =\nConversions → App Event"]
+        G3["Google (Campaign):\nTarget CPA\n(tCPA)"]
+        T3["TikTok (Ad Group):\nOptimization Goal =\nApp Event Optimization"]
+        A3["Apple:\nNot Available"]
+    end
+
+    subgraph "Step 4: Value Optimization"
+        M4["Meta (Ad Set):\nPerformance Goal =\nValue"]
+        G4["Google (Campaign):\nMaximize Conversion\nValue"]
+        T4["TikTok (Ad Group):\nOptimization Goal =\nValue (VBO)"]
+        A4["Apple:\nNot Available"]
+    end
+
+    subgraph "Step 5: Target ROAS"
+        M5["Meta (Ad Set):\nValue + Min ROAS"]
+        G5["Google (Campaign):\nTarget ROAS"]
+        T5["TikTok (Ad Group):\nValue + ROAS Bid"]
+        A5["Apple:\nNot Available"]
+    end
+
+    M1 --> M2 --> M3 --> M4 --> M5
+    G1 --> G2 --> G3 --> G4 --> G5
+    T1 --> T2 --> T3 --> T4 --> T5
+    A1 --> A2
+```
+
+### Side-by-Side Comparison Table
+
+| Optimization Tier | Meta (Ad Set) | Google (Campaign) | TikTok (Ad Group) | Apple Search Ads |
+|---|---|---|---|---|
+| **Install Optimization** | Performance Goal = Conversions → App Install | Maximize Conversions or Target CPI | Optimization Goal = Install | Max CPI (Basic) or CPT bids (Advanced) |
+| **AEO (Event Optimization)** | Performance Goal = Conversions → App Event (Purchase, Subscribe...) | Target CPA (tCPA) — optimize for in-app events | Optimization Goal = App Event Optimization | Not available |
+| **Value Optimization** | Performance Goal = Value (Highest Value bidding) | Maximize Conversion Value | Optimization Goal = Value (VBO) | Not available |
+| **Target ROAS** | Performance Goal = Value + Min ROAS goal | Target ROAS (tROAS) | Value + ROAS Bid (Highest Value or Target ROAS bidding) | Not available |
+| **Data Requirement** | 50 conversions/week/ad set at each tier | ~50 conversions before moving to next tier; 4 weeks of value data for tROAS | 30+ purchase events with value in 7 days for VBO | N/A |
+
+### The Universal Progression Rule
+
+No matter which platform you use, the progression is the same:
+
+1. **Start with Install Optimization.** Get raw installs. Build data. Learn what your CPI looks like.
+2. **Graduate to AEO** once you are getting 50+ installs/day consistently and have in-app event data flowing back to the platform.
+3. **Graduate to Value Optimization** once you have enough purchase events with revenue values. The platform needs to see the dollar amounts to optimize for value.
+4. **Add Target ROAS** once Value Optimization is running smoothly and you want to lock in a specific return target.
+
+<Warning>
+**The number one beginner mistake across ALL platforms:** Jumping straight to AEO or Value Optimization before you have enough data. If you tell Meta "find me high-value purchasers" but you only have 5 purchases per week, Meta has almost no data to learn from. The result? Terrible performance, high costs, and wasted budget. You MUST build a data foundation at each level before advancing.
+</Warning>
+
+### Platform-Specific Gotchas
+
+| Gotcha | Details |
+|---|---|
+| **Meta: Ad Set level control** | You can run Install Optimization and AEO side by side in the same campaign by using different ad sets. Use this to your advantage during transitions. |
+| **Google: Campaign level lock-in** | Once you set a campaign to Target CPA, you cannot have an ad group within it optimizing for installs. You need separate campaigns. |
+| **TikTok: VBO eligibility threshold** | VBO requires 30+ purchase events with value in any 7-day window. If you do not see the VBO option, you have not hit the threshold yet. |
+| **TikTok: Target ROAS OS restriction** | Target ROAS for app VBO is primarily available for Android campaigns. Check TikTok's latest documentation for iOS availability updates. |
+| **Apple: Manual optimization only** | Apple Search Ads does not have algorithm-driven optimization tiers. Use an MMP to identify which keywords drive high-value users and adjust bids manually. |
+| **Google: tCPA tip** | When switching from install optimization to tCPA, set your initial tCPA target about 20% higher than your observed CPA. This gives Google headroom to learn without choking delivery. |
+
+<Tip>
+**Cross-platform strategy:** If you advertise on multiple platforms, run Install Optimization on all of them first. Once each platform has enough data, graduate them independently. Meta might be ready for AEO before TikTok is, and that is perfectly fine. Each platform's algorithm learns at its own pace.
 </Tip>
 
 ---

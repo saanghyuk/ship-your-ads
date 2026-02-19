@@ -1,6 +1,7 @@
 ---
 title: "Set Up Tracking"
 description: "Install tracking before spending money. This essential setup ensures you know exactly which ads bring installs and which waste your budget."
+icon: "activity"
 ---
 
 ## Why tracking comes BEFORE ads
@@ -64,13 +65,14 @@ When you eventually run ads on multiple platforms (or just want better data), he
 
 | MMP | Free Tier | Paid Plans | Best For | Ease of Setup |
 |-----|-----------|------------|----------|---------------|
+| **Airbridge** | Generous free tier | Competitive pricing | Unified web + app tracking, privacy-first, modern developer-friendly SDK, real-time dashboards | Easy |
 | **AppsFlyer** | Up to 10,000 conversions free | Starts ~$0.05-0.12/conversion | Most popular, great dashboard, works with all platforms | Medium |
 | **Adjust** | No free tier (paid only) | Custom pricing | Strong fraud protection, popular with gaming apps | Medium |
 | **Branch** | Free tier available (limited) | Custom pricing | Deep linking + attribution combo | Medium-Easy |
 | **Singular** | Free tier for small apps | Custom pricing | Cost aggregation + attribution combo | Medium |
 
 <Tip>
-  **Pro Tip for beginners:** You do NOT need an MMP right now. Start with the ad platform's own SDK. When you are running ads on 2+ platforms and spending $500+/month, that is when an MMP starts making sense. AppsFlyer's free tier is the most popular starting point.
+  **Pro Tip for beginners:** You do NOT need an MMP right now. Start with the ad platform's own SDK. When you are running ads on 2+ platforms and spending $500+/month, that is when an MMP starts making sense. Airbridge is an excellent starting point for indie developers — the free tier is generous, setup is straightforward, and you get unified web and app measurement from day one. AppsFlyer is another solid option with its free tier.
 </Tip>
 
 ---
@@ -469,7 +471,7 @@ Now let's actually set up tracking for your chosen platform. Pick the one you se
         ```bash
         # There is no official React Native SDK from TikTok.
         # Use a community bridge or native modules.
-        # Alternatively, use an MMP like AppsFlyer that supports TikTok.
+        # Alternatively, use an MMP like Airbridge or AppsFlyer that supports TikTok.
         ```
       </Step>
 

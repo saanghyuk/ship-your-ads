@@ -1,6 +1,66 @@
 ---
 title: "Optimizing Google Ads Campaigns"
 description: "A complete beginner's guide to optimizing Google Ads — analyzing reports, improving Quality Score, managing bids, A/B testing, negative keywords, budget scaling, and fixing common problems."
+icon: "trending-up"
+---
+
+## App Campaign Optimization Tiers: The Optimization Ladder
+
+If you are running **Google App Campaigns** (formerly Universal App Campaigns or UAC), this section is for you. Google App Campaigns have their own optimization ladder, and the key difference from other platforms is that **optimization is set at the Campaign level**, not the ad group level.
+
+Think of it like choosing a difficulty level for Google's AI. At the easiest level, you just ask for installs. At the hardest level, you ask Google to find users who will generate the highest revenue — but Google needs a lot of data to pull that off.
+
+### The Optimization Ladder (You Graduate Up Over Time)
+
+```mermaid
+graph LR
+    A["Install Optimization\n(Start here)"] --> B["App Event Optimization\n(tCPA)"]
+    B --> C["Value Optimization\n(Max Conv. Value)"]
+    C --> D["Target ROAS\n(tROAS)"]
+
+    style A fill:#4CAF50,color:#fff
+    style B fill:#2196F3,color:#fff
+    style C fill:#9C27B0,color:#fff
+    style D fill:#FF5722,color:#fff
+```
+
+### Optimization Tiers Comparison Table
+
+| Optimization Tier | Where to Set It | What It Does | When to Use It | Pro Tip |
+|---|---|---|---|---|
+| **Install Optimization** | Campaign level → Bidding: Maximize Conversions or Target CPI | Tells Google: "Get me the most app installs possible." Google shows your ads across Search, Play Store, YouTube, and Display to people most likely to install. | Your first app campaign. You need installs to generate data. | Set a Target CPI if you know your target cost. Otherwise, use Maximize Conversions to let Google figure out the right CPI first. |
+| **App Event Optimization (tCPA)** | Campaign level → Bidding: Target CPA | Tells Google: "Find people who will install AND perform a specific in-app action (purchase, sign-up, level 10)." | Once your install campaign has enough data (Google recommends running installs for at least a few weeks first). | Set your tCPA at about 20% higher than your observed CPA to give Google room to learn. You can tighten it gradually. |
+| **Value Optimization** | Campaign level → Bidding: Maximize Conversion Value | Tells Google: "Find users who will generate the most revenue." Google prioritizes high-spending users. | Once you have purchase events with revenue values reporting back via Firebase/SDK for at least 4 weeks. | Make sure you are sending accurate revenue values back to Google via the Firebase SDK. Garbage in, garbage out. |
+| **Target ROAS (tROAS)** | Campaign level → Bidding: Target ROAS | Tells Google: "Find high-value users AND hit this specific return target." | After running Maximize Conversion Value for 4+ weeks and having a clear ROAS baseline. | Use your historically achieved ROAS as your initial target. Do not set an aspirational target — start realistic and tighten over time. |
+
+### Key Difference: Campaign-Level Control
+
+Unlike Meta (Ad Set level) and TikTok (Ad Group level), Google App Campaigns set the optimization goal at the **Campaign level**. This means:
+
+- You need **separate campaigns** for different optimization tiers (one campaign for installs, another for tCPA, etc.)
+- You **cannot** mix Install Optimization and AEO within the same campaign
+- You **can** optionally set different CPA or ROAS targets at the **Ad Group level** to override the campaign-level target
+
+### The Progression Explained Like Talking to a Friend
+
+Imagine you run a restaurant and Google is your marketing agency:
+
+1. **Install Optimization** = "Just get people through the door." Google puts up signs everywhere — on billboards, in search results, on YouTube. Anyone who might visit, they target. Some people eat, some just grab a free breadstick and leave.
+
+2. **tCPA (App Event Optimization)** = "Get me people who actually order a meal, and try to keep the cost of acquiring each diner under $5." Google gets smarter — it starts targeting people who look like they will actually sit down and order food, not just browse the menu.
+
+3. **Maximize Conversion Value** = "Forget the number of diners — get me the ones who order the most expensive items." Google now targets the big spenders. Fewer total diners, but each one orders the steak and wine.
+
+4. **Target ROAS** = "Get me big spenders, and make sure I earn $4 in revenue for every $1 I spend on marketing." The most precise instruction. Google has to balance finding the right people with hitting your exact profitability target.
+
+<Tip>
+**The data progression rule:** Google recommends running each tier for at least a few weeks before moving up. For Target ROAS specifically, report revenue values across all relevant campaigns for **4 weeks or 3 conversion cycles** (whichever is longer) before setting your ROAS target. Rushing through the tiers is the fastest way to waste money.
+</Tip>
+
+<Tip>
+**Key platform difference:** On Google, you set optimization at the **Campaign level**. This means you need separate campaigns for Install Optimization vs. AEO vs. VO. However, you can set different CPA/ROAS targets at the **Ad Group level** to fine-tune within a campaign.
+</Tip>
+
 ---
 
 ## Why Optimization Separates Winners from Losers

@@ -1,6 +1,71 @@
 ---
 title: "Optimizing Meta Campaigns"
 description: "A complete beginner's guide to analyzing your Meta ad data, testing creatives, scaling winners, fixing underperformers, and building automated rules for better results."
+icon: "trending-up"
+---
+
+## Campaign Optimization Tiers: The Optimization Ladder
+
+Before we dive into ongoing optimization tactics, you need to understand **how Meta's algorithm can be told what to optimize for**. This is one of the most important decisions you make when setting up a campaign, and it is set at the **Ad Set level** (not the Campaign level).
+
+Think of it like giving Meta a mission. You can say "find me people who will install my app" or "find me people who will actually spend money in my app." The more advanced the mission, the smarter Meta needs to be — and the more data it needs to work with.
+
+### The Optimization Ladder (You Graduate Up Over Time)
+
+```mermaid
+graph LR
+    A["Install Optimization\n(Start here)"] --> B["App Event Optimization\n(AEO)"]
+    B --> C["Value Optimization\n(VO)"]
+    C --> D["Target ROAS\n(tROAS)"]
+
+    style A fill:#4CAF50,color:#fff
+    style B fill:#2196F3,color:#fff
+    style C fill:#9C27B0,color:#fff
+    style D fill:#FF5722,color:#fff
+```
+
+You do not jump straight to the top. You **earn** your way up by generating enough conversion data at each level. Think of it like leveling up in a video game — you need to beat the current level before unlocking the next one.
+
+### Optimization Tiers Comparison Table
+
+| Optimization Tier | Where to Set It | What It Does | When to Use It | Pro Tip |
+|---|---|---|---|---|
+| **Install Optimization** | Ad Set → Performance Goal = Conversions → App Install | Tells Meta: "Find people who will install my app." The algorithm targets users most likely to install. | Starting out. Your first campaigns. You need raw install volume to build data. | Start here. Get 50+ installs/day before even thinking about AEO. |
+| **App Event Optimization (AEO)** | Ad Set → Performance Goal = Conversions → App Event (e.g., Purchase, Subscribe) | Tells Meta: "Find people who will not just install, but actually DO something in my app." | Once you have 50+ installs/day consistently and are sending in-app events back to Meta via SDK. | Choose an event that happens frequently enough (50+ per week per ad set) so Meta can learn. |
+| **Value Optimization (VO)** | Ad Set → Performance Goal = Value | Tells Meta: "Find people who will spend the MOST money in my app." Prioritizes high-value users over volume. | Once you have enough purchase events with revenue values being reported back. Meta needs value data to optimize. | You may get fewer installs, but each user will be worth more. Your CPI goes up but your ROAS goes up more. |
+| **Target ROAS (tROAS)** | Ad Set → Performance Goal = Value + Min ROAS goal | Tells Meta: "Find high-value users AND hit this specific return-on-ad-spend target." | When VO is running well and you want to lock in a minimum ROAS. Only available when VO is eligible. | Set your ROAS target at or slightly below your current average ROAS. Setting it too high will choke delivery. |
+
+### How It Works Under the Hood (API Reference)
+
+For those who want the technical details:
+
+| Tier | Campaign Objective | optimization_goal | optimization_sub_event | bid_strategy |
+|---|---|---|---|---|
+| Install Optimization | App Promotion (ODAX) | `APP_INSTALLS` | — | Lowest Cost / Cost Cap |
+| AEO | App Promotion (ODAX) | `OFFSITE_CONVERSIONS` | `PURCHASE`, `SUBSCRIBE`, etc. | Lowest Cost / Cost Cap |
+| Value Optimization | App Promotion (ODAX) | `VALUE` | — | Highest Value |
+| Target ROAS | App Promotion (ODAX) | `VALUE` | — | ROAS Goal (Min ROAS) |
+
+### The Progression Explained Like Talking to a Friend
+
+Imagine you own a coffee shop and you are hiring people to hand out flyers on the street:
+
+1. **Install Optimization** = "Just get people to walk into my shop." You are paying for foot traffic. Some people buy coffee, some just look around and leave. But you need bodies through the door first.
+
+2. **AEO** = "Get me people who will actually ORDER something." Now you are pickier. You want people who will not just walk in — they will buy a coffee. Costs more per person, but every person is more valuable.
+
+3. **Value Optimization** = "Get me people who order the expensive drinks." You do not just want any customer — you want the ones who order the $7 oat milk latte, not the $2 drip coffee. Fewer customers walk in, but your revenue per customer is much higher.
+
+4. **Target ROAS** = "Get me big spenders, AND make sure I earn at least $3 for every $1 I spend on flyers." This is the most specific instruction. You are telling Meta exactly what return you expect.
+
+<Tip>
+**The golden rule of the optimization ladder:** Start with Install Optimization. Only move to AEO after you are consistently getting 50+ installs per day. Only move to VO after you have enough purchase events with value data flowing back to Meta (typically 50+ purchase events per week per ad set). Jumping ahead before you have enough data is the number one mistake — Meta's algorithm cannot optimize for something it rarely sees.
+</Tip>
+
+<Tip>
+**Key platform difference:** On Meta, optimization tiers are set at the **Ad Set level**, not the Campaign level. This means you can run multiple ad sets within the same campaign with different optimization goals — for example, one ad set optimizing for installs and another for app events. This gives you flexibility to test different tiers simultaneously.
+</Tip>
+
 ---
 
 ## Why Optimization Is Where the Real Money Is Made

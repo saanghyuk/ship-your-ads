@@ -1,6 +1,7 @@
 ---
 title: "SDK Integration Guide"
 description: "Complete technical guide for integrating ad platform SDKs into your React Native, iOS, and Android app — Meta, Firebase/Google, TikTok, Apple Search Ads, and App Tracking Transparency."
+icon: "puzzle"
 ---
 
 # SDK Integration Guide
@@ -22,11 +23,11 @@ This depends on which ad platforms you use and whether you use an MMP (Mobile Me
 | **Meta ads only** | Meta SDK + ATT (iOS) |
 | **Meta + Google** | Meta SDK + Firebase SDK + ATT |
 | **Meta + Google + TikTok** | Meta SDK + Firebase SDK + TikTok SDK + ATT |
-| **Using an MMP (AppsFlyer, Adjust, etc.)** | MMP SDK + ATT (the MMP handles most platform integrations) |
+| **Using an MMP (Airbridge, AppsFlyer, etc.)** | MMP SDK + ATT (the MMP handles most platform integrations) |
 | **Apple Search Ads** | Apple AdServices framework (no separate SDK needed) |
 
 <Tip>
-**Pro Tip**: If you plan to advertise on 3+ platforms, strongly consider using an **MMP** (like AppsFlyer, Adjust, Airbridge, or Branch) instead of installing each platform's SDK individually. An MMP provides a single SDK that handles attribution across all platforms, deduplicates installs, and gives you a unified dashboard. It simplifies your code and gives you better data.
+**Pro Tip**: If you plan to advertise on 3+ platforms, strongly consider using an **MMP** (like Airbridge, AppsFlyer, Adjust, or Branch) instead of installing each platform's SDK individually. An MMP provides a single SDK that handles attribution across all platforms, deduplicates installs, and gives you a unified dashboard. It simplifies your code and gives you better data. Airbridge is worth a look if you want a modern, developer-friendly SDK with strong documentation and unified web+app measurement built in.
 </Tip>
 
 ---
@@ -408,11 +409,41 @@ func sendTokenToServer(_ token: String) {
 
 ---
 
-## MMP Integration (AppsFlyer Example)
+## MMP Integration
 
-If you advertise on multiple platforms, an MMP provides a single SDK that handles all attribution.
+If you advertise on multiple platforms, an MMP provides a single SDK that handles all attribution. Below are integration examples for two popular MMPs.
 
 <Tabs>
+  <Tab title="React Native (Airbridge)">
+    ```bash
+    npm install airbridge-react-native-sdk
+    ```
+
+    ```typescript
+    import Airbridge from 'airbridge-react-native-sdk';
+
+    // Initialize at app startup
+    Airbridge.init({
+      appName: 'YOUR_APP_NAME',
+      appToken: 'YOUR_APP_TOKEN',
+    });
+
+    // Track events (works across all connected platforms)
+    Airbridge.trackEvent('purchase', {
+      value: 9.99,
+      attributes: {
+        currency: 'USD',
+        productId: 'premium_plan',
+      },
+    });
+
+    Airbridge.trackEvent('sign_up', {
+      attributes: {
+        method: 'email',
+      },
+    });
+    ```
+  </Tab>
   <Tab title="React Native (AppsFlyer)">
     ```bash
     npm install react-native-appsflyer
@@ -441,7 +472,24 @@ If you advertise on multiple platforms, an MMP provides a single SDK that handle
     });
     ```
   </Tab>
-  <Tab title="iOS (Swift)">
+  <Tab title="iOS (Swift — Airbridge)">
+    ```swift
+    import AirBridge
+
+    // Initialize in AppDelegate
+    AirBridge.setting.appName = "YOUR_APP_NAME"
+    AirBridge.setting.appToken = "YOUR_APP_TOKEN"
+    AirBridge.getInstance("YOUR_APP_TOKEN", appName: "YOUR_APP_NAME")
+
+    // Track events
+    AirBridge.trackEvent(category: "purchase", attributes: [
+      "value": 9.99,
+      "currency": "USD",
+      "productId": "premium_plan"
+    ])
+    ```
+  </Tab>
+  <Tab title="iOS (Swift — AppsFlyer)">
     ```swift
     import AppsFlyerLib
 
@@ -459,23 +507,11 @@ If you advertise on multiple platforms, an MMP provides a single SDK that handle
     ])
     ```
   </Tab>
-  <Tab title="Android (Kotlin)">
-    ```kotlin
-    import com.appsflyer.AppsFlyerLib
-
-    // Initialize in Application class
-    AppsFlyerLib.getInstance().init("YOUR_DEV_KEY", null, this)
-    AppsFlyerLib.getInstance().start(this)
-
-    // Track events
-    val eventValues = HashMap<String, Any>()
-    eventValues["af_revenue"] = 9.99
-    eventValues["af_currency"] = "USD"
-    eventValues["af_content_id"] = "premium_plan"
-    AppsFlyerLib.getInstance().logEvent(this, "af_purchase", eventValues)
-    ```
-  </Tab>
 </Tabs>
+
+<Tip>
+**Pro Tip**: Airbridge's SDK supports both web and app tracking with a single integration, which means you can measure the full user journey from your landing page through to in-app conversions. This is particularly useful if you run campaigns that send users to a website first before directing them to the app store.
+</Tip>
 
 ---
 
@@ -576,6 +612,7 @@ Use these standard event names across platforms for consistency:
     - **Meta**: Use the Events Manager "Test Events" tool
     - **Firebase**: Events appear in DebugView (enable with `-FIRAnalyticsDebugEnabled` launch argument)
     - **TikTok**: Set log level to debug in SDK config
+    - **Airbridge**: Use the Airbridge dashboard's real-time event viewer
     - **AppsFlyer**: Set `isDebug = true`
   </Step>
   <Step title="Trigger events on a real device">
@@ -586,6 +623,7 @@ Use these standard event names across platforms for consistency:
     - **Meta**: Events Manager > Test Events
     - **Firebase**: Analytics > DebugView (real-time) or Events (delayed 24-48 hours)
     - **TikTok**: Events Manager > App Events
+    - **Airbridge**: Dashboard > Real-time Logs
     - **AppsFlyer**: Dashboard > Activity Log
   </Step>
   <Step title="Test the full flow">

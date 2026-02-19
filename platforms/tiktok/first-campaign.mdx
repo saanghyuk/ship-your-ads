@@ -1,6 +1,7 @@
 ---
 title: "Your First TikTok Campaign"
 description: "Screen-by-screen walkthrough for creating your first TikTok ad campaign — objective selection, targeting, bidding, ad creation, Spark Ads, creative best practices, and Automated Creative Optimization."
+icon: "play"
 ---
 
 # Your First TikTok Campaign
@@ -287,6 +288,70 @@ If you have never made a TikTok before:
 
 <Tip>
 **Pro Tip**: If you are not comfortable on camera, use **screen recordings with voiceover**. Record yourself using your app while explaining what it does and why it is useful. Add text overlays for key points. This format is easy to produce, works well for app campaigns, and does not require any on-camera presence.
+</Tip>
+
+---
+
+## Campaign Optimization Tiers: The Optimization Ladder
+
+Now that you know how to create a campaign, let's talk about the **different levels of optimization** TikTok offers for app campaigns. This is set at the **Ad Group level** and determines what TikTok's algorithm is actually optimizing for.
+
+Think of it as telling TikTok how smart to be. At the basic level, you just say "get me installs." At the advanced level, you say "find me users who will spend the most money." The more advanced the instruction, the more data TikTok needs to deliver.
+
+### The Optimization Ladder (You Graduate Up Over Time)
+
+```mermaid
+graph LR
+    A["Install Optimization\n(Start here)"] --> B["App Event Optimization\n(AEO)"]
+    B --> C["Value-Based Optimization\n(VBO)"]
+    C --> D["Target ROAS\n(tROAS)"]
+
+    style A fill:#4CAF50,color:#fff
+    style B fill:#2196F3,color:#fff
+    style C fill:#9C27B0,color:#fff
+    style D fill:#FF5722,color:#fff
+```
+
+### Optimization Tiers Comparison Table
+
+| Optimization Tier | Where to Set It | What It Does | When to Use It | Pro Tip |
+|---|---|---|---|---|
+| **Install Optimization** | Ad Group → Optimization Goal = Install | Tells TikTok: "Find people who will install my app." The algorithm targets users most likely to download. (`optimization_goal = APP_INSTALL`) | Starting out. Your first campaigns. You need installs to build data. | Use Lowest Cost bidding to start. Get stable installs for 1-2 weeks before moving up. |
+| **App Event Optimization (AEO)** | Ad Group → Optimization Goal = App Event Optimization | Tells TikTok: "Find people who will install AND perform a specific action (purchase, subscribe, etc.)." (`optimization_goal = PURCHASE`, etc.) | Once you have consistent installs and are sending in-app events back via TikTok SDK. | Pick an event that fires frequently. If purchases are rare, try "Add to Cart" first to give TikTok more learning signals. |
+| **Value-Based Optimization (VBO)** | Ad Group → Optimization Goal = Value | Tells TikTok: "Find users who will generate the highest purchase value or ad revenue." Goes beyond AEO by prioritizing high-spenders. | Once you have 30+ purchase events with value data in any consecutive 7-day period. | VBO may reduce install volume but significantly increase revenue per user. Trust the algorithm and measure by ROAS, not CPI. |
+| **Target ROAS (tROAS)** | Ad Group → Optimization Goal = Value + ROAS bid | Tells TikTok: "Find high-value users AND hit this specific return target." Available with Highest Value or Target ROAS bidding. | When VBO is running well and you want to lock in a minimum ROAS. Currently available for Android app campaigns. | Start with a Target ROAS at or below your current observed ROAS. Setting it too aggressively will kill delivery. |
+
+### How It Works Under the Hood (API Reference)
+
+| Tier | Campaign Objective | optimization_goal | Bidding Strategy |
+|---|---|---|---|
+| Install Optimization | App Promotion | `APP_INSTALL` | Lowest Cost / Cost Cap / Bid Cap |
+| AEO | App Promotion | `PURCHASE`, `SUBSCRIBE`, etc. | Lowest Cost / Cost Cap |
+| VBO | App Promotion | `VALUE` | Highest Value |
+| Target ROAS | App Promotion | `VALUE` | Target ROAS |
+
+### The Progression Explained Like Talking to a Friend
+
+Imagine TikTok is a talent scout and you are a music producer:
+
+1. **Install Optimization** = "Go find me singers." TikTok brings you anyone who can carry a tune. Some are great, some are terrible. But you need to see a lot of people to figure out what "great" looks like.
+
+2. **AEO** = "Find me singers who can actually perform on stage." TikTok gets pickier — only brings you people who have performed live before. Fewer candidates, but each one is more likely to succeed.
+
+3. **VBO** = "Find me singers who will sell out stadiums." TikTok is now looking for superstars. You get fewer candidates, but each one has mega-hit potential.
+
+4. **Target ROAS** = "Find me stadium sellers, and make sure I earn $5 for every $1 I invest." The most specific ask. TikTok balances star quality with your budget reality.
+
+<Tip>
+**Start with Install Optimization.** Seriously. Every beginner wants to jump straight to AEO or VBO because it sounds smarter. But without enough install data, TikTok's algorithm is flying blind. Get 50+ conversions to exit the learning phase at the install level first. Then graduate up.
+</Tip>
+
+<Tip>
+**Key platform difference:** On TikTok, optimization tiers are set at the **Ad Group level**. This is similar to Meta (Ad Set level) but different from Google (Campaign level). You can run multiple ad groups within the same campaign with different optimization goals.
+</Tip>
+
+<Tip>
+**VBO eligibility:** TikTok requires at least **30 purchase conversion events with value** in any consecutive 7-day period before VBO becomes available. If you do not see the VBO option, you have not hit this threshold yet. Keep running AEO campaigns until you do.
 </Tip>
 
 ---

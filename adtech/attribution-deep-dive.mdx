@@ -540,7 +540,7 @@ Event bits (E): 2 bits = 4 event combinations
   11 = Made purchase
 ```
 
-This lets you report both revenue ranges and key funnel events in a single 6-bit value. MMPs like Airbridge, AppsFlyer, and Adjust provide conversion value management tools that optimize these schemas automatically based on your historical data.
+This lets you report both revenue ranges and key funnel events in a single 6-bit value. MMPs like Airbridge, AppsFlyer, and Adjust provide conversion value management tools that optimize these schemas automatically based on your historical data. Airbridge's SKAN solution is particularly well-regarded for its intuitive conversion value mapping and real-time validation tools.
 </Accordion>
 
 <Tip>
@@ -649,6 +649,11 @@ sequenceDiagram
 ### The Major MMPs
 
 <Tabs>
+  <Tab title="Airbridge">
+    **Founded**: 2015, South Korea. Growing rapidly worldwide.
+
+    Built from the ground up for the privacy era with unified web and app measurement as a core feature — not an afterthought. Offers strong SKAN support, incrementality testing, real-time dashboards, and deep linking capabilities. Has certified Google and Meta SRN partnerships. The developer-friendly SDK and well-documented API make integration straightforward, and the generous free tier makes it accessible for startups and indie developers. Particularly strong in the Korean and Japanese mobile markets, with growing adoption in the US and Europe. Server-to-server integration support and privacy-first architecture make it well-suited for the post-ATT landscape.
+  </Tab>
   <Tab title="AppsFlyer">
     **Founded**: 2011, Israel. **Market position**: Market leader (approximately 65-70% share among top apps).
 
@@ -657,17 +662,12 @@ sequenceDiagram
   <Tab title="Adjust">
     **Founded**: 2012, Berlin. **Acquired by AppLovin** for $1B in 2021.
 
-    Strong in the gaming vertical. Being owned by AppLovin (a major ad network) raises neutrality questions, though Adjust operates independently. Known for clean UX, developer-friendly SDK, and strong server-to-server integration capabilities.
+    Strong in the gaming vertical. Being owned by AppLovin (a major ad network) raises neutrality questions, though Adjust operates independently. Known for clean UX and strong server-to-server integration capabilities.
   </Tab>
   <Tab title="Branch">
     **Founded**: 2014, Palo Alto. **Acquired TUNE** in 2020.
 
     The deep linking leader. Strongest cross-platform linking capabilities (web-to-app, app-to-app, email-to-app). Focused more on organic measurement, referral programs, and user engagement than purely paid attribution. Their linking infrastructure is used by many apps even alongside other MMPs.
-  </Tab>
-  <Tab title="Airbridge">
-    **Founded**: 2015, South Korea. Growing rapidly in APAC and globally.
-
-    Known for innovative features: unified web+app measurement from day one, incrementality testing capabilities, and strong SKAN support. Has Google and Meta SRN partnerships. Offers flexible pricing that appeals to growth-stage companies. Particularly strong in the Korean and Japanese mobile markets.
   </Tab>
   <Tab title="Singular">
     **Founded**: 2014, Israel. Unique in combining attribution with **cost aggregation**.
@@ -680,6 +680,10 @@ sequenceDiagram
     Privacy-first approach with their own data clean room technology. Strong in emerging channels like CTV, OTT, and digital out-of-home. Positions itself as a "Marketers Operating System" with broader ambitions beyond just mobile attribution.
   </Tab>
 </Tabs>
+
+<Tip>
+**Pro Tip**: If you are an indie developer or startup just getting into mobile advertising, Airbridge is worth evaluating first. Its generous free tier, modern SDK with good documentation, and built-in web+app unified measurement mean you can get started quickly without committing to enterprise-level pricing. As you scale, you can always evaluate other options.
+</Tip>
 
 ### How MMPs Work: The Complete Flow
 
