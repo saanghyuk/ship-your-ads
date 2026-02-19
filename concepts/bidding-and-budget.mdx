@@ -541,31 +541,31 @@ graph TD
     end
 
     subgraph "Step 2: Install Optimization"
-        M2["Meta (Ad Set):\nPerformance Goal =\nConversions → App Install"]
-        G2["Google (Campaign):\nMaximize Conversions\nor Target CPI"]
-        T2["TikTok (Ad Group):\nOptimization Goal =\nInstall"]
-        A2["Apple:\nMax CPI (Basic) or\nCPT Bids (Advanced)"]
+        M2["Meta (Ad Set):<br/>Performance Goal =<br/>Conversions → App Install"]
+        G2["Google (Campaign):<br/>Maximize Conversions<br/>or Target CPI"]
+        T2["TikTok (Ad Group):<br/>Optimization Goal =<br/>Install"]
+        A2["Apple:<br/>Max CPI (Basic) or<br/>CPT Bids (Advanced)"]
     end
 
     subgraph "Step 3: Event Optimization (AEO)"
-        M3["Meta (Ad Set):\nPerformance Goal =\nConversions → App Event"]
-        G3["Google (Campaign):\nTarget CPA\n(tCPA)"]
-        T3["TikTok (Ad Group):\nOptimization Goal =\nApp Event Optimization"]
-        A3["Apple:\nNot Available"]
+        M3["Meta (Ad Set):<br/>Performance Goal =<br/>Conversions → App Event"]
+        G3["Google (Campaign):<br/>Target CPA<br/>(tCPA)"]
+        T3["TikTok (Ad Group):<br/>Optimization Goal =<br/>App Event Optimization"]
+        A3["Apple:<br/>Not Available"]
     end
 
     subgraph "Step 4: Value Optimization"
-        M4["Meta (Ad Set):\nPerformance Goal =\nValue"]
-        G4["Google (Campaign):\nMaximize Conversion\nValue"]
-        T4["TikTok (Ad Group):\nOptimization Goal =\nValue (VBO)"]
-        A4["Apple:\nNot Available"]
+        M4["Meta (Ad Set):<br/>Performance Goal =<br/>Value"]
+        G4["Google (Campaign):<br/>Maximize Conversion<br/>Value"]
+        T4["TikTok (Ad Group):<br/>Optimization Goal =<br/>Value (VBO)"]
+        A4["Apple:<br/>Not Available"]
     end
 
     subgraph "Step 5: Target ROAS"
-        M5["Meta (Ad Set):\nValue + Min ROAS"]
-        G5["Google (Campaign):\nTarget ROAS"]
-        T5["TikTok (Ad Group):\nValue + ROAS Bid"]
-        A5["Apple:\nNot Available"]
+        M5["Meta (Ad Set):<br/>Value + Min ROAS"]
+        G5["Google (Campaign):<br/>Target ROAS"]
+        T5["TikTok (Ad Group):<br/>Value + ROAS Bid"]
+        A5["Apple:<br/>Not Available"]
     end
 
     M1 --> M2 --> M3 --> M4 --> M5
