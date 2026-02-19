@@ -4,14 +4,18 @@
   "name": "Ship Your Ads",
   "description": "The friendliest digital advertising guide for vibe coders. Zero to hero, one step at a time.",
   "colors": {
-    "primary": "#6366F1",
-    "light": "#818CF8",
-    "dark": "#4F46E5"
+    "primary": "#8B5CF6",
+    "light": "#A78BFA",
+    "dark": "#7C3AED"
   },
   "icons": {
     "library": "lucide"
   },
-  "favicon": "/favicon.png",
+  "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/images/logo-light.svg",
+    "dark": "/images/logo-dark.svg"
+  },
   "navigation": {
     "tabs": [
       {

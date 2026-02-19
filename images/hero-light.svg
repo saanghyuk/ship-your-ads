@@ -1,6 +1,33 @@
-<svg width="800" height="200" viewBox="0 0 800 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="800" height="200" rx="16" fill="#F5F3FF"/>
-  <text x="400" y="90" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="bold" fill="#4F46E5">Ship Your Ads</text>
-  <text x="400" y="130" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#6B7280">The friendliest ad guide for vibe coders</text>
-  <text x="400" y="165" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="32">🚀</text>
+<svg width="800" height="260" viewBox="0 0 800 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="800" y2="260">
+      <stop offset="0%" stop-color="#EEF2FF"/>
+      <stop offset="40%" stop-color="#FCE7F3"/>
+      <stop offset="100%" stop-color="#FFF7ED"/>
+    </linearGradient>
+    <linearGradient id="titleGrad" x1="200" y1="0" x2="600" y2="0">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="50%" stop-color="#EC4899"/>
+      <stop offset="100%" stop-color="#F97316"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="260" rx="20" fill="url(#bgGrad)"/>
+  <!-- Decorative circles -->
+  <circle cx="80" cy="50" r="60" fill="#C7D2FE" opacity="0.3"/>
+  <circle cx="720" cy="200" r="80" fill="#FBCFE8" opacity="0.3"/>
+  <circle cx="650" cy="40" r="30" fill="#FED7AA" opacity="0.4"/>
+  <circle cx="150" cy="210" r="40" fill="#C7D2FE" opacity="0.2"/>
+  <!-- Emoji decorations -->
+  <text x="120" y="75" font-size="28" opacity="0.7">📱</text>
+  <text x="660" y="60" font-size="24" opacity="0.7">💡</text>
+  <text x="700" y="220" font-size="26" opacity="0.6">📊</text>
+  <text x="80" y="220" font-size="22" opacity="0.6">🎯</text>
+  <!-- Main content -->
+  <text x="400" y="95" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="800" fill="url(#titleGrad)">Ship Your Ads</text>
+  <text x="400" y="140" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#6B7280">The friendliest ad guide for vibe coders</text>
+  <!-- Rocket -->
+  <text x="400" y="195" text-anchor="middle" font-size="44">🚀</text>
+  <!-- Tagline pill -->
+  <rect x="285" y="210" width="230" height="32" rx="16" fill="#6366F1" opacity="0.1"/>
+  <text x="400" y="232" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#6366F1">Zero to first campaign in one read</text>
 </svg>
