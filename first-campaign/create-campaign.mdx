@@ -1,197 +1,512 @@
 ---
 title: "Create Your Campaign"
-description: "Follow these exact steps to launch your first ad campaign. No guessing required."
+description: "The complete, click-by-click guide to creating and launching your first ad campaign. No guessing required."
 ---
 
-## Let's do this
+## Let's launch your first ad!
 
-You have tracking set up. You have creatives ready. Let's launch your first campaign.
+This is the moment you have been building toward. You have your app live, your store listing polished, your payment method ready, your creatives prepared, and your tracking installed. Now it is time to actually create a campaign and put your app in front of real people.
 
-Pick your platform below and follow along:
+Take a deep breath. We are going to walk through every single step together.
 
-<Tabs>
-  <Tab title="Meta Ads">
-    ## Meta: Your first campaign in 10 steps
+<Note>
+  **This guide covers the generic campaign creation flow** that applies to any platform. We include platform-specific details where they matter, but the overall structure is the same everywhere: **choose an objective, define your audience, set your budget, upload your creatives, and launch.**
+</Note>
 
-    <Steps>
-      <Step title="Go to Meta Ads Manager">
-        Open [adsmanager.facebook.com](https://adsmanager.facebook.com) and click **+ Create**.
-      </Step>
+---
 
-      <Step title="Choose your objective: App Promotion">
-        Select **"App promotion"** → **"App installs"**.
-        This tells Meta to find people most likely to install your app.
-      </Step>
+## Step 1: Choose your campaign objective
 
-      <Step title="Name your campaign">
-        Use a clear naming convention:
-        ```
-        [App Name] - [Objective] - [Date]
-        Example: MyApp - Installs - 2024-01
-        ```
-        Turn on **Advantage Campaign Budget** and set $15/day.
-      </Step>
+Every ad platform starts by asking: **"What do you want to achieve?"** This is your campaign objective, and it is the single most important setting in your entire campaign.
 
-      <Step title="Select your app">
-        Choose your app from the dropdown. If it's not there, register it in the Facebook Developer portal first.
-      </Step>
+### What each objective means
 
-      <Step title="Set up your Ad Set — Audience">
-        - **Location:** Your target country (start with one)
-        - **Age:** 18-45 (start broad)
-        - **Interests:** Add 2-3 relevant interests
-        - **Placements:** Choose **Advantage+ placements** (let Meta decide)
+| Objective | What it does | When to use it |
+|-----------|-------------|----------------|
+| **App Installs** | Finds people most likely to install your app | Your first campaign (this is what you want!) |
+| **App Engagement** | Finds people who already installed and brings them back | Later, after you have users |
+| **Brand Awareness** | Shows your ad to as many people as possible | Not for app campaigns |
+| **Traffic** | Sends people to a website | Not for app campaigns |
+| **Conversions / App Events** | Finds people likely to take a specific action (sign up, purchase) | After you have 50+ daily conversions |
 
-        <Tip>
-          Your audience size should show **1M-10M people**. If it's under 500K, you're too narrow.
-        </Tip>
-      </Step>
+<Warning>
+  **For your first campaign, ALWAYS choose "App Installs" (or "App Promotion" on some platforms).** Do NOT choose "Conversions" or "App Events" yet. Those objectives require historical data to work well. Without enough data, the algorithm will not know what to optimize for and your campaign will perform poorly.
+</Warning>
 
-      <Step title="Set up your Ad — Creative">
-        - Upload your **image or video**
-        - Write your **primary text** (keep it under 125 characters)
-        - Write a **headline** (keep it punchy, under 40 characters)
-        - Select CTA: **"Install Now"**
-      </Step>
+### Where to find this setting on each platform
 
-      <Step title="Add more ad variations">
-        Duplicate your ad and change ONE thing each time:
-        - Ad 2: Different image/video
-        - Ad 3: Different primary text
-        - Ad 4: Different headline
+- **Meta:** Click "+ Create" > Select "App promotion" > Choose "App installs"
+- **Google:** Click "+ New campaign" > Select "App promotion" > Choose "App installs"
+- **TikTok:** Click "Create" > Campaign objective > "App Install"
+- **Apple Search Ads:** The objective is always App Store search installs (no other option)
 
-        Meta will automatically show the best-performing one more.
-      </Step>
+<Tip>
+  **Pro Tip:** Some platforms offer sub-objectives like "Maximize number of installs" vs "Maximize value of installs." For your first campaign, always pick "Maximize number of installs." You want volume first, quality optimization later.
+</Tip>
 
-      <Step title="Review everything">
-        Double-check:
-        - ✅ Correct app selected
-        - ✅ Budget is what you intended
-        - ✅ Audience looks right
-        - ✅ Creatives look good in preview
-        - ✅ Payment method is set
-      </Step>
+---
 
-      <Step title="Hit Publish">
-        Click **"Publish"**. Your campaign will go into review (usually 15 min - 24 hours).
-      </Step>
+## Step 2: Name your campaign (do not skip this!)
 
-      <Step title="Wait and don't touch anything">
-        Seriously. **Do not change anything for 3-5 days.**
-        Check your results once a day, but don't tweak.
-        The algorithm needs time to learn.
-      </Step>
-    </Steps>
-  </Tab>
+This seems trivial, but good naming saves you hours of confusion later when you have multiple campaigns.
 
-  <Tab title="Google Ads">
-    ## Google: Your first App campaign
+### Recommended naming convention
 
-    <Steps>
-      <Step title="Go to Google Ads">
-        Open [ads.google.com](https://ads.google.com) and click **+ New Campaign**.
-      </Step>
+```
+[App Name] - [Platform] - [Objective] - [Date] - [Audience/Note]
+```
 
-      <Step title="Choose objective: App promotion">
-        Select **"App promotion"** → **"App installs"**.
-      </Step>
+**Examples:**
+- `MyApp - Meta - Installs - 2026-02 - US Broad`
+- `MyApp - Google - Installs - 2026-02 - English`
+- `MyApp - TikTok - Installs - 2026-02 - Test1`
+- `MyApp - ASA - Installs - 2026-02 - Brand Keywords`
 
-      <Step title="Select your app">
-        Search for your app by name or paste the store URL.
-      </Step>
+### For ad sets / ad groups (the level below campaigns)
 
-      <Step title="Name and set budget">
-        Name your campaign clearly. Set a daily budget of **$15-20/day**.
-        Choose **"Target cost per install"** and set it to your target CPI (start with $2-3).
-      </Step>
+```
+[Targeting description] - [Creative type]
+```
 
-      <Step title="Set targeting">
-        - **Locations:** Your target countries
-        - **Languages:** Languages your app supports
-        - Google App campaigns handle most targeting automatically.
-      </Step>
+**Examples:**
+- `US 18-45 Broad - Video Ads`
+- `US Fitness Interest - Image Ads`
 
-      <Step title="Add your ad assets">
-        Google App campaigns are unique — you provide **building blocks** and Google assembles them:
+<Tip>
+  **Pro Tip from media buyers:** Always include the date in your campaign name. When you look back at your campaigns in 3 months, you will be grateful you can quickly see when each one launched. Some advertisers also add the budget in the name (e.g., "$15/day").
+</Tip>
 
-        - **2-5 headlines** (max 30 characters each)
-        - **2-5 descriptions** (max 90 characters each)
-        - **Up to 20 images** (landscape, portrait, square)
-        - **Up to 20 videos** (or Google uses your Play Store assets)
-      </Step>
+---
 
-      <Step title="Review and launch">
-        Check everything and click **"Create Campaign"**.
-      </Step>
+## Step 3: Select your app
 
-      <Step title="Wait for the learning phase">
-        Google App campaigns need **2-3 weeks** and **~100 conversions** to fully optimize.
-        Be patient.
-      </Step>
-    </Steps>
+Every platform needs to know which app you are advertising. Here is what to expect:
+
+- **Meta:** Select from a dropdown of apps registered in your Facebook Developer account. If your app is not there, go back to [Set Up Tracking](/first-campaign/set-up-tracking) and register it first.
+- **Google:** Search for your app by name or paste the Play Store / App Store URL.
+- **TikTok:** Select from apps registered in your TikTok Events Manager.
+- **Apple Search Ads:** Select from apps under your Apple Developer account.
+
+<Warning>
+  **Make sure you select the correct app and the correct platform (iOS vs Android).** If you are running on both iOS and Android, you typically need **separate campaigns** for each. Start with whichever platform has more of your target users.
+</Warning>
+
+---
+
+## Step 4: Set up your audience / targeting
+
+This is where you tell the platform WHO should see your ads. The golden rule for beginners:
+
+<Note>
+  **Start BROAD.** The ad platform's algorithm is smarter than you think. Give it room to find the best audience for you. You can narrow things down later once you have data.
+</Note>
+
+### Location targeting
+
+| What to set | Recommendation |
+|-------------|----------------|
+| **Countries** | Start with ONE country. Pick the country where most of your target users live. |
+| **If global app** | Start with the US, UK, Canada, or Australia (English-speaking, high-value users) |
+| **If local app** | Target your specific country or region |
+
+**Do NOT target "Worldwide" on your first campaign.** Costs and user behavior vary wildly between countries. Start focused.
+
+### Age and gender targeting
+
+| Setting | Recommendation |
+|---------|----------------|
+| **Age** | 18-45 (start broad) |
+| **Gender** | All genders (unless your app is very gender-specific, like a pregnancy tracker) |
+
+### Interest and behavior targeting
+
+This is where things get interesting. Each platform has different targeting options:
+
+**Meta (the most detailed targeting):**
+- Add 2-3 broad interest categories relevant to your app
+- Example for a meditation app: "Meditation," "Yoga," "Mental health"
+- Example for a cooking app: "Cooking," "Recipes," "Food & drink"
+- Example for a finance app: "Personal finance," "Investing," "Budgeting"
+- Your estimated audience size should be **1 million - 10 million people**
+
+**Google:**
+- Google App campaigns handle targeting automatically. You just set location and language. Google's AI does the rest.
+
+**TikTok:**
+- Similar to Meta. Add 2-3 interest categories.
+- TikTok also offers "Behavior" targeting based on video interaction patterns.
+
+**Apple Search Ads:**
+- Targeting is keyword-based (what people search in the App Store), not interest-based.
+- For Basic: Apple chooses keywords automatically.
+- For Advanced: You pick specific keywords to bid on.
+
+### Placement targeting
+
+"Placements" means where your ad appears (e.g., Instagram Feed, Facebook Stories, TikTok For You page).
+
+| Platform | Recommendation |
+|----------|----------------|
+| **Meta** | Use **Advantage+ Placements** (let Meta decide). This is the default and it works best. |
+| **Google** | No placement control. Google distributes across Search, YouTube, Play Store, and Display automatically. |
+| **TikTok** | Use **Automatic Placement** if available, or select "TikTok" feed. |
+| **Apple Search Ads** | Only one placement: App Store search results. |
+
+<Tip>
+  **Pro Tip:** Resist the urge to manually select placements on your first campaign. Beginners often think "I only want Instagram Feed" or "Only TikTok Feed." But by limiting placements, you reduce the algorithm's ability to find cheap installs wherever they may be. Trust the system for now.
+</Tip>
+
+---
+
+## Step 5: Set your budget and schedule
+
+### Daily budget recommendations
+
+| Platform | Minimum | Our recommendation | Why |
+|----------|---------|-------------------|-----|
+| **Meta** | $5/day | **$15-20/day** | Enough for the algorithm to learn, not so much that you are scared |
+| **Google** | No official minimum | **$15-30/day** | Google needs more data volume; slightly higher budget helps |
+| **TikTok** | $20/day per ad group | **$20-50/day** | TikTok's minimum is $20, so that is your floor |
+| **Apple Search Ads** | No minimum | **$10-20/day** | Pay per tap, so costs are more predictable |
+
+### Campaign budget vs ad set budget
+
+Some platforms let you set budget at the campaign level OR the ad set (ad group) level:
+
+- **Campaign budget (recommended for beginners):** You set ONE budget for the whole campaign. The platform distributes it across your ad sets automatically based on performance.
+- **Ad set budget:** You manually set a budget for each ad set. More control, but harder to manage.
+
+**On Meta:** Turn on **"Advantage Campaign Budget"** — this is the campaign-level option and it works great.
+
+### Schedule settings
+
+| Setting | Recommendation |
+|---------|----------------|
+| **Start date** | Today or tomorrow (no need to wait) |
+| **End date** | Leave open (no end date). You can pause manually whenever you want. |
+| **Time of day** | Run ads all day. Do NOT use ad scheduling for your first campaign. |
+
+<Tip>
+  **Pro Tip:** Want a safety net? Set an **end date 7 days out** and a **campaign spending limit** equal to 7x your daily budget. This way, even if you forget about the campaign, it will stop automatically after a week.
+</Tip>
+
+### Bid strategy
+
+Most platforms offer different bid strategies. For beginners:
+
+| Platform | Recommended bid strategy |
+|----------|------------------------|
+| **Meta** | "Highest volume" (formerly "Lowest cost") — gets the most installs for your budget |
+| **Google** | "Target CPI" — set your target cost per install ($2-3 is a good starting point) |
+| **TikTok** | "Lowest cost" — lets TikTok optimize for the cheapest installs |
+| **Apple Search Ads Basic** | Set a "Max Cost Per Install" — Apple will never exceed this. Start at $2-3. |
+
+---
+
+## Step 6: Create your ads (the creative part!)
+
+Now for the fun part: building the actual ads people will see. This is where your creative assets come into play.
+
+### General ad creation flow
+
+<Steps>
+  <Step title="Upload your image or video">
+    Select the creative assets you prepared earlier.
+
+    **For Meta:**
+    - Upload 1 image (1080x1080 or 1080x1350) or 1 video (1080x1920 for Stories/Reels)
+    - The platform will automatically adapt the creative to different placements
+    - Preview how it looks in Feed, Stories, and Reels before continuing
+
+    **For Google:**
+    - Upload multiple images in different formats (landscape, square, portrait)
+    - Upload a video if you have one (Google will also grab your Play Store assets)
+    - Google assembles these into ads automatically
+
+    **For TikTok:**
+    - Upload a vertical video (1080x1920)
+    - Video is required — no image-only ads on TikTok
+    - Add music or TikTok-native sounds for better performance
+
+    **For Apple Search Ads:**
+    - Apple uses your App Store screenshots automatically
+    - No creative upload needed (this is why your App Store listing matters so much!)
+  </Step>
+
+  <Step title="Write your ad copy">
+    Ad copy is the text that appears with your image or video. Here is what you need:
+
+    **Primary text (the main message):**
+    - Keep it short: 1-2 sentences, under 125 characters
+    - Focus on ONE benefit, not a list of features
+    - Use language your users would use, not marketing jargon
+
+    Good examples:
+    - "Track your habits in 10 seconds flat. The #1 habit app for people who hate habit apps."
+    - "Finally, a budget app that actually makes sense. Join 50K+ users saving more."
+    - "Learn guitar at your own pace. No music theory required."
+
+    Bad examples:
+    - "Download our revolutionary AI-powered habit tracking application today!" (too corporate)
+    - "Features: habit tracking, reminders, analytics, social sharing, themes..." (feature dump)
+    - "The best app ever made!!!" (means nothing)
+
+    **Headline (short and punchy):**
+    - Max 40 characters
+    - Should complement (not repeat) your primary text
+    - Examples: "Build Better Habits," "Save Without Stress," "Guitar Made Easy"
+
+    **Call-to-Action (CTA) button:**
+    - For app install campaigns, use **"Install Now"** or **"Download"**
+    - This is usually a dropdown selection, not custom text
+
+    <Tip>
+      **Pro Tip from creative strategists:** The best ad copy answers this question in the reader's mind: "What's in it for ME?" Every sentence should be about the user's benefit, not your app's features. "Track 50 habits" is a feature. "Never forget your goals again" is a benefit.
+    </Tip>
+  </Step>
+
+  <Step title="Create 3-4 ad variations">
+    This is crucial. Do NOT create just one ad. Create at least 3 variations so the platform can test which performs best.
+
+    Here is a simple framework for your first 3-4 ads:
+
+    | Ad # | What to change | Example approach |
+    |------|---------------|-----------------|
+    | Ad 1 | Your best guess | The angle you think will work best |
+    | Ad 2 | Different image/video | Same text, completely different visual |
+    | Ad 3 | Different angle/benefit | Highlight a different value proposition |
+    | Ad 4 (optional) | Different format | If Ad 1 was an image, try a video (or vice versa) |
+
+    **On Meta:** You can duplicate an ad within the ad set and change one element at a time.
+    **On Google:** You provide multiple headlines, descriptions, and images — Google creates combinations automatically.
+    **On TikTok:** Create multiple ads within the same ad group.
 
     <Warning>
-      Google App campaigns give you **less control** than Meta. You can't choose exact placements or audiences.
-      Google's AI handles it. This can feel frustrating, but it often works well.
+      **Change ONE thing at a time between variations.** If Ad 1 and Ad 2 have different images AND different text, you will not know which change made the difference. Keep the text the same and change the image, OR keep the image the same and change the text.
     </Warning>
-  </Tab>
+  </Step>
 
-  <Tab title="Apple Search Ads">
-    ## Apple: The simplest first campaign
+  <Step title="Preview your ads">
+    Before publishing, preview how your ads will look to users:
 
-    <Steps>
-      <Step title="Go to Apple Search Ads">
-        Open [searchads.apple.com](https://searchads.apple.com) and sign in with your Apple Developer account.
-      </Step>
+    - **Meta:** Click "Preview" in the ad editor. Check how it looks in Feed, Stories, and Reels.
+    - **Google:** Google shows a preview of how your assets might be combined.
+    - **TikTok:** Preview in the ad creation flow.
+    - **Apple Search Ads:** Preview by searching for your app in the App Store.
 
-      <Step title="Choose Search Ads Basic or Advanced">
-        - **Basic:** Apple does everything. You set a budget and max CPI. That's it.
-        - **Advanced:** You pick keywords and control more.
+    Check for:
+    - Text is not cut off
+    - Image/video looks good on a small phone screen
+    - No spelling or grammar mistakes
+    - The overall message makes sense in 2 seconds or less
+  </Step>
+</Steps>
 
-        <Tip>**Start with Basic.** It takes 5 minutes and works surprisingly well.</Tip>
-      </Step>
+---
 
-      <Step title="Select your app">
-        Choose your app from the list.
-      </Step>
+## Step 7: Review everything before launching
 
-      <Step title="Set your budget">
-        - Monthly budget: **$200-500** to start
-        - Max CPI: **$1-3** (what you're willing to pay per install)
-      </Step>
+This is your last chance to catch mistakes before real money starts flowing. Go through this checklist:
 
-      <Step title="Choose countries">
-        Pick the countries where your app is available.
-      </Step>
+### The pre-publish checklist
 
-      <Step title="Launch">
-        That's it. Click **"Start Campaign"**.
-        Apple will automatically show your app to people searching relevant terms.
-      </Step>
-    </Steps>
-  </Tab>
-</Tabs>
+- [ ] **Correct app** is selected (iOS vs Android, correct app if you have multiple)
+- [ ] **Campaign objective** is "App Installs"
+- [ ] **Budget** is what you intended ($15-20/day for most beginners)
+- [ ] **Targeting** looks reasonable (not too broad, not too narrow)
+- [ ] **Location** is correct (right country/countries)
+- [ ] **Creatives** look good in the preview (no cut-off text, clear images)
+- [ ] **Ad copy** has no typos
+- [ ] **Payment method** is set up and has sufficient funds
+- [ ] **Tracking** is installed and verified working (from the previous step)
+- [ ] **Account spending limit** is set (optional but recommended safety measure)
+- [ ] **Campaign name** follows your naming convention
 
-## What happens next?
+<Tip>
+  **Pro Tip:** Read your ad copy out loud. If it sounds weird when spoken, it will feel weird when read. Good ad copy sounds like something a friend would text you, not something a corporation would announce.
+</Tip>
 
-After your campaign launches:
+---
 
-| Timeframe | What to expect | What to do |
-|-----------|---------------|------------|
-| **Hours 1-24** | Campaign in review | Nothing. Wait. |
-| **Day 1-2** | First impressions and clicks | Check but don't change anything |
-| **Day 3-5** | Algorithm learning | Still don't change anything |
-| **Day 5-7** | Patterns emerge | Look at the data |
-| **Day 7+** | Stable performance | Now you can start optimizing |
+## Step 8: Hit publish!
 
-## Next up
+You have checked everything. It is time.
 
-Before you go live, run through the final checklist.
+<Steps>
+  <Step title="Click the publish/launch button">
+    - **Meta:** Click **"Publish"** in the bottom right
+    - **Google:** Click **"Create Campaign"** at the bottom
+    - **TikTok:** Click **"Submit"**
+    - **Apple Search Ads:** Click **"Start Campaign"**
+
+    Congratulations. You just launched your first ad campaign!
+  </Step>
+
+  <Step title="Understand what happens next">
+    Your campaign does NOT go live instantly. Here is what happens:
+
+    **Meta:**
+    - Your ads enter a review process
+    - For new advertiser accounts, this can take **24-48 hours**
+    - For established accounts, typically 15 minutes to a few hours
+    - You will see the status as "In Review" in Ads Manager
+
+    **Google:**
+    - Ads go through review, typically within **1 business day**
+    - Status shows as "Eligible" or "Under Review"
+
+    **TikTok:**
+    - Review typically takes 24-48 hours
+    - Status shows as "In Review"
+
+    **Apple Search Ads:**
+    - Usually approved within a few hours
+    - Can start running almost immediately
+  </Step>
+
+  <Step title="Don't panic if your ad is rejected">
+    Ad rejections happen to everyone, especially on the first try. Common reasons:
+
+    | Reason | What it means | How to fix |
+    |--------|--------------|------------|
+    | **Policy violation** | Your ad text or image broke a rule | Read the specific policy cited, edit your ad, resubmit |
+    | **Landing page mismatch** | Your ad promises something your app page does not deliver | Align your ad copy with your App Store listing |
+    | **Prohibited content** | Certain claims (like health cures) are restricted | Remove the specific claim |
+    | **Low quality** | Image is blurry, text covers too much of the image | Use higher-quality assets |
+
+    If rejected, the platform will tell you why. Fix the issue and resubmit. It is not a big deal.
+  </Step>
+</Steps>
+
+---
+
+## Step 9: What to do after publishing
+
+This is where most beginners make their biggest mistake. They launch and immediately start obsessing over the dashboard. Here is what you should actually do:
+
+### The first 24 hours
+
+- **Check your campaign status once** to make sure it moved from "In Review" to "Active"
+- If it is still "In Review" after 24 hours (48 hours for Meta with new accounts), that is normal. Wait.
+- If it was approved, you might start seeing impressions and clicks. Great!
+- **Do NOT change anything.** Not the budget, not the targeting, not the creative. Nothing.
+
+### Days 2-3
+
+- Check your dashboard **once per day** (yes, only once)
+- You will see metrics starting to appear: impressions, clicks, installs, CPI
+- Your CPI will probably be higher than you expected. This is normal during the learning phase.
+- **Still do NOT change anything.**
+
+### Days 4-5
+
+- The algorithm is learning and costs should start coming down
+- You might notice certain ads performing better than others
+- If you have zero installs after 5 days with $15+/day spend, something might be wrong (check the troubleshooting section below)
+- **Still do NOT change anything** (we know this is hard)
+
+### Days 6-7
+
+- Now you can start looking at data meaningfully
+- Check which ad variation is performing best
+- Look at your CPI — is it within a reasonable range for your category?
+- **Now** you can start thinking about changes (but save those for the [Launch Checklist](/first-campaign/launch-checklist))
+
+<Warning>
+  **The #1 beginner mistake: changing things during the learning phase.** Every time you change your budget, targeting, or creative during the first 3-5 days, the algorithm's learning resets and starts over. This is like pulling a cake out of the oven every 5 minutes to check if it is done — you will ruin it.
+</Warning>
+
+<Tip>
+  **Pro Tip from performance marketing managers:** Delete the Ads Manager app from your phone for the first 5 days. Seriously. The temptation to check every hour is real, and it leads to bad decisions. Check from your computer once per day, note the numbers, and close the tab.
+</Tip>
+
+---
+
+## Troubleshooting common issues
+
+<AccordionGroup>
+  <Accordion title="My campaign has been 'In Review' for over 48 hours">
+    **For Meta:** New advertiser accounts can take longer. If it has been over 48 hours:
+    1. Check that your payment method is valid
+    2. Check that your ad does not violate any policies
+    3. Contact Meta support through the Ads Manager "Help" section
+
+    **For Google:** If over 1 business day, check for policy violations in the Ads dashboard.
+
+    **For TikTok:** Contact TikTok Ads support through the Ads Manager.
+  </Accordion>
+
+  <Accordion title="My ads are running but I have zero installs">
+    If you have been spending money (impressions and clicks are happening) but have zero installs after 3-5 days:
+
+    1. **Check your App Store listing.** People are clicking but not installing, which means your store page is not convincing them.
+    2. **Check your tracking.** Maybe installs are happening but not being tracked. Open your app on a test device and verify events appear.
+    3. **Check your audience.** Is your targeting too narrow? Expand it.
+    4. **Check your creative.** Maybe your ad is misleading and people click expecting something different than what they find.
+  </Accordion>
+
+  <Accordion title="My CPI is really high ($10+)">
+    A high CPI in the first few days is normal. But if it stays high after 7 days:
+
+    1. **Test new creatives.** This is the #1 lever. Bad creative = expensive installs.
+    2. **Broaden your targeting.** Too-narrow audiences are more expensive.
+    3. **Check your App Store listing.** High CTR (clicks) but low CVR (installs) means your listing needs work.
+    4. **Check your bid strategy.** Make sure you are using "Highest volume" / "Lowest cost," not a manual bid that is too high.
+  </Accordion>
+
+  <Accordion title="I accidentally set the wrong budget">
+    Do not panic. You can change the budget at any time:
+
+    - **Meta:** Go to your campaign, click the budget amount, change it
+    - **Google:** Campaign settings > Budget
+    - **TikTok:** Campaign settings > Budget
+    - **Apple Search Ads:** Campaign settings > Budget
+
+    Note: Changing the budget WILL reset the learning phase on some platforms. If you are in the first few days, it might be better to pause the campaign and create a new one with the correct budget.
+  </Accordion>
+
+  <Accordion title="My ad was rejected">
+    Read the rejection reason carefully. The most common fixes:
+
+    1. Remove any health claims ("lose 10 pounds" or "cure anxiety")
+    2. Remove before/after imagery that implies transformation
+    3. Remove profanity or inappropriate language
+    4. Make sure your landing page (App Store listing) matches what the ad promises
+    5. Ensure images are high quality and text does not cover more than 20% of the image (Meta guideline)
+    6. Fix the issue, then resubmit. Resubmission review is usually faster than initial review.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Quick recap: Your campaign creation flow
+
+Here is the entire process summarized:
+
+| Step | What you did | Time |
+|------|-------------|------|
+| 1. Choose objective | Selected "App Installs" | 1 minute |
+| 2. Name campaign | Used a clear naming convention | 1 minute |
+| 3. Select app | Picked your app from the dropdown | 1 minute |
+| 4. Set audience | Targeted 1 country, broad age range, 2-3 interests | 5 minutes |
+| 5. Set budget | $15-20/day, campaign-level budget | 2 minutes |
+| 6. Create ads | Uploaded creatives, wrote ad copy, made 3-4 variations | 20-30 minutes |
+| 7. Review | Checked everything against the pre-publish checklist | 5 minutes |
+| 8. Publish | Clicked the button! | 1 second |
+| 9. Wait | Let the algorithm learn for 5-7 days | Patience |
+
+**Total active time: about 40 minutes. Not bad for launching your first ad campaign.**
+
+---
+
+## One more step before you celebrate
+
+Before you lean back and wait, let's run through the final launch checklist to make sure absolutely nothing was missed.
 
 <Card
-  title="Launch Checklist →"
+  title="Launch Checklist"
   icon="arrow-right"
   href="/first-campaign/launch-checklist"
 >
-  The final pre-launch checklist to make sure everything is perfect.
+  The final pre-launch and post-launch checklist. Make sure everything is perfect, and learn what to expect in your first week.
 </Card>

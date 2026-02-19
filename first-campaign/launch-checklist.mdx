@@ -1,58 +1,401 @@
 ---
 title: "Launch Checklist"
-description: "The final pre-flight check before your first campaign goes live."
+description: "The final pre-launch and post-launch checklist. Everything to check before going live, what to expect in your first week, and when to make your first optimization."
 ---
 
-## The Launch Checklist
+## The ultimate launch checklist
 
-Print this. Screenshot this. Tape it to your monitor.
+You are moments away from launching your first ad campaign (or maybe you just launched and are nervously checking in). Either way, this page is your companion for the next 7-14 days. Bookmark it. You will want to come back.
 
-### Before launch
+---
 
-- [ ] **App is live** on the App Store / Play Store
-- [ ] **App Store listing** looks professional (icon, screenshots, description)
-- [ ] **Tracking SDK** is installed and verified working
-- [ ] **Payment method** is added to the ad platform
-- [ ] **Creatives** are ready (3+ variations)
-- [ ] **Budget** is set (start with $10-20/day)
-- [ ] **Targeting** is configured (broad, not too narrow)
-- [ ] **Campaign objective** is "App Installs"
-- [ ] **Ad preview** looks good on mobile
+## Part 1: Pre-launch checklist (before you hit Publish)
 
-### After launch
+Go through every single item. If anything is not checked, fix it before launching.
 
-- [ ] Campaign status shows **"Active"** (not "In Review" or "Rejected")
-- [ ] First **impressions** are showing up (check after 2-4 hours)
-- [ ] **Don't touch anything** for 3-5 days
-- [ ] Check results **once per day** (not every hour)
-- [ ] After 5-7 days, review and decide: scale, optimize, or try new creative
+### App readiness
 
-### If something goes wrong
+- [ ] **App is live** and downloadable on the App Store / Google Play Store
+- [ ] **App does not crash** on launch (test on a real device right now)
+- [ ] **Core features work** — try the main user flow end to end
+- [ ] **App Store listing is optimized:** professional icon, 5+ screenshots with captions, benefit-focused description
+- [ ] **You have 5+ ratings** on the store (even from friends/family)
+- [ ] **Deep links work** (if applicable) — clicking the ad takes users to the right place
 
-| Problem | Solution |
-|---------|----------|
-| Ad rejected | Read the rejection reason. Usually it's a policy issue — fix the creative and resubmit |
-| No impressions after 24h | Check if your audience isn't too small or budget too low |
-| High CPI ($5+) | Your creative probably isn't resonating. Try new creatives |
-| Lots of clicks but no installs | Your App Store listing needs work |
-| Campaign stuck in review | Wait 48h, then contact platform support |
+<Tip>
+  **Pro Tip:** Do a fresh install of your app from the store right before launching ads. This simulates exactly what new users from your ads will experience. If anything feels clunky during onboarding, fix it now. Every friction point costs you installs.
+</Tip>
 
-## Congratulations!
+### Tracking readiness
 
-If you made it here, you've done something most developers never do: **you actually shipped your ads.**
+- [ ] **Tracking SDK is installed** for your chosen ad platform
+- [ ] **Test events are appearing** in the platform's dashboard (install event, app open event)
+- [ ] **Custom events are working** (if you added sign-up, purchase, or other events)
+- [ ] **iOS ATT popup is implemented** (if running on iOS)
+- [ ] **You tested on a real device** (not a simulator)
+
+### Account and payment readiness
+
+- [ ] **Ad platform account is set up** and verified
+- [ ] **Payment method is added** and working (charge a small test if possible)
+- [ ] **Account spending limit is set** (recommended: $200-300 for your first month)
+- [ ] **You know your ad platform login credentials** (sounds obvious, but double-check)
+
+### Campaign settings
+
+- [ ] **Campaign objective** is "App Installs" (not traffic, awareness, or conversions)
+- [ ] **Campaign name** follows a clear naming convention
+- [ ] **Correct app** is selected (right platform: iOS vs Android)
+- [ ] **Budget** is set to your intended amount ($15-20/day for most beginners)
+- [ ] **Bid strategy** is set to "Highest volume" or "Lowest cost"
+- [ ] **Schedule** has the right start date (today or tomorrow)
+- [ ] **End date or spending limit** is set as a safety net
+
+### Targeting settings
+
+- [ ] **Location** targets ONE country to start
+- [ ] **Age range** is broad (18-45 or 18-65)
+- [ ] **Gender** is set to All (unless your app is very gender-specific)
+- [ ] **Interests** include 2-3 broad, relevant categories (not 15 hyper-specific ones)
+- [ ] **Estimated audience size** is 1M-10M people (not too small, not the entire world)
+- [ ] **Placements** are set to Automatic / Advantage+ (let the platform decide)
+
+### Creative and ad copy
+
+- [ ] **At least 3 ad variations** are created
+- [ ] **Images/videos are high quality** (not blurry, not pixelated)
+- [ ] **Ad copy has no typos** or grammatical errors
+- [ ] **Ad copy focuses on benefits**, not features
+- [ ] **Call-to-action** is "Install Now" or "Download"
+- [ ] **Preview looks good** on mobile (checked the ad preview tool)
+- [ ] **Text is not cut off** in any placement
+- [ ] **Nothing violates ad policies** (no false health claims, no prohibited content)
+
+<Warning>
+  **If you rushed through any of the items above, STOP and go back.** It is better to delay your launch by a day than to waste $100+ on a campaign with a broken setup. Common "I'll fix it later" items that cost people money: wrong app selected, tracking not verified, and App Store listing not updated.
+</Warning>
+
+---
+
+## Part 2: You launched! What to expect (hour by hour)
+
+Your campaign is live (or in review). Here is exactly what will happen and what you should do at each stage.
+
+### Hours 0-4: The waiting period
+
+**What is happening:**
+- Your campaign is likely still in review (especially on Meta and TikTok)
+- No data yet, and that is completely normal
+- The platform is checking your ad for policy compliance
+
+**What to do:**
+- Absolutely nothing. Go do something else.
+- If you cannot resist checking, look at the campaign status ONE time. You should see "In Review" or "Pending Review."
+
+**What NOT to do:**
+- Do not refresh the dashboard every 5 minutes
+- Do not create duplicate campaigns thinking the first one "did not work"
+- Do not contact support yet (it is way too early)
+
+### Hours 4-24: First signs of life
+
+**What is happening:**
+- Your campaign may be approved and start delivering
+- You might see your first impressions (people seeing your ad)
+- You might see your first clicks
+- You might even see your first install!
+
+**What to do:**
+- Check the dashboard ONCE
+- Verify the status is "Active" (not still "In Review")
+- Note the numbers but do not judge them yet — this is a tiny sample size
+
+**What NOT to do:**
+- Do not freak out if your CPI is $15 after 3 installs. That is not a real CPI yet — it is noise.
+- Do not turn off the campaign because "it seems expensive"
+- Do not change your targeting, budget, or creative
+
+<Tip>
+  **Pro Tip:** The first 24 hours of data are statistically meaningless. Imagine flipping a coin 5 times and getting 4 heads — you would not conclude the coin is rigged. Same thing here. You need days of data, not hours.
+</Tip>
+
+---
+
+## Part 3: Your first 7 days (day by day)
+
+### Day 1-2: The learning phase begins
+
+**What is happening:**
+- The algorithm is exploring. It is showing your ad to different types of people to see who responds.
+- Costs will be HIGHER than normal. This is expected.
+- Performance will be inconsistent — great one hour, terrible the next.
+- You may get 0-5 installs on the first day, depending on budget.
+
+**Metrics to glance at (but not obsess over):**
+| Metric | What to look for |
+|--------|-----------------|
+| **Status** | "Active" (not "In Review" or "Rejected") |
+| **Impressions** | Should be increasing (any number above 0 means ads are running) |
+| **Spend** | Should roughly match your daily budget |
+
+**What to do:**
+- Check once per day. Note the numbers. Close the tab.
+
+### Day 3-4: Still learning (patience is key)
+
+**What is happening:**
+- The algorithm is narrowing down who to show your ads to
+- You should start seeing some installs (even if only a few per day)
+- Costs may still fluctuate significantly
+- Some ads may be getting more delivery than others — the platform is starting to pick favorites
+
+**Metrics to look at:**
+| Metric | What to look for |
+|--------|-----------------|
+| **Installs** | Any number above 0 is good. If still 0 after 4 days with $15+/day spend, something may be wrong. |
+| **CTR (Click-Through Rate)** | Above 0.5% is decent. Above 1% is great. |
+| **CPI (Cost Per Install)** | Starting to form but still not reliable. Don't judge yet. |
+
+### Day 5-6: Patterns start to emerge
+
+**What is happening:**
+- The algorithm is getting smarter about your audience
+- Costs should start stabilizing (still variable, but less wildly)
+- You can now see which ads are performing better than others
+- The learning phase is ending on most platforms
+
+**Metrics to analyze:**
+| Metric | What it means | Good benchmark |
+|--------|--------------|----------------|
+| **CPI** | How much each install costs you | $1-5 for most consumer apps |
+| **CTR** | How engaging your ads are | 0.5-2% is normal |
+| **CVR** | How convincing your App Store listing is | 20-40% click-to-install |
+| **Impressions** | How many people saw your ad | Depends on budget, should grow daily |
+| **Spend** | How much you have spent total | Should be close to daily budget x days |
+
+### Day 7: Decision time
+
+**What is happening:**
+- You now have a meaningful amount of data (7 days, ~$100-140 spent)
+- The learning phase is over (or close to over)
+- You can now make data-driven decisions
+
+**What to do at Day 7:**
+1. Look at your overall CPI. Is it within an acceptable range?
+2. Look at which ad variations performed best
+3. Look at your total spend vs total installs
+4. Decide your next move (see "Your First Optimization" below)
 
 <Note>
-  Your first campaign probably won't be perfect. That's expected and totally fine.
-  The fact that you launched at all puts you ahead of 90% of indie developers.
+  **Remember: This is your learning investment.** Even if every number is worse than you hoped, you now have real data about what your market looks like. That data is worth the money you spent. Most developers never get this far.
 </Note>
+
+---
+
+## Part 4: When to NOT panic
+
+New advertisers panic about everything. Here is a list of things that are completely normal and NOT signs of failure:
+
+<AccordionGroup>
+  <Accordion title="My CPI is $8 after 2 days">
+    **Do not panic.** Early CPI is always inflated. The algorithm is still exploring. Give it 5-7 days before judging your CPI. It often drops by 30-50% once learning is complete.
+  </Accordion>
+
+  <Accordion title="I only got 3 installs today">
+    **Do not panic.** With a $15/day budget, 3 installs means roughly a $5 CPI. That is within normal range, especially during the learning phase. As the algorithm learns, this should improve.
+  </Accordion>
+
+  <Accordion title="My impressions dropped suddenly">
+    **Do not panic.** Daily fluctuations are normal. The algorithm adjusts delivery based on competition, time of day, and user behavior. Look at weekly trends, not hourly or daily spikes.
+  </Accordion>
+
+  <Accordion title="One of my ads has zero impressions">
+    **Do not panic.** The algorithm tests all ads and quickly focuses on the ones that perform best. If one ad has zero impressions after 3 days, it means the other ads are performing better. This is the system working correctly.
+  </Accordion>
+
+  <Accordion title="My metrics look different from what I expected">
+    **Do not panic.** Industry benchmarks are averages. Your specific app, creative, and audience will have unique performance characteristics. Focus on improving YOUR numbers over time, not matching someone else's.
+  </Accordion>
+
+  <Accordion title="I see 'Limited Learning' or 'Learning Limited' status">
+    **Do not panic.** This means the algorithm did not get enough conversion data to fully optimize. Usually caused by low budget or narrow targeting. You can fix this in your first optimization (see below).
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+  **Pro Tip about patience during the learning phase:** Ad veterans call the first week "the tax." You pay a premium while the algorithm figures things out. This is true on EVERY platform and for EVERY advertiser, from indie developers to Fortune 500 companies. You are not doing anything wrong. It is just how the systems work.
+</Tip>
+
+---
+
+## Part 5: When to ACTUALLY worry
+
+While most things are normal, here are genuine red flags that need attention:
+
+| Signal | What it means | Action needed |
+|--------|--------------|---------------|
+| **Zero impressions after 48 hours** | Something is blocking delivery | Check: ad rejection, payment issues, audience too small, or bid too low |
+| **Ad rejected** | Policy violation | Read the reason, fix the creative/copy, resubmit |
+| **Money spending but ZERO installs after 7 days** | Major disconnect between ad and app listing | Pause campaign. Fix your App Store listing. Test with a completely different creative approach. |
+| **CPI above $15 after 7 full days** | Creative is not resonating or targeting is wrong | Pause campaign. Create new creatives. Broaden targeting. Try again. |
+| **Payment failed** | Card declined or insufficient funds | Update payment method immediately (campaign pauses until fixed) |
+| **Account suspended or disabled** | Repeated policy violations | Contact platform support. Review their ad policies carefully. |
+| **Click-through rate below 0.3%** | Your ads are not catching attention | Your creative needs work. Try completely different images/videos and messaging. |
+| **High clicks but zero installs** | People click but your store listing loses them | Your App Store page needs improvement. Better screenshots, description, and reviews. |
+
+<Warning>
+  **If you see any of the red flags above, do NOT just throw more money at the problem.** Pause the campaign, diagnose the issue, fix it, and then relaunch. Continuing to spend on a broken campaign is the fastest way to waste your budget.
+</Warning>
+
+---
+
+## Part 6: Key metrics explained (your reporting cheat sheet)
+
+Here are all the metrics you will see in your dashboard, explained simply:
+
+| Metric | What it stands for | What it means | Good range |
+|--------|-------------------|---------------|------------|
+| **Impressions** | — | Number of times your ad was shown | More is generally better |
+| **Clicks** | — | Number of times someone tapped/clicked your ad | — |
+| **CTR** | Click-Through Rate | Clicks / Impressions. How engaging your ad is. | 0.5% - 2% |
+| **Installs** | — | Number of app installs attributed to your ads | — |
+| **CPI** | Cost Per Install | Total spend / Installs. Your cost for each new user. | $1 - $5 (varies by category) |
+| **CVR** | Conversion Rate | Installs / Clicks. How well your store listing converts. | 20% - 40% |
+| **CPM** | Cost Per 1,000 Impressions | What you pay for 1,000 people to see your ad | $5 - $15 |
+| **CPC** | Cost Per Click | Total spend / Clicks. What you pay for each click. | $0.30 - $2.00 |
+| **ROAS** | Return On Ad Spend | Revenue / Ad Spend. Only relevant if your app makes money. | 1.0+ means profitable |
+| **Frequency** | — | Average times each person saw your ad | Keep below 3-4 for first campaign |
+| **Spend** | — | Total money spent | Should match your budget |
+
+<Tip>
+  **Pro Tip:** For your first campaign, focus on just THREE metrics: **Installs, CPI, and CTR.** These tell you the full story: are people seeing your ads (impressions), are they interested (CTR), and are they installing (CPI)? Everything else can wait until you are more comfortable.
+</Tip>
+
+---
+
+## Part 7: Your first optimization (after Day 7)
+
+Congratulations! You survived the first week. Now let's look at what the data tells you and make your first smart optimization.
+
+### Step 1: Analyze your ad performance
+
+Look at each ad variation and sort by CPI (lowest to highest):
+
+| Ad | Impressions | Clicks | Installs | CPI | CTR |
+|----|------------|--------|----------|-----|-----|
+| Ad 1: Hero image | 5,000 | 50 | 8 | $2.50 | 1.0% |
+| Ad 2: Screen recording | 4,500 | 65 | 12 | $1.67 | 1.4% |
+| Ad 3: Benefit text | 3,000 | 25 | 4 | $3.75 | 0.8% |
+| Ad 4: Lifestyle photo | 2,500 | 20 | 3 | $4.17 | 0.8% |
+
+*(These are example numbers to show you what the analysis looks like)*
+
+In this example, **Ad 2 (screen recording)** is the clear winner with the lowest CPI and highest CTR.
+
+### Step 2: Make ONE change at a time
+
+Based on your data, pick ONE of these actions:
+
+<AccordionGroup>
+  <Accordion title="If you have a clear winning ad: Double down">
+    **Action:** Pause the 1-2 worst-performing ads. Create 2-3 NEW variations that are similar to your winner.
+
+    For example, if a screen recording ad won, create more screen recordings showing different features of your app. Keep the winning ad running.
+  </Accordion>
+
+  <Accordion title="If CPI is too high across all ads: Fix your creative">
+    **Action:** Pause the campaign. Create completely new ad creatives with a different angle or approach. Re-launch as a new campaign.
+
+    Think about what benefit you are highlighting. Maybe your audience cares about something different than what you assumed.
+  </Accordion>
+
+  <Accordion title="If CTR is good but CVR is low: Fix your App Store listing">
+    **Action:** This means people are interested in your ad but are NOT installing after reaching the App Store. Your store listing needs work.
+
+    Go back to the [Before You Start](/first-campaign/before-you-start) section on App Store optimization. Update your screenshots, description, and first impression.
+  </Accordion>
+
+  <Accordion title="If everything looks decent: Gradually increase budget">
+    **Action:** If your CPI is within acceptable range and you want more installs, increase your daily budget by 20-30% (not more). For example, go from $15/day to $20/day.
+
+    **Do NOT double or triple your budget overnight.** Large budget changes reset the learning phase.
+  </Accordion>
+
+  <Accordion title="If status shows 'Learning Limited': Broaden or increase budget">
+    **Action:** The algorithm needs more data. Either:
+    - Broaden your targeting (wider age range, more countries, remove narrow interests)
+    - Increase your daily budget by 20-30%
+    - Both
+
+    The goal is to give the algorithm more room to find installs.
+  </Accordion>
+</AccordionGroup>
+
+<Warning>
+  **The cardinal rule of optimization: Change ONE thing at a time.** If you change your creative AND your targeting AND your budget simultaneously, you will have no idea what worked. Make one change. Wait 3-5 days. Evaluate. Repeat.
+</Warning>
+
+### Step 3: The ongoing cycle
+
+After your first optimization, the cycle continues:
+
+1. **Run** for 5-7 days
+2. **Analyze** the data
+3. **Make ONE change**
+4. **Run** for another 5-7 days
+5. **Repeat**
+
+This is how professional advertisers work. There is no magic "set it and forget it" setting. Advertising is iterative. Each cycle teaches you something new.
+
+<Tip>
+  **Pro Tip from growth marketing leaders:** The advertisers who win are not the ones who find the "perfect" ad on day one. They are the ones who test, learn, and iterate consistently over weeks and months. Your 10th campaign will perform dramatically better than your 1st. Keep going.
+</Tip>
+
+---
+
+## Part 8: What comes after your first campaign
+
+You launched. You survived the first week. You made your first optimization. Here is what your roadmap looks like from here:
+
+### Month 1: Learn the basics (you are here!)
+- Run 1-2 campaigns on your chosen platform
+- Test 5-10 different ad creatives
+- Get comfortable with the dashboard and metrics
+- Establish your baseline CPI
+
+### Month 2: Expand and optimize
+- Test new audiences and targeting approaches
+- Try different ad formats (if you started with images, try video)
+- Consider adding a second platform (e.g., if you started with Meta, add Apple Search Ads)
+- Start thinking about downstream metrics (are the users you acquire actually using your app?)
+
+### Month 3+: Scale what works
+- Increase budget on winning campaigns
+- Launch on additional platforms
+- Consider an MMP for cross-platform attribution
+- Start optimizing for deeper events (sign-ups, purchases) instead of just installs
+
+---
+
+## You did it!
+
+If you made it through this entire guide and launched your first campaign, you have done something most app developers never do: **you actually shipped your ads.**
+
+<Note>
+  Your first campaign probably was not perfect. That is expected and completely fine. The fact that you launched at all puts you ahead of 90% of indie developers who build great apps but never figure out how to get them in front of users.
+
+  Every great advertiser started exactly where you are right now. The only difference between them and someone who gave up is that they kept iterating.
+</Note>
+
+---
 
 ## What's next?
 
 <CardGroup cols={2}>
   <Card title="Platform Deep Dives" icon="layers" href="/platforms/meta/overview">
-    Go deep on your chosen platform with step-by-step guides.
+    Go deep on your chosen platform with advanced guides, tips, and strategies.
   </Card>
-  <Card title="Growth Playbook" icon="flame" href="/playbook/budget-planning">
-    Ready to scale? Learn the strategies that work.
+  <Card title="Key Concepts" icon="book" href="/concepts/cpi">
+    Understand advertising concepts like CPI, ROAS, and attribution in depth.
   </Card>
 </CardGroup>

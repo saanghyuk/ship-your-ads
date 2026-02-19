@@ -1,189 +1,621 @@
 ---
 title: "Set Up Tracking"
-description: "Install tracking before spending money. This 15-minute setup saves you from flying blind."
+description: "Install tracking before spending money. This essential setup ensures you know exactly which ads bring installs and which waste your budget."
 ---
 
-## Why this comes before ads
+## Why tracking comes BEFORE ads
+
+Let's start with the most important principle in advertising:
 
 <Warning>
-  If you skip this step and run ads without tracking, you'll have **no idea** which ads work.
-  You'll be guessing. And guessing with money = losing money.
+  **You cannot improve what you cannot measure.** If you skip tracking and run ads without it, you will have absolutely no idea which ads brought installs, which ones wasted money, or what to do differently. You will be flying blind with your wallet open.
 </Warning>
 
-## Quick setup by platform
+Think of it this way: imagine opening a bakery but having no cash register. Customers walk in, stuff happens, and at the end of the day, you have no idea what sold, how much you made, or whether the business is working. That is what running ads without tracking is like.
 
-Pick the platform you chose and follow the steps:
+The good news? Setting up tracking is a one-time effort. Once it is done, you never have to do it again. Let's make this as painless as possible.
 
-<Tabs>
-  <Tab title="Meta (Facebook)">
-    ### Step 1: Create a Meta Business Account
-    1. Go to [business.facebook.com](https://business.facebook.com)
-    2. Click "Create Account"
-    3. Fill in your business name (your app name works)
-    4. Add your payment method
+---
 
-    ### Step 2: Register your app
-    1. Go to [developers.facebook.com](https://developers.facebook.com)
-    2. Create a new app → Choose "Business" type
-    3. Add your app's bundle ID (iOS) or package name (Android)
+## What is an SDK? (Explained simply)
 
-    ### Step 3: Install the Meta SDK
-    Add to your app:
+You will hear the word "SDK" a lot in this guide, so let's explain it.
 
-    ```bash
-    # React Native
-    npm install react-native-fbsdk-next
+**SDK stands for "Software Development Kit."**
 
-    # iOS (CocoaPods)
-    pod 'FBSDKCoreKit'
+Think of it like a LEGO set that another company made for you. Instead of building tracking from scratch, you take their pre-made LEGO pieces (the SDK) and snap them into your app. These pieces do all the hard work of measuring things like:
 
-    # Android (Gradle)
-    implementation 'com.facebook.android:facebook-android-sdk:latest.release'
+- Who installed your app from an ad
+- What those users do inside your app
+- How much money each ad channel is making you
+
+When someone says "install the Meta SDK" or "add the Firebase SDK," they just mean: **add their pre-built code library to your app so it can talk to their system.**
+
+<Note>
+  **If you are a vibe coder using no-code tools or AI to build your app,** you might be able to add SDKs through a settings panel or plugin instead of writing code. Check your platform's documentation (e.g., FlutterFlow, Adalo, Bubble) for "integrations" or "analytics" sections.
+</Note>
+
+---
+
+## The two types of tracking you need to know about
+
+### 1. Platform tracking (the basics)
+
+Each ad platform (Meta, Google, TikTok, Apple) has its own SDK that tracks installs and events for campaigns on that specific platform.
+
+- **Meta SDK** tracks installs from Meta ads
+- **Firebase/Google SDK** tracks installs from Google ads
+- **TikTok SDK** tracks installs from TikTok ads
+- **Apple Search Ads** tracks installs automatically (no SDK needed for basic tracking)
+
+**This is what you need for your first campaign.** Just install the SDK for your chosen platform.
+
+### 2. MMP tracking (the advanced option)
+
+An **MMP (Mobile Measurement Partner)** is a third-party tool that tracks installs from ALL platforms in one place. Instead of checking Meta's dashboard AND Google's dashboard AND TikTok's dashboard separately, an MMP gives you one unified view.
+
+You do NOT need an MMP for your first campaign. But you should know they exist for when you scale up.
+
+---
+
+## Overview of major MMPs
+
+When you eventually run ads on multiple platforms (or just want better data), here are the main MMPs to consider:
+
+| MMP | Free Tier | Paid Plans | Best For | Ease of Setup |
+|-----|-----------|------------|----------|---------------|
+| **AppsFlyer** | Up to 10,000 conversions free | Starts ~$0.05-0.12/conversion | Most popular, great dashboard, works with all platforms | Medium |
+| **Adjust** | No free tier (paid only) | Custom pricing | Strong fraud protection, popular with gaming apps | Medium |
+| **Branch** | Free tier available (limited) | Custom pricing | Deep linking + attribution combo | Medium-Easy |
+| **Singular** | Free tier for small apps | Custom pricing | Cost aggregation + attribution combo | Medium |
+
+<Tip>
+  **Pro Tip for beginners:** You do NOT need an MMP right now. Start with the ad platform's own SDK. When you are running ads on 2+ platforms and spending $500+/month, that is when an MMP starts making sense. AppsFlyer's free tier is the most popular starting point.
+</Tip>
+
+---
+
+## Understanding iOS privacy (ATT framework)
+
+If your app is on iOS, there is one more thing you need to understand: Apple's **App Tracking Transparency (ATT)** framework.
+
+### What is ATT?
+
+Starting with iOS 14.5, Apple requires apps to **ask users for permission before tracking** their activity across other apps and websites. You have definitely seen this popup:
+
+> "MyApp would like permission to track your activity across other companies' apps and websites."
+
+Most users (about 70-80%) tap **"Ask App Not to Track."** This is completely normal and expected.
+
+### What this means for your ads
+
+- **Less data for ad platforms.** When users opt out of tracking, Meta/Google/TikTok get less information about who installed your app from their ads.
+- **Ad platforms have adapted.** Meta uses "Aggregated Event Measurement," Google uses "Privacy Sandbox," and they all have workarounds. Performance is still good — just different than before.
+- **You still need to show the ATT popup.** Apple requires it if you use any third-party SDKs that track users.
+
+### How to add the ATT popup (iOS only)
+
+<Steps>
+  <Step title="Add the tracking description to your Info.plist">
+    Open your iOS project's `Info.plist` file and add this key:
+
+    ```xml
+    <key>NSUserTrackingUsageDescription</key>
+    <string>We use this to show you more relevant ads and measure how well our ads perform.</string>
     ```
 
-    ### Step 4: Initialize and log events
+    This text appears in the popup, so make it friendly and honest.
+  </Step>
 
-    ```javascript
-    // React Native example
-    import { Settings, AppEventsLogger } from 'react-native-fbsdk-next';
-
-    // Initialize (in your App.js)
-    Settings.initializeSDK();
-
-    // Log a custom event
-    AppEventsLogger.logEvent('CompletedRegistration');
-    ```
-
-    <Tip>
-      At minimum, Meta auto-tracks app installs and app opens.
-      You only need to add code for custom events (registration, purchase, etc.).
-    </Tip>
-  </Tab>
-
-  <Tab title="Google Ads">
-    ### Step 1: Set up Firebase
-    1. Go to [console.firebase.google.com](https://console.firebase.google.com)
-    2. Create a new project (or add to existing)
-    3. Add your iOS/Android app
-    4. Download the config file (`GoogleService-Info.plist` or `google-services.json`)
-
-    ### Step 2: Install Firebase SDK
-
-    ```bash
-    # React Native
-    npm install @react-native-firebase/app @react-native-firebase/analytics
-
-    # iOS (CocoaPods)
-    pod 'FirebaseAnalytics'
-
-    # Android (Gradle)
-    implementation 'com.google.firebase:firebase-analytics'
-    ```
-
-    ### Step 3: Link Firebase to Google Ads
-    1. In Firebase Console → Project Settings → Integrations
-    2. Link your Google Ads account
-    3. Enable conversion tracking
-
-    ### Step 4: Log conversion events
-
-    ```javascript
-    // React Native example
-    import analytics from '@react-native-firebase/analytics';
-
-    // Log an event
-    await analytics().logEvent('sign_up', {
-      method: 'email',
-    });
-    ```
-  </Tab>
-
-  <Tab title="Apple Search Ads">
-    ### Step 1: The easiest setup ever
-    Apple Search Ads tracks installs **automatically** through the App Store.
-    You don't need to install any SDK for basic attribution.
-
-    ### Step 2: (Optional) Advanced attribution
+  <Step title="Request tracking permission in your app code">
+    Show the popup when the app launches (or at a strategic moment):
 
     ```swift
-    // For more detailed attribution data
-    import AdServices
+    // Swift
+    import AppTrackingTransparency
 
-    if let token = try? AAAttribution.attributionToken() {
-      // Send this token to your server for attribution
+    func requestTracking() {
+        ATTrackingManager.requestTrackingAuthorization { status in
+            switch status {
+            case .authorized:
+                print("User allowed tracking")
+            case .denied, .restricted, .notDetermined:
+                print("User did not allow tracking - that's OK!")
+            @unknown default:
+                break
+            }
+        }
     }
     ```
 
-    <Tip>
-      **This is why Apple Search Ads is great for beginners.**
-      Zero SDK setup needed for basic install tracking.
-    </Tip>
-  </Tab>
+    ```javascript
+    // React Native (using react-native-tracking-transparency)
+    import { requestTrackingPermission } from 'react-native-tracking-transparency';
 
-  <Tab title="TikTok">
-    ### Step 1: Create a TikTok Ads account
-    1. Go to [ads.tiktok.com](https://ads.tiktok.com)
-    2. Create an account
-
-    ### Step 2: Register your app
-    1. In TikTok Ads Manager → Assets → Events
-    2. Create a new app event
-    3. Add your app's store URL
-
-    ### Step 3: Install TikTok SDK
-
-    ```bash
-    # iOS (CocoaPods)
-    pod 'TikTokBusinessSDK'
-
-    # Android (Gradle)
-    implementation 'com.tiktok.business.sdk:tiktok-business-android-sdk:latest'
+    const status = await requestTrackingPermission();
+    // status will be 'authorized', 'denied', 'restricted', or 'not-determined'
     ```
-
-    ### Step 4: Initialize
-
-    ```swift
-    // iOS example
-    let config = TikTokConfig(appId: "YOUR_APP_ID", tiktokAppId: "YOUR_TIKTOK_APP_ID")
-    TikTokBusiness.initializeSdk(config)
-    ```
-  </Tab>
-</Tabs>
-
-## Verify tracking is working
-
-Before moving on, make sure tracking works:
-
-<Steps>
-  <Step title="Install your app on a test device">
-    Use a real device, not a simulator.
   </Step>
-  <Step title="Open the app">
-    This triggers the install event.
-  </Step>
-  <Step title="Check the platform's dashboard">
-    It can take 15-60 minutes for events to appear.
-    Look for "Test Events" or "Diagnostics" in the platform's developer tools.
-  </Step>
-  <Step title="Trigger a custom event">
-    Complete a registration or key action in your app.
-    Verify it shows up in the dashboard.
+
+  <Step title="Don't panic about opt-out rates">
+    Remember: even if 75% of users opt out, ad platforms still work. They just use aggregated/modeled data instead of individual user tracking. Your campaigns will still optimize and deliver results.
   </Step>
 </Steps>
 
+<Tip>
+  **Pro Tip:** Show the ATT popup **after** the user has had a positive first experience with your app, not immediately on launch. Users who have seen value in your app are more likely to allow tracking. Some developers show it after the user completes onboarding or achieves their first goal.
+</Tip>
+
+---
+
+## Android tracking basics
+
+Good news: Android tracking is simpler than iOS tracking (for now). There is no equivalent of the ATT popup on Android. However, Google has been rolling out its **Privacy Sandbox for Android**, which will eventually add similar restrictions.
+
+For now, what you need to know:
+
+- **Install the relevant SDK** for your ad platform (Firebase for Google, Meta SDK for Meta, etc.)
+- **Google Advertising ID (GAID)** is available by default on Android devices and is used for attribution
+- Users CAN opt out of personalized ads in their device settings, but most do not
+- Make sure your app has the `com.google.android.gms.permission.AD_ID` permission in your AndroidManifest.xml
+
+```xml
+<!-- AndroidManifest.xml -->
+<uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+```
+
+---
+
+## Step-by-step: Set up platform tracking
+
+Now let's actually set up tracking for your chosen platform. Pick the one you selected in the previous step:
+
+<AccordionGroup>
+  <Accordion title="Meta (Facebook/Instagram) tracking setup">
+    ### What you will set up
+    The Meta SDK tracks app installs, app opens, and custom events (like sign-ups or purchases) from your Meta ad campaigns.
+
+    <Steps>
+      <Step title="Create a Meta Business Account">
+        1. Open your browser and go to [business.facebook.com](https://business.facebook.com)
+        2. Click **"Create Account"** (or log in if you already have one)
+        3. Enter your business name (your app name is fine)
+        4. Enter your name and business email
+        5. Click **"Submit"**
+
+        This gives you access to Meta Ads Manager, where you will create and manage ads.
+      </Step>
+
+      <Step title="Register your app on Meta for Developers">
+        1. Go to [developers.facebook.com](https://developers.facebook.com)
+        2. Click **"My Apps"** in the top right
+        3. Click **"Create App"**
+        4. Choose **"Business"** as the app type
+        5. Enter your app name and contact email
+        6. Click **"Create App"**
+        7. On the app dashboard, click **"Add Product"** and find **"Facebook Login"** or **"App Events"**
+        8. Go to **Settings > Basic** and enter:
+           - Your iOS Bundle ID (found in Xcode under your target's General tab)
+           - Your Android Package Name (found in your `build.gradle` file)
+        9. Click **"Save Changes"**
+
+        <Warning>
+          This step can take **24-48 hours** for Meta to verify. Do this BEFORE you plan to launch ads.
+        </Warning>
+      </Step>
+
+      <Step title="Install the Meta SDK in your app">
+        Choose your platform:
+
+        **React Native:**
+        ```bash
+        npm install react-native-fbsdk-next
+        cd ios && pod install && cd ..
+        ```
+
+        **iOS (CocoaPods):**
+        ```bash
+        # In your Podfile, add:
+        pod 'FBSDKCoreKit'
+        # Then run:
+        pod install
+        ```
+
+        **Android (Gradle):**
+        ```groovy
+        // In your app/build.gradle, add:
+        implementation 'com.facebook.android:facebook-android-sdk:latest.release'
+        ```
+
+        **Flutter:**
+        ```bash
+        flutter pub add facebook_app_events
+        ```
+      </Step>
+
+      <Step title="Initialize the SDK and log events">
+        **React Native:**
+        ```javascript
+        // In your App.js or App.tsx
+        import { Settings, AppEventsLogger } from 'react-native-fbsdk-next';
+
+        // Initialize (call this once when app starts)
+        Settings.initializeSDK();
+
+        // Later, log a custom event when something important happens
+        AppEventsLogger.logEvent('CompletedRegistration');
+        AppEventsLogger.logEvent('AddedToCart', { valueToSum: 9.99 });
+        ```
+
+        **Swift (iOS):**
+        ```swift
+        import FBSDKCoreKit
+
+        // In your AppDelegate
+        func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+            ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+            return true
+        }
+
+        // Log an event
+        AppEvents.shared.logEvent(.completedRegistration)
+        ```
+
+        <Tip>
+          **Pro Tip:** At minimum, Meta **automatically tracks app installs and app opens**. You only need to add custom event logging code for things like sign-ups, purchases, or other key actions in your app. Do not over-complicate this for your first campaign.
+        </Tip>
+      </Step>
+
+      <Step title="Verify events in Meta Events Manager">
+        1. Go to [facebook.com/events_manager](https://www.facebook.com/events_manager)
+        2. Select your app from the data sources dropdown
+        3. Click **"Test Events"** tab
+        4. Open your app on a real device (not a simulator)
+        5. Use the app normally — you should see events appear within a few minutes
+        6. If you see "Install" and "App Launch" events, tracking is working!
+      </Step>
+    </Steps>
+  </Accordion>
+
+  <Accordion title="Google Ads tracking setup (via Firebase)">
+    ### What you will set up
+    Google Ads uses Firebase for app event tracking. Firebase is Google's free app analytics and development platform.
+
+    <Steps>
+      <Step title="Create a Firebase project">
+        1. Go to [console.firebase.google.com](https://console.firebase.google.com)
+        2. Click **"Create a project"** (or **"Add project"**)
+        3. Enter your project name (your app name works)
+        4. Enable Google Analytics when prompted (say yes!)
+        5. Select your Google Analytics account (or create a new one)
+        6. Click **"Create project"** and wait for it to finish
+      </Step>
+
+      <Step title="Add your app to Firebase">
+        1. On the Firebase project dashboard, click the iOS or Android icon
+        2. **For iOS:** Enter your Bundle ID, app nickname, and App Store ID
+        3. **For Android:** Enter your package name and app nickname
+        4. Download the configuration file:
+           - iOS: `GoogleService-Info.plist` — drag this into your Xcode project
+           - Android: `google-services.json` — place this in your `app/` directory
+        5. Follow the remaining setup steps shown on screen
+      </Step>
+
+      <Step title="Install the Firebase SDK">
+        **React Native:**
+        ```bash
+        npm install @react-native-firebase/app @react-native-firebase/analytics
+        cd ios && pod install && cd ..
+        ```
+
+        **iOS (CocoaPods):**
+        ```bash
+        # In your Podfile:
+        pod 'FirebaseAnalytics'
+        # Then:
+        pod install
+        ```
+
+        **Android (Gradle):**
+        ```groovy
+        // Project-level build.gradle:
+        classpath 'com.google.gms:google-services:4.4.0'
+
+        // App-level build.gradle:
+        apply plugin: 'com.google.gms.google-services'
+        implementation 'com.google.firebase:firebase-analytics'
+        ```
+
+        **Flutter:**
+        ```bash
+        flutter pub add firebase_analytics
+        ```
+      </Step>
+
+      <Step title="Log conversion events">
+        **React Native:**
+        ```javascript
+        import analytics from '@react-native-firebase/analytics';
+
+        // Log a sign-up event
+        await analytics().logEvent('sign_up', {
+          method: 'email',
+        });
+
+        // Log a purchase event
+        await analytics().logEvent('purchase', {
+          value: 9.99,
+          currency: 'USD',
+        });
+        ```
+
+        **Swift (iOS):**
+        ```swift
+        import FirebaseAnalytics
+
+        // Log an event
+        Analytics.logEvent("sign_up", parameters: [
+          "method": "email"
+        ])
+        ```
+      </Step>
+
+      <Step title="Link Firebase to Google Ads">
+        This is the crucial step that connects your tracking data to your ad campaigns:
+
+        1. In the Firebase Console, go to **Project Settings** (gear icon)
+        2. Click the **"Integrations"** tab
+        3. Find **"Google Ads"** and click **"Link"**
+        4. Select your Google Ads account
+        5. Click **"Link"**
+        6. Back in Google Ads, go to **Tools > Measurement > Conversions**
+        7. You should see Firebase events available as conversion actions
+        8. Mark "first_open" and any key events as conversions
+      </Step>
+
+      <Step title="Verify in Firebase DebugView">
+        1. Enable debug mode on your device:
+           - iOS: In Xcode, add `-FIRDebugEnabled` as a launch argument
+           - Android: `adb shell setprop debug.firebase.analytics.app your.package.name`
+        2. Open your app and use it
+        3. Go to Firebase Console > Analytics > DebugView
+        4. You should see events appearing in real-time
+      </Step>
+    </Steps>
+  </Accordion>
+
+  <Accordion title="Apple Search Ads tracking setup">
+    ### The easiest setup of all
+
+    Here is the wonderful thing about Apple Search Ads: **basic install tracking works automatically.** Apple knows when someone taps your ad and installs your app because it all happens within the App Store.
+
+    <Steps>
+      <Step title="That's it for basic tracking">
+        No, seriously. If you are running Apple Search Ads Basic, installs are tracked automatically. You do not need to install any SDK or write any code.
+
+        Just sign up at [searchads.apple.com](https://searchads.apple.com), create your campaign, and Apple handles the rest.
+      </Step>
+
+      <Step title="(Optional) Advanced attribution with AdServices">
+        If you want more detailed attribution data (like which keyword led to an install), you can add Apple's AdServices framework:
+
+        ```swift
+        import AdServices
+
+        func getAttributionToken() {
+            if #available(iOS 14.3, *) {
+                do {
+                    let token = try AAAttribution.attributionToken()
+                    // Send this token to your server or MMP for attribution
+                    print("Attribution token: \(token)")
+                } catch {
+                    print("Failed to get attribution token: \(error)")
+                }
+            }
+        }
+        ```
+
+        Call this when your app launches. The token helps you understand exactly how users found your app.
+      </Step>
+
+      <Step title="(Optional) Set up Apple Search Ads Advanced">
+        If you chose Apple Search Ads Advanced (more control over keywords and bids), you will manage keywords manually. But tracking still works automatically for installs.
+      </Step>
+    </Steps>
+
+    <Tip>
+      **Pro Tip:** This zero-setup tracking is one of the biggest reasons Apple Search Ads is great for beginners. No SDK, no code changes, no waiting for events to appear. It just works.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="TikTok Ads tracking setup">
+    ### What you will set up
+    The TikTok Events SDK tracks installs and in-app events from your TikTok ad campaigns.
+
+    <Steps>
+      <Step title="Create a TikTok Ads account">
+        1. Go to [ads.tiktok.com](https://ads.tiktok.com)
+        2. Click **"Create an Ad"** or **"Sign Up"**
+        3. Fill in your business information
+        4. Add your payment method
+        5. Wait for account approval (usually 24-48 hours)
+      </Step>
+
+      <Step title="Register your app in TikTok Ads Manager">
+        1. In TikTok Ads Manager, go to **Assets > Events**
+        2. Click **"Manage"** under App Events
+        3. Click **"Create New App"**
+        4. Enter your app's App Store or Play Store URL
+        5. TikTok will pull your app information automatically
+        6. Click **"Next"** and note the App ID you receive
+      </Step>
+
+      <Step title="Install the TikTok SDK">
+        **iOS (CocoaPods):**
+        ```bash
+        # In your Podfile:
+        pod 'TikTokBusinessSDK'
+        # Then:
+        pod install
+        ```
+
+        **Android (Gradle):**
+        ```groovy
+        // In your app/build.gradle:
+        implementation 'com.tiktok.business.sdk:tiktok-business-android-sdk:latest'
+        ```
+
+        **React Native:**
+        ```bash
+        # There is no official React Native SDK from TikTok.
+        # Use a community bridge or native modules.
+        # Alternatively, use an MMP like AppsFlyer that supports TikTok.
+        ```
+      </Step>
+
+      <Step title="Initialize the SDK">
+        **Swift (iOS):**
+        ```swift
+        import TikTokBusinessSDK
+
+        // In your AppDelegate
+        func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+            let config = TikTokConfig(appId: "YOUR_APP_ID", tiktokAppId: "YOUR_TIKTOK_APP_ID")
+            config.setLogLevel(.debug) // Remove this in production
+            TikTokBusiness.initializeSdk(config)
+
+            return true
+        }
+        ```
+
+        **Android (Kotlin):**
+        ```kotlin
+        import com.tiktok.TikTokBusinessSdk
+
+        // In your Application class
+        val config = TikTokBusinessSdk.TTConfig(applicationContext)
+            .setAppId("YOUR_APP_ID")
+            .setTTAppId("YOUR_TIKTOK_APP_ID")
+        TikTokBusinessSdk.initializeSdk(config)
+        ```
+      </Step>
+
+      <Step title="Log custom events">
+        ```swift
+        // iOS
+        TikTokBusiness.trackEvent("Registration")
+        TikTokBusiness.trackEvent("Purchase", withProperties: ["value": 9.99, "currency": "USD"])
+        ```
+      </Step>
+
+      <Step title="Verify in TikTok Events Manager">
+        1. Go to TikTok Ads Manager > **Assets > Events**
+        2. Select your app
+        3. Use TikTok's testing tool to verify events
+        4. Install and open your app on a test device
+        5. Events should appear within 15-30 minutes
+      </Step>
+    </Steps>
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Verify that tracking actually works
+
+No matter which platform you set up, follow these steps to confirm everything is connected:
+
+<Steps>
+  <Step title="Install your app on a REAL device">
+    Use a real phone, not a simulator or emulator. Simulators often do not send tracking data correctly.
+
+    If testing iOS, use TestFlight to install a build with the SDK included.
+    If testing Android, use an APK or internal testing track.
+  </Step>
+
+  <Step title="Open the app and use it normally">
+    This triggers the "app install" and "app open" events. Do whatever your key user actions are (sign up, browse content, etc.).
+  </Step>
+
+  <Step title="Check the platform's dashboard">
+    Go to the events/diagnostics section of your ad platform:
+
+    - **Meta:** Events Manager > Test Events
+    - **Google:** Firebase Console > Analytics > DebugView
+    - **Apple:** Happens automatically (no verification needed)
+    - **TikTok:** Events Manager > Testing tool
+
+    <Note>
+      **It can take 15-60 minutes for events to appear.** Do not panic if you do not see them immediately. Grab a coffee and check back.
+    </Note>
+  </Step>
+
+  <Step title="Trigger a custom event and verify">
+    If you added custom event tracking (like sign-up or purchase), complete that action in your app and verify it appears in the dashboard.
+  </Step>
+
+  <Step title="If events are NOT showing up">
+    Try these troubleshooting steps in order:
+
+    1. **Wait longer.** Seriously, some platforms take up to an hour.
+    2. **Check your SDK version.** Make sure you installed the latest version.
+    3. **Check your app ID / configuration.** The most common error is a mismatched App ID or Bundle ID.
+    4. **Rebuild your app.** Sometimes the SDK does not activate until a clean rebuild.
+    5. **Check your device's internet connection.** Events need network access to send.
+    6. **Check the platform's status page.** Rarely, the platform itself might be having issues.
+  </Step>
+</Steps>
+
+---
+
+## Understanding attribution windows
+
 <Note>
-  **Don't stress if it takes a few tries.** Tracking setup is the most technical part of running ads.
-  Once it's done, you never have to do it again.
+  **What is an attribution window?** It is the timeframe during which an install can be credited to a specific ad. For example, if someone clicks your ad on Monday but does not install until Thursday, a 7-day attribution window would still credit that install to the ad. A 1-day window would not.
 </Note>
 
-## Next up
+Here are the default attribution windows for each platform:
 
-Tracking is live! Time to create your first campaign.
+| Platform | Click-through window | View-through window |
+|----------|---------------------|---------------------|
+| **Meta** | 7 days | 1 day |
+| **Google** | 30 days | Not reported separately |
+| **Apple Search Ads** | 30 days | N/A (search ads are click-based) |
+| **TikTok** | 7 days | 1 day |
+
+**Click-through** = User clicked the ad, then installed later
+**View-through** = User SAW the ad (did not click), then installed later
+
+<Tip>
+  **Pro Tip about attribution windows:** For your first campaign, just use the default settings. Attribution windows become important when you are running multiple campaigns across multiple platforms and need to understand which one actually drove the install. For now, defaults are perfect.
+</Tip>
+
+---
+
+## Quick summary: What you need for each platform
+
+| Platform | SDK needed? | Setup time | Technical difficulty |
+|----------|-------------|------------|---------------------|
+| **Meta** | Yes (Meta SDK) | 30-60 minutes | Medium |
+| **Google** | Yes (Firebase SDK) | 30-60 minutes | Medium |
+| **Apple Search Ads** | No (basic), Optional (advanced) | 5 minutes | Very easy |
+| **TikTok** | Yes (TikTok SDK) | 30-60 minutes | Medium |
+
+<Tip>
+  **Pro Tip:** Don't stress if tracking setup takes you a few tries. This is the most technical part of the entire process. Once it is done, you literally never have to do it again (unless you change ad platforms). Every advertiser has struggled with SDK setup at some point.
+</Tip>
+
+---
+
+## Tracking is live! Time to create your campaign.
+
+You have done the hard part. Tracking is set up, events are flowing, and you are ready to create your first real campaign.
 
 <Card
-  title="Create Your Campaign →"
+  title="Create Your Campaign"
   icon="arrow-right"
   href="/first-campaign/create-campaign"
 >
-  The step-by-step guide to launching your first ad.
+  Next up: The step-by-step guide to launching your very first ad campaign. We will walk you through every single click.
 </Card>

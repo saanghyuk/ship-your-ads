@@ -1,471 +1,421 @@
 ---
 title: "Google Ads Account Setup"
-description: "Complete step-by-step guide to creating your Google Ads account, avoiding Smart Mode, linking your app, setting up Firebase, configuring billing, and structuring your account like a pro."
+description: "A complete step-by-step guide to creating your Google Ads account, escaping Smart Mode, configuring billing, and structuring your account for success."
 ---
 
-## Setting up for success
+## What You Will Set Up in This Guide
 
-Google Ads has hundreds of settings, toggles, and options. Most of them can wait. This guide walks you through every setting that actually matters -- in order -- so you can get from zero to ready-to-advertise without any detours.
+Before you can run any Google Ads, you need to create and properly configure your account. Google tries to make this easy by defaulting to a simplified "Smart Mode," but we are going to set up a proper "Expert Mode" account that gives you full control.
 
-<Note>
-  **This entire setup process takes about 45-60 minutes.** Don't rush it. Getting the foundation right means you won't have to redo things later (some settings, like timezone and currency, can never be changed).
-</Note>
+Here is what we will do together:
 
-## Step 1: Create your Google Ads account
+1. **Create a Google Ads account** at ads.google.com
+2. **Switch to Expert Mode** (critical — do not skip this)
+3. **Configure your billing and payment method**
+4. **Set up your account structure**
+5. **Link Google Analytics** (recommended)
+6. **Configure your conversion tracking** (preview — detailed in next guide)
 
-<Steps>
-  <Step title="Go to ads.google.com">
-    Visit [ads.google.com](https://ads.google.com) and click **Start Now**. Sign in with the Google account you want to manage your ads. This should be a business email, not your personal Gmail.
-
-    <Tip>
-      If you already have a Google account for your app's Google Play Console or Firebase, use that same account. It makes linking everything easier.
-    </Tip>
-  </Step>
-  <Step title="CRITICAL: Escape Smart Mode">
-    Google will immediately try to create your first campaign using "Smart Mode." This is Google's simplified, fully-automated ad experience. **Do NOT proceed with this.**
-
-    Look for one of these options (the exact wording changes, but it's always near the bottom of the page):
-    - "Switch to Expert Mode"
-    - "Create an account without a campaign"
-    - "Are you a professional marketer? Switch to Expert Mode"
-    - A small link at the very bottom of the guided setup page
-
-    Click whichever option you see to escape the guided setup.
-  </Step>
-  <Step title="Choose 'Create an account without a campaign'">
-    After switching to Expert Mode, you may be asked to choose a campaign goal. Instead, look for **"Create an account without a campaign"** at the bottom. Click it. You'll set up campaigns later after everything is properly configured.
-  </Step>
-  <Step title="Configure your account settings">
-    You'll now set three things that **cannot be changed later**:
-
-    - **Billing country:** The country where your business is registered. This determines tax treatment and available payment methods.
-    - **Time zone:** Choose the timezone of your primary market (where most of your users are). All reporting will use this timezone. If you're targeting the US, use US Eastern or Pacific.
-    - **Currency:** The currency you'll pay in and see in all reports. Usually matches your billing country.
-
-    <Warning>
-      **Time zone and currency are permanent.** If you pick the wrong one, you'll need to create an entirely new account. Double-check before confirming.
-    </Warning>
-  </Step>
-  <Step title="Submit and explore your account">
-    Click **Submit** to create your account. You'll land on an empty Google Ads dashboard in Expert Mode. Take a moment to explore -- you'll see the main navigation:
-    - **Campaigns** -- where you create and manage ad campaigns
-    - **Ad groups** -- subgroups within campaigns
-    - **Ads & assets** -- your actual ad creative
-    - **Keywords** -- the search terms you're targeting (for Search campaigns)
-    - **Tools & Settings** (wrench icon) -- account configuration, billing, conversions, linked accounts
-  </Step>
-</Steps>
-
-<Warning>
-  **Why Smart Mode is a trap for app developers:**
-  - You can't see or control which keywords you're targeting
-  - You can't set up proper conversion tracking
-  - You can't structure campaigns and ad groups
-  - Reporting is extremely limited
-  - You can't use advanced bidding strategies
-  - Switching from Smart to Expert later causes data gaps
-
-  Always use Expert Mode from day one.
-</Warning>
-
-## Step 2: Understand Manager Accounts (MCC)
-
-If you're managing ads for more than one app, or if you work at an agency, you should know about Manager Accounts.
-
-### What is an MCC?
-
-**MCC (My Client Center)** is a "parent" account that can manage multiple Google Ads accounts. Think of it like a folder that contains individual ad accounts.
-
-```mermaid
-graph TD
-    A[Manager Account MCC] --> B[App 1 - Google Ads Account]
-    A --> C[App 2 - Google Ads Account]
-    A --> D[Client's Google Ads Account]
-    B --> E[Campaign: US Installs]
-    B --> F[Campaign: EU Installs]
-    C --> G[Campaign: Global Installs]
-```
-
-### When you need an MCC
-
-| Situation | Need MCC? |
-|-----------|-----------|
-| One app, one team | No -- a single account is fine |
-| Multiple apps from the same company | Yes -- separate accounts per app, managed under one MCC |
-| Agency managing client accounts | Yes -- essential for managing multiple clients |
-| Want consolidated billing across accounts | Yes -- MCC enables shared billing |
-| Want shared remarketing lists across apps | Yes -- MCC enables cross-account audience sharing |
-
-### How to create an MCC
-
-1. Go to [ads.google.com/home/tools/manager-accounts](https://ads.google.com/home/tools/manager-accounts)
-2. Click **Create a manager account**
-3. Set a name (your company name)
-4. Choose the same timezone and currency as your child accounts
-5. You can then create new accounts under it or link existing accounts
+Let us get started, one click at a time.
 
 <Tip>
-  **Even if you only have one app now, creating an MCC is a good habit.** It costs nothing and gives you flexibility to add more accounts later. You can also grant agency or contractor access at the MCC level without sharing individual account credentials.
+You need a Google account (Gmail) to create a Google Ads account. If you already have a Gmail address, you are ready to go. If not, create one at [accounts.google.com](https://accounts.google.com) before continuing. Use a business email if possible — the same Google account can manage multiple Google Ads accounts later.
 </Tip>
 
-## Step 3: Link your app
+---
 
-Google Ads needs to know about your app. The linking process is different for Android and iOS.
+## Step 1: Go to Google Ads
 
-<Tabs>
-  <Tab title="Android (Google Play)">
-    ### Link Google Play to Google Ads
+1. Open your web browser
+2. Go to **[ads.google.com](https://ads.google.com)**
+3. If you are already signed into your Google account, you will see a "Get started" or "Start now" button
+4. If you are not signed in, click **Sign in** and enter your Google account email and password
+5. Click the **"Start now"** or **"Get started"** button
 
-    <Steps>
-      <Step title="Open Linked Accounts">
-        In Google Ads, click the **Tools & Settings** icon (wrench) in the top menu. Under "Setup," click **Linked accounts**.
-      </Step>
-      <Step title="Find Google Play">
-        Scroll to **Google Play** and click **Details**, then **Link**.
-      </Step>
-      <Step title="Authorize the connection">
-        Sign in with the Google account that owns your Google Play Developer Console. If it's the same account you're using for Google Ads, you'll see your apps automatically.
-      </Step>
-      <Step title="Select your app">
-        Choose the app you want to advertise from the list. Click **Link**.
-      </Step>
-      <Step title="Verify the link">
-        Go back to **Linked accounts** > **Google Play** and confirm the status shows "Linked."
-      </Step>
-    </Steps>
+---
 
-    <Note>
-      **The Google Play link gives Google Ads access to:**
-      - Your app's listing information (icon, screenshots, description)
-      - Install and in-app event data
-      - Deep linking capabilities
-      - The ability to run App Campaigns that show ads directly in the Play Store
-    </Note>
-  </Tab>
-  <Tab title="iOS (App Store)">
-    ### Set up iOS app tracking
+## Step 2: CRITICAL — Escape Smart Mode
 
-    iOS apps require a different approach because Apple doesn't integrate directly with Google. You have two options:
+This is the most important step in the entire setup. When you first visit Google Ads, Google will try to get you to create a campaign immediately using "Smart Mode." Smart Mode is a stripped-down version of Google Ads with very limited controls. You do NOT want this.
 
-    **Option A: Firebase (recommended)**
-    1. Set up Firebase for your iOS app (covered in Step 4 below)
-    2. Link Firebase to Google Ads
-    3. Import Firebase events as conversions
+### How to Switch to Expert Mode:
 
-    **Option B: Third-party app analytics**
-    1. In Google Ads, go to **Tools & Settings** > **Linked accounts**
-    2. Click **Third-party app analytics** > **Details**
-    3. Click **+** to add a new link
-    4. Select your third-party provider (Adjust, AppsFlyer, Branch, Kochava, etc.)
-    5. Follow their specific linking instructions
+6. After clicking "Get started," Google will ask you to create your first campaign right away
+7. Look for a link that says **"Switch to Expert Mode"** — it is usually a small text link, not a big button. Google does not make it obvious because they want you to stay in Smart Mode
+8. Click **"Switch to Expert Mode"**
+9. If you do not see "Switch to Expert Mode" on the first screen, look for it on subsequent screens. It might say "Are you a professional marketer?" or similar
 
-    **Option C: Direct App Store ID entry**
-    1. When creating an App Campaign, you can enter your App Store ID directly
-    2. Google will pull your app listing information from the App Store
-    3. You'll still need Firebase or a third-party for conversion tracking beyond installs
+### Why Expert Mode Matters:
 
-    <Tip>
-      **For iOS apps, Firebase is the most straightforward free option.** If you're already using a Mobile Measurement Partner (MMP) like Adjust or AppsFlyer, use that instead -- they handle cross-platform attribution better than Firebase alone.
-    </Tip>
-  </Tab>
-</Tabs>
-
-## Step 4: Firebase setup
-
-Firebase is Google's free app development platform, and it's the recommended way to track conversions from Google Ads. Even if you're not using other Firebase features, the Analytics SDK is worth installing.
-
-### Create and configure a Firebase project
-
-<Steps>
-  <Step title="Create a Firebase project">
-    Go to [console.firebase.google.com](https://console.firebase.google.com). Click **Create a project** (or select an existing one).
-
-    - Enter your project name (usually your app name)
-    - Accept the terms
-    - **Enable Google Analytics** when prompted -- this is required for ad tracking
-    - Select or create a Google Analytics account
-    - Click **Create project**
-  </Step>
-  <Step title="Add your Android app">
-    In the Firebase Console, click the **Android icon** to add an app.
-
-    - **Android package name:** Your app's package name (e.g., `com.yourcompany.yourapp`). Must exactly match what's in your `build.gradle`.
-    - **App nickname:** A friendly name (optional)
-    - **Debug signing certificate SHA-1:** Optional for now, needed later for some features
-
-    Click **Register app**.
-  </Step>
-  <Step title="Download the config file (Android)">
-    Download `google-services.json` and place it in your app's `app/` directory:
-
-    ```
-    your-project/
-    ├── app/
-    │   ├── google-services.json  ← place it here
-    │   ├── src/
-    │   └── build.gradle
-    └── build.gradle
-    ```
-  </Step>
-  <Step title="Add your iOS app">
-    Back in the Firebase Console, click **Add app** > **iOS**.
-
-    - **Apple bundle ID:** Your app's bundle identifier (e.g., `com.yourcompany.yourapp`). Must match your Xcode project.
-    - **App nickname:** Optional
-    - **App Store ID:** Your numeric App Store ID (found in your App Store URL)
-
-    Click **Register app**.
-  </Step>
-  <Step title="Download the config file (iOS)">
-    Download `GoogleService-Info.plist` and add it to your Xcode project:
-
-    1. Open your Xcode project
-    2. Drag `GoogleService-Info.plist` into the root of your project navigator
-    3. Make sure **"Copy items if needed"** is checked
-    4. Make sure your app target is selected
-  </Step>
-  <Step title="Link Firebase to Google Ads">
-    This is the critical step that connects your app data to your ad campaigns.
-
-    **In Firebase Console:**
-    1. Go to **Project Settings** (gear icon)
-    2. Click the **Integrations** tab
-    3. Find **Google Ads** and click **Link**
-    4. Select your Google Ads account from the list
-    5. Click **Link**
-
-    **In Google Ads (verify the link):**
-    1. Go to **Tools & Settings** > **Linked accounts**
-    2. Find **Firebase** and click **Details**
-    3. Confirm your Firebase project shows as "Linked"
-
-    <Warning>
-      **Both directions must be linked.** The link in Firebase AND the link in Google Ads must both be active. If either side is missing, conversion data won't flow properly.
-    </Warning>
-  </Step>
-</Steps>
-
-## Step 5: Set up billing
-
-You can't run ads without a payment method. Google Ads charges you as you spend (no upfront payment required for most countries).
-
-<Steps>
-  <Step title="Navigate to Billing">
-    Click **Tools & Settings** (wrench) > **Billing** > **Settings**.
-  </Step>
-  <Step title="Add a payment method">
-    Click **Add payment method**. Options vary by country but typically include:
-    - **Credit card** (Visa, Mastercard, Amex) -- most common
-    - **Debit card** -- works in most countries
-    - **Bank account (ACH)** -- available in the US and some other countries
-    - **PayPal** -- available in some countries
-
-    Enter your payment details and billing address.
-  </Step>
-  <Step title="Understand how billing works">
-    Google Ads uses **automatic payments** in most countries:
-    - You're charged when your spending reaches your **billing threshold** (starts at $50, increases over time)
-    - OR at the end of the month, whichever comes first
-    - The threshold increases automatically as you build payment history ($50 → $200 → $350 → $500)
-  </Step>
-  <Step title="Set up billing alerts">
-    Go to **Tools & Settings** > **Billing** > **Settings** and set up email notifications:
-    - Payment processed notifications
-    - Budget overspend warnings
-    - Payment method expiration reminders
-  </Step>
-</Steps>
-
-### Budget safety tips
-
-<CardGroup cols={2}>
-  <Card title="Start small" icon="shield">
-    Set your first campaign's daily budget to **$10-20**. You can always increase it later. There's no benefit to starting big before you understand what's working.
-  </Card>
-  <Card title="Set campaign budgets, not account budgets" icon="wallet">
-    Unlike Meta, Google Ads doesn't have a global account spending limit. Your safety net is the **daily campaign budget** on each campaign. Set it conservatively.
-  </Card>
-  <Card title="Use shared budgets for flexibility" icon="share">
-    Under **Tools & Settings** > **Shared Library** > **Shared Budgets**, you can create a single budget that's shared across multiple campaigns. Google allocates spending to whichever campaign is performing best.
-  </Card>
-  <Card title="Monitor weekly" icon="calendar">
-    Review your **Billing summary** weekly during your first month. Make sure actual spending matches your expectations.
-  </Card>
-</CardGroup>
+| Feature | Smart Mode | Expert Mode |
+|---|---|---|
+| Campaign types available | 1-2 | All 7+ types |
+| Keyword control | Almost none | Full control |
+| Bidding strategies | Limited | All strategies |
+| Ad extensions | Limited | All extensions |
+| Audience targeting | Basic | Advanced |
+| Negative keywords | Not available | Available |
+| Ad scheduling | Not available | Available |
+| Reporting detail | Minimal | Comprehensive |
 
 <Tip>
-  **Monthly budget math:** Google may spend up to 2x your daily budget on a given day, but will never exceed your daily budget x 30.4 in a calendar month. If your daily budget is $20, your maximum monthly spend is $608. Google explains this as "making up for days with less traffic."
+If you accidentally set up your account in Smart Mode, do not worry. You can switch to Expert Mode later by clicking the **wrench icon** (Tools) in Google Ads and looking for **"Switch to Expert Mode."** But it is much easier to start in Expert Mode from the beginning, so look carefully for that link during setup.
 </Tip>
 
-## Step 6: Account structure best practices
+---
 
-A well-organized account is easier to manage, report on, and optimize. Plan your structure before creating campaigns.
+## Step 3: Skip the Initial Campaign Creation
 
-### The hierarchy
+After switching to Expert Mode, Google may still try to get you to create a campaign immediately. We are going to skip this for now because we want to set up the account properly first.
 
-```mermaid
-graph TD
-    A[Google Ads Account] --> B[Campaign 1]
-    A --> C[Campaign 2]
-    B --> D[Ad Group 1a]
-    B --> E[Ad Group 1b]
-    C --> F[Ad Group 2a]
-    C --> G[Ad Group 2b]
-    D --> H[Keywords + Ads]
-    E --> I[Keywords + Ads]
-    F --> J[Keywords + Ads]
-    G --> K[Keywords + Ads]
-```
+10. If Google asks you to choose a campaign goal, look for an option that says **"Create an account without a campaign"** — this is usually a small link at the bottom of the page
+11. Click **"Create an account without a campaign"**
+12. Google will ask you to confirm your business information:
+    - **Country:** Select your country
+    - **Time zone:** Choose the time zone of your primary audience (this affects when your daily budget resets, and it cannot be changed later)
+    - **Currency:** Choose your billing currency (this also cannot be changed later)
+13. Click **Submit** or **Continue**
 
-| Level | What it controls | Key decisions |
-|-------|-----------------|---------------|
-| **Account** | Billing, linked accounts, access | One account per app (or use MCC for multiple) |
-| **Campaign** | Budget, bidding strategy, targeting (geo, device, schedule) | Separate campaigns by goal, geo, or campaign type |
-| **Ad Group** | Keywords, audience segments, and which ads to show | Group tightly themed keywords together |
-| **Ads** | The actual creative (text, images, videos) | 2-3 ads per ad group for testing |
-| **Keywords** | (Search only) Which search terms trigger your ads | 10-20 closely related keywords per ad group |
+---
 
-### Recommended account structure for apps
+## Step 4: Configure Your Billing
 
-```
-Google Ads Account: [YourApp]
-│
-├── Campaign: UAC - US - Installs
-│   (App Campaign, targeting US, optimizing for installs)
-│
-├── Campaign: UAC - EU - Installs
-│   (App Campaign, targeting EU countries, optimizing for installs)
-│
-├── Campaign: Search - US - Brand Keywords
-│   ├── Ad Group: Brand terms ("yourapp", "yourapp app")
-│   └── Ad Group: Brand misspellings
-│
-├── Campaign: Search - US - Category Keywords
-│   ├── Ad Group: Direct keywords ("habit tracker app")
-│   ├── Ad Group: Problem keywords ("how to build habits")
-│   └── Ad Group: Competitor keywords ("[competitor] alternative")
-│
-├── Campaign: Display - Global - Remarketing
-│   └── Ad Group: Past website visitors
-│
-└── Campaign: YouTube - US - Awareness
-    └── Ad Group: In-market audiences
-```
+Before you can run any ads, you need to set up billing.
 
-### Naming conventions
+### How to Access Billing Settings:
 
-Consistent naming saves you hours of confusion later. Use a structured format:
+14. Once you are inside the Google Ads dashboard, click the **wrench icon** (Tools and Settings) in the top navigation bar
+15. Under **Billing**, click **Billing Summary** or **Settings**
+16. Click **Payment methods**
 
-```
-[Campaign Type] - [Geo] - [Targeting/Goal] - [Date]
-```
+### Adding a Payment Method:
 
-**Examples:**
-```
-UAC - US - Installs - 2026-02
-Search - US - Brand Keywords - 2026-02
-Search - UK - Competitor Keywords - 2026-02
-Display - Global - Remarketing - 2026-02
-YouTube - US - Awareness - 2026-02
-```
+17. Click **Add payment method**
+18. Choose your payment type:
+    - **Credit or debit card** (Visa, Mastercard, American Express, Discover) — Most common
+    - **Bank account** — Available in some countries
+    - **PayPal** — Available in certain countries
+19. Enter your payment information:
+    - Card number
+    - Expiration date
+    - CVV
+    - Billing name and address
+20. Click **Submit**
+
+### Understanding Google Ads Billing:
+
+- **Automatic payments:** Google charges you AFTER you accumulate ad spend. You get charged when you hit your billing threshold or on your monthly billing date
+- **Manual payments:** You prepay for ads. Available in some countries but not all
+- **Billing threshold:** Starts at a low amount (often $50) and increases as your account builds payment history
+- **Monthly billing date:** If you do not reach your threshold, you are billed on this date
 
 <Tip>
-  **Include the date** in your campaign names. When you create new versions of campaigns (which you will), the date helps you know which is which. Some teams also add a version number: `Search - US - Brand v2 - 2026-03`.
+Google will never spend more than your **daily budget x 30.4** (the average days in a month) in a calendar month. On any given day, Google may spend up to 2x your daily budget if it sees good opportunities, but it will compensate by spending less on other days. Over the month, you will not exceed your monthly limit.
 </Tip>
 
-## Step 7: Conversion tracking setup overview
+---
 
-Before you launch any campaign, you need conversion tracking. Without it, Google Ads is flying blind -- it can't optimize because it doesn't know what success looks like.
+## Step 5: Explore the Google Ads Dashboard
 
-There are two types of conversions to set up:
+Now that your account is set up, let us get familiar with the interface.
 
-### App conversions (Firebase)
+### The Main Navigation:
 
-1. In Google Ads, go to **Tools & Settings** > **Conversions**
-2. Click **+ New conversion action**
-3. Select **App**
-4. Choose **Firebase**
-5. Select the events you want to track as conversions (details in the next guide)
+21. **Overview page** — A dashboard showing your account performance at a glance (it will be empty since you have not run any ads yet)
+22. **Campaigns** — Where you create, view, and manage your campaigns
+23. **Ad groups** — Where you manage ad groups within campaigns
+24. **Ads & assets** — Where you manage your ad text, images, and extensions
+25. **Keywords** — Where you manage your search keywords
+26. **Audiences** — Where you manage audience targeting
+27. **Tools and Settings (wrench icon)** — Where you access advanced tools:
+    - **Keyword Planner** — For keyword research
+    - **Conversion tracking** — For setting up conversion measurement
+    - **Audience Manager** — For creating and managing audiences
+    - **Billing** — For payment and invoice management
 
-### Website conversions (Google Tag)
+### Customizing Your View:
 
-If you have a website or landing page:
+28. Click on **Campaigns** in the left sidebar
+29. You will see a table (empty for now) with columns for metrics
+30. Click the **Columns** icon to customize which metrics you see
+31. We recommend adding these columns:
+    - Clicks
+    - Impressions
+    - CTR (click-through rate)
+    - Average CPC (cost per click)
+    - Cost
+    - Conversions
+    - Cost per conversion
+    - Conversion rate
 
-1. In Google Ads, go to **Tools & Settings** > **Conversions**
-2. Click **+ New conversion action**
-3. Select **Website**
-4. Follow the Google Tag setup (details in the next guide)
+---
 
-<Note>
-  **The full conversion tracking setup is covered in the next guide.** This step is just to make you aware that it exists and that it must be done before launching campaigns. We'll walk through Firebase SDK installation, event configuration, and verification in detail.
-</Note>
+## Step 6: Set Up Google Ads Conversion Tracking (Preview)
 
-## Step 8: Team access and permissions
+Conversion tracking is essential for measuring what happens after someone clicks your ad. We will cover this in detail in the Conversion Tracking guide, but here is a quick overview of what you will set up:
 
-### Invite team members
+### What Is a Conversion?
 
-<Steps>
-  <Step title="Open Access settings">
-    Click **Tools & Settings** (wrench) > **Access and Security**.
-  </Step>
-  <Step title="Add a new user">
-    Click the **+** button to invite someone.
-  </Step>
-  <Step title="Enter their email">
-    Enter the Google account email of the person you want to invite. They must have a Google account.
-  </Step>
-  <Step title="Choose the right access level">
-    Select the appropriate permission level from the table below.
-  </Step>
-  <Step title="Send the invitation">
-    Click **Send invitation**. The person will receive an email and must accept before they can access the account.
-  </Step>
-</Steps>
+A conversion is any valuable action you want people to take after clicking your ad:
+- Making a purchase
+- Signing up for a free trial
+- Filling out a contact form
+- Downloading your app
+- Calling your business
 
-### Access levels explained
+### How Google Tracks Conversions:
 
-| Access Level | What they can do | What they can't do | Best for |
-|-------------|-----------------|-------------------|----------|
-| **Admin** | Everything: create campaigns, manage billing, invite/remove users, link accounts | Nothing is restricted | Account owner, CTO, lead marketer |
-| **Standard** | Create and edit campaigns, manage keywords and ads, view all reports | Manage billing, invite/remove users, change account settings | Marketing team members, ad managers |
-| **Read only** | View all campaigns, reports, and performance data | Make any changes | Stakeholders, executives, investors |
-| **Billing** | View and manage payment methods, billing settings, invoices | View or edit campaigns or reports | Finance team, accountant |
-| **Email only** | Receive email notifications and reports | Access the Google Ads interface at all | People who just need periodic updates |
+Google uses **Google Tag (gtag.js)** — a small piece of JavaScript code you place on your website (similar to Meta Pixel). When someone clicks your ad and then completes a conversion on your website, the Google Tag records it and reports it back to Google Ads.
 
-<Warning>
-  **Be careful with Admin access.** Anyone with Admin access can change billing, remove other users, or delete campaigns. Limit Admin to 1-2 trusted people. Use Standard access for day-to-day ad management.
-</Warning>
+### Quick Setup (We Will Cover This in Detail Later):
 
-### Security best practices
+32. Click the **wrench icon** → **Measurement** → **Conversions**
+33. Click **+ New conversion action**
+34. Choose the type:
+    - **Website** — Track actions on your website
+    - **App** — Track actions in your mobile app
+    - **Phone calls** — Track calls from your ads
+    - **Import** — Import conversions from other sources
 
-- **Enable 2-factor authentication** on all Google accounts with Ads access
-- **Audit access quarterly** -- remove people who no longer need it
-- **Use Standard access by default** -- only grant Admin when necessary
-- **Never share your Google account credentials** -- always invite people with their own accounts
-- If using an agency, grant them **Standard access** (not Admin) and set a clear end date
+We will walk through the complete setup in the Conversion Tracking guide.
 
-## Your complete setup checklist
+<Tip>
+Do NOT skip conversion tracking. Without it, Google Ads is essentially guessing who to show your ads to. With proper conversion tracking, Google's algorithm can identify which clicks lead to actual business results and automatically optimize to find more people like your converters. It is the difference between throwing darts blindfolded and using a laser-guided targeting system.
+</Tip>
 
-Before moving to conversion tracking:
+---
 
-- [ ] Google Ads account created in **Expert Mode** (not Smart Mode)
-- [ ] Time zone set to primary market timezone
-- [ ] Currency set correctly
-- [ ] MCC created (if managing multiple apps/accounts)
-- [ ] Android app linked via Google Play (if applicable)
-- [ ] iOS app added via Firebase (if applicable)
-- [ ] Firebase project created with Google Analytics enabled
-- [ ] Firebase linked to Google Ads (both directions)
-- [ ] Payment method added
-- [ ] Billing alerts configured
-- [ ] Account structure planned with naming conventions
-- [ ] Team members invited with appropriate access levels
-- [ ] 2-factor authentication enabled
+## Step 7: Link Google Analytics (Recommended)
 
-<Card
-  title="Google Conversion Tracking"
-  icon="arrow-right"
-  href="/platforms/google/conversion-tracking"
->
-  Account ready? Let's set up conversion tracking -- the foundation of all Google Ads optimization.
-</Card>
+Linking Google Analytics to Google Ads gives you deeper insights into what people do on your website after clicking your ads.
+
+### Why Link Google Analytics:
+
+- See user behavior after the click (pages visited, time on site, bounce rate)
+- Import Google Analytics goals and audiences into Google Ads
+- Get a more complete picture of your customer journey
+- Identify which landing pages convert best
+
+### How to Link Google Analytics:
+
+35. Click the **wrench icon** → **Setup** → **Linked accounts**
+36. Find **Google Analytics (GA4)** and click **Details**
+37. You will see a list of Google Analytics properties you have access to
+38. Click **Link** next to the property you want to connect
+39. Review the settings and click **Link**
+
+### If You Do Not Have Google Analytics Yet:
+
+40. Go to **[analytics.google.com](https://analytics.google.com)**
+41. Sign in with the same Google account you used for Google Ads
+42. Click **Start measuring**
+43. Follow the setup wizard:
+    - Enter your **account name** (your business name)
+    - Enter your **property name** (your website name)
+    - Configure your data settings
+44. Google Analytics will give you a **Measurement ID** (starts with "G-")
+45. Add the Google Analytics code to your website (similar to how you added Meta Pixel)
+46. Return to Google Ads and link the accounts using the steps above
+
+---
+
+## Step 8: Set Up Your Account Structure
+
+A well-organized account structure makes optimization much easier down the road. Here is the recommended structure for beginners:
+
+### Recommended Campaign Structure:
+
+```
+Google Ads Account
+├── Campaign 1: Search - Brand Keywords
+│   └── Ad Group 1: Brand name variations
+│       ├── Keywords: [your brand name], "your brand name app"
+│       └── Ads: Brand-focused ad copy
+│
+├── Campaign 2: Search - Non-Brand Keywords
+│   ├── Ad Group 1: Category keywords
+│   │   ├── Keywords: "habit tracker app," "daily routine app"
+│   │   └── Ads: Category-focused ad copy
+│   ├── Ad Group 2: Problem keywords
+│   │   ├── Keywords: "how to build habits," "track daily habits"
+│   │   └── Ads: Problem-focused ad copy
+│   └── Ad Group 3: Competitor keywords
+│       ├── Keywords: "competitor name alternative"
+│       └── Ads: Comparison ad copy
+│
+├── Campaign 3: Display - Retargeting
+│   └── Ad Group 1: All website visitors
+│       ├── Audience: Website visitors (last 30 days)
+│       └── Ads: Retargeting display ads
+│
+└── Campaign 4: Display - Prospecting (later)
+    └── Ad Group 1: Interest-based
+        ├── Audience: In-market audiences
+        └── Ads: Awareness display ads
+```
+
+### Why Separate Campaigns:
+
+- **Brand vs. Non-Brand Search** should be in separate campaigns because:
+  - Brand keywords have very different performance metrics (much higher CTR, much lower CPC)
+  - Mixing them makes it impossible to see true performance for each type
+  - Budget allocation is easier when separated
+
+- **Search vs. Display** should be in separate campaigns because:
+  - They serve different purposes (intent capture vs. awareness)
+  - They have very different performance metrics
+  - Budget allocation needs differ significantly
+
+<Tip>
+Do not create too many campaigns when starting out. Two to three campaigns is plenty. You can always add more later as you learn. Over-segmenting your account when you have a small budget spreads your data too thin and prevents Google from optimizing effectively. Start simple, add complexity as you grow.
+</Tip>
+
+---
+
+## Step 9: Configure Account-Level Settings
+
+Before creating any campaigns, configure these account-level settings:
+
+### Auto-Applied Recommendations:
+
+47. Click the **wrench icon** → **Setup** → **Auto-apply recommendations**
+48. Google Ads will suggest automatically applying certain "recommendations" to your account
+49. **For beginners, we recommend turning most of these OFF.** Google's recommendations often benefit Google's revenue more than your ROI
+50. Keep these OFF especially:
+    - "Add broad match keywords" — This can dramatically increase spending
+    - "Increase your budgets" — Only you should decide budget changes
+    - "Set target ROAS" — Wait until you have enough data
+51. You can review recommendations manually in the **Recommendations** tab and apply ones that make sense
+
+### Ad Suggestions:
+
+52. Google may auto-create ad suggestions for you
+53. We recommend turning this OFF initially so you maintain full control over your ad copy
+54. You can find this setting in **wrench icon** → **Account settings** → **Ad suggestions**
+
+---
+
+## Step 10: Install the Google Ads Tag (Preview)
+
+The Google Ads tag (also called Google Tag or gtag.js) needs to be installed on your website for conversion tracking to work. We will cover this fully in the Conversion Tracking guide, but here is what you need to know:
+
+### The Google Tag Code:
+
+```html
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-XXXXXXXXX');
+</script>
+```
+
+Replace `AW-XXXXXXXXX` with your Google Ads conversion ID. We will get this ID in the Conversion Tracking guide.
+
+55. This code goes in the `<head>` section of every page on your website (just like Meta Pixel)
+56. If you are already using Google Tag Manager, you can add Google Ads tracking through GTM instead
+
+---
+
+## Troubleshooting Common Setup Issues
+
+### "I am stuck in Smart Mode and cannot find Expert Mode"
+
+**What to do:**
+1. Click the **wrench icon** (if available) in the top navigation
+2. Look for **"Switch to Expert Mode"** in the settings
+3. If you cannot find it, try the direct URL: ads.google.com, then look for the settings gear
+4. As a last resort, create a new account and look for the Expert Mode link during the initial setup
+
+### "My account was suspended"
+
+**What to do:**
+1. Check your email for a message from Google explaining why
+2. Common reasons: suspicious payment method, policy violations, or incomplete billing info
+3. Go to [ads.google.com/nav/login](https://ads.google.com/nav/login) and look for appeal options
+4. Fix the issue and submit an appeal
+5. Google usually reviews appeals within 3-7 business days
+
+### "I chose the wrong time zone or currency"
+
+**Unfortunately:**
+- Time zone and currency cannot be changed after account creation
+- You will need to create a new Google Ads account with the correct settings
+- This is why we emphasized choosing carefully during setup
+
+### "My payment method was declined"
+
+**What to do:**
+1. Verify the card number, expiration, and CVV are correct
+2. Make sure the billing address matches your bank records
+3. Contact your bank — they may be blocking the charge
+4. Try a different payment method
+5. Check if your card issuer blocks international transactions (Google may charge from Ireland)
+
+---
+
+## Your Account Setup Checklist
+
+- [ ] Google Ads account created at ads.google.com
+- [ ] Expert Mode activated (NOT Smart Mode)
+- [ ] Initial campaign creation skipped
+- [ ] Correct time zone selected
+- [ ] Correct currency selected
+- [ ] Payment method added and verified
+- [ ] Dashboard explored and custom columns configured
+- [ ] Google Analytics linked (if available)
+- [ ] Account structure planned (brand vs. non-brand, search vs. display)
+- [ ] Auto-applied recommendations reviewed and mostly turned off
+- [ ] Ad suggestions turned off
+
+---
+
+## Understanding Google Ads Policies
+
+Before creating your first campaign, it helps to understand what Google allows and does not allow in ads. Knowing the rules upfront prevents frustrating ad rejections later.
+
+### Common Reasons Ads Get Rejected:
+
+- **Misleading claims:** Promising guaranteed results, using exaggerated language ("Best app in the world")
+- **Trademark violations:** Using another company's trademarked name in your ad text without permission
+- **Prohibited content:** Ads for products or services Google does not allow (counterfeit goods, dangerous products, etc.)
+- **Destination mismatch:** Your ad talks about one thing but the landing page shows something different
+- **Broken URLs:** Your landing page returns an error or does not load
+- **Punctuation and symbols:** Excessive use of exclamation points, all caps, or special characters
+- **Phone numbers in ad text:** Phone numbers should be added through call assets, not in the ad text itself
+
+### Restricted Categories:
+
+Some product categories have additional requirements:
+
+- **Healthcare and medicines:** May require certification
+- **Financial services:** Must comply with local regulations
+- **Alcohol:** Restricted in many countries
+- **Gambling:** Requires licensing and varies by country
+- **Political advertising:** Requires verification in many countries
+
+### What Happens When an Ad Is Rejected:
+
+1. The ad will show a "Disapproved" status in Ads Manager
+2. Google will tell you which policy was violated
+3. You can edit the ad to fix the issue and resubmit
+4. If you believe the rejection was a mistake, you can appeal
+5. Appeals are usually reviewed within 1-3 business days
+
+<Tip>
+Before writing your ads, quickly scan the [Google Ads policies page](https://support.google.com/adspolicy/answer/6008942). It takes 10 minutes and saves you hours of frustration from unexpected rejections. The most common beginner mistakes are using all caps in headlines, making unsubstantiated claims, and having landing pages that do not match the ad content.
+</Tip>
+
+---
+
+## What Comes Next
+
+Your Google Ads account is now properly set up in Expert Mode with full access to all features and controls. You have your billing configured, your dashboard customized, and your account structure planned.
+
+In the **Conversion Tracking** guide, we will install the Google Tag on your website and set up proper conversion tracking. This is the next essential step before creating your first campaign — without conversion tracking, Google cannot optimize your ads effectively.
+
+<Tip>
+Bookmark **[ads.google.com](https://ads.google.com)** right now. You will be visiting this URL frequently. Also bookmark the **Google Ads Help Center** at [support.google.com/google-ads](https://support.google.com/google-ads) — it is an excellent resource for answering specific questions as they come up.
+</Tip>

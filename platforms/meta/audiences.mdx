@@ -1,714 +1,537 @@
 ---
 title: "Meta Audiences"
-description: "Complete guide to every Meta audience type — core audiences, custom audiences, lookalike audiences, Advantage+ audience, retargeting strategies, and audience sizing."
+description: "A complete beginner's guide to every Meta audience type — Custom Audiences, Lookalike Audiences, Saved Audiences, and Advantage+ Audience. Learn how to find and reach exactly the right people."
 ---
 
-## The audience is everything
+## The Power of Targeting the Right People
 
-You can have the best ad creative in the world, but if it is shown to the wrong people, it will not work. Meta gives you extremely powerful targeting tools, and understanding them is one of the biggest advantages you can have as an advertiser.
+You could have the most beautiful ad in the world, but if you show it to the wrong people, it will not work. Imagine trying to sell winter coats to people in the tropics, or promoting a kids' game to retirees. Audience targeting is how you make sure your ads reach the people who actually care about what you are offering.
 
-This guide covers every audience type in detail, including options you did not know existed.
+Meta's audience tools are among the most powerful in digital advertising. They let you target people based on who they are, what they have done, and who they resemble. Understanding these tools will dramatically improve your ad performance.
 
----
-
-## The four audience types
-
-```mermaid
-graph LR
-    A[Meta Audiences] --> B[Core Audiences]
-    A --> C[Custom Audiences]
-    A --> D[Lookalike Audiences]
-    A --> E[Advantage+ Audience]
-    B --> B1[Demographics]
-    B --> B2[Interests]
-    B --> B3[Behaviors]
-    C --> C1[Website Visitors]
-    C --> C2[App Users]
-    C --> C3[Customer Lists]
-    C --> C4[Engagement]
-    D --> D1[Based on Custom Audiences]
-    E --> E1[AI-Powered Targeting]
-```
-
-<CardGroup cols={2}>
-  <Card title="Core Audiences" icon="sliders">
-    Built from **demographics, interests, and behaviors** you define manually. Your starting point when you have no existing data.
-  </Card>
-  <Card title="Custom Audiences" icon="database">
-    Built from **your own data** — app users, website visitors, email lists, video viewers, and social media engagers. People who already know you.
-  </Card>
-  <Card title="Lookalike Audiences" icon="clone">
-    Meta finds **new people similar** to your best existing users. This is how you scale from thousands to millions.
-  </Card>
-  <Card title="Advantage+ Audience" icon="wand-magic-sparkles">
-    Meta's **AI-powered targeting** that uses your inputs as suggestions and finds the best audience automatically.
-  </Card>
-</CardGroup>
-
----
-
-## Core audiences (demographics, interests, and behaviors)
-
-Core audiences are what most people think of when they hear "ad targeting" — you manually define who should see your ads based on their characteristics. These are also called **Saved Audiences** because you can save and reuse them.
-
-### Demographics
-
-Demographics target people based on who they are:
-
-<AccordionGroup>
-  <Accordion title="Location">
-    **Options:**
-    - Countries (target entire countries)
-    - States/regions/provinces
-    - Cities (with a custom radius, 10-50 miles)
-    - ZIP/postal codes
-    - DMA (Designated Market Areas, US only)
-    - Custom radius around a dropped pin
-
-    **Location types:**
-    - People living in or recently in this location (default)
-    - People living in this location (permanent residents only)
-    - People recently in this location (includes visitors)
-    - People traveling in this location (only visitors, not residents)
-
-    **Exclusions:** You can also exclude specific locations. For example, target the US but exclude New York.
-  </Accordion>
-  <Accordion title="Age">
-    Range from 13 to 65+. However, ads in most categories are limited to 18+.
-
-    **Recommendations:**
-    - Start broad (18-65+) and let Meta optimize
-    - Check your age breakdown after 7 days to see where installs come from
-    - Only narrow when you have strong data showing specific age groups perform better
-  </Accordion>
-  <Accordion title="Gender">
-    Options: All, Men, Women.
-
-    **Recommendations:**
-    - Start with "All" and check the gender breakdown after 7 days
-    - Some apps have a clear gender skew — if 80% of your installs come from one gender, consider targeting accordingly
-  </Accordion>
-  <Accordion title="Language">
-    Target people who use a specific language in their Facebook settings.
-
-    **When to use:** Only when targeting a multilingual region where your ad is in a specific language. For example, targeting Spanish speakers in the US with a Spanish-language ad.
-  </Accordion>
-  <Accordion title="Detailed demographics">
-    Meta provides detailed demographic targeting including:
-    - **Education level:** High school, college, graduate school
-    - **Field of study:** Business, engineering, arts, etc.
-    - **School name:** Specific universities
-    - **Life events:** Recently moved, recently engaged, new job, birthday, anniversary
-    - **Relationship status:** Single, in a relationship, married, etc.
-    - **Work:** Employer, industry, job title
-    - **Parents:** New parents, parents with toddlers, parents with teenagers, etc.
-    - **Politics (US):** Liberal, conservative, moderate (limited availability)
-    - **Generation:** Millennials, Gen X, Baby Boomers
-  </Accordion>
-</AccordionGroup>
-
-### Interests
-
-Interests target people based on what they are interested in, the pages they like, the content they engage with, and related topics. This is the most commonly used targeting method.
-
-<AccordionGroup>
-  <Accordion title="Business and industry">
-    - Advertising, agriculture, architecture, aviation, banking, business, construction, design, economics, engineering, entrepreneurship, healthcare, higher education, management, marketing, nursing, online marketing, personal finance, real estate, retail, sales, science, small business
-  </Accordion>
-  <Accordion title="Entertainment">
-    - Games (action, board, browser, card, casino, puzzle, role-playing, simulation, sports, strategy, trivia, video, word)
-    - Live events (ballet, bars, clubs, concerts, festivals, nightclubs, parties, theater)
-    - Movies (specific genres and titles)
-    - Music (specific genres, artists, instruments)
-    - Reading (books, comics, e-books, fiction, magazines, manga, newspapers, nonfiction)
-    - TV (specific genres and shows)
-  </Accordion>
-  <Accordion title="Family and relationships">
-    - Dating, family, fatherhood, friendship, marriage, motherhood, parenting, weddings
-  </Accordion>
-  <Accordion title="Fitness and wellness">
-    - Bodybuilding, dieting, gyms, meditation, nutrition, physical exercise, physical fitness, running, weight training, yoga, Zumba
-  </Accordion>
-  <Accordion title="Food and drink">
-    - Alcoholic beverages (beer, cocktails, distilled spirits, wine), cooking, cuisine (by type), fast food, food, organic food, recipes, restaurants, seafood, veganism, vegetarianism
-  </Accordion>
-  <Accordion title="Hobbies and activities">
-    - Arts and music, current events, home and garden, pets, politics and social issues, travel, vehicles
-  </Accordion>
-  <Accordion title="Shopping and fashion">
-    - Beauty, clothing, fashion accessories, fashion design, handbags, jewelry, online shopping, shopping, shoes, toys
-  </Accordion>
-  <Accordion title="Sports and outdoors">
-    - Individual sports (cycling, fishing, golf, horseback riding, hunting, running, skiing, swimming, tennis)
-    - Team sports (baseball, basketball, cricket, football, hockey, rugby, soccer)
-    - Outdoor recreation (camping, hiking, mountaineering, surfing)
-  </Accordion>
-  <Accordion title="Technology">
-    - Computers (specific brands and types), consumer electronics, internet, mobile phones (by brand), social media, software (specific types), tablets (by brand)
-  </Accordion>
-</AccordionGroup>
-
-### Behaviors
-
-Behaviors target people based on their actions and habits, not just their interests:
-
-<AccordionGroup>
-  <Accordion title="Digital activities">
-    - Early technology adopters
-    - Facebook page admins
-    - Canvas gaming
-    - Console gamers
-    - Facebook Payments users
-    - Internet browser used
-    - Operating system used
-    - Photo uploaders
-    - Primary email domain
-    - Small business owners
-    - Technology early adopters/late adopters
-  </Accordion>
-  <Accordion title="Mobile device user">
-    - All mobile devices by brand (Apple, Samsung, Huawei, Xiaomi, etc.)
-    - Device operating system (iOS, Android)
-    - Specific device models
-    - Network connection (WiFi, 2G, 3G, 4G)
-    - New smartphone and tablet owners
-    - Feature phone owners vs. smartphone owners
-  </Accordion>
-  <Accordion title="Purchase behavior">
-    - Engaged shoppers
-    - Buyer profiles (by spending level)
-    - Online buyers
-    - Store card holders
-  </Accordion>
-  <Accordion title="Travel">
-    - All frequent travelers
-    - Business travelers
-    - Commuters
-    - Currently traveling
-    - Frequent international travelers
-    - Returned from travel (1 week, 2 weeks)
-  </Accordion>
-  <Accordion title="Expats">
-    People who live in a different country from their country of origin. Useful for targeting people from a specific country who now live elsewhere.
-  </Accordion>
-</AccordionGroup>
-
-### Building effective core audiences
-
-<CardGroup cols={2}>
-  <Card title="Do" icon="check">
-    - Start broad (1M-10M+ audience size)
-    - Target interests related to the *problem* your app solves
-    - Use competitor brand names as interests
-    - Test 3-5 interests per ad set
-    - Test interest groups separately (not all stacked together)
-    - Let Meta's algorithm narrow within your broad targeting
-  </Card>
-  <Card title="Don't" icon="xmark">
-    - Stack 20+ interests in one ad set (too broad and unfocused)
-    - Make your audience smaller than 500K people (too narrow)
-    - Only target the obvious interests (every competitor does that)
-    - Use both interest AND behavior targeting to narrow excessively
-    - Forget to exclude existing customers
-    - Change targeting during the learning phase
-  </Card>
-</CardGroup>
-
-### AND vs OR targeting
-
-This is a subtlety that catches many beginners:
-
-- **Adding interests in the same field** = OR logic (audience expands). Targeting "Running" and "Yoga" means people interested in running **OR** yoga.
-- **Using "Narrow Audience" / "Narrow Further"** = AND logic (audience shrinks). Targeting "Running" AND "Fitness Apps" means people interested in BOTH running **AND** fitness apps.
-
-```
-OR logic (broader):
-Interest: Running, Yoga, Fitness
-→ Anyone interested in ANY of these = large audience
-
-AND logic (narrower):
-Interest: Running
-Narrow: Must also match: Fitness Apps
-→ Only people interested in BOTH = smaller, more specific audience
-```
-
-<Note>
-  **For most app install campaigns, OR logic (broad) works better.** Meta's algorithm is very good at finding the right people within a large audience. Overly narrow targeting limits the algorithm and usually increases costs.
-</Note>
-
----
-
-## Custom audiences
-
-Custom audiences are groups of people who have already interacted with your business in some way. They are your most valuable targeting tool because they are based on real behavior, not inferred interests.
-
-### All custom audience sources
-
-<AccordionGroup>
-  <Accordion title="App activity">
-    Target people based on what they did (or did not do) in your app:
-    - **All app openers** — anyone who opened your app
-    - **Most active users** — top 5%, 10%, or 25% by usage time
-    - **By purchase amount** — top 5%, 10%, or 25% by spending
-    - **By segment** — people who completed specific events (registration, level completion, etc.)
-    - **Lapsed users** — people who have not opened your app in X days
-
-    **Time windows:** 1 day, 7 days, 14 days, 30 days, 60 days, 90 days, 180 days (max)
-
-    **Requirements:** Meta SDK must be installed in your app.
-
-    **Example audiences:**
-    - "App openers - Last 7 days" (warm retargeting)
-    - "Purchasers - Last 30 days" (high-value users)
-    - "Installers who never registered - Last 14 days" (onboarding drop-offs)
-    - "Lapsed users - 30-90 days" (re-engagement)
-  </Accordion>
-  <Accordion title="Website traffic">
-    Target people based on what they did on your website:
-    - **All website visitors** — anyone who visited any page
-    - **Specific page visitors** — people who visited specific URLs (e.g., /pricing, /features)
-    - **By time spent** — top 5%, 10%, or 25% by time on site
-    - **By event** — people who triggered specific Pixel events (Lead, ViewContent, etc.)
-
-    **Time windows:** 1-180 days
-
-    **Requirements:** Meta Pixel must be installed on your website.
-
-    **Example audiences:**
-    - "Visited pricing page - Last 30 days" (high intent)
-    - "Visited blog but not app store - Last 14 days" (content to install funnel)
-    - "Triggered Lead event - Last 7 days" (email signups)
-  </Accordion>
-  <Accordion title="Customer list">
-    Upload a list of your existing customers so Meta can match them to Facebook/Instagram users:
-    - **Email addresses** (most common, 60-80% match rate)
-    - **Phone numbers** (50-70% match rate)
-    - **Mobile Advertiser IDs** (IDFA/GAID, highest accuracy)
-    - **First name + last name** (improves match rate when combined with email/phone)
-
-    **Minimum size:** At least 100 people, but 1,000+ recommended for useful targeting.
-
-    **How it works:** You upload a CSV file. Meta hashes the data client-side, matches it against its user database, and creates an audience. You never share raw data with Meta — it is all done through hashing.
-
-    **File format:**
-    ```csv
-    email,phone,first_name,last_name,country
-    user1@example.com,+12025551234,John,Smith,US
-    user2@example.com,+447911123456,Jane,Doe,GB
-    ```
-  </Accordion>
-  <Accordion title="Video engagement">
-    Target people based on how they interacted with your video ads or organic videos:
-    - People who watched at least **3 seconds**
-    - People who watched at least **10 seconds**
-    - People who watched at least **15 seconds** (ThruPlay)
-    - People who watched at least **25%** of your video
-    - People who watched at least **50%** of your video
-    - People who watched at least **75%** of your video
-    - People who watched at least **95%** of your video (completers)
-
-    **Time windows:** 1-365 days
-
-    **Why this is powerful:** Someone who watched 75%+ of your video ad is clearly interested in your app. Retargeting them with a direct install CTA often has very high conversion rates.
-  </Accordion>
-  <Accordion title="Instagram account engagement">
-    Target people who interacted with your Instagram profile:
-    - Everyone who engaged with your professional account
-    - Anyone who visited your profile
-    - People who engaged with a post or ad
-    - People who sent a message to your account
-    - People who saved a post or ad
-
-    **Time windows:** 1-365 days
-  </Accordion>
-  <Accordion title="Facebook page engagement">
-    Target people who interacted with your Facebook Page:
-    - Everyone who engaged with your Page
-    - Anyone who visited your Page
-    - People who engaged with a post or ad
-    - People who clicked a call-to-action button
-    - People who sent a message to your Page
-    - People who saved your Page or a post
-
-    **Time windows:** 1-365 days
-  </Accordion>
-  <Accordion title="Lead form engagement">
-    Target people who interacted with your lead forms (if you ran Lead Generation campaigns):
-    - People who opened the form
-    - People who opened but did not submit the form
-    - People who submitted the form
-
-    **Time windows:** 1-90 days
-  </Accordion>
-  <Accordion title="Shopping engagement">
-    Target people who interacted with your products on Facebook or Instagram Shops:
-    - People who viewed products
-    - People who added products to cart
-    - People who purchased products
-
-    **Time windows:** 1-365 days
-  </Accordion>
-  <Accordion title="Instant Experience engagement">
-    Target people who interacted with your Instant Experience (full-screen mobile ads):
-    - People who opened the Instant Experience
-    - People who clicked links in the Instant Experience
-
-    **Time windows:** 1-365 days
-  </Accordion>
-  <Accordion title="Offline activity">
-    Target people based on offline events you uploaded (in-store purchases, phone orders, etc.):
-    - People who completed any offline event
-    - People who completed specific event types
-
-    **Requirements:** You must set up Offline Event Sets and upload offline data to Meta.
-  </Accordion>
-</AccordionGroup>
-
-### How to create a custom audience
-
-<Steps>
-  <Step title="Go to Audiences">
-    Navigate to [adsmanager.facebook.com/audiences](https://adsmanager.facebook.com/audiences) or find it in the Ads Manager hamburger menu under **Audiences**.
-  </Step>
-  <Step title="Click 'Create Audience' > 'Custom Audience'">
-    A modal will open showing all available sources.
-  </Step>
-  <Step title="Choose your source">
-    Select the source type (App Activity, Website Traffic, Customer List, etc.).
-  </Step>
-  <Step title="Define the parameters">
-    Set the specific conditions:
-    - **Which events:** Select specific actions (e.g., "Purchase") or all events
-    - **Time window:** How far back to include people
-    - **Filters:** Additional conditions (e.g., purchase value > $10)
-    - **Include/Exclude:** Combine multiple conditions
-  </Step>
-  <Step title="Name the audience clearly">
-    Use a naming convention:
-    ```
-    [Source] - [Condition] - [Time Window]
-    Examples:
-    "App - Purchasers - Last 30 Days"
-    "Web - Pricing Page Visitors - Last 14 Days"
-    "Video - 75% Viewers - Last 60 Days"
-    "List - Email Subscribers - 2026-02"
-    ```
-  </Step>
-  <Step title="Click Create Audience">
-    Meta will start matching users. This can take a few minutes to a few hours depending on the audience size.
-  </Step>
-</Steps>
+In this guide, we will cover every audience type available in Meta advertising, explain when to use each one, and walk you through creating them step by step.
 
 <Tip>
-  **Create multiple time-window versions of the same audience.** "Purchasers - Last 7 Days" and "Purchasers - Last 90 Days" have very different characteristics. Recent users are warmer and more responsive. Older users may need more persuasion. Having both gives you flexibility.
+Audience targeting is arguably the second most important factor in ad success (after the ad creative itself). Even a mediocre ad shown to the perfect audience will outperform an amazing ad shown to the wrong audience. Take the time to understand these concepts — they are the key to profitable advertising.
 </Tip>
 
 ---
 
-## Lookalike audiences
+## The Four Types of Meta Audiences
 
-Lookalike audiences are one of Meta's most powerful features. You give Meta a "seed" audience of your best users, and Meta finds millions of new people who share similar characteristics.
+Meta offers four main ways to define who sees your ads:
 
-### How lookalike audiences work
+1. **Saved Audiences** — You manually define demographics, interests, and behaviors
+2. **Custom Audiences** — You target people who have already interacted with your business
+3. **Lookalike Audiences** — Meta finds new people who are similar to your existing customers
+4. **Advantage+ Audience** — Meta's AI automatically finds the best audience using your suggestions
 
-```mermaid
-graph LR
-    A[Your Seed Audience<br/>e.g., 5,000 purchasers] --> B[Meta Analyzes<br/>demographics, interests,<br/>behaviors, device data,<br/>and hundreds of signals]
-    B --> C[Meta Finds New People<br/>with similar profiles<br/>in your target country]
-    C --> D[Lookalike Audience<br/>1%-10% of country<br/>population]
-```
-
-Meta does not just look at basic demographics. It analyzes **hundreds of signals** including:
-- Age, gender, location
-- Interests and page likes
-- Purchase behavior
-- Device type and usage patterns
-- App usage patterns
-- Website browsing behavior
-- Ad interaction history
-- And many more signals that Meta does not publicly disclose
-
-### Creating a lookalike audience
-
-<Steps>
-  <Step title="Go to Audiences > Create Audience > Lookalike Audience">
-    Navigate to the Audiences page and select Lookalike Audience.
-  </Step>
-  <Step title="Select your source (seed) audience">
-    Choose a custom audience as the seed. The quality of your seed is the single most important factor:
-
-    | Seed quality | Expected results |
-    |-------------|-----------------|
-    | **Best:** Purchasers or high-value users | Highest quality lookalike — finds people most likely to pay |
-    | **Good:** Users who completed registration | Solid quality — finds people likely to engage |
-    | **Okay:** All app installers | Decent quality — good for volume |
-    | **Poor:** Website visitors or page engagers | Lower quality — many casual visitors in the seed |
-  </Step>
-  <Step title="Select location">
-    Choose the country where you want to find lookalike users. Lookalike audiences work **within a single country** — if you want lookalikes in 3 countries, create 3 separate lookalike audiences.
-  </Step>
-  <Step title="Set the percentage">
-    The percentage determines how similar the audience is to your seed:
-
-    | Percentage | Audience size (US) | Quality vs. reach |
-    |-----------|-------------------|-------------------|
-    | **1%** | ~2.7 million | Highest quality, most similar to your seed |
-    | **2%** | ~5.4 million | Very good quality, slightly broader |
-    | **3%** | ~8.1 million | Good quality, balanced reach |
-    | **5%** | ~13.5 million | Moderate quality, high reach |
-    | **10%** | ~27 million | Broadest, lowest similarity |
-
-    **Start with 1%.** Only expand when you have saturated the 1% audience (frequency above 3-4) or need more reach.
-  </Step>
-  <Step title="Create the audience">
-    Click **Create Audience**. It takes 6-24 hours for Meta to build the audience. You will see it in your Audiences list with a "Populating" status until it is ready.
-  </Step>
-</Steps>
-
-### Lookalike strategies by growth stage
-
-| Stage | Seed audience | Lookalike % | Budget allocation |
-|-------|-------------|-------------|-------------------|
-| **Just starting (< 1,000 installs)** | Not enough data for lookalikes. Use core audiences or broad targeting. | N/A | 100% to core/broad |
-| **Early growth (1,000-5,000 installs)** | All installers | 1% | 50% to lookalike, 50% to core |
-| **Growing (5,000-20,000 installs)** | Registrations or active users | 1% | 60% to lookalike, 30% to core, 10% to retargeting |
-| **Scaling (20,000+ installs)** | Purchasers or high-value users | 1%, then test 2-3% | 40% to 1% LAL, 20% to 2-3% LAL, 20% to broad, 20% to retargeting |
-
-### Advanced lookalike techniques
-
-**Value-based lookalikes:** Instead of finding people similar to all your purchasers equally, Meta can weight the lookalike toward people similar to your *highest-value* purchasers. To use this, your custom audience must include purchase value data.
-
-**Multiple seed audiences:** Create different lookalikes from different seeds and test them against each other:
-- LAL 1% from purchasers
-- LAL 1% from power users (daily active users)
-- LAL 1% from highest LTV users
-
-Each will find a different type of person. Test which one delivers the best results.
-
-**Layered lookalike expansion:**
-```
-Start: LAL 1% from Purchasers → when saturated...
-Then:  LAL 2% from Purchasers (excluding the 1%) → when saturated...
-Then:  LAL 1% from Registrations → when saturated...
-Then:  Broad targeting
-```
+Let us explore each one in detail.
 
 ---
 
-## Advantage+ audience
+## 1. Saved Audiences (Manual Targeting)
 
-Advantage+ Audience is Meta's newest targeting approach. Instead of you defining exactly who should see your ads, you provide **suggestions** and Meta uses its AI to find the best audience automatically.
+Saved Audiences are the most basic audience type. You manually tell Meta who you want to reach by specifying demographics, interests, and behaviors. Think of it as filling out a "wanted poster" for your ideal customer.
 
-### How it works
+### How to Create a Saved Audience:
 
-1. You optionally provide audience suggestions (interests, demographics, custom audiences)
-2. Meta treats these as **starting points**, not restrictions
-3. The algorithm explores beyond your suggestions if it finds better-performing users
-4. Over time, it converges on the highest-performing audience
+1. Go to **[adsmanager.facebook.com](https://adsmanager.facebook.com)**
+2. Click the **hamburger menu** and navigate to **Audiences**
+3. Click **Create Audience** → **Saved Audience**
+4. Give your audience a **name** (be descriptive — like "US Women 25-44 Fitness Enthusiasts")
 
-### When to use Advantage+ Audience
+### Location Targeting
 
-| Scenario | Recommendation |
-|----------|---------------|
-| You have strong conversion data (1,000+ installs) | Use Advantage+ Audience — Meta has enough data to find the right people |
-| Your budget is $50+/day | Use Advantage+ — more budget = more data = better AI targeting |
-| You are just starting | Use manual core audiences first so you understand who your users are |
-| You need to target a very specific niche | Use manual targeting — Advantage+ might go too broad |
+5. Under **Locations**, choose who to include:
+   - **People living in or recently in this location** (most common)
+   - **People living in this location** (most precise)
+   - **People recently in this location** (for tourists or travelers)
+   - **People traveling in this location** (specifically travelers)
 
-### Configuring Advantage+ Audience
+6. Type in the location you want to target:
+   - You can target entire countries, states/provinces, cities, zip codes, or even a radius around a specific address
+   - You can add multiple locations
+   - You can also **exclude** locations (e.g., target all of the US except Alaska and Hawaii)
 
-In the ad set targeting section, you will see an option to switch to Advantage+ Audience. When enabled, the interface changes:
+### Age and Gender
 
-- **Audience suggestions** replace required targeting settings
-- You can add custom audiences, locations, age ranges, interests as *suggestions*
-- Meta will prioritize these suggestions but is free to expand beyond them
-- You can set minimum age and location as **controls** (hard limits Meta must respect)
+7. Set the **age range** (minimum 18, maximum 65+)
+8. Choose **gender** (All, Men, or Women)
 
-<Note>
-  Even with Advantage+ Audience, you can still set **audience controls** — hard limits that Meta cannot override. The most common controls are minimum age (e.g., 18+) and location (e.g., must be in the United States). Everything else becomes a suggestion.
-</Note>
+### Detailed Targeting (Interests, Behaviors, and Demographics)
 
----
+This is where Saved Audiences get interesting. You can target people based on:
 
-## Exclusion targeting
+**Demographics:**
+- Education level (high school, college, graduate degree)
+- Job title or industry
+- Relationship status
+- Life events (recently moved, newly engaged, new job)
+- Parental status
 
-Exclusion targeting is just as important as inclusion targeting. It prevents you from wasting money showing ads to the wrong people.
+**Interests:**
+- Hobbies and activities
+- Favorite entertainment (movies, music, TV shows)
+- Sports and fitness
+- Technology interests
+- Shopping interests
+- Business interests
 
-### Essential exclusions
+**Behaviors:**
+- Purchase behavior (online shoppers, big spenders)
+- Device usage (iPhone users, Android users, tablet users)
+- Travel habits (frequent travelers, commuters)
+- Digital activities (early technology adopters, gamers)
 
-| Audience to exclude | Why |
-|--------------------|-----|
-| **All app installers** | Do not pay to show install ads to people who already installed your app |
-| **Purchasers** (from retargeting campaigns) | Do not retarget people who already converted |
-| **Employees / team members** | Your team will click ads for fun, wasting budget and skewing data |
-| **Other campaign audiences** | Prevent audience overlap between campaigns |
+9. Click **Browse** to explore available categories, or type keywords in the search box
+10. Click **Suggestions** to see related interests after adding one
+11. Add as many relevant interests as you need
 
-### How to set up exclusions
+### Narrowing Your Audience
 
-In the ad set targeting section:
-1. Under **Custom Audiences**, click **Exclude**
-2. Select the custom audience(s) you want to exclude
-3. People in those audiences will never see this ad set
+12. Below your initial targeting, you will see an option to **Narrow audience**
+13. Click **Narrow further** to add a second layer of targeting with AND logic:
+   - The first layer uses OR logic (people must match ANY of the interests)
+   - The narrowing layer uses AND logic (people must ALSO match at least one interest from this layer)
 
-<Warning>
-  **Always exclude your existing app installers from prospecting (new user) campaigns.** This is the most common budget waste — paying $3-5 to show an install ad to someone who already has your app. Create a "All Installers" custom audience and add it as an exclusion to every prospecting campaign.
-</Warning>
+**Example:**
+- Layer 1: Interested in "Running" OR "Yoga" OR "Gym" (people who like fitness)
+- Layer 2 (Narrow): AND interested in "Mobile apps" OR "App Store" (people who also use apps)
+- Result: Fitness enthusiasts who also use mobile apps
 
----
+### Excluding Audiences
 
-## Audience overlap tool
+14. Click **Exclude** to remove specific groups:
+   - Exclude people who have already converted (to avoid wasting money)
+   - Exclude existing customers
+   - Exclude competitors' followers
 
-When you run multiple campaigns or ad sets targeting different audiences, those audiences often overlap — the same people might be in multiple audiences. This causes your own ads to compete against each other, driving up costs.
+### Saving Your Audience
 
-### How to check for overlap
-
-<Steps>
-  <Step title="Go to Audiences">
-    Navigate to the Audiences page in Ads Manager.
-  </Step>
-  <Step title="Select 2-5 audiences">
-    Check the boxes next to the audiences you want to compare.
-  </Step>
-  <Step title="Click 'Actions' > 'Show Audience Overlap'">
-    Meta will display a Venn diagram showing how much the audiences overlap.
-  </Step>
-  <Step title="Evaluate the overlap">
-    | Overlap % | What it means | Action |
-    |-----------|--------------|--------|
-    | **Under 20%** | Minimal overlap, audiences are distinct | No action needed |
-    | **20-40%** | Moderate overlap, some competition | Consider consolidating or adding exclusions |
-    | **Over 40%** | Significant overlap, audiences are competing | Merge into one audience or use exclusions |
-  </Step>
-</Steps>
-
----
-
-## Audience insights
-
-Meta provides an Audience Insights tool that helps you understand who your potential audience is before you spend money targeting them.
-
-### How to access
-
-Navigate to **Ads Manager** > **Menu** > **Audience Insights** (or go directly to [facebook.com/ads/audience-insights](https://www.facebook.com/ads/audience-insights)).
-
-### What you can learn
-
-| Insight | What it tells you |
-|---------|------------------|
-| **Demographics** | Age, gender, education, job title, relationship status breakdown of your audience |
-| **Page likes** | Top Facebook Pages liked by your audience (great for finding interests to target) |
-| **Location** | Top cities, countries, and languages |
-| **Activity** | How active the audience is on Facebook (likes, comments, shares, ad clicks) |
-| **Device** | What devices and operating systems your audience uses |
-
-### How to use Audience Insights for targeting
-
-<Steps>
-  <Step title="Start with a known interest">
-    Enter an interest related to your app (e.g., "Fitness") to see the demographics of people interested in fitness.
-  </Step>
-  <Step title="Analyze the Page Likes tab">
-    This shows which other Pages this audience likes. These are excellent targeting suggestions — if people interested in fitness also like "Nike Running" and "MyFitnessPal," you can target those as interests.
-  </Step>
-  <Step title="Note the demographic breakdown">
-    If 70% of fitness-interested users are 25-44, you now have data-driven evidence for your age targeting.
-  </Step>
-  <Step title="Build your audience based on insights">
-    Use what you learned to create a more informed core audience.
-  </Step>
-</Steps>
-
----
-
-## Audience size recommendations
-
-Audience size matters more than most beginners realize. Too small and the algorithm cannot optimize. Too large and your targeting loses meaning.
-
-| Audience type | Recommended minimum | Ideal range | Maximum |
-|--------------|--------------------|----|---------|
-| **Core (prospecting)** | 500,000 | 1M-20M | No limit |
-| **Custom (retargeting)** | 1,000 | 5,000-500,000 | Depends on your data |
-| **Lookalike (1%)** | N/A (auto-sized) | 2-5M (varies by country) | Country population |
-| **Customer list (for lookalike seed)** | 100 (minimum) | 1,000-50,000 | No limit |
+15. Once you are happy with your audience definition, click **Create Saved Audience**
+16. You can now select this audience whenever you create a new ad set
 
 <Tip>
-  **When in doubt, go broader.** Meta's algorithm is better at finding good users within a large audience than you are at manually narrowing to the right audience. A 5M-person audience with good creative will almost always outperform a 100K-person audience, even if the smaller one seems "more targeted."
+Watch the **audience size meter** on the right side of the screen as you add targeting criteria. Meta shows you an estimated audience size. For most campaigns, you want an audience of at least **500,000 to 2,000,000 people**. If your audience is too small (under 100,000), Meta's algorithm may struggle to find enough people to optimize delivery. If it is too large (tens of millions), that is usually fine — Meta's algorithm is good at finding the best people within a large audience.
 </Tip>
 
 ---
 
-## Retargeting strategies
+## 2. Custom Audiences
 
-Retargeting means showing ads to people who already interacted with your business but did not complete the desired action. These audiences are "warm" — they already know you — so they convert at much higher rates.
+Custom Audiences are one of Meta's most powerful features. Instead of targeting people based on interests, you target people based on their actual relationship with your business. These are people who have already shown interest in what you offer.
 
-### The retargeting funnel
+### Types of Custom Audiences:
 
-```mermaid
-graph TD
-    A[Saw Your Ad<br/>but didn't click] -->|Retarget with| B[Different creative<br/>same message]
-    C[Clicked but<br/>didn't install] -->|Retarget with| D[Social proof ad<br/>or special offer]
-    E[Installed but<br/>didn't register] -->|Retarget with| F[Onboarding benefits<br/>deep link to signup]
-    G[Registered but<br/>didn't purchase] -->|Retarget with| H[Free trial offer<br/>testimonials]
-    I[Purchased but<br/>went inactive] -->|Retarget with| J[New features<br/>win-back offer]
-```
+#### A. Website Custom Audiences (Based on Meta Pixel Data)
 
-### Recommended retargeting audiences
+Target people who have visited your website. This requires the Meta Pixel to be installed and working.
 
-| Audience | Source | Time window | Ad message |
-|----------|--------|-------------|------------|
-| **Video viewers (non-clickers)** | Video 50%+ viewers, exclude clickers | Last 14 days | Different creative, stronger CTA |
-| **Website visitors (non-installers)** | Website visitors, exclude installers | Last 7 days | Social proof, reviews, limited offer |
-| **Installers (non-registrants)** | App installers, exclude registrations | Last 7 days | Benefits of signing up, deep link to registration |
-| **Registrants (non-purchasers)** | Registrations, exclude purchases | Last 14 days | Free trial, discount code, premium features showcase |
-| **Lapsed users** | App openers (30+ days ago), exclude recent openers | 30-90 days | New features, "we miss you" messaging, incentive |
-| **Past purchasers** | Purchasers, 30+ days ago | 30-180 days | New products, upgrades, loyalty rewards |
+**How to Create a Website Custom Audience:**
 
-### Retargeting budget allocation
+1. Go to **Audiences** in Ads Manager
+2. Click **Create Audience** → **Custom Audience**
+3. Select **Website** as the source
+4. Choose your **Pixel**
+5. Define who to include:
+   - **All website visitors** — Everyone who visited any page in the last X days
+   - **People who visited specific pages** — Visitors to specific URLs (like your pricing page or product pages)
+   - **Visitors by time spent** — The top 5%, 10%, or 25% of visitors by time on site
+6. Set the **retention window** (how far back to go):
+   - 1 day to 180 days
+   - Shorter windows = smaller but more recent audience
+   - Longer windows = larger but includes older visitors
+7. Give your audience a **name** (like "Website Visitors - Last 30 Days")
+8. Click **Create Audience**
 
-A general guideline for budget distribution:
+**Best Website Custom Audiences to Create:**
 
-| Campaign type | Budget % | Audience | Expected CPA |
-|-------------|----------|---------|--------------|
-| **Prospecting** | 70-80% | Lookalike, core, broad | Highest (finding new users is expensive) |
-| **Retargeting** | 15-25% | Custom audiences (warm) | 2-5x lower than prospecting |
-| **Re-engagement** | 5-10% | Lapsed users | Varies (depends on how lapsed) |
+| Audience | What It Is | Best For |
+|---|---|---|
+| All visitors (last 30 days) | Everyone who visited your site recently | General retargeting |
+| Visited product pages (last 14 days) | People who looked at products | Mid-funnel retargeting |
+| Added to cart but did not purchase (last 7 days) | Cart abandoners | High-intent retargeting |
+| Purchasers (last 180 days) | Existing customers | Upselling or excluding |
+| Top 10% by time spent (last 30 days) | Most engaged visitors | High-quality retargeting |
+
+#### B. Customer List Custom Audiences
+
+Upload your own customer data (emails, phone numbers) to match with Meta users.
+
+**How to Create a Customer List Custom Audience:**
+
+1. Go to **Audiences** → **Create Audience** → **Custom Audience**
+2. Select **Customer List**
+3. Prepare your file:
+   - CSV or TXT format
+   - Include columns like: email, phone number, first name, last name
+   - The more data points you include, the higher the match rate
+4. Upload your file
+5. Map your columns to Meta's fields (email → Email, phone → Phone, etc.)
+6. Click **Import & Create**
+7. Meta will hash (encrypt) your data and match it against their users
+8. Match rates typically range from 30-70% depending on data quality
+
+<Tip>
+Customer list audiences are incredibly powerful for two things: (1) retargeting existing customers with new offers or upsells, and (2) creating Lookalike Audiences based on your best customers. Upload your list of paying customers, and then create a Lookalike Audience from it — this is often the highest-performing audience strategy in all of Meta advertising.
+</Tip>
+
+#### C. App Activity Custom Audiences
+
+Target people who have used your mobile app.
+
+**How to Create an App Activity Custom Audience:**
+
+1. Go to **Audiences** → **Create Audience** → **Custom Audience**
+2. Select **App Activity**
+3. Choose your app from the dropdown
+4. Choose the event to target:
+   - People who opened your app
+   - People who completed a specific action (purchase, registration, etc.)
+   - People who are the most active users
+   - People who have not opened the app recently (lapsed users)
+5. Set the time window (1-180 days)
+6. Give it a name and click **Create Audience**
+
+#### D. Engagement Custom Audiences
+
+Target people who have interacted with your Meta content (even if they never visited your website).
+
+**How to Create an Engagement Custom Audience:**
+
+1. Go to **Audiences** → **Create Audience** → **Custom Audience**
+2. Select **Meta Sources**
+3. Choose the engagement source:
+   - **Video** — People who watched your videos (25%, 50%, 75%, or 95% of the video)
+   - **Lead Form** — People who opened or submitted your lead forms
+   - **Instagram Account** — People who interacted with your Instagram profile
+   - **Facebook Page** — People who interacted with your Facebook Page
+   - **Events** — People who responded to your Facebook events
+   - **Shopping** — People who interacted with your Facebook or Instagram shop
+4. Define the specific engagement criteria
+5. Set the time window
+6. Click **Create Audience**
+
+**Most Useful Engagement Audiences:**
+
+| Source | Criteria | Best For |
+|---|---|---|
+| Video | Watched 75%+ of any video (last 30 days) | People with strong interest in your content |
+| Instagram | Anyone who engaged (last 90 days) | Warm Instagram audience |
+| Facebook Page | Anyone who engaged (last 90 days) | Warm Facebook audience |
+| Lead Form | Opened but did not submit (last 30 days) | Re-engaging almost-leads |
 
 ---
 
-## Putting it all together: audience strategy framework
+## 3. Lookalike Audiences
 
-Here is a complete audience strategy that you can implement:
+Lookalike Audiences are where the real magic happens. You give Meta a "seed" audience (like your best customers), and Meta uses its vast data to find NEW people who share similar characteristics, behaviors, and patterns. These are people who have never interacted with your business but statistically look like your existing customers.
 
-<Steps>
-  <Step title="Start with broad prospecting">
-    Launch 2-3 ad sets with different targeting approaches:
-    - Ad Set 1: Completely broad (no interests, just country + age)
-    - Ad Set 2: Interest-based (3-5 relevant interests)
-    - Ad Set 3: Lookalike 1% (if you have enough data for a seed audience)
+### How Lookalike Audiences Work:
 
-    Exclude all existing app users from every prospecting ad set.
-  </Step>
-  <Step title="Build retargeting audiences">
-    After 1-2 weeks of prospecting, create retargeting custom audiences:
-    - Website visitors who did not install (7-day window)
-    - Video viewers who did not click (14-day window)
-    - Installers who did not register (7-day window)
-  </Step>
-  <Step title="Launch retargeting campaigns">
-    Create a separate campaign for retargeting with 15-25% of your total budget. Use different creative than your prospecting ads — these people already saw your first ads, so show them something new.
-  </Step>
-  <Step title="Build and test lookalike audiences">
-    Once you have 1,000+ installs (or ideally 1,000+ registrations), create your first lookalike audience and test it against your core audiences.
-  </Step>
-  <Step title="Scale what works">
-    Double down on the audiences that deliver the best results. Kill the underperformers. Expand winning lookalikes from 1% to 2-3%. Test new seed audiences.
-  </Step>
-</Steps>
+1. You provide a **source audience** (your "seed") — this could be a Custom Audience of purchasers, email subscribers, or app users
+2. Meta analyzes the characteristics of people in your source audience
+3. Meta searches through its billions of users to find people with similar characteristics
+4. You choose a **percentage size** (1% to 10%) — this determines how similar the Lookalike is to your source
 
-<Card
-  title="Optimizing Meta Campaigns"
-  icon="arrow-right"
-  href="/platforms/meta/optimization"
->
-  Now that you understand audiences, learn how to optimize your campaigns for better results over time.
-</Card>
+### Understanding Lookalike Percentages:
+
+- **1% Lookalike:** The top 1% of people most similar to your source audience. This is the smallest, most precise audience. In the US, 1% is roughly 2.1 million people.
+- **2-3% Lookalike:** A bit broader. Still very similar to your source, but includes more people.
+- **5% Lookalike:** Moderately similar. Good balance between reach and precision.
+- **10% Lookalike:** The broadest option. These people share some characteristics with your source but are less closely matched.
+
+### How to Create a Lookalike Audience:
+
+1. Go to **Audiences** in Ads Manager
+2. Click **Create Audience** → **Lookalike Audience**
+3. Select your **source audience**:
+   - A Custom Audience (best option — use your purchasers or most valuable customers)
+   - Your Facebook Page
+   - Your Pixel data
+4. Select the **location** where you want to find lookalike people (e.g., United States)
+5. Choose the **audience size** (1% to 10%):
+   - Start with **1%** for the most similar match
+   - You can create multiple sizes to test
+
+6. Click **Create Audience**
+7. Meta will take a few hours to build the audience (sometimes up to 24 hours)
+
+### Best Source Audiences for Lookalikes:
+
+| Source | Why It Works |
+|---|---|
+| Purchasers (last 180 days) | Finds people likely to buy |
+| High-value purchasers (top 25% by spend) | Finds people likely to spend a lot |
+| Email subscribers who opened (last 90 days) | Finds engaged potential customers |
+| App users who completed key actions | Finds high-quality app users |
+| Video viewers (watched 75%+) | Finds people with strong interest |
+
+<Tip>
+The quality of your Lookalike Audience depends entirely on the quality of your source audience. A 1% Lookalike based on your top 100 highest-spending customers will vastly outperform a 1% Lookalike based on all website visitors. Always use the most "valuable" source you can — people who actually spent money, subscribed, or took high-value actions. The source audience should have at least **100 people** (Meta requires this minimum), but **1,000+ is ideal**.
+</Tip>
+
+### Advanced Lookalike Strategies:
+
+#### Stacked Lookalikes
+
+Create multiple Lookalike sizes and test them in separate ad sets:
+
+```
+Campaign: Product Launch
+├── Ad Set 1: 1% Lookalike (Purchasers) - $15/day
+├── Ad Set 2: 1-3% Lookalike (Purchasers) - $15/day
+└── Ad Set 3: 3-5% Lookalike (Purchasers) - $10/day
+```
+
+The 1% will usually be the cheapest per conversion but has the smallest reach. The 3-5% has more reach but may cost more per conversion. Testing helps you find the sweet spot.
+
+#### Value-Based Lookalikes
+
+If you send purchase values with your Pixel events (which we set up in the Pixel guide), Meta can create Lookalikes weighted toward higher-value customers:
+
+1. When creating a Custom Audience from customer lists, include a "Value" column
+2. Create a Lookalike from this value-based Custom Audience
+3. Meta will prioritize finding people who resemble your highest-value customers, not just any customer
+
+#### International Lookalikes
+
+You can use a source audience from one country to find similar people in another:
+
+1. Create a Custom Audience of US purchasers
+2. Create a Lookalike targeting the UK
+3. Meta will find UK users who match the behavior patterns of your US customers
+4. This is incredibly useful for international expansion
+
+---
+
+## 4. Advantage+ Audience
+
+Advantage+ Audience is Meta's newest and most AI-driven audience option. Instead of you manually defining the audience, you provide "suggestions" and Meta's AI does the rest.
+
+### How Advantage+ Audience Works:
+
+1. You provide **audience suggestions** (optional):
+   - Custom Audiences to use as starting points
+   - Interests or demographics to guide the AI
+   - Location and age constraints
+2. Meta's AI uses your suggestions as starting points
+3. The AI automatically expands beyond your suggestions if it finds better-performing audiences
+4. Over time, the AI learns who responds best and shifts delivery toward those people
+
+### When to Use Advantage+ Audience:
+
+- **New campaigns** where you do not have enough data for Custom or Lookalike Audiences
+- **Campaigns where you want maximum reach** without worrying about targeting details
+- **Testing** to see if Meta's AI can find better audiences than your manual targeting
+- **Scaling** existing campaigns when your current audiences are maxed out
+
+### How to Set Up Advantage+ Audience:
+
+1. When creating a new ad set, you will see the Audience section
+2. By default, Advantage+ Audience may be selected
+3. Add your **audience suggestions**:
+   - Click **Add suggestions**
+   - Add Custom Audiences you want Meta to use as a starting point
+   - Add interests or demographics
+4. Set your **audience controls** (hard limits that Meta will NOT expand beyond):
+   - **Minimum age** and **maximum age**
+   - **Locations** — Meta will only show ads in these locations
+   - **Languages** — If you need to restrict to specific languages
+5. These controls are strict — Meta will respect them even when expanding the audience
+
+<Tip>
+Advantage+ Audience is particularly effective when you pair it with a strong Custom Audience suggestion. For example, add your "Purchasers - Last 180 Days" Custom Audience as a suggestion, and Meta's AI will look for similar people while also exploring new audience segments it thinks will perform well. It is like giving Meta a head start — "Here are my best customers, now go find more people like them, but also look in places I might not have thought of."
+</Tip>
+
+---
+
+## Audience Overlap: A Critical Concept
+
+When you run multiple ad sets targeting different audiences, those audiences may overlap — meaning the same person could be in more than one audience. This causes problems:
+
+- **Your ad sets compete against each other** in the auction, driving up your costs
+- **The same people see too many of your ads**, leading to ad fatigue
+- **Your data gets muddled**, making it hard to know which audience actually works best
+
+### How to Check for Audience Overlap:
+
+1. Go to **Audiences** in Ads Manager
+2. Select two or more audiences by checking the boxes next to them
+3. Click the **three dots (...)** menu
+4. Select **Show Audience Overlap**
+5. Meta will show you a Venn diagram with the percentage of overlap
+
+### How to Reduce Audience Overlap:
+
+- **Exclude Custom Audiences** from each other (e.g., exclude "Purchasers" from your "Website Visitors" audience)
+- **Use different Lookalike ranges** that do not overlap (1% and 3-5% instead of 1% and 2%)
+- **Use Advantage Campaign Budget** so Meta automatically distributes budget and reduces self-competition
+- **Consolidate ad sets** when possible — fewer, broader ad sets often perform better than many narrow ones
+
+---
+
+## Audience Strategies by Business Stage
+
+### Just Starting Out (No Data Yet)
+
+If you are brand new and have no website visitors, customers, or app users:
+
+1. Start with **Advantage+ Audience** with broad interest suggestions
+2. Use **Saved Audiences** with 3-5 relevant interests
+3. Cast a wide net — broad targeting with good creative is better than narrow targeting with bad creative
+4. Focus on collecting data (Pixel events, customer lists) as quickly as possible
+
+### Growing (Some Data Available)
+
+If you have been running ads or have a website with some traffic:
+
+1. Create **Website Custom Audiences** for retargeting
+2. Build your first **Lookalike Audience** from website visitors or early converters
+3. Test Lookalikes against Saved Audiences to see which performs better
+4. Start building your email list for future Customer List uploads
+
+### Established (Plenty of Data)
+
+If you have a large customer base and lots of Pixel data:
+
+1. Create **Value-Based Lookalike Audiences** from top customers
+2. Build a **full retargeting funnel** (see below)
+3. Test **Advantage+ Audience** to discover new audience segments
+4. Regularly refresh your Custom Audiences and Lookalike sources
+
+---
+
+## Building a Retargeting Funnel
+
+A retargeting funnel shows different ads to people based on how close they are to converting. Here is a proven structure:
+
+### Stage 1: Cold Audience (Prospecting)
+
+- **Who:** People who have never interacted with your business
+- **Audiences:** Lookalike Audiences, Saved Audiences with interests, Advantage+ Audience
+- **Ad message:** Introduce your brand and its key benefit
+- **Budget allocation:** 60-70% of total budget
+
+### Stage 2: Warm Audience (Consideration)
+
+- **Who:** People who have shown interest but have not converted
+- **Audiences:** Website visitors (last 30 days), video viewers (watched 50%+), Instagram/Facebook engagers
+- **Ad message:** Show more details, social proof, testimonials, case studies
+- **Budget allocation:** 20-25% of total budget
+
+### Stage 3: Hot Audience (Conversion)
+
+- **Who:** People who are very close to converting
+- **Audiences:** Added to cart but did not purchase (last 7 days), visited pricing page, started checkout
+- **Ad message:** Urgency, limited-time offers, reminders, special discounts
+- **Budget allocation:** 10-15% of total budget
+
+### Stage 4: Existing Customers (Retention/Upsell)
+
+- **Who:** People who have already purchased or subscribed
+- **Audiences:** Customer list Custom Audience, purchasers (last 180 days)
+- **Ad message:** New products, upgrades, complementary products, loyalty rewards
+- **Budget allocation:** 5-10% of total budget
+
+<Tip>
+When setting up your retargeting funnel, make sure to **exclude** later-stage audiences from earlier stages. For example, exclude "Purchasers" from your Cold and Warm audiences, and exclude "Added to Cart" from your Cold audience. This prevents people from seeing the wrong message and wasting your ad spend on the wrong stage.
+</Tip>
+
+---
+
+## Audience Size Guidelines
+
+Here are rough guidelines for audience sizing:
+
+| Campaign Type | Minimum Recommended Size | Ideal Size |
+|---|---|---|
+| Prospecting (cold) | 500,000 | 1,000,000 - 10,000,000 |
+| Lookalike (1%) | Varies by country | ~2,000,000 in the US |
+| Retargeting (warm) | 1,000 | 10,000 - 100,000 |
+| Retargeting (hot) | 500 | 1,000 - 50,000 |
+| Customer list source | 100 (minimum) | 1,000+ |
+| Lookalike source | 100 (minimum) | 1,000 - 50,000 |
+
+### What Happens If Your Audience Is Too Small?
+
+- Meta may struggle to deliver your ads consistently
+- You may see very high CPMs (cost per 1,000 impressions)
+- The algorithm may not have enough data to optimize effectively
+- Solution: Broaden your targeting or extend the time window for Custom Audiences
+
+### What Happens If Your Audience Is Too Large?
+
+- Generally this is fine — Meta's algorithm is good at finding the right people within a large group
+- You might see higher impression volume but potentially lower relevance
+- Solution: This usually is not a problem, but you can narrow if conversions are poor
+
+---
+
+## Troubleshooting Audience Issues
+
+### "My Custom Audience is too small"
+
+**Possible causes:**
+- Not enough people have visited your website or used your app
+- The time window is too short
+- The Pixel or SDK is not installed correctly
+
+**Solutions:**
+1. Extend the time window (try 60 or 90 days instead of 30)
+2. Broaden the criteria (all visitors instead of specific page visitors)
+3. Verify your Pixel is working correctly
+4. Run traffic campaigns to build your audience before retargeting
+
+### "My Lookalike Audience is not performing well"
+
+**Possible causes:**
+- The source audience is too small or too broad
+- The source audience is not representative of your best customers
+- The Lookalike percentage is too high
+
+**Solutions:**
+1. Use a higher-quality source (purchasers > visitors)
+2. Use a smaller source of your BEST customers rather than all customers
+3. Try a smaller Lookalike percentage (1% instead of 5%)
+4. Make sure your source audience has at least 1,000 people
+
+### "My retargeting audience costs too much"
+
+**Possible causes:**
+- The audience is too small, causing frequency to spike
+- You are not refreshing your creative often enough
+- People are seeing the same ad too many times
+
+**Solutions:**
+1. Expand the time window to include more people
+2. Rotate your ad creative every 1-2 weeks
+3. Monitor frequency (if people see your ad more than 3-4 times per week, refresh creative)
+4. Lower the budget for small retargeting audiences
+
+---
+
+## Your Audience Checklist
+
+- [ ] Created at least one Saved Audience with relevant interests
+- [ ] Created Website Custom Audience (all visitors, last 30 days)
+- [ ] Created Website Custom Audience (key pages or events)
+- [ ] Created a Customer List Custom Audience (if you have customer data)
+- [ ] Created a Lookalike Audience (1%) from your best source
+- [ ] Set up Advantage+ Audience with suggestions for prospecting
+- [ ] Checked for audience overlap between ad sets
+- [ ] Set up exclusions (exclude purchasers from prospecting audiences)
+- [ ] Planned your retargeting funnel (cold → warm → hot)
+
+---
+
+## What Comes Next
+
+You now understand every audience type available in Meta advertising and how to use them strategically. The combination of Custom Audiences for retargeting and Lookalike Audiences for prospecting is the foundation of virtually every successful Meta advertising strategy.
+
+In the **Optimization** guide, we will cover how to analyze your campaign performance, test different approaches, scale what works, and fix what does not. Everything we have covered so far — the account setup, tracking, campaign creation, and audiences — comes together in the optimization phase.
+
+<Tip>
+Your audiences are not set-and-forget. As your business grows and you collect more data, your Custom Audiences get richer, your Lookalike Audiences get smarter, and your retargeting funnel gets more effective. Revisit and update your audiences at least once a month — upload fresh customer lists, create new Lookalikes from recent converters, and expand your retargeting windows as your audience grows.
+</Tip>

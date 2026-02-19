@@ -1,40 +1,44 @@
 ---
 title: "Tracking & Attribution"
-description: "Everything about tracking pixels, SDKs, server-side tracking, attribution models, privacy changes, SKAdNetwork, Privacy Sandbox, and MMPs — the complete guide."
+description: "Everything about tracking pixels, SDKs, postbacks, attribution models, iOS ATT, SKAdNetwork, Privacy Sandbox, and MMPs — the complete guide for beginners."
 ---
 
-## Why tracking is the foundation of everything
+## Why tracking is the foundation of EVERYTHING
 
-Imagine running three campaigns on three different platforms. You get 500 installs this week. But which platform drove them? Which ad? Which audience? Was it the video ad on TikTok or the carousel on Instagram?
+Imagine this: you are running three campaigns on three different platforms. You get 500 installs this week. Amazing! But... which platform drove them? Which ad? Which audience? Was it the video on TikTok or the carousel on Instagram?
 
-Without tracking, you cannot answer any of these questions. You are spending money blindly.
+Without tracking, you have zero idea. You are spending money in the dark, hoping something works. That is not advertising — that is gambling.
 
-**Tracking** is the system that records what users do after seeing your ad. **Attribution** is the logic that determines which ad gets credit for each conversion. Together, they form the backbone of all advertising decisions.
+**Tracking** is the technology that records what users do after seeing your ad. **Attribution** is the logic that determines which ad gets credit for each conversion. Together, they are the backbone of every advertising decision you will ever make.
 
 <Warning>
-  Running ads without proper tracking is the single most expensive mistake in digital advertising. You might as well take your budget and throw it out the window. **Set up tracking before you spend a single dollar on ads.**
+  Running ads without proper tracking is the single most expensive mistake in digital advertising. It is like running a business without looking at your bank account. **Set up tracking BEFORE you spend a single dollar on ads.** We cannot stress this enough.
 </Warning>
+
+<Tip>
+  **Pro Tip: Think of tracking like a security camera system for your advertising.** Without cameras, you have no idea what is happening in your store. With cameras (tracking), you can see exactly who came in, where they came from, what they looked at, and whether they bought anything. You would never run a store without cameras. Do not run ads without tracking.
+</Tip>
 
 ---
 
-## What is tracking?
+## What tracking actually does
 
-Tracking is the technology that observes and records user actions — from seeing your ad to installing your app to making a purchase inside it. It answers three fundamental questions:
+Tracking technology observes and records user actions — from seeing your ad to installing your app to making a purchase inside it. It answers three fundamental questions:
 
-1. **What happened?** (Install, purchase, sign-up, etc.)
+1. **What happened?** (Did the user install, sign up, make a purchase?)
 2. **When did it happen?** (Timestamp of each event)
-3. **Where did the user come from?** (Which ad, platform, campaign)
+3. **Where did the user come from?** (Which ad, which platform, which campaign?)
 
-### The tracking chain
+### The tracking chain visualized
 
 ```mermaid
 graph LR
-    A["User sees ad"] --> B["User clicks ad"]
-    B --> C["User arrives at<br/>App Store / Website"]
-    C --> D["User installs app<br/>or takes action"]
-    D --> E["SDK/Pixel fires<br/>tracking event"]
-    E --> F["Data sent to<br/>platform + MMP"]
-    F --> G["You see the data<br/>in dashboards"]
+    A["User sees your ad"] --> B["User taps the ad"]
+    B --> C["User goes to<br/>App Store / Website"]
+    C --> D["User installs your app<br/>(or takes an action)"]
+    D --> E["SDK/Pixel fires<br/>a tracking event"]
+    E --> F["Data sent to<br/>ad platform + MMP"]
+    F --> G["You see the results<br/>in your dashboards"]
 
     style A fill:#95A5A6,color:#fff
     style B fill:#4A90D9,color:#fff
@@ -45,50 +49,51 @@ graph LR
     style G fill:#4A90D9,color:#fff
 ```
 
+Each step in this chain is critical. If any link breaks — if an event does not fire, if data does not send correctly — you lose visibility into what is actually working.
+
 ---
 
-## Tracking technologies
+## The three tracking technologies
 
-### 1. Pixels (Web tracking)
+### 1. Pixels (for websites)
 
-A **pixel** is a tiny piece of JavaScript code you place on your website. When a user visits your site, the pixel fires and sends data back to the ad platform.
+A **pixel** is a tiny piece of JavaScript code you add to your website. When someone visits your site, the pixel fires and sends data back to the ad platform. Think of it like an invisible doorbell — every time someone enters, it pings the ad platform and says "someone's here!"
 
 | Platform | Pixel name | What it tracks |
-|----------|-----------|---------------|
+|---|---|---|
 | **Meta** | Meta Pixel (formerly Facebook Pixel) | Page views, add to cart, purchases, leads, custom events |
 | **Google** | Google Tag (gtag.js) / Google Tag Manager | Conversions, remarketing audiences, site interactions |
 | **TikTok** | TikTok Pixel | Page views, clicks, conversions, custom events |
 | **Twitter/X** | X Pixel | Conversions from X ads |
 | **LinkedIn** | LinkedIn Insight Tag | Conversions, demographics, retargeting |
 
-**How pixels work:**
-
-```
-1. You add the pixel code to your website's header
-2. User clicks your ad → lands on your website
-3. The pixel fires on page load, recording the visit
-4. User takes an action (e.g., signs up)
-5. The pixel fires again with the event data
+**How pixels work in plain English:**
+1. You add the pixel code to your website (usually in the header)
+2. A user clicks your ad and lands on your website
+3. The pixel fires on page load, recording: "This person from THIS ad just arrived"
+4. The user takes an action (e.g., signs up)
+5. The pixel fires again: "This person just completed registration!"
 6. Data is sent back to the ad platform
-7. The platform matches this conversion to the ad click
-```
+7. The platform matches this conversion to the original ad click: "Your Instagram ad just got a sign-up!"
 
 <Note>
-  **Pixels are for websites.** If you are promoting a mobile app, you need an **SDK** instead (or in addition). Most app advertisers use both — a pixel for their website/landing page and an SDK for their app.
+  **Pixels are for WEBSITES.** If you are promoting a mobile app, you need an **SDK** instead. Most app advertisers use both — a pixel for their website/landing page and an SDK for their app.
 </Note>
 
 ---
 
-### 2. SDKs (App tracking)
+### 2. SDKs (for apps)
 
-An **SDK** (Software Development Kit) is code integrated directly into your mobile app. It tracks everything that happens inside the app — installs, opens, in-app events, purchases, and more.
+An **SDK** (Software Development Kit) is code that gets integrated directly into your mobile app. It tracks everything that happens inside the app — installs, opens, in-app events, purchases, and more.
+
+Think of a pixel as a doorbell for your website. An SDK is a full surveillance system INSIDE your app — it sees everything.
 
 | Provider | SDK name | Type |
-|----------|---------|------|
+|---|---|---|
 | **Meta** | Facebook SDK | Platform SDK |
-| **Google** | Firebase SDK / Google Analytics for Firebase | Platform SDK |
+| **Google** | Firebase SDK / GA4 | Platform SDK |
 | **TikTok** | TikTok SDK | Platform SDK |
-| **Apple** | Apple Search Ads Attribution SDK (AdServices) | Platform SDK |
+| **Apple** | AdServices framework | Platform SDK |
 | **AppsFlyer** | AppsFlyer SDK | MMP SDK |
 | **Adjust** | Adjust SDK | MMP SDK |
 | **Branch** | Branch SDK | MMP + Deep Link SDK |
@@ -96,37 +101,34 @@ An **SDK** (Software Development Kit) is code integrated directly into your mobi
 | **Singular** | Singular SDK | MMP SDK |
 | **Kochava** | Kochava SDK | MMP SDK |
 
-**How SDKs work:**
-
-```
-1. Developer integrates SDK into the app code
-2. User installs and opens the app
-3. SDK initializes and records the install
-4. SDK checks: "Where did this user come from?" (attribution)
-5. User takes in-app actions (purchase, level complete, etc.)
-6. SDK sends event data to the platform and/or MMP
-7. Data appears in your advertising dashboards
-```
+**How SDKs work in plain English:**
+1. Your developer integrates the SDK into your app's code
+2. A user installs and opens your app for the first time
+3. The SDK fires: "New install detected!"
+4. The SDK checks: "Where did this user come from?" (attribution)
+5. User takes actions inside the app (purchase, level complete, etc.)
+6. SDK fires for each event: "This user just bought the premium plan for $9.99!"
+7. Data flows to your ad platforms and/or MMP dashboards
 
 <Warning>
-  **You must get user consent on iOS.** Since iOS 14.5, Apple requires you to show the App Tracking Transparency (ATT) prompt before tracking users. If a user opts out, the SDK has limited tracking capability. More on this in the privacy section below.
+  **Critical iOS requirement:** Since iOS 14.5, Apple requires you to show the **App Tracking Transparency (ATT)** prompt before tracking users. If a user taps "Ask App Not to Track," the SDK has severely limited tracking ability. About 65-75% of iOS users opt OUT. This has major implications, which we cover in the privacy section below.
 </Warning>
 
 ---
 
-### 3. Server-side tracking (S2S)
+### 3. Server-side tracking (S2S) — the advanced layer
 
-**Server-side tracking** sends conversion data from your server directly to the ad platform's server, bypassing the user's browser or device entirely.
+**Server-side tracking** sends conversion data from YOUR server directly to the ad platform's server, completely bypassing the user's browser or device.
 
 ```mermaid
 graph LR
     subgraph Traditional["Client-Side (Pixel/SDK)"]
-        A1["User's device"] -->|Sends data| B1["Ad Platform"]
+        A1["User's device"] -->|Sends data directly| B1["Ad Platform"]
     end
 
     subgraph ServerSide["Server-Side (S2S)"]
-        A2["User's device"] -->|Action| B2["Your Server"]
-        B2 -->|API call| C2["Ad Platform's Server"]
+        A2["User's device"] -->|Action happens| B2["Your Server"]
+        B2 -->|API call| C2["Ad Platform Server"]
     end
 
     style A1 fill:#FFA500,color:#fff
@@ -136,586 +138,531 @@ graph LR
     style C2 fill:#4A90D9,color:#fff
 ```
 
-**Why server-side tracking matters:**
+**Why does this matter?** Because client-side tracking (pixels and SDKs) is increasingly unreliable:
+- Ad blockers block pixel requests (10-30% of users have them)
+- Privacy settings prevent cookies from being set
+- iOS ATT reduces SDK tracking capability
+- Browser restrictions limit data collection
 
-| Benefit | Explanation |
-|---------|------------|
-| **Privacy compliance** | Data is processed on your server first, giving you control over what is shared |
-| **Ad blocker resistant** | Ad blockers cannot block server-to-server API calls |
-| **Data reliability** | Less affected by browser restrictions (cookie deprecation, ITP) |
-| **Data enrichment** | You can enrich conversion data with CRM or backend data before sending |
-| **Offline conversions** | Track actions that happen offline or in other systems |
+Server-side tracking fills these gaps because it happens server-to-server — no browser or device restrictions can block it.
 
-**Platform implementations:**
-
-| Platform | Server-side solution | How it works |
-|----------|---------------------|-------------|
-| **Meta** | Conversions API (CAPI) | Your server sends events to Meta's API |
-| **Google** | Google Ads API / Enhanced Conversions | Server sends conversion data via API |
-| **TikTok** | Events API | Server-to-server event posting |
-| **Snap** | Conversions API | Server-side event tracking |
+| Platform | Server-side solution |
+|---|---|
+| **Meta** | Conversions API (CAPI) |
+| **Google** | Enhanced Conversions / Google Ads API |
+| **TikTok** | Events API |
+| **Snap** | Conversions API |
 
 <Tip>
-  **Best practice: Use both client-side AND server-side tracking.** This is called **"redundant tracking"** or **"dual tracking."** The pixel/SDK provides real-time data, while the server-side API fills in gaps from ad blockers, privacy restrictions, and lost signals. Meta specifically recommends this approach for maximum data coverage.
+  **Pro Tip: Best practice is to use BOTH client-side AND server-side tracking together.** This is called "redundant tracking" or "dual tracking." The pixel/SDK provides real-time data. The server-side API fills in gaps from ad blockers and privacy restrictions. Meta specifically recommends this dual approach and reports significantly better optimization when both are set up.
 </Tip>
 
 ---
 
-## Conversion events
+## Conversion events: what to track
 
-A **conversion event** is any user action you want to track and optimize toward. These are the building blocks of your tracking setup.
+A **conversion event** is any user action you want to track and optimize toward. These are the building blocks of your entire measurement setup.
 
-### Standard events vs. custom events
+### Standard events (use these first)
 
-<Tabs>
-  <Tab title="Standard Events">
-    Pre-defined events that platforms recognize natively. Using standard events enables better optimization because the platform understands what each event means.
+Pre-defined events that platforms recognize natively. Using standard events is critical because the platform UNDERSTANDS what they mean and can optimize better.
 
-    | Event | What it tracks | Platform support |
-    |-------|---------------|-----------------|
-    | **Install** | App downloaded and opened | All platforms |
-    | **Registration / CompleteRegistration** | User created an account | Meta, Google, TikTok |
-    | **AddToCart** | Item added to shopping cart | Meta, Google, TikTok |
-    | **InitiateCheckout** | Checkout process started | Meta, Google, TikTok |
-    | **Purchase** | Transaction completed | All platforms |
-    | **Subscribe** | Subscription started | Meta, Google |
-    | **StartTrial** | Free trial started | Meta, Google |
-    | **ViewContent** | Specific content viewed | Meta, TikTok |
-    | **Search** | Used the search feature | Meta, Google |
-    | **AddPaymentInfo** | Payment method added | Meta, Google, TikTok |
-    | **Lead** | Lead form submitted | Meta, Google, TikTok |
-    | **AchieveLevel** | Game level completed | Meta |
-    | **SpendCredits** | In-app currency spent | Meta |
-  </Tab>
-  <Tab title="Custom Events">
-    Events you define yourself for actions unique to your app. You choose the event name and what data to include.
+| Event | What it tracks | Why it matters |
+|---|---|---|
+| **Install** | App downloaded and opened | The baseline event for every app campaign |
+| **Registration** | User created an account | Indicates a real, engaged user |
+| **Purchase** | Transaction completed | The ultimate conversion for most apps |
+| **Subscribe** | Subscription started | Key for subscription apps |
+| **StartTrial** | Free trial started | Indicates monetization potential |
+| **AddToCart** | Item added to cart | E-commerce mid-funnel signal |
+| **ViewContent** | Specific content viewed | Engagement signal |
+| **Lead** | Lead form submitted | Key for lead gen campaigns |
 
-    **Examples:**
-    | Custom event name | What it tracks | Why track it |
-    |------------------|---------------|-------------|
-    | `complete_onboarding` | User finished the app tutorial | Measures activation quality |
-    | `create_first_project` | User created their first content | Indicates engagement |
-    | `invite_friend` | User shared the app | Measures virality |
-    | `streak_7_days` | User active 7 days in a row | Measures retention |
-    | `upgrade_to_pro` | Free user converted to paid | Revenue event |
-    | `watch_3_videos` | User engaged deeply with content | Content engagement metric |
+### Custom events (for your specific app)
 
-    <Note>
-      **Send custom events with parameters.** For example, a `purchase` event should include the value (`$9.99`), currency (`USD`), and product name. Parameters allow platforms to optimize for value, not just event count.
-    </Note>
-  </Tab>
-</Tabs>
+Events you define for actions unique to your app:
 
-### Which events to track (priority order)
+| Custom event | What it tracks | Why track it |
+|---|---|---|
+| `complete_onboarding` | User finished the tutorial | Measures activation quality |
+| `create_first_project` | User created their first piece of content | Indicates real engagement |
+| `invite_friend` | User shared the app | Measures virality |
+| `streak_7_days` | User active 7 days in a row | Measures retention quality |
+| `upgrade_to_pro` | Free user converted to paid | Revenue event |
+
+<Tip>
+  **Pro Tip: Always send VALUE with your purchase events.** Instead of just "purchase happened," send "purchase happened for $9.99 USD." This lets platforms optimize for high-value users, not just any users. The difference between optimizing for "purchases" vs. "purchase value" can be enormous.
+</Tip>
+
+### Priority order for event setup
 
 <Steps>
-  <Step title="Must have — Install event">
-    Every app campaign needs this. It is tracked automatically by most SDKs once integrated.
+  <Step title="Must have: Install event">
+    Every app campaign needs this. Usually tracked automatically once the SDK is integrated.
   </Step>
-  <Step title="Must have — Registration / Activation event">
-    The first meaningful action a user takes (creating account, completing onboarding). This is your primary signal that a user is real and engaged.
+  <Step title="Must have: Registration / Activation event">
+    The first meaningful action — creating an account, completing onboarding. This is your primary signal that a user is real and engaged (not a bot or accidental install).
   </Step>
-  <Step title="Must have — Key in-app action">
-    The core action that defines an engaged user in YOUR app. For a fitness app: completed a workout. For a notes app: created a note. For a social app: sent a message.
+  <Step title="Must have: Your app's core action">
+    The ONE thing that defines an engaged user in YOUR app. For a fitness app: completed a workout. For a notes app: created a note. For a social app: sent a message.
   </Step>
-  <Step title="High priority — Purchase / Subscribe event">
-    If your app has any monetization, track every transaction with its value. This is critical for ROAS-based bidding.
+  <Step title="High priority: Purchase / Subscribe event">
+    If your app has any monetization, track every transaction with its value. Critical for ROAS-based bidding and understanding your unit economics.
   </Step>
-  <Step title="Nice to have — Engagement events">
-    Additional events that help you understand user quality: day 7 retention, feature usage, shares, etc.
+  <Step title="Nice to have: Engagement events">
+    Additional signals like day-7 retention, feature usage, shares. These help you understand user quality and build better audiences.
   </Step>
 </Steps>
 
 ---
 
-## What is attribution?
+## What is attribution? (Who gets credit?)
 
-**Attribution** is the process of determining which ad (or marketing touchpoint) deserves credit for a conversion.
+**Attribution** is the process of determining which ad deserves credit for a conversion.
 
-A user might see your Instagram ad on Monday, search for your app on Google on Wednesday, and install it on Friday after seeing your TikTok ad. Which ad caused the install?
+Here is the problem: A user might see your Instagram ad on Monday, Google your app on Wednesday, and install it on Friday after seeing a TikTok ad. Which ad "caused" the install? They all played a role. But how do you assign credit?
 
-This is the **attribution problem**, and it is one of the most debated topics in advertising.
+This is the **attribution problem**, and it is one of the most debated topics in the entire advertising industry.
 
 ---
 
-## Attribution models
+## Attribution models explained
 
-An attribution model is the rule that determines how credit for a conversion is assigned to touchpoints.
-
-### Single-touch models
+### Single-touch models (one winner takes all)
 
 <AccordionGroup>
-  <Accordion title="Last-click attribution">
-    **The most common model.** 100% of credit goes to the **last ad the user clicked** before converting.
+  <Accordion title="Last-click attribution (the industry standard)">
+    **100% of credit goes to the LAST ad the user clicked before converting.**
 
     ```
     User journey:
-    1. Sees Meta ad (impression only)
-    2. Clicks Google ad → visits website → leaves
-    3. Clicks TikTok ad → installs app ← Gets 100% credit
+    1. Sees Meta ad (impression only, no click)
+    2. Clicks Google ad --> visits website --> leaves
+    3. Clicks TikTok ad --> installs app   <-- Gets 100% credit
 
-    Result: TikTok gets all the credit.
+    Result: TikTok gets ALL the credit.
     ```
 
-    **Pros:** Simple, easy to understand, industry standard for app attribution.
-    **Cons:** Ignores all earlier touchpoints that contributed to awareness. Penalizes top-of-funnel channels like YouTube and display.
+    **Pros:** Simple, easy to understand, actionable, industry standard for app attribution.
+    **Cons:** Completely ignores all earlier touchpoints. Penalizes awareness channels like YouTube and display that start the journey but do not close it.
 
     **Used by:** Most MMPs (default), Apple Search Ads, Google Ads (for search).
   </Accordion>
 
-  <Accordion title="Last-view (view-through) attribution">
-    Credit goes to the **last ad the user saw** (but did not click) before converting. Used as a supplement to last-click.
+  <Accordion title="View-through attribution (for impressions)">
+    Credit goes to the **last ad the user SAW** (but did not click) before converting.
 
     ```
     User journey:
     1. Sees Meta ad (no click)
     2. Sees TikTok ad (no click)
-    3. Goes directly to App Store → installs app
+    3. Goes directly to App Store --> installs app
 
-    Result with view-through: TikTok gets credit (last view).
-    Result without view-through: No platform gets credit (organic).
+    With view-through: TikTok gets credit (last view)
+    Without view-through: Nobody gets credit (counted as organic)
     ```
 
-    **Used by:** Meta (1-day view-through), TikTok, Display campaigns.
+    **Meta's default:** 7-day click, **1-day view**. This means Meta will take credit for a conversion if the user clicked your ad within 7 days OR saw your ad within 1 day of converting.
+
+    **Why it matters:** Many users see an ad, do not click, but go install the app directly later. View-through attribution captures this behavior. Without it, you undercount your ad performance.
   </Accordion>
 
-  <Accordion title="First-click attribution">
-    100% of credit goes to the **first ad the user interacted with**, regardless of what happened later.
+  <Accordion title="First-click attribution (for discovery)">
+    **100% of credit goes to the FIRST ad the user interacted with.**
 
     ```
     User journey:
-    1. Clicks Meta ad → visits website → leaves ← Gets 100% credit
-    2. Clicks Google ad → visits again → leaves
-    3. Clicks TikTok ad → installs app
+    1. Clicks Meta ad --> visits website --> leaves   <-- Gets 100% credit
+    2. Clicks Google ad --> visits again --> leaves
+    3. Clicks TikTok ad --> installs app
 
-    Result: Meta gets all the credit.
+    Result: Meta gets ALL the credit.
     ```
 
-    **Pros:** Values discovery and awareness channels.
-    **Cons:** Ignores the touchpoints that actually closed the deal.
-
-    **Used by:** Rarely used as default, but available in Google Analytics and some analytics tools.
+    **Pros:** Values the channel that first introduced your brand to the user.
+    **Cons:** Ignores everything that happened after discovery.
+    **Used by:** Rarely as default, but available in analytics tools.
   </Accordion>
 </AccordionGroup>
 
-### Multi-touch models
+### Multi-touch models (sharing credit)
 
 <AccordionGroup>
   <Accordion title="Linear attribution">
-    Credit is split **equally** among all touchpoints in the user journey.
+    Credit split **equally** among ALL touchpoints.
 
     ```
-    User journey (3 touchpoints):
-    1. Clicks Meta ad → 33% credit
-    2. Clicks Google ad → 33% credit
-    3. Clicks TikTok ad → installs → 33% credit
+    3 touchpoints:
+    1. Click Meta ad   --> 33% credit
+    2. Click Google ad --> 33% credit
+    3. Click TikTok ad --> installs --> 33% credit
     ```
 
-    **Pros:** Recognizes every touchpoint's contribution.
-    **Cons:** Treats all touchpoints as equally important, which is rarely true.
+    Fair to all channels, but treats every touchpoint as equally important (rarely true in practice).
   </Accordion>
 
   <Accordion title="Time-decay attribution">
-    More credit goes to touchpoints **closer in time** to the conversion. The first touch gets the least credit, the last touch gets the most.
+    More credit to touchpoints **closer in time** to the conversion.
 
     ```
-    User journey:
-    1. Clicks Meta ad (10 days ago) → 15% credit
-    2. Clicks Google ad (3 days ago) → 30% credit
-    3. Clicks TikTok ad (today) → installs → 55% credit
+    1. Click Meta ad (10 days ago)  --> 15% credit
+    2. Click Google ad (3 days ago) --> 30% credit
+    3. Click TikTok ad (today)      --> installs --> 55% credit
     ```
 
-    **Pros:** Balances recognition of all touchpoints while valuing recency.
-    **Cons:** May undervalue initial discovery that started the journey.
+    Balances all touchpoints while respecting recency. Good middle-ground model.
   </Accordion>
 
   <Accordion title="Position-based (U-shaped) attribution">
-    40% credit to the first touch, 40% to the last touch, and 20% split among everything in between.
+    **40%** to first touch, **40%** to last touch, **20%** split among the middle.
 
     ```
-    User journey:
-    1. Clicks Meta ad → 40% credit (first touch)
-    2. Clicks Google ad → 10% credit
-    3. Clicks YouTube ad → 10% credit
-    4. Clicks TikTok ad → installs → 40% credit (last touch)
+    1. Click Meta ad    --> 40% credit (first touch)
+    2. Click Google ad  --> 10% credit (middle)
+    3. Click YouTube ad --> 10% credit (middle)
+    4. Click TikTok ad  --> installs --> 40% credit (last touch)
     ```
 
-    **Pros:** Values both discovery and conversion equally.
-    **Cons:** Arbitrary percentage split.
+    Values both discovery AND conversion. Popular with sophisticated advertisers.
   </Accordion>
 
   <Accordion title="Data-driven attribution (DDA)">
-    Uses **machine learning** to analyze all conversion paths and assign credit based on which touchpoints actually contributed most to conversions. Each touchpoint gets credit proportional to its true impact.
+    Uses **machine learning** to analyze all conversion paths and assign credit based on which touchpoints ACTUALLY contributed most. No assumptions — just data.
 
-    **Available on:** Google Ads (default for eligible accounts), Meta (available in some tools), advanced analytics platforms.
+    **Available on:** Google Ads (default for eligible accounts), some analytics platforms.
 
-    **Pros:** Most accurate model — based on your actual data, not assumptions.
-    **Cons:** Requires significant data volume (thousands of conversions), black-box methodology.
+    **Pros:** Most accurate — based on your real data.
+    **Cons:** Requires thousands of conversions. Black-box methodology (you cannot see exactly how it works).
   </Accordion>
 </AccordionGroup>
 
-### Attribution model comparison
-
-| Model | First touch credit | Middle touch credit | Last touch credit | Best for |
-|-------|-------------------|-------------------|------------------|----------|
-| **Last-click** | 0% | 0% | 100% | Direct response, app installs |
-| **First-click** | 100% | 0% | 0% | Valuing awareness channels |
-| **Linear** | Equal | Equal | Equal | Holistic view |
-| **Time-decay** | Low | Medium | High | Balanced approach |
-| **Position-based** | 40% | 20% (split) | 40% | First + last emphasis |
-| **Data-driven** | Varies | Varies | Varies | Accuracy (if enough data) |
-
 <Tip>
-  **For app marketing, last-click attribution is the industry standard.** Most MMPs use it by default. While multi-touch models are more nuanced, they require more data and are harder to act on. Start with last-click and evolve as you scale.
+  **Pro Tip: For app marketing, last-click attribution is the industry standard and where you should start.** It is simple, actionable, and what every MMP uses by default. Multi-touch models are more nuanced but harder to act on. You can explore them as you scale, but last-click will serve you well for a long time.
 </Tip>
 
 ---
 
-## Attribution windows
+## Attribution windows (lookback windows)
 
-An **attribution window** (or lookback window) is the maximum time between a user seeing/clicking an ad and converting, for the ad to get credit.
+An **attribution window** is the maximum time between a user seeing/clicking an ad and converting, for the ad to still get credit.
 
-### Common attribution windows
+### Default windows by platform
 
-| Platform | Click-through window | View-through window | Default |
-|----------|--------------------|--------------------|---------|
-| **Meta** | 7 days | 1 day | 7-day click, 1-day view |
-| **Google** | 30 days | N/A (varies by campaign type) | 30-day click |
+| Platform | Click-through window | View-through window | Default setting |
+|---|---|---|---|
+| **Meta** | 7 days | 1 day | **7-day click, 1-day view** |
+| **Google** | 30 days | N/A (varies) | 30-day click |
 | **TikTok** | 7 or 28 days | 1 day | 7-day click, 1-day view |
 | **Apple Search Ads** | 30 days | N/A | 30-day click |
 | **MMP default** | 7 days | 1 day | 7-day click, 1-day view |
 
-### How attribution windows affect your data
+### How windows affect your data
 
 ```
 Scenario: User clicks your ad on Monday, installs on Saturday (5 days later)
 
-7-day click window: ✅ Install attributed to your ad
-3-day click window: ❌ Install counted as organic (outside the window)
-1-day click window: ❌ Install counted as organic
+7-day click window:  ATTRIBUTED to your ad (within window)
+3-day click window:  Counted as ORGANIC (outside window)
+1-day click window:  Counted as ORGANIC (way outside window)
 ```
 
 <Warning>
-  **Shorter windows mean fewer attributed conversions.** If you switch from a 28-day window to a 7-day window, your reported conversion numbers will drop — not because performance changed, but because you are measuring differently. Always keep this in mind when comparing data across time periods or platforms.
+  **Shorter windows = fewer attributed conversions.** If you switch from a 28-day to a 7-day window, your reported numbers will DROP. Not because performance changed, but because you are measuring differently. Always keep this in mind when comparing data across time periods or platforms with different window settings.
 </Warning>
+
+<Tip>
+  **Pro Tip: Meta's default of 7-day click / 1-day view is a good starting point for most app campaigns.** It balances capturing enough conversions with maintaining signal quality. If you are running awareness campaigns where the path to install is longer, consider a 28-day click window. For direct-response campaigns, 7 days is usually fine.
+</Tip>
 
 ---
 
-## The privacy revolution
+## The privacy revolution (this changed everything)
 
-Privacy changes have fundamentally reshaped tracking and attribution. Here is what you need to know:
+Privacy changes have fundamentally reshaped tracking and attribution. If you want to advertise effectively in 2025 and beyond, you MUST understand these changes.
 
 ### iOS App Tracking Transparency (ATT)
 
-Since iOS 14.5 (April 2021), Apple requires apps to ask users for permission to track them across other apps and websites.
+Since iOS 14.5 (April 2021), Apple requires every app to ask users for explicit permission to track them across other apps and websites. It looks like this:
 
 ```
-┌─────────────────────────────────────────┐
-│                                         │
-│    "[App Name]" Would Like Permission   │
-│    to Track Your Activity Across        │
-│    Other Companies' Apps and Websites   │
-│                                         │
-│    ┌──────────────────────────────────┐  │
-│    │       Ask App Not to Track      │  │
-│    └──────────────────────────────────┘  │
-│    ┌──────────────────────────────────┐  │
-│    │             Allow               │  │
-│    └──────────────────────────────────┘  │
-│                                         │
-└─────────────────────────────────────────┘
++--------------------------------------------+
+|                                            |
+|   "[App Name]" Would Like Permission       |
+|   to Track Your Activity Across Other      |
+|   Companies' Apps and Websites             |
+|                                            |
+|   +--------------------------------------+ |
+|   |     Ask App Not to Track             | |
+|   +--------------------------------------+ |
+|   +--------------------------------------+ |
+|   |            Allow                     | |
+|   +--------------------------------------+ |
+|                                            |
++--------------------------------------------+
 ```
 
-**Impact:**
-- Only ~25-35% of iOS users opt in to tracking
-- Reduced signal for ad platforms (less data on user behavior across apps)
-- Meta reported a $10B+ annual revenue impact
+**The reality:** Only about **25-35% of iOS users opt IN to tracking.** That means 65-75% of your iOS users are partially invisible to ad platforms.
+
+**Impact on advertising:**
+- Ad platforms have far less data about iOS users
 - Attribution became less precise on iOS
-- Forced shift toward modeled/estimated conversions
+- Meta reported a **$10B+ annual revenue impact** from ATT
+- Platforms shifted toward modeled (estimated) conversions
+- SKAdNetwork became the mandatory framework for iOS attribution
 
-### SKAdNetwork (SKAN)
+### SKAdNetwork (SKAN) — Apple's privacy-safe attribution
 
-Apple's privacy-preserving attribution framework for iOS app install campaigns. It provides limited, aggregated attribution data without exposing individual user behavior.
+Apple created SKAdNetwork as a privacy-preserving way to attribute app installs on iOS. It provides limited, aggregated data without exposing individual user behavior.
 
 <Tabs>
-  <Tab title="How SKAN Works">
+  <Tab title="How SKAN works (simplified)">
     ```mermaid
     graph TD
-        A["User sees ad<br/>(Ad Network registers impression)"] --> B["User clicks ad"]
-        B --> C["User installs app"]
-        C --> D["App calls SKAN API<br/>with conversion value"]
-        D --> E["Apple's timer starts<br/>(24-hour window)"]
-        E --> F["Timer expires"]
-        F --> G["Apple sends<br/>anonymous postback<br/>to ad network"]
+        A["User sees/clicks ad"] --> B["User installs app"]
+        B --> C["App reports a conversion value<br/>(0-63 in SKAN 3)"]
+        C --> D["Apple's timer starts<br/>(24-hour minimum wait)"]
+        D --> E["Timer expires"]
+        E --> F["Apple sends anonymous<br/>postback to ad network"]
 
         style A fill:#95A5A6,color:#fff
-        style D fill:#FFA500,color:#fff
-        style E fill:#FF6B6B,color:#fff
-        style G fill:#2ECC71,color:#fff
+        style C fill:#FFA500,color:#fff
+        style D fill:#FF6B6B,color:#fff
+        style F fill:#2ECC71,color:#fff
     ```
 
-    **Key limitations:**
-    - Postbacks are delayed (24-48+ hours)
-    - Limited conversion values (0-63 in SKAN 3, more in SKAN 4)
-    - No user-level data (aggregate only)
-    - One attribution per install (no multi-touch)
-    - Limited campaign data (SKAN 3 limits to 100 campaign IDs)
+    **Key limitations you need to know:**
+    - **Delayed data:** Postbacks arrive 24-48+ hours after conversion (not real-time)
+    - **Limited values:** Only 64 possible conversion values in SKAN 3 (0-63)
+    - **No user-level data:** Everything is aggregated and anonymous
+    - **One attribution per install:** No multi-touch attribution
+    - **Limited campaign IDs:** SKAN 3 limits to 100 campaign IDs
   </Tab>
-  <Tab title="SKAN 4.0 Improvements">
-    SKAN 4.0 (released with iOS 16.1) introduced several improvements:
+  <Tab title="SKAN 4.0 improvements">
+    SKAN 4.0 (iOS 16.1+) made things better:
 
     | Feature | SKAN 3 | SKAN 4.0 |
-    |---------|--------|----------|
+    |---|---|---|
     | **Postbacks** | 1 postback | Up to 3 postbacks (different time windows) |
-    | **Conversion values** | Fine (0-63) or null | Coarse (low/medium/high) + Fine (0-63) |
+    | **Conversion values** | Fine only (0-63) | Coarse (low/medium/high) + Fine (0-63) |
     | **Source identifier** | 2-digit campaign ID | 2-4 digit hierarchical source ID |
-    | **Crowd anonymity** | Binary (privacy threshold met or not) | 4 tiers (more installs = more data) |
+    | **Crowd anonymity** | Binary | 4 tiers (more installs = more data revealed) |
     | **Web-to-app** | Not supported | Supported |
-    | **Lock window** | Not available | Available (control when timer stops) |
   </Tab>
-  <Tab title="SKAN 5.0 (Latest)">
-    SKAN 5.0 adds re-engagement attribution and improved measurement:
-
-    | Feature | What's new |
-    |---------|-----------|
-    | **Re-engagement** | Can now attribute returning users, not just new installs |
-    | **Improved coarse values** | Better support for coarse conversion values across all postbacks |
+  <Tab title="SKAN 5.0 (latest)">
+    SKAN 5.0 adds re-engagement attribution — you can now measure users who RETURN to your app, not just new installs. This is a significant improvement for retention campaigns.
 
     <Note>
-      SKAN is constantly evolving. The ecosystem (platforms, MMPs, advertisers) is still adapting to each version. Expect continued changes as Apple refines the framework.
+      SKAN is constantly evolving and the ecosystem is still adapting. Your MMP handles most of the SKAN complexity for you. The key thing to understand is: iOS attribution is less precise than it used to be, and you need to factor this into your measurement strategy.
     </Note>
   </Tab>
 </Tabs>
 
 ### Google Privacy Sandbox (Android)
 
-Google's equivalent of Apple's privacy changes for Android. Still rolling out and evolving.
+Google is making similar privacy changes for Android, but moving more gradually:
 
-| Component | What it does | Status |
-|-----------|-------------|--------|
+| Component | What it does | Status (2025) |
+|---|---|---|
 | **Topics API** | Replaces interest tracking with broad topic categories | Rolling out |
 | **Attribution Reporting API** | Privacy-preserving conversion measurement | In development |
-| **Protected Audiences (FLEDGE)** | On-device ad targeting without cross-app tracking | In development |
+| **Protected Audiences** | On-device ad targeting without cross-app tracking | In development |
 | **SDK Runtime** | Isolates third-party SDKs for better privacy | In development |
 
 <Note>
-  **Google is moving more slowly than Apple.** Android's Privacy Sandbox is being introduced gradually with industry feedback, not as a sudden mandate. Expect full rollout over 2025-2026, but the GAID (Google Advertising ID) will eventually be deprecated.
+  **Google is moving slower than Apple.** Android's Privacy Sandbox is being introduced gradually with industry feedback. The Google Advertising ID (GAID) will eventually be deprecated, but the transition is more gradual. Expect full impact over 2025-2027.
 </Note>
 
----
-
-## Postbacks
-
-A **postback** is a server-to-server notification sent when a conversion event occurs. It is how tracking data flows between systems.
-
-### Types of postbacks
-
-| Type | From → To | Purpose |
-|------|----------|---------|
-| **MMP to ad network** | MMP → Meta/Google/TikTok | Tell the platform "this user converted" so it can optimize |
-| **Ad network to MMP** | Platform → MMP | Tell the MMP about impressions and clicks for attribution |
-| **SKAN postback** | Apple → Ad network | Apple's privacy-safe attribution notification |
-| **S2S postback** | Your server → Platform | Send offline or server-side conversion data |
-
-### Why postbacks matter
-
-Without postbacks, the ad platform does not know which ads are driving conversions. Without this feedback loop:
-- The platform cannot optimize delivery (it does not know what "good" looks like)
-- You cannot measure ROAS or CPA accurately
-- Automated bidding strategies fail (they rely on conversion data)
-
-<Warning>
-  **Incorrect postback setup is one of the most common technical issues** in app advertising. If your MMP is not properly sending postbacks to your ad platforms, those platforms cannot optimize. Always verify postback configuration when setting up a new ad platform.
-</Warning>
-
----
-
-## Deferred deep links
-
-A **deferred deep link** takes a user to a specific place in your app — even if they did not have the app installed when they clicked the link.
-
-### How deferred deep links work
-
-```
-Normal link:
-  Click ad → App Store → Install → App opens to home screen (generic)
-
-Deferred deep link:
-  Click ad for "running shoes" → App Store → Install → App opens to running shoes page ✅
-```
-
-```mermaid
-graph LR
-    A["User clicks ad<br/>(specific product)"] --> B["Goes to App Store<br/>(app not installed)"]
-    B --> C["Installs app"]
-    C --> D["Deep link SDK detects<br/>original click context"]
-    D --> E["Opens app to<br/>specific product page"]
-
-    style A fill:#4A90D9,color:#fff
-    style D fill:#FFA500,color:#fff
-    style E fill:#2ECC71,color:#fff
-```
-
-**Why this matters:** Users who land on relevant content convert at 2-5x higher rates than users who land on a generic home screen.
-
-**Providers:** Branch, AppsFlyer (OneLink), Adjust (Deep Links), Airbridge, Firebase Dynamic Links (being deprecated).
-
----
-
-## MMPs — Mobile Measurement Partners
-
-An **MMP** is a third-party company that provides unbiased, cross-platform attribution for mobile apps. They are the "neutral referee" of the advertising ecosystem.
-
-### Why you need an MMP
-
-Without an MMP, each platform reports its own numbers — and they all over-count:
-
-```
-Platform self-reported data:
-  Meta claims: 300 installs
-  Google claims: 250 installs
-  TikTok claims: 200 installs
-  Total claimed: 750 installs
-
-Actual installs: 500
-
-What happened? Platforms double-counted users who saw ads on multiple platforms.
-
-MMP data (deduplicated):
-  Meta attributed: 220 installs
-  Google attributed: 150 installs
-  TikTok attributed: 80 installs
-  Organic: 50 installs
-  Total: 500 installs ✅
-```
-
-### MMP comparison
-
-| MMP | Strengths | Best for | Pricing |
-|-----|----------|----------|---------|
-| **AppsFlyer** | Most widely used, excellent documentation, strong integrations, Protect360 fraud protection | Mid-to-large apps, enterprise | Free up to 10K conversions/month, then paid tiers |
-| **Adjust** | Strong fraud prevention (Fraud Prevention Suite), privacy-first approach, owned by AppLovin | Apps focused on fraud prevention, gaming | Paid (custom pricing) |
-| **Branch** | Best-in-class deep linking, cross-platform (web + app), MLP (mobile linking platform) | Apps that need deep linking + attribution, cross-platform journeys | Free tier available (deep linking), paid for advanced attribution |
-| **Airbridge** | Strong SKAN support, multi-touch attribution, incrementality measurement, cost-effective | Growth-stage apps, SKAN-heavy campaigns, Korean market | Competitive pricing, free tier available |
-| **Singular** | Combined attribution + cost aggregation (pulls spend data from all platforms), ROI analytics | Apps running on many ad networks, need unified cost data | Paid (custom pricing) |
-| **Kochava** | Real-time analytics, Fraud Console, flexible attribution, Marketers Operating System | Enterprise apps, complex multi-channel setups | Free tier (Free App Analytics), paid for full suite |
-
-### When to get an MMP
-
-| Situation | Do you need an MMP? |
-|-----------|-------------------|
-| First campaign, single platform | No — use platform tracking for now |
-| Spending on 2+ platforms | Yes — you need deduplicated attribution |
-| Spending $1K+/month on ads | Yes — the ROI from better data pays for itself |
-| Running iOS campaigns | Highly recommended — MMP handles SKAN complexity |
-| Running retargeting campaigns | Yes — need cross-platform user journey data |
-| Just experimenting | No — add an MMP when you are ready to scale |
-
 <Tip>
-  **If you are just starting, do not let MMP setup slow you down.** Launch your first campaign with platform-native tracking. Plan to integrate an MMP once you are spending on 2+ platforms or exceeding $1K/month in ad spend. AppsFlyer and Branch both have free tiers that work well for getting started.
+  **Pro Tip: Do not panic about privacy changes. Adapt.** The platforms have adapted their algorithms to work with less data. Focus on: (1) setting up server-side tracking for maximum data coverage, (2) using SKAN properly on iOS via your MMP, (3) building first-party data (your most valuable asset), and (4) trusting platform-modeled conversions (they are better than you think).
 </Tip>
 
 ---
 
-## Platform tracking tools
+## Postbacks: the data highway
 
-Each ad platform has its own tracking system. Here is what you need to set up for each:
+A **postback** is a server-to-server notification sent when a conversion event occurs. It is how tracking data flows between different systems in the ecosystem.
+
+| Type | From | To | Purpose |
+|---|---|---|---|
+| **MMP to ad platform** | Your MMP | Meta/Google/TikTok | "This user from your ad just converted!" (so the platform can optimize) |
+| **Ad platform to MMP** | Platform | Your MMP | "Here are the impressions/clicks for attribution matching" |
+| **SKAN postback** | Apple | Ad network | Apple's privacy-safe attribution notification |
+| **S2S postback** | Your server | Ad platform | Sending offline or server-side conversion data |
+
+**Why postbacks matter:** Without them, the ad platform does not know which ads drive conversions. The platform NEEDS this feedback loop to:
+- Optimize delivery (show ads to users similar to those who converted)
+- Report accurate CPA and ROAS
+- Make automated bidding strategies work (they rely entirely on conversion signals)
+
+<Warning>
+  **Incorrect postback setup is one of the most common technical issues in app advertising.** If your MMP is not properly sending postbacks to your ad platforms, those platforms are flying blind and cannot optimize. Always verify postback configuration when setting up a new platform.
+</Warning>
+
+---
+
+## MMPs — your neutral referee
+
+An **MMP** (Mobile Measurement Partner) is a third-party company that provides unbiased, cross-platform attribution. Why "unbiased"? Because unlike ad platforms, MMPs do not have a financial incentive to over-claim conversions.
+
+### Why you need an MMP (the double-counting problem)
+
+Without an MMP, here is what happens:
+
+```
+Platform self-reported data:
+  Meta claims:   300 installs
+  Google claims:  250 installs
+  TikTok claims: 200 installs
+  Total claimed: 750 installs
+
+Actual installs (from your app analytics): 500
+
+What happened? All three platforms saw the same users and each took credit.
+
+MMP data (deduplicated, single source of truth):
+  Meta attributed:   220 installs
+  Google attributed:  150 installs
+  TikTok attributed:  80 installs
+  Organic:            50 installs
+  Total:             500 installs (correct!)
+```
+
+### MMP comparison
+
+| MMP | Key strength | Best for | Pricing |
+|---|---|---|---|
+| **AppsFlyer** | Most widely used, excellent integrations, Protect360 fraud protection | Mid-to-large apps | Free up to 10K conversions/month |
+| **Adjust** | Strong fraud prevention, privacy-first, owned by AppLovin | Gaming, fraud-sensitive apps | Custom pricing |
+| **Branch** | Best deep linking + attribution combo | Apps needing deep links | Free tier available |
+| **Airbridge** | Strong SKAN support, multi-touch, cost-effective | Growth-stage apps, Korean market | Competitive pricing, free tier |
+| **Singular** | Attribution + cost aggregation (pulls spend from all platforms) | Apps on many networks | Custom pricing |
+| **Kochava** | Real-time analytics, flexible attribution | Enterprise, complex setups | Free tier available |
+
+### When to get an MMP
+
+| Situation | Do you need an MMP? |
+|---|---|
+| First campaign on a single platform | Not yet — use platform tracking |
+| Spending on 2+ platforms | **Yes** — you need deduplicated attribution |
+| Spending $1K+/month on ads | **Yes** — the ROI from better data pays for itself |
+| Running iOS campaigns | Highly recommended — MMP handles SKAN complexity |
+| Just experimenting with tiny budget | Not yet — add one when you are ready to scale |
+
+<Tip>
+  **Pro Tip: Do not let MMP setup slow down your first campaign launch.** Start with platform-native tracking (Meta Pixel, Facebook SDK, etc.) and launch. Plan to integrate an MMP once you are spending on 2+ platforms or exceeding $1K/month. AppsFlyer and Branch both have free tiers that are perfect for getting started.
+</Tip>
+
+---
+
+## Platform tracking setup guides
 
 <Tabs>
   <Tab title="Meta">
     **For websites:** Meta Pixel + Conversions API (CAPI)
     **For apps:** Facebook SDK + App Events
 
-    **Setup requirements:**
+    **Setup steps:**
     1. Create a Meta Pixel in Events Manager
-    2. Install pixel code on your website (or use Google Tag Manager)
+    2. Install pixel code on your website (or via Google Tag Manager)
     3. Set up Conversions API for server-side tracking
     4. Integrate Facebook SDK into your app
     5. Configure App Events (install, registration, purchase, etc.)
-    6. Verify domain ownership
+    6. Verify your domain
     7. Configure Aggregated Event Measurement (for iOS)
 
-    **Key features:**
-    - Aggregated Event Measurement (AEM) for iOS privacy compliance
-    - Advanced Matching (sends hashed user data for better matching)
+    **Important features:**
+    - Advanced Matching (hashed user data for better matching)
+    - Aggregated Event Measurement for iOS privacy compliance
     - Dynamic event parameters (send revenue values, product IDs)
   </Tab>
   <Tab title="Google Ads">
     **For websites:** Google Tag (gtag.js) or Google Tag Manager
     **For apps:** Firebase SDK + Google Analytics for Firebase
 
-    **Setup requirements:**
+    **Setup steps:**
     1. Set up conversion actions in Google Ads
-    2. Install Google Tag on your website (or use Tag Manager)
+    2. Install Google Tag on your website
     3. Link Google Ads to Firebase for app tracking
     4. Configure conversion events in Firebase
-    5. Enable Enhanced Conversions for better matching
-    6. Set up Google Consent Mode (for GDPR compliance)
+    5. Enable Enhanced Conversions
+    6. Set up Google Consent Mode (for GDPR)
 
-    **Key features:**
-    - Enhanced Conversions (hashed first-party data for better attribution)
+    **Important features:**
+    - Enhanced Conversions (first-party data for better attribution)
     - Consent Mode (adjusts tracking based on user consent)
-    - Google Analytics 4 integration (unified web + app analytics)
-    - Offline conversion import (upload conversions from CRM)
+    - GA4 integration (unified web + app analytics)
   </Tab>
   <Tab title="TikTok">
     **For websites:** TikTok Pixel + Events API
     **For apps:** TikTok SDK
 
-    **Setup requirements:**
+    **Setup steps:**
     1. Create TikTok Pixel in Events Manager
-    2. Install pixel on website (manual or via partner integration)
+    2. Install pixel on your website
     3. Set up Events API for server-side tracking
-    4. Integrate TikTok SDK into app
+    4. Integrate TikTok SDK into your app
     5. Configure in-app events
     6. Set up Advanced Matching
 
-    **Key features:**
-    - Events API (server-side, similar to Meta's CAPI)
+    **Important features:**
+    - Events API (server-side, like Meta's CAPI)
     - Advanced Matching (hashed email/phone for better attribution)
-    - Self-Attributing Network (SAN) integration with MMPs
   </Tab>
   <Tab title="Apple Search Ads">
     **For apps:** AdServices framework + Apple Ads Attribution API
 
-    **Setup requirements:**
+    **Setup steps:**
     1. Integrate AdServices framework (iOS 14.3+)
     2. Call attribution API on first app open
-    3. Optionally integrate with your MMP for unified reporting
-    4. Configure conversion events (for Apple Search Ads Advanced)
+    3. Optionally connect to your MMP for unified reporting
 
-    **Key features:**
-    - Deterministic, first-party attribution (not affected by ATT)
-    - Apple Ads Attribution API provides campaign-level attribution data
-    - Works with or without user tracking consent
+    **Key advantage:** Apple's attribution is deterministic and first-party — NOT affected by ATT. Apple Search Ads can attribute installs even when users opt out of tracking. This is a major advantage.
   </Tab>
 </Tabs>
+
+---
+
+## Deferred deep links (bonus topic)
+
+A **deferred deep link** takes a user to a specific place in your app — even if they did not have the app installed when they clicked the link.
+
+```
+Normal link:
+  Click ad --> App Store --> Install --> Opens to home screen (generic)
+
+Deferred deep link:
+  Click ad for "running shoes" --> App Store --> Install --> Opens to running shoes page!
+```
+
+**Why this matters:** Users who land on relevant, specific content convert at **2-5x higher rates** than users who land on a generic home screen.
+
+**Providers:** Branch, AppsFlyer (OneLink), Adjust, Airbridge
 
 ---
 
 ## Essential tracking setup checklist
 
 <Steps>
-  <Step title="Define your conversion events">
-    List every user action you want to track: install, registration, key action, purchase. Map each to a standard event name.
+  <Step title="1. Define your conversion events">
+    List every user action you want to track: install, registration, core action, purchase. Map each to standard event names.
   </Step>
-  <Step title="Install platform SDKs / Pixels">
-    Add the tracking code for each platform you will advertise on. For web: install pixels. For apps: integrate SDKs.
+  <Step title="2. Install platform SDKs / Pixels">
+    Add tracking code for each platform you will advertise on. Web = pixels. Apps = SDKs.
   </Step>
-  <Step title="Set up server-side tracking">
-    Implement Conversions API (Meta), Enhanced Conversions (Google), or Events API (TikTok) for redundant tracking.
+  <Step title="3. Set up server-side tracking">
+    Implement Meta CAPI, Google Enhanced Conversions, or TikTok Events API for redundant coverage.
   </Step>
-  <Step title="Configure attribution settings">
-    Choose your attribution window (7-day click / 1-day view is standard). Set up conversion event priorities.
+  <Step title="4. Configure attribution settings">
+    Choose your windows. **Meta default of 7-day click / 1-day view** is standard and recommended.
   </Step>
-  <Step title="Verify events are firing correctly">
-    Use Meta's Events Manager Test Events tool, Google Tag Assistant, TikTok's Pixel Helper, or your MMP's debug mode to verify every event fires correctly.
+  <Step title="5. Verify events are firing correctly">
+    Use Meta Events Manager Test Events, Google Tag Assistant, TikTok Pixel Helper, or your MMP's debug mode. **Never skip this step.**
   </Step>
-  <Step title="Set up an MMP (when ready)">
-    When advertising on 2+ platforms, integrate an MMP for deduplicated, cross-platform attribution.
+  <Step title="6. Set up an MMP (when ready)">
+    Integrate when advertising on 2+ platforms or spending $1K+/month. Start with free tiers.
   </Step>
-  <Step title="Test the full user journey">
-    Click your own ad (from a test device), complete the conversion, and verify the event appears in all dashboards — platform, MMP, and your own analytics.
+  <Step title="7. Test the FULL user journey">
+    Click your own ad from a test device, go through the full flow (install, register, etc.), and verify every event appears in all dashboards.
   </Step>
 </Steps>
 
@@ -723,52 +670,52 @@ Each ad platform has its own tracking system. Here is what you need to set up fo
 
 ## Common tracking mistakes
 
-| Mistake | Impact | Fix |
-|---------|--------|-----|
-| Not setting up tracking before launching ads | No data, wasted budget, cannot optimize | Always set up and verify tracking first |
+| Mistake | Impact | How to fix |
+|---|---|---|
+| Not setting up tracking before launching ads | No data, wasted budget, zero optimization | Always set up and verify tracking FIRST |
 | Wrong attribution window | Over or under-counting conversions | Use 7-day click / 1-day view as default |
-| Duplicate events | Inflated conversion counts, incorrect CPA | Deduplicate events, use MMP |
-| Missing server-side tracking | 10-30% data loss from ad blockers and privacy | Implement CAPI / Enhanced Conversions |
+| Duplicate events firing | Inflated conversion counts, incorrect CPA | Deduplicate events, use an MMP |
+| Missing server-side tracking | 10-30% data loss from ad blockers | Implement CAPI / Enhanced Conversions |
 | Not testing events before launch | Events fire incorrectly or not at all | Always use debug/test tools before going live |
-| Ignoring iOS ATT impact | Underreporting, poor optimization | Implement SKAN, use modeled conversions |
-| Not excluding converters | Paying to re-acquire existing users | Set up exclusion audiences in each platform |
-| Trusting platform self-reported data | Over-counting conversions | Use an MMP for cross-platform truth |
+| Ignoring iOS ATT impact | Underreporting, poor optimization on iOS | Implement SKAN properly, use modeled conversions |
+| Trusting platform self-reported data blindly | Over-counting conversions | Use an MMP for cross-platform truth |
+| Not sending revenue values with purchase events | Cannot optimize for ROAS or high-value users | Always include purchase value and currency |
 
 ---
 
 ## Key takeaways
 
 <Steps>
-  <Step title="Tracking is not optional">
-    Set up tracking before spending a single dollar on ads. It is the foundation of every advertising decision.
+  <Step title="Tracking is NOT optional">
+    Set up tracking before you spend a single dollar. It is the foundation of every advertising decision you will ever make. No tracking = no optimization = wasted money.
   </Step>
-  <Step title="Use pixels for web, SDKs for apps">
-    Install the right tracking technology for your platform. Add server-side tracking for maximum data coverage.
+  <Step title="Use pixels for web, SDKs for apps, server-side for both">
+    Dual tracking (client + server-side) gives you maximum data coverage. Meta recommends this approach explicitly.
   </Step>
-  <Step title="Understand attribution models">
-    Last-click is the industry standard for app marketing. Know what it measures and what it misses.
+  <Step title="Understand attribution: last-click is your starting point">
+    Last-click attribution is the industry standard for app marketing. Meta's default window of 7-day click / 1-day view is a solid default. Start here and evolve as you scale.
   </Step>
   <Step title="Privacy changes are real but manageable">
-    iOS ATT and SKAN have changed the game, but platforms have adapted. Use modeled conversions, SKAN, and first-party data to maintain measurement.
+    iOS ATT changed the game, but platforms have adapted. Use SKAN, server-side tracking, modeled conversions, and first-party data to maintain measurement accuracy.
   </Step>
-  <Step title="Get an MMP when you scale">
-    Once you advertise on 2+ platforms, an MMP provides deduplicated truth. Start with free tiers from AppsFlyer or Branch.
+  <Step title="Get an MMP when you scale to 2+ platforms">
+    An MMP provides the single source of truth you need when multiple platforms are all claiming credit. Start with free tiers from AppsFlyer, Branch, or Airbridge.
   </Step>
-  <Step title="Verify everything">
-    Always test your tracking setup before going live. Use debug tools, test devices, and end-to-end journey testing. A misconfigured event is worse than no event — it gives you false confidence.
+  <Step title="Verify EVERYTHING before going live">
+    Use debug tools to confirm every event fires correctly. Test the full user journey end-to-end. A broken tracking event gives you false confidence and leads to terrible decisions.
   </Step>
 </Steps>
 
 ---
 
-## Next up
+## You made it!
 
-You now understand all the core concepts — the ecosystem, campaign structure, targeting, bidding, creatives, and tracking. Time to put it all together and launch your first campaign.
+Congratulations! You now understand all the core concepts of digital advertising — the ecosystem, campaign structure, targeting, bidding, creatives, and tracking. You have the knowledge foundation to make smart decisions. Now it is time to put it all into practice.
 
 <Card
   title="Before You Start"
   icon="arrow-right"
   href="/first-campaign/before-you-start"
 >
-  A quick checklist before you launch your first campaign.
+  A quick checklist to review before you launch your very first campaign. Let's go!
 </Card>

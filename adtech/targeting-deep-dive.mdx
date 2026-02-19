@@ -6,26 +6,32 @@ icon: "crosshairs"
 
 # Targeting Technology Deep Dive
 
-Targeting is the reason digital advertising is worth $600B+ per year. The ability to show the right ad to the right person at the right time is what separates digital from traditional advertising. It's also the most controversial aspect of ad tech -- touching privacy, regulation, and the fundamental economics of the internet.
+Targeting is the reason digital advertising is worth $600B+ per year. The ability to show the right ad to the right person at the right time is what separates digital from traditional advertising. It is also the most controversial aspect of ad tech -- touching privacy, regulation, and the fundamental economics of the internet.
 
 <Tip>
-**Software engineering analogy**: Targeting is essentially a **recommendation system** at massive scale. Just as Netflix recommends shows and Spotify recommends songs, ad tech recommends ads. The same ML techniques apply: collaborative filtering, content-based filtering, and hybrid approaches. The difference is that ad targeting operates under extreme latency constraints (~10ms), handles billions of daily decisions, and is subject to increasingly strict regulation.
+**Think of it this way**: Targeting is essentially a recommendation system at massive scale. Just as Netflix recommends shows and Spotify recommends songs, ad tech recommends ads. The same machine learning techniques apply: collaborative filtering, content-based filtering, and hybrid approaches. The difference is that ad targeting operates under extreme latency constraints (about 10 milliseconds), handles billions of daily decisions, and is subject to increasingly strict regulation.
 </Tip>
 
-## Types of Targeting
+---
 
-There are two fundamental approaches to targeting ads:
+## Types of Targeting: Two Fundamental Approaches
+
+There are two fundamental approaches to targeting ads. Understanding the difference between them is the single most important thing to grasp about how ads find the right users.
 
 | Approach | What It Targets | Data Needed | Privacy Impact |
 |---|---|---|---|
 | **Contextual** | The content/environment | Page content, keywords | Low (no user data needed) |
 | **Behavioral** | The individual user | Browsing history, demographics | High (requires user tracking) |
 
+Think of it like dating: contextual targeting is like going to a running club to find runners (the environment tells you about the people). Behavioral targeting is like looking up someone's dating profile to learn about them individually.
+
 ---
 
 ## Contextual Targeting
 
 **Contextual targeting** matches ads to the content of the page they appear on. An ad for running shoes appears on an article about marathon training. An ad for financial services appears on a business news page. No user data required.
+
+This is the oldest form of ad targeting -- newspapers have always sold "sports section" ads. But modern technology has made it dramatically more powerful.
 
 ### How Contextual Targeting Works Technically
 
@@ -66,15 +72,15 @@ There are two fundamental approaches to targeting ads:
 
 ### The Contextual Renaissance
 
-Contextual targeting is experiencing a major resurgence because:
+Contextual targeting is experiencing a major resurgence because of the privacy revolution:
 
 1. **No user data needed**: It works without cookies, device IDs, or any personal information
-2. **Privacy-compliant by design**: GDPR, CCPA, and iOS ATT don't restrict contextual targeting
-3. **Improved technology**: Modern NLP (including LLMs) can understand page context far better than keyword matching could
-4. **Brand safety**: Understanding what's *on the page* is essential for ensuring ads don't appear next to inappropriate content
+2. **Privacy-compliant by design**: GDPR, CCPA, and iOS ATT do not restrict contextual targeting
+3. **Improved technology**: Modern NLP (including large language models) can understand page context far better than simple keyword matching
+4. **Brand safety**: Understanding what is on the page is essential for ensuring ads do not appear next to inappropriate content
 
-<Accordion title="For the curious: How modern contextual AI works">
-Early contextual targeting was simple keyword matching -- the word "basketball" on a page triggered sports ads. This led to problems: an article about a "basketball player's injury" might trigger ads for a sports brand that doesn't want to be associated with injury content.
+<Accordion title="How modern contextual AI works">
+Early contextual targeting was simple keyword matching -- the word "basketball" on a page triggered sports ads. This led to problems: an article about a "basketball player's injury" might trigger ads for a sports brand that does not want to be associated with injury content.
 
 Modern contextual platforms (like Oracle's Grapeshot, Peer39, or DoubleVerify's Semantic Science) use:
 
@@ -89,13 +95,19 @@ Modern contextual platforms (like Oracle's Grapeshot, Peer39, or DoubleVerify's 
 The irony: contextual targeting is the oldest form of ad targeting (newspapers have sold "sports section" ads forever) but is now being reinvented with the most modern AI techniques.
 </Accordion>
 
+<Tip>
+**Pro Tip**: Contextual targeting is your best friend in a privacy-first world. If you are building an ad strategy today, invest in contextual approaches first. They work everywhere, require no consent popups, and are completely future-proof against privacy regulation changes. Start by identifying the content categories where your ideal customers spend their time.
+</Tip>
+
 ---
 
 ## Behavioral Targeting
 
-**Behavioral targeting** targets ads based on a user's past behavior -- websites visited, searches performed, products viewed, apps used. It's far more precise than contextual targeting but requires tracking individual users across the internet.
+**Behavioral targeting** targets ads based on a user's past behavior -- websites visited, searches performed, products viewed, apps used. It is far more precise than contextual targeting but requires tracking individual users across the internet.
 
 ### How Behavioral Targeting Works
+
+Let us walk through a real example:
 
 ```mermaid
 graph TD
@@ -135,28 +147,32 @@ graph TD
     style Targeting fill:#E8F5E9
 ```
 
+The user visited several running-related sites over a few days. Each visit was tracked by various ad tech systems. Those signals were combined into a user profile. Now, when that user visits a completely unrelated news website, Nike's DSP recognizes them and shows them a running shoe ad. That is behavioral targeting in action.
+
 ### The Cookie Mechanism
 
-The foundation of behavioral targeting on the web is the **HTTP cookie** -- specifically, **third-party cookies**.
+The foundation of behavioral targeting on the web is the **HTTP cookie** -- specifically, **third-party cookies**. Understanding the difference between first-party and third-party cookies is essential.
 
 <Tabs>
   <Tab title="First-Party Cookies">
-    **Set by**: The website you're currently visiting
+    **Set by**: The website you are currently visiting
     **Domain**: Same as the site (e.g., `nytimes.com` sets a cookie for `nytimes.com`)
     **Purpose**: Login sessions, preferences, shopping carts, analytics
-    **Privacy impact**: Low -- the site you're visiting knows you're visiting it
+    **Privacy impact**: Low -- the site you are visiting knows you are visiting it
     **Status**: Universally supported, not under threat
 
     ```
     Set-Cookie: session_id=abc123; Domain=nytimes.com; Path=/; HttpOnly; Secure
     ```
+
+    First-party cookies are like a restaurant remembering your usual order. The restaurant you are at knows your preferences. That is normal and expected.
   </Tab>
   <Tab title="Third-Party Cookies">
-    **Set by**: A different domain than the one you're visiting (the ad tech domain)
-    **Domain**: An ad tech domain (e.g., `doubleclick.net` sets a cookie while you're on `nytimes.com`)
+    **Set by**: A different domain than the one you are visiting (the ad tech domain)
+    **Domain**: An ad tech domain (e.g., `doubleclick.net` sets a cookie while you are on `nytimes.com`)
     **Purpose**: Cross-site tracking, user identification for ad targeting
     **Privacy impact**: High -- enables tracking across the entire internet
-    **Status**: Being phased out. Blocked by Safari (since 2017), Firefox (since 2019), Chrome (announced deprecation, then reversed in 2024 -- but still adding restrictions)
+    **Status**: Being phased out. Blocked by Safari (since 2017), Firefox (since 2019). Chrome announced deprecation, then reversed in 2024, but is still adding user controls and restrictions.
 
     ```
     // You visit nytimes.com, which has an ad tag from doubleclick.net
@@ -167,12 +183,14 @@ The foundation of behavioral targeting on the web is the **HTTP cookie** -- spec
     // doubleclick.net reads the same cookie: id=user_xyz
     // Now doubleclick.net knows you visit both NYT and ESPN
     ```
+
+    Third-party cookies are like a private detective following you to every restaurant in town, noting exactly what you order at each one, and then selling that information to anyone willing to pay.
   </Tab>
 </Tabs>
 
 ### User Identification Across the Web
 
-Third-party cookies are just one mechanism for tracking users. The full toolkit includes:
+Third-party cookies are just one mechanism for tracking users. The full toolkit includes several methods:
 
 | Method | How It Works | Persistence | Privacy Concern |
 |---|---|---|---|
@@ -184,7 +202,7 @@ Third-party cookies are just one mechanism for tracking users. The full toolkit 
 | **IP address** | Shared among household/office | Changes frequently | Low-medium -- imprecise |
 | **UID2 (Unified ID 2.0)** | Hashed email-based open standard (The Trade Desk) | Email-dependent | Medium -- requires consent |
 
-<Accordion title="For the curious: How device fingerprinting works">
+<Accordion title="How device fingerprinting works">
 Device fingerprinting creates a unique identifier by combining dozens of browser and device attributes:
 
 ```javascript
@@ -209,16 +227,20 @@ const deviceId = sha256(JSON.stringify(fingerprint));
 // Result: a "unique" identifier even without cookies
 ```
 
-The **canvas fingerprint** is particularly clever: different GPU/driver combinations render the same canvas content slightly differently at the sub-pixel level. By rendering a complex shape and hashing the result, you get a signal that's surprisingly unique.
+The **canvas fingerprint** is particularly clever: different GPU and driver combinations render the same canvas content slightly differently at the sub-pixel level. By rendering a complex shape and hashing the result, you get a signal that is surprisingly unique.
 
-Fingerprinting is controversial because it's nearly invisible to users and difficult to prevent. Unlike cookies, you can't "clear" a fingerprint. Browsers are fighting back: Safari randomizes canvas rendering, Firefox blocks known fingerprinting scripts, and Chrome is adding anti-fingerprinting measures through the Privacy Sandbox.
+Fingerprinting is controversial because it is nearly invisible to users and difficult to prevent. Unlike cookies, you cannot "clear" a fingerprint. Browsers are fighting back: Safari randomizes canvas rendering, Firefox blocks known fingerprinting scripts, and Chrome is adding anti-fingerprinting measures through the Privacy Sandbox.
 </Accordion>
+
+<Tip>
+**Pro Tip**: As a beginner, the most important thing to understand about user identification is that the entire system is built on a fundamental tension: advertisers need to identify users to show relevant ads and measure results, but users increasingly do not want to be tracked. Every major change in ad tech over the past five years -- ATT, cookie deprecation, Privacy Sandbox -- is about this tension.
+</Tip>
 
 ---
 
 ## DMP (Data Management Platform)
 
-A **DMP** is a platform that collects, organizes, and activates audience data for ad targeting. Think of it as the data warehouse of ad tech.
+A **DMP** is a platform that collects, organizes, and activates audience data for ad targeting. Think of it as the data warehouse of ad tech -- it is where all the user data gets stored, organized into useful segments, and made available for targeting.
 
 ### What a DMP Does
 
@@ -232,8 +254,8 @@ A **DMP** is a platform that collects, organizes, and activates audience data fo
   <Step title="Build Audience Segments">
     Raw data is organized into targetable segments:
     - "Auto Intenders" -- people researching car purchases
-    - "Frequent Travelers" -- people who book flights/hotels regularly
-    - "High Household Income" -- inferred from browsing/purchase patterns
+    - "Frequent Travelers" -- people who book flights and hotels regularly
+    - "High Household Income" -- inferred from browsing and purchase patterns
     - "In-Market for Laptops" -- recently searching for and comparing laptops
   </Step>
   <Step title="Activate for Targeting">
@@ -246,7 +268,7 @@ A **DMP** is a platform that collects, organizes, and activates audience data fo
 </Steps>
 
 <Tip>
-**Software engineering analogy**: A DMP is like a **feature store** in ML infrastructure. It collects raw signals (data), computes features (audience segments), and serves them at low latency for real-time model inference (bid decisions). The same design patterns apply: batch processing for segment computation, real-time serving for lookup, and careful versioning of segment definitions.
+**Pro Tip**: Think of a DMP like a feature store in machine learning infrastructure. It collects raw signals (data), computes features (audience segments), and serves them at low latency for real-time model inference (bid decisions). The same design patterns apply: batch processing for segment computation, real-time serving for lookup, and careful versioning of segment definitions.
 </Tip>
 
 ### The Decline of Third-Party DMPs
@@ -254,19 +276,19 @@ A **DMP** is a platform that collects, organizes, and activates audience data fo
 Traditional third-party DMPs (like Oracle BlueKai, which Oracle shut down in 2024) are in decline because:
 
 1. **Third-party cookie deprecation** removes the primary cross-site tracking mechanism
-2. **GDPR/CCPA** limit the collection and sharing of personal data
+2. **GDPR and CCPA** limit the collection and sharing of personal data
 3. **Data quality concerns**: Third-party segments were often inaccurate and opaque
-4. **Rise of CDPs**: Customer Data Platforms (like Segment, mParticle) focus on first-party data, which is more valuable and privacy-compliant
+4. **Rise of CDPs**: Customer Data Platforms (like Segment and mParticle) focus on first-party data, which is more valuable and privacy-compliant
 
 <Note>
-The industry is shifting from DMPs (focused on third-party data for targeting) to **CDPs** (focused on first-party data for personalization and activation). This mirrors the broader shift from cookie-based targeting to identity-based and contextual approaches.
+The industry is shifting from DMPs (focused on third-party data for targeting) to **CDPs** (focused on first-party data for personalization and activation). This mirrors the broader shift from cookie-based targeting to identity-based and contextual approaches. If you are building a new data strategy today, start with a CDP, not a DMP.
 </Note>
 
 ---
 
 ## The Privacy Revolution
 
-Starting around 2018, a series of regulations and platform changes fundamentally disrupted behavioral targeting:
+Starting around 2018, a series of regulations and platform changes fundamentally disrupted behavioral targeting. This is not a minor tweak -- it is a complete restructuring of how the advertising industry operates.
 
 ### Timeline of Privacy Changes
 
@@ -287,15 +309,15 @@ timeline
 
 ### GDPR (General Data Protection Regulation)
 
-The EU's GDPR, effective May 2018, established:
+The EU's GDPR, effective May 2018, established the global standard for data privacy:
 
 - **Consent requirement**: Must get explicit user consent before processing personal data for advertising
 - **Right to be forgotten**: Users can request deletion of their data
 - **Data portability**: Users can export their data
-- **Heavy fines**: Up to 4% of global annual revenue or EUR 20M, whichever is higher
+- **Heavy fines**: Up to 4% of global annual revenue or EUR 20 million, whichever is higher
 - **Extraterritorial scope**: Applies to any company processing EU residents' data, regardless of where the company is based
 
-**Impact on ad tech**: The consent requirement fundamentally changed how ad tech operates in Europe. The **TCF (Transparency and Consent Framework)** was created by IAB Europe to standardize how consent is collected and communicated through the programmatic supply chain. Those annoying cookie consent banners? That's GDPR in action.
+**Impact on ad tech**: The consent requirement fundamentally changed how ad tech operates in Europe. The **TCF (Transparency and Consent Framework)** was created by IAB Europe to standardize how consent is collected and communicated through the programmatic supply chain. Those annoying cookie consent banners you see on every website? That is GDPR in action.
 
 ### iOS ATT (App Tracking Transparency)
 
@@ -309,7 +331,7 @@ across apps and websites owned by other companies"
 ```
 
 <Warning>
-The opt-in rate for ATT is approximately **20-25%**. This means ~75-80% of iOS users chose NOT to allow tracking. For ad tech, this was seismic -- it meant losing cross-app tracking for the majority of the most valuable mobile users (iOS users tend to have higher income and spending).
+The opt-in rate for ATT is approximately **20-25%**. This means roughly 75-80% of iOS users chose NOT to allow tracking. For ad tech, this was seismic -- it meant losing cross-app tracking for the majority of the most valuable mobile users (iOS users tend to have higher income and spending).
 
 **Meta's impact**: Meta (Facebook) estimated ATT cost them approximately **$10 billion** in 2022 revenue. Their entire mobile advertising business relied on cross-app tracking to measure conversions and optimize campaigns.
 </Warning>
@@ -320,7 +342,7 @@ Google's **Topics API** (part of the Privacy Sandbox initiative) is Chrome's rep
 
 <Steps>
   <Step title="Browser Learns Interests">
-    Chrome locally categorizes websites the user visits into ~350 predefined topics (from a public taxonomy). Example topics: "Sports/Basketball," "Technology/Computers," "Travel/Hotels."
+    Chrome locally categorizes websites the user visits into approximately 350 predefined topics (from a public taxonomy). Example topics: "Sports/Basketball," "Technology/Computers," "Travel/Hotels."
   </Step>
   <Step title="Weekly Topic Selection">
     Each week, the browser selects 5 topics that best represent the user's interests based on browsing history. One random topic is added for noise (privacy protection).
@@ -333,7 +355,7 @@ Google's **Topics API** (part of the Privacy Sandbox initiative) is Chrome's rep
   </Step>
 </Steps>
 
-<Accordion title="For the curious: Topics API technical details">
+<Accordion title="Topics API technical details">
 ```javascript
 // Calling the Topics API (JavaScript)
 const topics = await document.browsingTopics();
@@ -362,16 +384,16 @@ Privacy safeguards:
 - Each topic has a **5% random noise** chance of being replaced with a random topic
 - Topics are only shared with parties that have **already observed the user** on a relevant site
 - Users can see, delete, and disable topics in Chrome settings
-- The taxonomy has only ~350 topics -- too coarse for precise individual targeting
+- The taxonomy has only about 350 topics -- too coarse for precise individual targeting
 
-**The tradeoff**: Topics API provides far less targeting precision than third-party cookies. An advertiser used to know "this user visited nike.com, searched for 'running shoes size 10,' and browsed 3 comparison articles." With Topics, they only know "this user is interested in Sports." The granularity loss is enormous -- but that's the point.
+**The tradeoff**: Topics API provides far less targeting precision than third-party cookies. An advertiser used to know "this user visited nike.com, searched for running shoes size 10, and browsed 3 comparison articles." With Topics, they only know "this user is interested in Sports." The granularity loss is enormous -- but that is the point. Privacy and precision are on opposite ends of the seesaw.
 </Accordion>
 
 ---
 
 ## Targeting in Mobile Apps vs. Web
 
-Mobile app targeting works differently from web targeting:
+Mobile app targeting works differently from web targeting. Here is a side-by-side comparison:
 
 | Aspect | Web | Mobile App |
 |---|---|---|
@@ -383,15 +405,17 @@ Mobile app targeting works differently from web targeting:
 | **Attribution** | Cookie-based, click redirect | SDK-based, deep links |
 | **Privacy controls** | Browser cookie settings | OS-level (ATT on iOS, consent on Android) |
 
-<Note>
-Mobile apps have access to far richer data than websites -- device sensors, precise location, in-app behavior, and purchase data. This is why mobile ad targeting has historically been more effective than web targeting. However, ATT on iOS and evolving restrictions on Android are rapidly closing this gap.
-</Note>
+<Tip>
+**Pro Tip**: Mobile apps have access to far richer data than websites -- device sensors, precise location, in-app behavior, and purchase data. This is why mobile ad targeting has historically been more effective than web targeting. However, ATT on iOS and evolving restrictions on Android are rapidly closing this gap. If you are a mobile developer, plan for a future where you have significantly less user-level data to work with.
+</Tip>
 
 ---
 
 ## Frequency Capping
 
 **Frequency capping** limits how many times a user sees the same ad within a time period. Without it, a user might see the same retargeting ad hundreds of times -- annoying the user and wasting advertiser budget.
+
+Think of it this way: the first time someone sees your ad, they notice it. The third time, they consider it. The tenth time, they are annoyed. The fiftieth time, they actively dislike your brand. Frequency capping prevents this.
 
 ### Technical Implementation
 
@@ -405,7 +429,7 @@ Mobile apps have access to far richer data than websites -- device sensors, prec
     ```
 
     **Pros**: Simple, fast
-    **Cons**: User can clear cookies, doesn't work cross-device, limited by cookie size
+    **Cons**: User can clear cookies, does not work cross-device, limited by cookie size
   </Tab>
   <Tab title="Server-Side (ID-Based)">
     Impression counts stored in a fast key-value store (Redis, Aerospike):
@@ -436,7 +460,7 @@ Mobile apps have access to far richer data than websites -- device sensors, prec
 
     Typical caps:
     - **3-5 impressions per user per day** for brand campaigns
-    - **1-2 per day** for retargeting (don't be creepy)
+    - **1-2 per day** for retargeting (do not be creepy)
     - **10-15 per day** for performance campaigns (frequency = conversion probability)
   </Tab>
 </Tabs>
@@ -445,7 +469,7 @@ Mobile apps have access to far richer data than websites -- device sensors, prec
 
 ## Purchase Algorithms and Bid Optimization
 
-Advertisers don't just target users -- they optimize *how much* they pay for each impression. The purchase algorithm determines the bid strategy.
+Advertisers do not just target users -- they optimize *how much* they pay for each impression. The purchase algorithm determines the bid strategy, and this is where the real competitive advantage lies.
 
 ### Pricing Models
 
@@ -454,13 +478,13 @@ Advertisers don't just target users -- they optimize *how much* they pay for eac
 | **Fixed CPM** | Cost Per Mille | Pay a fixed price per 1,000 impressions | Brand awareness, guaranteed delivery |
 | **vCPM** | Viewable CPM | Pay only for impressions that are viewable (IAB standard: 50% of pixels visible for 1+ second) | Brand campaigns that care about actual visibility |
 | **dCPM** | Dynamic CPM | DSP algorithmically adjusts CPM per impression based on predicted value | Performance optimization |
-| **CPC** | Cost Per Click | Pay only when user clicks | Traffic / consideration campaigns |
-| **CPA** | Cost Per Acquisition | Pay only when user converts (purchase, install, sign-up) | Performance / direct response |
-| **ROAS** | Return on Ad Spend | Optimize for revenue generated per dollar spent | E-commerce / revenue optimization |
+| **CPC** | Cost Per Click | Pay only when user clicks | Traffic and consideration campaigns |
+| **CPA** | Cost Per Acquisition | Pay only when user converts (purchase, install, sign-up) | Performance and direct response |
+| **ROAS** | Return on Ad Spend | Optimize for revenue generated per dollar spent | E-commerce and revenue optimization |
 
 ### How DSP Optimization Works
 
-Modern DSPs use ML models to optimize bids:
+Modern DSPs use ML models to optimize bids. Here is the decision pipeline that runs in about 10 milliseconds for every single bid request:
 
 ```mermaid
 graph TD
@@ -478,11 +502,11 @@ graph TD
     style BID fill:#4CAF50,color:#fff
 ```
 
-<Accordion title="For the curious: The bid calculation math">
+<Accordion title="The bid calculation math">
 For a CPA campaign, the bid calculation looks like this:
 
 ```
-Bid = pCTR × pCVR × Target_CPA × Pacing_Multiplier × Shading_Factor
+Bid = pCTR x pCVR x Target_CPA x Pacing_Multiplier x Shading_Factor
 ```
 
 Example:
@@ -493,7 +517,7 @@ Example:
 - **Shading factor**: 0.7 (market dynamics suggest we can win at 70% of true value)
 
 ```
-Bid = 0.005 × 0.02 × $50 × 1.2 × 0.7 = $0.0042 per impression = $4.20 CPM
+Bid = 0.005 x 0.02 x $50 x 1.2 x 0.7 = $0.0042 per impression = $4.20 CPM
 ```
 
 The DSP bids $4.20 CPM for this impression. If the predicted click and conversion probabilities are accurate, and the DSP wins enough auctions, it should achieve the target $50 CPA on average.
@@ -501,9 +525,13 @@ The DSP bids $4.20 CPM for this impression. If the predicted click and conversio
 The ML models (pCTR, pCVR) are the core competitive advantage of DSPs. Better models = more accurate bids = better performance = more advertiser spend. This is why DSPs invest heavily in data science teams and ML infrastructure.
 </Accordion>
 
+<Tip>
+**Pro Tip**: You do not need to understand the math to be an effective advertiser. The key takeaway is that ad platforms use sophisticated machine learning to decide how much to bid for each impression. When you set a "target CPA" or "target ROAS" in your campaign settings, you are feeding this optimization engine. The better your conversion data (tracked via SDK or pixel), the better the engine works. Garbage data in = garbage optimization out.
+</Tip>
+
 ### Budget Pacing
 
-**Budget pacing** controls how quickly a campaign spends its budget over time. Without pacing, a popular campaign might exhaust its daily budget by 8am.
+**Budget pacing** controls how quickly a campaign spends its budget over time. Without pacing, a popular campaign might exhaust its daily budget by 8am, missing all the valuable impressions in the afternoon and evening.
 
 <Tabs>
   <Tab title="ASAP Pacing">
@@ -511,7 +539,7 @@ The ML models (pCTR, pCVR) are the core competitive advantage of DSPs. Better mo
 
     **Use case**: Flash sales, time-sensitive promotions, or when you want maximum exposure quickly.
 
-    **Risk**: Budget exhausted early in the day. You might miss valuable impressions in the afternoon/evening.
+    **Risk**: Budget exhausted early in the day. You might miss valuable impressions in the afternoon or evening.
 
     ```
     Budget: $10,000/day
@@ -530,16 +558,16 @@ The ML models (pCTR, pCVR) are the core competitive advantage of DSPs. Better mo
     ```
     Budget: $10,000/day
     Target: ~$416/hour
-    Reality: $380/hr mornings (less competition) → $450/hr evenings (more competition)
+    Reality: $380/hr mornings (less competition) -> $450/hr evenings (more competition)
     ```
   </Tab>
 </Tabs>
 
-<Accordion title="For the curious: Pacing algorithms">
+<Accordion title="Pacing algorithms explained">
 Budget pacing is essentially a **PID controller** applied to ad spend:
 
 1. **Proportional**: How far is current spend from the target? Adjust bid multiplier proportionally.
-2. **Integral**: Has the campaign been consistently over/under pacing? Apply a cumulative correction.
+2. **Integral**: Has the campaign been consistently over or under pacing? Apply a cumulative correction.
 3. **Derivative**: Is the spend rate accelerating or decelerating? Dampen oscillations.
 
 More sophisticated approaches use **model predictive control (MPC)** that forecasts future auction volumes and prices:
@@ -561,22 +589,28 @@ def calculate_pacing_multiplier(campaign):
         return 1.0
 ```
 
-The challenge: auction dynamics are non-stationary. Traffic volumes, competition, and user behavior change throughout the day. A static pacing model will oscillate. Production systems use adaptive algorithms that learn these patterns.
+The challenge: auction dynamics are non-stationary. Traffic volumes, competition, and user behavior change throughout the day. A static pacing model will oscillate. Production systems use adaptive algorithms that learn these patterns over time.
 </Accordion>
+
+---
 
 ## Key Takeaways
 
 1. **Contextual targeting** matches ads to content; **behavioral targeting** matches ads to users. The privacy revolution is shifting the balance back toward contextual.
 
-2. **Third-party cookies** enabled cross-site tracking but are being phased out through browser changes and regulation.
+2. **Third-party cookies** enabled cross-site tracking but are being phased out through browser changes and regulation. They are already unreliable for 40-50% of web traffic.
 
 3. **DMPs are declining** as the data they relied on (third-party cookies, cheap data) disappears. CDPs focusing on first-party data are replacing them.
 
-4. **GDPR, CCPA, and iOS ATT** have fundamentally changed what's possible in ad targeting. The industry is adapting with contextual targeting, first-party data, and privacy-preserving APIs like Topics.
+4. **GDPR, CCPA, and iOS ATT** have fundamentally changed what is possible in ad targeting. The industry is adapting with contextual targeting, first-party data, and privacy-preserving APIs like Topics.
 
 5. **DSP optimization** uses ML models (pCTR, pCVR) to calculate optimal bids for each impression, combined with budget pacing algorithms to control spend.
 
 6. **Mobile targeting is richer than web** (more data signals) but is being increasingly restricted by OS-level privacy controls.
+
+<Tip>
+**Pro Tip**: The single most important thing you can do as an advertiser in 2025 and beyond is invest in your first-party data strategy. Collect user data with explicit consent, organize it in a CDP, and use it to build custom and lookalike audiences on ad platforms. Companies with strong first-party data will thrive; those depending on third-party tracking will struggle.
+</Tip>
 
 ---
 

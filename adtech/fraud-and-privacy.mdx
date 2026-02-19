@@ -12,7 +12,7 @@ Ad tech has a double problem. On one side, fraudsters siphon billions of dollars
 Welcome to the dark side of ad tech -- where the bad guys are sophisticated, the stakes are enormous, and the rules are changing faster than anyone can keep up.
 
 <Tip>
-**Software engineering analogy**: Ad fraud is the **cybersecurity** of advertising. Just as security engineers deal with an ever-evolving threat landscape -- where attackers adapt to every defense -- ad fraud fighters face adversaries who constantly develop new techniques to bypass detection. And just like cybersecurity, the cost of doing nothing is catastrophic.
+**Think of it this way**: Ad fraud is the cybersecurity of advertising. Just as security engineers deal with an ever-evolving threat landscape -- where attackers adapt to every defense -- ad fraud fighters face adversaries who constantly develop new techniques to bypass detection. And just like cybersecurity, the cost of doing nothing is catastrophic.
 </Tip>
 
 ---
@@ -21,18 +21,18 @@ Welcome to the dark side of ad tech -- where the bad guys are sophisticated, the
 
 ### The Scale of the Problem
 
-Ad fraud is not a niche issue. It's one of the largest categories of organized criminal activity in the world.
+Ad fraud is not a niche issue. It is one of the largest categories of organized criminal activity in the world.
 
 | Metric | Value |
 |---|---|
-| **Global ad fraud losses (2024)** | ~$84 billion |
-| **Projected losses (2028)** | ~$170 billion |
+| **Global ad fraud losses (2024)** | Approximately $84 billion |
+| **Projected losses (2028)** | Approximately $170 billion |
 | **% of digital ad spend lost to fraud** | 15-30% depending on channel |
 | **Mobile app install fraud rate** | 10-25% of installs |
 | **Display ad fraud rate** | 5-20% of impressions |
 | **Video ad fraud rate** | Up to 25% of views |
 
-To put this in perspective: ad fraud generates more revenue than many countries' GDP. It's incredibly lucrative, hard to prosecute (often cross-border), and relatively low-risk for criminals compared to other forms of organized crime.
+To put this in perspective: ad fraud generates more revenue than many countries' GDP. It is incredibly lucrative, hard to prosecute (often cross-border), and relatively low-risk for criminals compared to other forms of organized crime.
 
 <Note>
 **A real-world wake-up call**: In 2017, Uber's former head of performance marketing discovered that up to two-thirds of Uber's $100M+ annual mobile ad budget was being wasted on fraudulent activity. When they cut the suspicious spend, install volume barely changed. The "performance" those networks claimed to deliver was almost entirely fraud -- stealing credit for organic installs that would have happened anyway.
@@ -42,7 +42,7 @@ To put this in perspective: ad fraud generates more revenue than many countries'
 
 ### Types of Ad Fraud
 
-Let's walk through each major fraud type, from the simple to the sophisticated.
+Let us walk through each major fraud type, from the simple to the sophisticated.
 
 <Tabs>
   <Tab title="Click Fraud">
@@ -112,13 +112,13 @@ Let's walk through each major fraud type, from the simple to the sophisticated.
         Note over F: No real user, no real device,<br/>no real install ever happened
     ```
 
-    SDK spoofing is particularly dangerous because it doesn't require any physical infrastructure -- just knowledge of the SDK protocol and a server to send forged requests.
+    SDK spoofing is particularly dangerous because it does not require any physical infrastructure -- just knowledge of the SDK protocol and a server to send forged requests.
   </Tab>
 </Tabs>
 
 ### Click Injection and Click Spamming
 
-These two techniques deserve special attention because they're among the most sophisticated and financially damaging mobile fraud types.
+These two techniques deserve special attention because they are among the most sophisticated and financially damaging mobile fraud types.
 
 <Tabs>
   <Tab title="Click Injection">
@@ -167,11 +167,11 @@ These two techniques deserve special attention because they're among the most so
 
     **How it works**:
     1. Fraudster controls a mobile website or app with real traffic
-    2. Without the user knowing, the app/site fires background clicks to dozens of MMP tracking links for popular apps
+    2. Without the user knowing, the app or site fires background clicks to dozens of MMP tracking links for popular apps
     3. Users never see or intend these clicks -- they happen silently in the background
     4. When 1% of those users later install one of those apps organically, the fraudster's click is matched
 
-    It's a pure numbers game: send 1 million fake clicks, capture 1,000 organic installs at $2 CPI = $2,000 in stolen revenue. Scale this across hundreds of apps and the numbers become significant.
+    It is a pure numbers game: send 1 million fake clicks, capture 1,000 organic installs at $2 CPI = $2,000 in stolen revenue. Scale this across hundreds of apps and the numbers become significant.
 
     **Detection**: Click-to-install time distribution analysis. Legitimate campaigns have a natural CTIT distribution (peak at 30 min to 2 hours). Click spamming shows a flat, uniform distribution because the clicks have no actual relationship to the install decision.
 
@@ -195,6 +195,10 @@ These two techniques deserve special attention because they're among the most so
   </Tab>
 </Tabs>
 
+<Tip>
+**Pro Tip**: The easiest way to spot fraud as a beginner is to look at your downstream metrics. If a traffic source drives lots of installs but zero revenue, zero Day 7 retention, or zero in-app actions, something is wrong. Real users do things after installing. Fraudulent "users" do not. Always correlate install volume with post-install quality metrics.
+</Tip>
+
 ### More Fraud Techniques
 
 <Accordion title="SDK Spoofing">
@@ -207,7 +211,7 @@ These two techniques deserve special attention because they're among the most so
 4. These signals include realistic-looking device IDs, device models, and OS versions
 5. The MMP's servers receive what appears to be a legitimate install
 
-**Why it's devastating**: No real device is involved. Device farm detection is useless because there's no physical device to fingerprint. The only defense is SDK-level cryptographic verification -- which is why modern MMPs use SDK signature verification to authenticate that signals actually originate from a real SDK running on a real device.
+**Why it is devastating**: No real device is involved. Device farm detection is useless because there is no physical device to fingerprint. The only defense is SDK-level cryptographic verification -- which is why modern MMPs use SDK signature verification to authenticate that signals actually originate from a real SDK running on a real device.
 </Accordion>
 
 <Accordion title="Device Farms">
@@ -241,7 +245,7 @@ These two techniques deserve special attention because they're among the most so
 <Accordion title="Domain Spoofing">
 **What**: A low-quality publisher pretends to be a premium publisher in programmatic bid requests.
 
-**How**: A fraudulent site (cheap-clickbait-site.com) sends bid requests to SSPs claiming to be `nytimes.com`. DSPs bid high prices thinking they're buying premium NYT inventory. The ad actually appears on the junk site, but the advertiser pays premium prices.
+**How**: A fraudulent site (cheap-clickbait-site.com) sends bid requests to SSPs claiming to be `nytimes.com`. DSPs bid high prices thinking they are buying premium NYT inventory. The ad actually appears on the junk site, but the advertiser pays premium prices.
 
 Before countermeasures like ads.txt, there was essentially no way to verify the claim:
 
@@ -287,13 +291,13 @@ Both exploit the gap between "ad was technically served" and "ad was actually se
     - **Click injection signature**: 0-5 seconds (impossibly fast -- the click was fired after the download started)
     - **Click spamming signature**: Flat distribution across all time ranges (no correlation between click and install decision)
 
-    CTIT analysis is one of the single most effective fraud detection signals for mobile because it's extremely difficult for fraudsters to fake natural timing distributions.
+    CTIT analysis is one of the single most effective fraud detection signals for mobile because it is extremely difficult for fraudsters to fake natural timing distributions.
   </Step>
   <Step title="Device Fingerprint Analysis">
     Look for anomalies in device characteristics:
     - **Emulators**: Missing hardware sensors (accelerometer, gyroscope, barometer), generic device names, root access enabled, debugger attached
     - **Reset devices**: Same hardware fingerprint appearing with fresh advertising IDs (device farm cycling through GAID/IDFA resets)
-    - **Impossible combinations**: Device claims to be iPhone 15 but reports iOS 14 (which that hardware can't run), or claims 4GB RAM on a device model that only has 2GB
+    - **Impossible combinations**: Device claims to be iPhone 15 but reports iOS 14 (which that hardware cannot run), or claims 4GB RAM on a device model that only has 2GB
     - **SDK signature verification**: Cryptographic verification that the install signal actually originated from a real SDK on a real device, not from a server sending forged requests
   </Step>
   <Step title="Behavioral Analysis">
@@ -301,8 +305,8 @@ Both exploit the gap between "ad was technically served" and "ad was actually se
     - **Session patterns**: Legitimate users have varied session lengths, natural return patterns, and diverse navigation paths. Fraudulent installs show uniform behavior (install, do 3 required actions, abandon forever)
     - **In-app engagement**: Real users scroll at varying speeds, pause to read, tap different UI elements. Bots navigate linearly with robotic precision
     - **Retention curves**: Fraudulent installs show near-zero Day 1 retention. Real users typically have 20-40% Day 1 retention
-    - **Revenue correlation**: If a traffic source drives 1,000 installs but generates $0 in lifetime revenue, that's a massive red flag
-    - **Funnel completion rates**: Fraudulent traffic often shows either 0% funnel completion (bots that don't engage) or suspiciously uniform completion rates
+    - **Revenue correlation**: If a traffic source drives 1,000 installs but generates $0 in lifetime revenue, that is a massive red flag
+    - **Funnel completion rates**: Fraudulent traffic often shows either 0% funnel completion (bots that do not engage) or suspiciously uniform completion rates
   </Step>
 </Steps>
 
@@ -354,7 +358,7 @@ The ad industry has developed several collaborative standards and tools to fight
     **How it works**:
     1. `nytimes.com` publishes a file at `nytimes.com/ads.txt`
     2. The file lists every SSP/exchange authorized to sell NYT inventory
-    3. DSPs check this file before bidding -- if the seller in the bid request isn't listed, the request is likely spoofed
+    3. DSPs check this file before bidding -- if the seller in the bid request is not listed, the request is likely spoofed
 
     ```
     # Example ads.txt file for nytimes.com
@@ -369,7 +373,7 @@ The ad industry has developed several collaborative standards and tools to fight
     - **DIRECT**: The publisher has a direct business relationship with this exchange
     - **RESELLER**: This entity is authorized to resell the publisher's inventory through the exchange
 
-    **`app-ads.txt`** is the mobile equivalent. Since apps don't have a web domain, the file is hosted on the developer's website as listed in the app store entry.
+    **`app-ads.txt`** is the mobile equivalent. Since apps do not have a web domain, the file is hosted on the developer's website as listed in the app store entry.
 
     **Impact**: ads.txt reduced domain spoofing by an estimated 10-15% across the industry after widespread adoption. Simple but remarkably effective.
   </Tab>
@@ -445,7 +449,7 @@ The ad industry has developed several collaborative standards and tools to fight
 
 ## Part 2: Privacy
 
-The privacy revolution in ad tech isn't just about compliance -- it's fundamentally reshaping how digital advertising works. The era of freely tracking users across the internet is ending, and what replaces it will define the next decade of the industry.
+The privacy revolution in ad tech is not just about compliance -- it is fundamentally reshaping how digital advertising works. The era of freely tracking users across the internet is ending, and what replaces it will define the next decade of the industry.
 
 ### The Privacy Timeline
 
@@ -478,13 +482,13 @@ The **General Data Protection Regulation** (EU, effective May 25, 2018) set the 
 <Accordion title="GDPR's core requirements in detail">
 1. **Lawful basis for processing**: You must have a legal reason to process personal data. For ad tech, the two relevant bases are:
    - **Consent**: The user explicitly agreed to data processing (opt-in)
-   - **Legitimate interest**: You have a business reason that doesn't override the user's rights (harder to argue for advertising)
+   - **Legitimate interest**: You have a business reason that does not override the user's rights (harder to argue for advertising)
 
-2. **Purpose limitation**: Data collected for one purpose (e.g., serving ads) can't be repurposed (e.g., sold to a data broker) without additional consent
+2. **Purpose limitation**: Data collected for one purpose (e.g., serving ads) cannot be repurposed (e.g., sold to a data broker) without additional consent
 
-3. **Data minimization**: Collect only what you actually need. If you can serve an ad with 5 data points, don't collect 50
+3. **Data minimization**: Collect only what you actually need. If you can serve an ad with 5 data points, do not collect 50
 
-4. **Storage limitation**: Don't keep data longer than necessary. Set and enforce retention policies
+4. **Storage limitation**: Do not keep data longer than necessary. Set and enforce retention policies
 
 5. **Right to access**: Users can request a copy of ALL data you hold about them -- and you must provide it within 30 days
 
@@ -503,18 +507,22 @@ The **General Data Protection Regulation** (EU, effective May 25, 2018) set the 
 
 <CardGroup cols={2}>
   <Card title="Consent must be freely given" icon="check">
-    No more pre-checked boxes. No more "by using this site you agree to everything." Consent must be an affirmative, informed, specific action. Users must be able to withdraw consent as easily as they gave it. "Accept all cookies" can't be a big green button while "reject" is hidden in settings.
+    No more pre-checked boxes. No more "by using this site you agree to everything." Consent must be an affirmative, informed, specific action. Users must be able to withdraw consent as easily as they gave it. "Accept all cookies" cannot be a big green button while "reject" is hidden in settings.
   </Card>
   <Card title="Cookie banners everywhere" icon="cookie-bite">
-    The infamous cookie consent popups you see on every European website exist because GDPR (combined with the ePrivacy Directive) requires explicit consent before setting non-essential tracking cookies. Love them or hate them, they're legally required.
+    The infamous cookie consent popups you see on every European website exist because GDPR (combined with the ePrivacy Directive) requires explicit consent before setting non-essential tracking cookies. Love them or hate them, they are legally required.
   </Card>
   <Card title="Fines are massive and real" icon="money-bill">
-    Up to **4% of global annual revenue** or 20 million euros (whichever is higher). These aren't theoretical: Meta was fined 1.2 billion euros (2023) for transferring EU data to the US. Amazon was fined 746 million euros (2021). The enforcement is real and growing.
+    Up to **4% of global annual revenue** or 20 million euros (whichever is higher). These are not theoretical: Meta was fined 1.2 billion euros (2023) for transferring EU data to the US. Amazon was fined 746 million euros (2021). The enforcement is real and growing.
   </Card>
   <Card title="Extraterritorial scope" icon="globe">
-    GDPR applies to any company processing EU residents' data, regardless of where the company is based. A US ad tech startup targeting EU users must comply fully. There's no hiding behind a different jurisdiction.
+    GDPR applies to any company processing EU residents' data, regardless of where the company is based. A US ad tech startup targeting EU users must comply fully. There is no hiding behind a different jurisdiction.
   </Card>
 </CardGroup>
+
+<Tip>
+**Pro Tip**: Even if you are not targeting EU users today, build your systems with GDPR principles from the start. More and more countries and US states are adopting GDPR-like regulations. What is best practice today will be a legal requirement tomorrow. Privacy by design is not just good ethics -- it is good engineering.
+</Tip>
 
 ### CCPA / CPRA (California)
 
@@ -547,7 +555,7 @@ Often confused with GDPR, the **ePrivacy Directive** specifically governs electr
 
 ### iOS ATT Impact on Advertising
 
-We covered ATT's technical mechanics in the [Attribution Deep Dive](/adtech/attribution-deep-dive). Here, let's focus on its **systemic impact on the advertising ecosystem**:
+We covered ATT's technical mechanics in the [Attribution Deep Dive](/adtech/attribution-deep-dive). Here, let us focus on its **systemic impact on the advertising ecosystem**:
 
 ```mermaid
 graph TD
@@ -573,7 +581,7 @@ graph TD
 
 | Winners | Losers |
 |---|---|
-| Apple Search Ads (privileged data access) | Meta (~$10B revenue impact in 2022) |
+| Apple Search Ads (privileged data access) | Meta (approximately $10B revenue impact in 2022) |
 | Google (massive logged-in user base) | Snap (heavy iOS revenue dependency) |
 | Amazon (first-party purchase data) | Small ad networks (lost targeting capability) |
 | Large publishers with login walls | Performance marketing companies |
@@ -601,10 +609,10 @@ The cookie follows you across the web, building an increasingly detailed profile
 
 <Steps>
   <Step title="Safari blocks third-party cookies (2020)">
-    Apple's Intelligent Tracking Prevention (ITP) in Safari completely blocked third-party cookies. With Safari holding ~20% global browser share (~30%+ on mobile), this was the first major blow.
+    Apple's Intelligent Tracking Prevention (ITP) in Safari completely blocked third-party cookies. With Safari holding approximately 20% global browser share (30%+ on mobile), this was the first major blow.
   </Step>
   <Step title="Firefox blocks third-party cookies (2021)">
-    Mozilla's Enhanced Tracking Protection blocks third-party cookies by default. Firefox has ~3-5% global market share, but its users tend to be privacy-conscious early adopters.
+    Mozilla's Enhanced Tracking Protection blocks third-party cookies by default. Firefox has approximately 3-5% global market share, but its users tend to be privacy-conscious early adopters.
   </Step>
   <Step title="Chrome's evolving approach (2020-2024)">
     Google initially announced third-party cookie deprecation for Chrome (65% market share) by 2022. This deadline was delayed repeatedly: to 2023, then 2024, then 2025. In July 2024, Google pivoted to a **user-choice model** -- offering Chrome users the option to limit cookies rather than removing them entirely.
@@ -624,7 +632,7 @@ Google's **Privacy Sandbox** is a collection of APIs designed to support adverti
   <Tab title="Topics API (Interest-Based Targeting)">
     Replaces cookie-based behavioral targeting with coarse interest categories:
 
-    1. Chrome classifies each website you visit into topics from a ~470-topic taxonomy
+    1. Chrome classifies each website you visit into topics from a taxonomy of approximately 470 topics
     2. Weekly, Chrome records your top 5 topics based on browsing behavior
     3. When an ad call is made, the API returns a small number of topics (with random noise added for privacy)
     4. Advertisers can target based on these broad interest categories
@@ -663,7 +671,7 @@ With cookies declining, the industry is exploring several alternative approaches
   <Card title="Contextual Advertising Revival" icon="newspaper">
     **Target the content, not the user.** Show running shoe ads on fitness articles, travel ads on vacation planning content, cooking supply ads on recipe pages. No user tracking needed whatsoever.
 
-    Modern contextual targeting uses NLP, computer vision, and sentiment analysis to understand page content far more deeply than the old keyword matching of the 2000s. It can understand nuance, brand safety risks, and emotional tone. Companies like GumGum, Oracle Contextual (Grapeshot), and IAS Context Control lead this space.
+    Modern contextual targeting uses NLP, computer vision, and sentiment analysis to understand page content far more deeply than the old keyword matching of the 2000s. Companies like GumGum, Oracle Contextual (Grapeshot), and IAS Context Control lead this space.
   </Card>
   <Card title="First-Party Data Strategy" icon="database">
     **Your own customer data is your most valuable asset.** Purchase history, app behavior, CRM data, email engagement, loyalty program activity -- all collected with direct consent, owned by you, and not dependent on any third party.
@@ -676,7 +684,7 @@ With cookies declining, the industry is exploring several alternative approaches
     Adoption is growing but fragmented -- no single solution has achieved universal acceptance, and each requires publisher and advertiser opt-in.
   </Card>
   <Card title="Cohort-Based Targeting" icon="users">
-    Group users into anonymous cohorts based on similar behaviors rather than tracking individuals. Google's Topics API is one implementation. The idea: you don't need to know that Jane Doe likes running shoes -- you just need to know that "cohort #4527" has a 3x higher purchase rate for running shoes than the average user.
+    Group users into anonymous cohorts based on similar behaviors rather than tracking individuals. Google's Topics API is one implementation. The idea: you do not need to know that Jane Doe likes running shoes -- you just need to know that "cohort #4527" has a 3x higher purchase rate for running shoes than the average user.
   </Card>
 </CardGroup>
 
@@ -715,14 +723,14 @@ graph LR
 - **LiveRamp Data Collaboration**: Built on their identity resolution infrastructure
 
 <Tip>
-**Why clean rooms are becoming essential**: In a world without third-party cookies and limited device IDs, clean rooms are one of the few ways to safely combine datasets for measurement and targeting. They satisfy privacy requirements while still enabling the data collaboration that makes advertising effective. Expect clean room usage to grow 5-10x in the next few years.
+**Pro Tip**: Clean rooms are becoming essential infrastructure. In a world without third-party cookies and limited device IDs, clean rooms are one of the few ways to safely combine datasets for measurement and targeting. They satisfy privacy requirements while still enabling the data collaboration that makes advertising effective. If you are spending more than $100,000 per month on advertising, data clean rooms should be on your roadmap.
 </Tip>
 
 ---
 
 ### Consent Management Platforms (CMPs)
 
-**CMPs** are the tools that manage user consent for data collection and tracking across your digital properties. They're the companies behind those cookie consent banners.
+**CMPs** are the tools that manage user consent for data collection and tracking across your digital properties. They are the companies behind those cookie consent banners.
 
 **What a CMP does**:
 - Displays cookie consent banners with legally compliant language and options
@@ -771,7 +779,7 @@ The **TCF consent string** is a base64-encoded string containing the user's cons
 
 ### Privacy-by-Design Principles
 
-**Privacy by design** means building privacy into your systems from the ground up, not bolting it on as an afterthought when the lawyers get nervous. Here's what that looks like in practice:
+**Privacy by design** means building privacy into your systems from the ground up, not bolting it on as an afterthought when the lawyers get nervous. Here is what that looks like in practice:
 
 <Steps>
   <Step title="Minimize data collection">
@@ -781,13 +789,13 @@ The **TCF consent string** is a base64-encoded string containing the user's cons
     Process data in aggregate wherever possible. Instead of "User #12345 bought running shoes at 3:47 PM," report "Users in the running enthusiast segment have a 15% purchase rate this week." Aggregation provides useful business insights while protecting individual privacy.
   </Step>
   <Step title="Implement strict data retention policies">
-    Delete data when it's no longer needed. A 30-day attribution window doesn't need click data from 6 months ago. Set automated retention policies and actually enforce them -- don't just write them in a policy document and forget.
+    Delete data when it is no longer needed. A 30-day attribution window does not need click data from 6 months ago. Set automated retention policies and actually enforce them -- do not just write them in a policy document and forget.
   </Step>
   <Step title="Encrypt everything">
     All personal data should be encrypted in transit (TLS 1.3) and at rest (AES-256). Hash identifiers (emails, phone numbers, device IDs) before sharing with any partners. Use key rotation and access controls.
   </Step>
   <Step title="Build consent into the architecture">
-    Don't store data first and check consent later. Make consent the gateway -- if consent isn't granted, the data never enters your pipeline in the first place. This is fundamentally different from (and much harder than) deleting data after the fact.
+    Do not store data first and check consent later. Make consent the gateway -- if consent is not granted, the data never enters your pipeline in the first place. This is fundamentally different from (and much harder than) deleting data after the fact.
   </Step>
   <Step title="Enable user rights by design">
     Data deletion requests, access requests, and consent withdrawal should be automated and instantaneous -- not a manual process requiring an engineering ticket, a product manager's approval, and 3 weeks of processing time. Build self-service tools for users.
@@ -822,7 +830,7 @@ With third-party data sources drying up, **first-party data** -- data you collec
     **The value exchange**: Users share data when they get something clearly valuable in return.
 
     - **Loyalty programs**: Offer points, discounts, early access, or exclusive perks in exchange for engagement data (Starbucks Rewards is the gold standard)
-    - **Personalized experiences**: Show users tangibly that sharing data improves their experience ("Because you liked X, here's Y")
+    - **Personalized experiences**: Show users tangibly that sharing data improves their experience ("Because you liked X, here is Y")
     - **Gated content**: Offer premium content, tools, or calculators in exchange for registration
     - **Transparency and trust**: Be clear and honest about what data you collect and how you use it. Publish a human-readable privacy page, not just legalese. Trust drives data sharing.
 
@@ -859,7 +867,7 @@ With third-party data sources drying up, **first-party data** -- data you collec
 
 1. **Ad fraud is an $84B+ problem** and growing. It encompasses click fraud, impression fraud, install fraud, click injection, click spamming, SDK spoofing, device farms, bots, domain spoofing, ad stacking, and pixel stuffing. Layered detection (IP analysis + CTIT + behavioral + device fingerprint + ML) is the only effective defense.
 
-2. **Industry standards help but don't solve the problem completely.** ads.txt, sellers.json, and TAG certification reduce certain fraud types (domain spoofing, unauthorized reselling) but don't address sophisticated techniques like SDK spoofing or click injection. The arms race continues.
+2. **Industry standards help but do not solve the problem completely.** ads.txt, sellers.json, and TAG certification reduce certain fraud types (domain spoofing, unauthorized reselling) but do not address sophisticated techniques like SDK spoofing or click injection. The arms race continues.
 
 3. **GDPR set the global standard** for data privacy. Its core principles (consent, minimization, purpose limitation, user rights) are now reflected in laws worldwide -- CCPA, CPRA, VCDPA, DPDPA, and dozens more.
 
@@ -873,7 +881,7 @@ With third-party data sources drying up, **first-party data** -- data you collec
 
 ---
 
-**You've completed the Ad Tech Deep Dive series!** You now understand the full stack: from how [RTB auctions](/adtech/rtb) work in 100ms, to [programmatic](/adtech/programmatic) deal types, to [attribution](/adtech/attribution-deep-dive) mechanics, to fraud and privacy. This knowledge forms the foundation for understanding modern digital advertising infrastructure.
+**You have completed the Ad Tech Deep Dive series!** You now understand the full stack: from how [RTB auctions](/adtech/rtb) work in 100ms, to [programmatic](/adtech/programmatic) deal types, to [attribution](/adtech/attribution-deep-dive) mechanics, to fraud and privacy. This knowledge forms the foundation for understanding modern digital advertising infrastructure.
 
 <CardGroup cols={2}>
   <Card title="Back to the beginning" icon="arrow-left" href="/adtech">

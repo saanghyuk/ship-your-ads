@@ -3,496 +3,256 @@ title: "Scaling Strategy"
 description: "The complete playbook for scaling your ad campaigns — from the 20% rule to cross-platform expansion, international growth, and avoiding the mistakes that kill performance."
 ---
 
-## Scaling is not just "spend more money"
+# Scaling Strategy
 
-You've found a campaign that works. Installs are coming in, the CPI is within your target, users are sticking around. Now you want MORE. But here's the thing: **doubling your budget doesn't double your results.** In fact, doubling your budget overnight often *destroys* your results. Scaling requires a strategy.
+You have found campaigns that work. Your CPI is below target, your LTV:CAC ratio is healthy, and you want to grow. Scaling is the natural next step — but it is also where many advertisers make expensive mistakes.
 
-This guide covers everything: when you're ready to scale, how to scale vertically (more budget) and horizontally (more campaigns, platforms, audiences), and the common mistakes that kill promising campaigns.
-
-## The scaling staircase framework
-
-Think of scaling like climbing a staircase, not riding an elevator. Each step is a deliberate move upward, with a pause to stabilize before the next step.
-
-```
-                                          ┌─────────────┐
-                                          │  $10K+/mo   │ Stage 4: Full Scale
-                                     ┌────┤  Multi-plat  │ Multiple platforms,
-                                     │    │  Full funnel  │ international, automated
-                                ┌────┤    └─────────────┘
-                                │    │    $3-10K/mo        Stage 3: Growth
-                           ┌────┤    │    2-3 platforms    Proven campaigns scaling,
-                           │    │    │    Retargeting on   retargeting active
-                      ┌────┤    │    │
-                      │    │    │    │    $1-3K/mo          Stage 2: Validation
-                 ┌────┤    │    │    │    1-2 platforms     Confirm CPI holds at
-                 │    │    │    │    │    Iterate           higher budget
-            ┌────┤    │    │    │    │
-            │    │    │    │    │    │    $300-1K/mo         Stage 1: Testing
-            │    │    │    │    │    │    1 platform         Find what works
-  ──────────┘    │    │    │    │    │    Learn
-                 └────┘    └────┘    └────┘
-
-  Each step: Increase → Stabilize → Confirm metrics → Next step
-```
-
-**The key rule: never advance to the next step until the current step is stable.** "Stable" means your key metrics (CPI, ROAS, retention) have been consistent for at least 7 days.
-
-## Are you ready to scale?
-
-Before you increase budget or expand to new platforms, confirm ALL of these conditions:
-
-| Condition | Why it matters | How to check |
-|-----------|---------------|-------------|
-| Campaign out of learning phase for 7+ days | Algorithm is stable and optimized | Platform dashboard shows "Active" not "Learning" |
-| CPI consistently below your target | You're acquiring users profitably | Check last 7 days CPI — should be stable, not spiking |
-| Positive ROAS (if tracking revenue) | Revenue exceeds ad spend | Day 30+ ROAS above 1.0 |
-| At least 2-3 winning creatives identified | You're not dependent on a single ad | Multiple ads with good CPI, not just one |
-| Day 7 retention above 15% | Users from ads are quality users | Check cohort reports in Firebase/analytics |
-| You understand what's working and why | You can replicate success intentionally | You can articulate: "This audience + this creative = these results" |
-
-<Warning>
-  **Don't scale a campaign you don't understand.** If you're not sure why something is working, scaling it will amplify the confusion. When it stops working (and it will), you won't know what to fix. Understand your winners before you pour money into them.
-</Warning>
-
-### The readiness checklist
-
-Ask yourself these questions before scaling:
-
-<AccordionGroup>
-  <Accordion title="Can I afford to lose 20% more per day for a week?">
-    Scaling often causes a temporary CPI spike as the algorithm adjusts. If a 20% budget increase at your current CPI would cause financial stress, you're not ready.
-  </Accordion>
-  <Accordion title="Do I have 3+ creatives ready to go?">
-    Scaling with a single creative is risky. When that creative fatigues (and it will), your entire scaled budget has nowhere to go. Have backups ready.
-  </Accordion>
-  <Accordion title="Is my tracking working correctly?">
-    Scaling with broken tracking means spending more money blind. Verify all events are firing, attribution is working, and your analytics dashboard reflects reality.
-  </Accordion>
-  <Accordion title="Have I measured user quality, not just volume?">
-    100 installs at $2 CPI looks great — until you realize none of them opened the app a second time. Check retention and engagement before scaling.
-  </Accordion>
-</AccordionGroup>
-
-## Vertical scaling: increase budget
-
-The simplest way to scale — give a winning campaign more money. But do it wrong and you'll tank performance.
-
-### The 20% rule
-
-Increase budget by no more than **20% every 3-4 days**. This lets the algorithm adjust without resetting the learning phase.
-
-```
-Starting point: $20/day
-
-Day 1-4:    $20/day   (baseline — confirm stability)
-Day 5-8:    $24/day   (+20%)
-Day 9-12:   $29/day   (+20%)
-Day 13-16:  $35/day   (+20%)
-Day 17-20:  $42/day   (+20%)
-Day 21-24:  $50/day   (+20%)
-Day 25-28:  $60/day   (+20%)
-
-After 4 weeks: $60/day = $1,800/month (3x your starting budget)
-After 8 weeks: $150/day = $4,500/month (7.5x your starting budget)
-```
-
-<Note>
-  **This feels slow, but it's reliable.** Jumping from $20/day to $100/day often tanks performance because the algorithm has to relearn at the new budget level. The learning phase resets, CPI spikes, and you've just paid premium prices for the same users you were getting cheaply before. Patience pays.
-</Note>
-
-### Why big budget jumps kill performance
-
-Here's what happens when you double or triple a campaign budget overnight:
-
-```
-Scenario: Campaign at $20/day, CPI $3.00, 7 installs/day
-
-You increase to $60/day (3x jump):
-
-Hour 1-6:   Algorithm tries to spend 3x more
-             → Bids increase aggressively to win more auctions
-             → Reaches less-qualified users at higher prices
-Hour 6-12:  CPI spikes to $6-8 as algorithm explores new territory
-Day 1-3:    Learning phase resets
-             → Performance is erratic and expensive
-             → CPI may be 2-3x your baseline
-Day 4-7:    Algorithm slowly re-optimizes
-             → CPI starts coming back down
-             → But may settle at $4.00-4.50 (higher than before)
-
-Net result: You spent more AND got a worse CPI.
-```
-
-The 20% rule avoids this by keeping changes small enough that the algorithm doesn't need to reset.
-
-### When to accelerate vertical scaling
-
-In certain situations, you can scale faster:
-
-| Situation | Scaling speed | Why it works |
-|-----------|-------------|-------------|
-| ROAS is 3x+ for 2+ weeks | 30-40% every 4-5 days | Strong margins absorb temporary CPI spikes |
-| New campaign with broad audience | 20-30% every 3 days | Large audience = more room to scale |
-| Seasonal opportunity (app is relevant to a holiday/event) | 30-50% jump, one-time | Time-sensitive — can't wait for gradual scaling |
-| Platform recommendation says "budget limited" | 20-30% every 3 days | The algorithm is telling you there's more efficient volume available |
-
-### When to stop vertical scaling
-
-Vertical scaling has a ceiling. You'll hit it when you see these signals:
-
-| Signal | What it means |
-|--------|-------------|
-| CPI increases 20%+ and doesn't come back in 5 days | You've saturated the profitable portion of your audience |
-| Frequency rises above 3-4 per week | Same people seeing your ads too many times |
-| Budget isn't fully spending despite increase | Not enough qualified users at your bid level |
-| Each 20% increase gives smaller CPI improvement | Diminishing returns have kicked in |
-
-When you hit the ceiling, switch to horizontal scaling.
-
-## Horizontal scaling: more campaigns
-
-Instead of pumping more money into one campaign, create new parallel campaigns that tap into different audiences, creatives, platforms, and markets.
-
-### The four dimensions of horizontal scaling
-
-<CardGroup cols={2}>
-  <Card title="New Audiences" icon="users">
-    Take your winning ad and show it to different audiences. Test new interest groups, demographics, lookalike audiences of different sizes, or behavioral segments.
-  </Card>
-  <Card title="New Creatives" icon="palette">
-    Take your winning audience and test new creative angles. Different hooks, formats, messaging, or visual styles. Your audience hasn't changed — your message has.
-  </Card>
-  <Card title="New Platforms" icon="globe">
-    Take your winning concept to a new ad platform. What works on Meta often works on TikTok (with creative adaptation) and Google (with messaging adaptation).
-  </Card>
-  <Card title="New Geographies" icon="earth-americas">
-    Expand to new countries or regions. Start with similar markets (English-speaking if that's your app language) before going multilingual.
-  </Card>
-</CardGroup>
-
-### Horizontal scaling strategy in practice
-
-Here's how to expand from one winning campaign:
-
-```
-Original winning campaign:
-  Meta - US - Fitness Enthusiasts - Video A (UGC testimonial)
-  CPI: $3.20, ROAS: 2.5x, Day 7 retention: 22%
-
-Horizontal scaling plan:
-
-Week 1: New Audiences (same platform, same creative)
-├── Meta - US - Health & Wellness interests
-├── Meta - US - Lookalike 1% of purchasers
-├── Meta - US - Ages 25-34 broad (no interests)
-└── Budget: $15/day each ($60/day total new spend)
-
-Week 2: New Creatives (same platform, same audience)
-├── Meta - US - Fitness Enthusiasts - Video B (screen recording)
-├── Meta - US - Fitness Enthusiasts - Video C (problem/solution)
-├── Meta - US - Fitness Enthusiasts - Static D (social proof)
-└── Budget: $15/day each ($45/day total new spend)
-
-Week 3: New Platform (same concept, adapted creative)
-├── TikTok - US - Fitness/Wellness - Video A (adapted to TikTok style)
-├── Google App Campaign - US - Fitness keywords
-└── Budget: $20/day each ($40/day total new spend)
-
-Week 4: New Geography (same platform, same creative)
-├── Meta - UK - Fitness Enthusiasts - Video A
-├── Meta - Canada - Fitness Enthusiasts - Video A
-├── Meta - Australia - Fitness Enthusiasts - Video A
-└── Budget: $15/day each ($45/day total new spend)
-```
+Scaling is not just "spend more money." Done wrong, scaling destroys the performance that made you want to scale in the first place. Done right, it is the engine that turns a small business into a large one.
 
 <Tip>
-  **Horizontal scaling is usually more sustainable than vertical scaling.** Instead of pushing one campaign to its limits, you create multiple streams of installs. If one stops working, the others keep going. Think of it as building a diversified portfolio of campaigns.
+**The core truth of scaling**: The strategies that work at $50/day often break at $500/day. And the strategies that work at $500/day often break at $5,000/day. Each level of scale brings new challenges. This guide prepares you for each stage.
 </Tip>
 
-### Lookalike audience scaling
+---
 
-Lookalike audiences (called "Similar Audiences" on some platforms) are one of the most powerful horizontal scaling tools. Here's how to use them:
+## The Scaling Staircase
 
-```
-Step 1: Build a source audience
-  → Your best users: purchasers, high-retention users, high-LTV users
-  → Minimum 100 users, ideally 1,000+
-  → The better your source, the better your lookalike
+Think of scaling as climbing a staircase, not riding an elevator. You go up one step at a time, stabilize, then go up again.
 
-Step 2: Create lookalike audiences at different sizes
-  → 1% lookalike: Most similar to your source (smallest, highest quality)
-  → 3% lookalike: Broader reach, slightly lower quality
-  → 5% lookalike: Even broader (good for testing)
-  → 10% lookalike: Very broad (essentially broad targeting with a nudge)
-
-Step 3: Test from small to large
-  → Start with 1% → if CPI is good, try 3% → then 5%
-  → Larger lookalikes have more volume but lower precision
-
-Step 4: Layer on creative testing
-  → Your winning creative + 1% lookalike = maximum efficiency
-  → New creative + 3% lookalike = discovery mode
+```mermaid
+graph LR
+    S1["Stage 1:<br/>$50-$200/day<br/>(Learning)"] --> S2["Stage 2:<br/>$200-$500/day<br/>(Validating)"]
+    S2 --> S3["Stage 3:<br/>$500-$2,000/day<br/>(Growing)"]
+    S3 --> S4["Stage 4:<br/>$2,000-$10,000/day<br/>(Scaling)"]
+    S4 --> S5["Stage 5:<br/>$10,000+/day<br/>(Maturity)"]
 ```
 
-| Lookalike size | Typical audience size (US) | Expected CPI vs. 1% | Best use |
-|---------------|--------------------------|---------------------|----------|
-| **1%** | 2-3 million | Baseline | Primary scaling audience |
-| **2-3%** | 5-8 million | +10-20% | Expanding reach |
-| **5%** | 12-15 million | +20-40% | Volume at moderate efficiency |
-| **10%** | 25-30 million | +40-70% | Broad reach, almost like open targeting |
+| Stage | Daily Spend | Key Focus | Main Risk |
+|---|---|---|---|
+| **Learning** | $50-$200 | Find profitable campaigns and creatives | Not enough data to draw conclusions |
+| **Validating** | $200-$500 | Confirm profitability is repeatable | Premature scaling based on limited data |
+| **Growing** | $500-$2,000 | Increase budget on proven winners | Performance degradation from too-fast scaling |
+| **Scaling** | $2,000-$10,000 | Add platforms, markets, and audiences | Creative fatigue and audience saturation |
+| **Maturity** | $10,000+ | Optimize efficiency across all channels | Diminishing returns, organizational complexity |
 
-## Cross-platform scaling
+---
 
-### Which platform to add next
+## Are You Ready to Scale?
 
-| Your primary platform | Add next | Why | Expected CPI change |
-|----------------------|----------|-----|---------------------|
-| **Meta** | Apple Search Ads | Catch high-intent iOS searchers | CPI may be lower (higher intent) |
-| **Meta** | Google App Campaigns | Tap into search intent + YouTube | CPI similar or slightly higher |
-| **Apple Search Ads** | Meta | Expand to passive discovery audiences | CPI may be higher (lower intent) |
-| **Google** | Meta | Add social/display reach | CPI varies by creative quality |
-| **Any platform** | TikTok | Reach younger demographics, test video | CPI can be lower but quality varies |
+Before increasing your budget, check these readiness criteria:
 
-### Cross-platform expansion playbook
+### Scaling Readiness Checklist
+
+| Criteria | Why It Matters | Minimum Standard |
+|---|---|---|
+| **At least 2 weeks of data** | Short data periods give false positives | 14+ days of consistent campaign data |
+| **CPI below target** | Scaling unprofitable campaigns just loses money faster | CPI consistently below your LTV-based target |
+| **LTV:CAC ratio above 2:1** | Enough margin to absorb the efficiency loss that comes with scale | Ideally 3:1+ before scaling |
+| **Multiple winning creatives** | Single creative will fatigue fast at higher spend | At least 3-5 winning ad variations |
+| **Retention looks healthy** | Cheap installs with zero retention are worthless | Day 1 retention above 20%, Day 7 above 10% |
+| **Tracking is accurate** | Bad data leads to bad decisions | Events firing correctly, attribution working |
+
+<Tip>
+**Pro Tip**: If even one of these criteria is not met, fix it before scaling. Scaling amplifies everything — good performance gets better, but bad performance gets worse faster.
+</Tip>
+
+---
+
+## The 20% Rule: Vertical Scaling
+
+The simplest and safest way to scale: increase budget on existing campaigns **no more than 20-30% every 2-3 days**.
+
+### Why the 20% Rule Exists
+
+Every ad platform (Meta, TikTok, Google, Apple) uses machine learning algorithms that learn from your campaign data. These algorithms enter a **learning phase** whenever you make significant changes. During the learning phase, performance is unstable and often worse.
+
+A budget increase of 20-30% is small enough that most platforms can absorb it without resetting the learning phase. A budget increase of 100%+ (doubling your budget) almost always triggers a full learning reset.
+
+### How to Apply It
 
 <Steps>
-  <Step title="Document what works on your primary platform">
-    Before expanding, write down your top 3 winning campaigns: the audience, the creative angle, the messaging, and the results. This becomes your brief for the new platform.
+  <Step title="Week 1: Baseline">
+    Your campaign is running at $100/day with a $5 CPI (below your $8 target). Good.
   </Step>
-  <Step title="Adapt (don't copy) your creative for the new platform">
-    Each platform has a different creative language:
-    - **Meta:** Polished but authentic, mix of image and video
-    - **Google:** Text-heavy for search, visual for display/YouTube
-    - **Apple Search Ads:** Your App Store page IS your creative (optimize screenshots and description)
-    - **TikTok:** Raw, native, creator-style content — polished ads feel out of place
+  <Step title="Day 3-4: First increase">
+    Increase daily budget from $100 to $120 (+20%). Monitor for 2-3 days.
   </Step>
-  <Step title="Start with a small test budget">
-    Allocate 15-20% of your total budget to the new platform. Run for 2 weeks minimum before judging results.
+  <Step title="Day 6-7: Second increase">
+    If CPI is still good at $120/day, increase to $145 (+20%). Monitor for 2-3 days.
   </Step>
-  <Step title="Compare incrementality, not just CPI">
-    A new platform might show higher CPI but bring in *incremental* users you wouldn't have reached otherwise. The question isn't "is Platform B cheaper than Platform A?" — it's "are the users from Platform B users I would have gotten anyway?"
-  </Step>
-  <Step title="Stagger launches">
-    Add one new platform at a time, at least 2 weeks apart. This way you can isolate the impact of each new channel. Adding Meta, Google, and TikTok all in the same week makes it impossible to know what's working.
+  <Step title="Continue the pattern">
+    $145 -> $175 -> $210 -> $250 -> $300...
+
+    At this rate, you go from $100/day to $300/day in about 2.5 weeks. It feels slow, but it protects your performance.
   </Step>
 </Steps>
 
-### Watch for audience overlap
-
-When running on multiple platforms, some users see ads on both. This causes:
-
-- **Inflated attribution:** Both platforms claim credit for the same install
-- **Higher effective cost:** You're paying twice to reach the same person
-- **Incorrect performance data:** You can't trust per-platform ROAS
-
-**Solutions:**
-
-| Approach | Cost | Effectiveness |
-|----------|------|--------------|
-| Use an MMP (Adjust, AppsFlyer) | $500+/month | Best — single source of truth for attribution |
-| Compare blended metrics | Free | Good — track total spend vs. total installs across all platforms |
-| Use platform exclusions | Free | Partial — exclude app installers from prospecting campaigns |
-
-## International expansion
-
-Expanding to new countries is a powerful scaling lever — but it comes with its own challenges.
-
-### Country tier system
-
-| Tier | Countries | Typical CPI range | User quality | When to expand here |
-|------|----------|-------------------|-------------|-------------------|
-| **Tier 1** | US, UK, Canada, Australia, Germany, France, Japan | $2-10+ | Highest | Start here if that's your primary market |
-| **Tier 2** | Spain, Italy, Brazil, Mexico, South Korea, India (premium) | $0.50-3 | Medium-high | After Tier 1 is profitable |
-| **Tier 3** | Southeast Asia, Latin America, Eastern Europe, Africa | $0.10-1 | Medium-low | For volume and ad-supported apps |
-
-### International expansion strategy
-
-```
-Phase 1: Master your home market
-  → Get campaigns profitable in your primary country
-  → Understand your unit economics deeply
-
-Phase 2: Expand to similar markets (same language/culture)
-  → US → UK, Canada, Australia
-  → Or: Germany → Austria, Switzerland (German-speaking)
-  → Same creative, same messaging, slight budget
-
-Phase 3: Expand to Tier 2 markets
-  → Consider localization (translated App Store listing at minimum)
-  → Adapt creative for local context
-  → Adjust CPI targets (lower CPIs, but also lower LTV)
-
-Phase 4: Go broad
-  → English-speaking countries as one region
-  → Europe as one region
-  → Adjust budgets and CPI targets per region
-```
+| Day | Budget | Change | Cumulative Growth |
+|---|---|---|---|
+| 1 | $100 | Baseline | — |
+| 4 | $120 | +20% | +20% |
+| 7 | $145 | +20% | +45% |
+| 10 | $175 | +20% | +75% |
+| 13 | $210 | +20% | +110% |
+| 16 | $250 | +20% | +150% |
+| 19 | $300 | +20% | +200% |
 
 <Tip>
-  **Localize your App Store listing before running ads in new countries.** Even if you don't localize the app itself, translating your App Store/Play Store screenshots, title, and description dramatically improves conversion rates and lowers CPI in non-English markets.
+**Pro Tip**: If performance degrades after a budget increase, do NOT immediately reduce the budget. Wait 2-3 days — the algorithm may just be readjusting. If CPI is still elevated after 3 days, scale back to the previous budget level and stabilize before trying again.
 </Tip>
 
-## Creative scaling: the fuel for growth
+---
 
-Scaling requires a constant supply of fresh creative. Here's how many you need:
+## Horizontal Scaling
 
-| Monthly ad spend | New creatives per month | Active creatives at any time | Creative refresh cycle |
-|-----------------|------------------------|-----------------------------|-----------------------|
-| $500-1,000 | 4-8 | 3-5 | Every 3-4 weeks |
-| $1,000-5,000 | 8-15 | 5-8 | Every 2-3 weeks |
-| $5,000-20,000 | 15-30 | 8-15 | Every 1-2 weeks |
-| $20,000+ | 30-50+ | 15-25 | Continuous |
+When vertical scaling hits a wall (your CPI rises no matter how slowly you increase budget), it is time for horizontal scaling — expanding to new audiences, new platforms, and new creatives.
 
-<Warning>
-  **Creative exhaustion is the #1 reason scaling campaigns plateau.** The algorithm finds users efficiently, but if you show the same ad to those users repeatedly, they stop clicking. Budget scaling without creative scaling always fails eventually.
-</Warning>
+### Dimension 1: New Audiences
 
-### Creative scaling process
+<Steps>
+  <Step title="Duplicate your best campaign">
+    Create a copy of your winning campaign with a different audience:
+    - Different age range
+    - Different interests
+    - Different lookalike source
+    - Different gender (if applicable)
+  </Step>
+  <Step title="Test audience expansion">
+    Most platforms (Meta, TikTok) have "audience expansion" or "broad targeting" features. These let the algorithm find users beyond your specified targeting. Often, broad targeting performs as well as or better than narrow targeting at scale.
+  </Step>
+  <Step title="Try value-based lookalikes">
+    Instead of creating lookalikes based on all customers, create them based on your **highest-value** customers (top 10% by revenue, longest retention, highest engagement). These tend to find better users.
+  </Step>
+</Steps>
 
+### Dimension 2: New Platforms
+
+| Current Platform | Next Platform to Add | Why |
+|---|---|---|
+| **Meta only** | Apple Search Ads (apps) or Google (web) | Capture high-intent search traffic |
+| **Meta + Apple** | TikTok or Google | Different audience, different creative style |
+| **Meta + Google** | TikTok | Younger audience, creative-driven results |
+| **All major platforms** | Programmatic, influencer, podcast | Diversify beyond walled gardens |
+
+### Dimension 3: New Creatives
+
+Creative is the single biggest lever for scaling on every platform.
+
+| Creative Type | When to Use |
+|---|---|
+| **New hooks on winning format** | Your best video format + new opening 3 seconds |
+| **New format entirely** | Try UGC, screen recordings, testimonials, before/after |
+| **Creator content** | Partner with micro-creators for authentic content |
+| **Seasonal variations** | Holiday themes, event-based, trend-based |
+| **Platform-native formats** | Reels for Meta, Spark Ads for TikTok, YouTube Shorts for Google |
+
+<Tip>
+**Pro Tip**: When you hit a scaling wall, the answer is almost always **new creative**, not more budget on old creative. A fresh creative can unlock an entirely new audience segment that was not responding to your previous ads.
+</Tip>
+
+### Dimension 4: New Markets (International Expansion)
+
+| Expansion Tier | Markets | Why This Order |
+|---|---|---|
+| **Tier 1** | UK, Canada, Australia | English-speaking, similar CPIs, easy entry |
+| **Tier 2** | Germany, France, Japan, South Korea | Large markets, higher CPIs, need localization |
+| **Tier 3** | Brazil, India, Southeast Asia, Mexico | Large user bases, lower CPIs, need heavy localization |
+
+<Steps>
+  <Step title="Start with English-speaking Tier 1 markets">
+    Your existing creatives work with no changes. Same language, similar culture.
+  </Step>
+  <Step title="Localize for Tier 2">
+    Translate your creatives and App Store listing. Localization is not just translation — adapt cultural references, currencies, and imagery.
+  </Step>
+  <Step title="Create native content for Tier 3">
+    Partner with local creators or agencies. What works in the US rarely works in Brazil or India. You need locally relevant content.
+  </Step>
+</Steps>
+
+---
+
+## The Creative Scaling Process
+
+At scale, creative is your main bottleneck. Here is a sustainable production process:
+
+### Weekly Creative Cadence
+
+| Day | Activity |
+|---|---|
+| **Monday** | Review last week's creative performance. Identify winners and losers. |
+| **Tuesday** | Brainstorm new hook ideas and creative concepts based on winning patterns. |
+| **Wednesday** | Film/produce 3-5 new creative variations. |
+| **Thursday** | Edit, add text overlays and music. Upload to ad platforms. |
+| **Friday** | Launch new creatives. Pause fatigued ones. |
+
+### Creative Fatigue Signals
+
+Your winning creative will eventually stop working. Watch for these signs:
+
+| Signal | What It Means | Action |
+|---|---|---|
+| CTR dropping week over week | People have seen the ad too many times | Refresh the creative or pause it |
+| CPI rising while spend is stable | The creative is losing effectiveness | Introduce new variations |
+| Frequency above 3.0 | Each person sees your ad 3+ times on average | Expand audience or refresh creative |
+| Video completion rate dropping | People are swiping past faster | New hook needed |
+
+---
+
+## Common Scaling Mistakes
+
+<AccordionGroup>
+  <Accordion title="Doubling your budget overnight">
+    This almost always resets the learning phase and causes a temporary (sometimes permanent) CPI spike. Use the 20% rule instead.
+  </Accordion>
+  <Accordion title="Scaling unprofitable campaigns">
+    "It will get better at higher spend" is almost never true. If a campaign is unprofitable at $100/day, it will be unprofitable at $1,000/day. Fix the problem first, then scale.
+  </Accordion>
+  <Accordion title="Relying on a single creative">
+    One winning ad can carry you for 2-4 weeks. Then it fatigues. You need a continuous pipeline of new creative to sustain performance at scale.
+  </Accordion>
+  <Accordion title="Spreading budget too thin">
+    Five platforms at $100/day each gives you $500/day in total but none of the platforms have enough budget to optimize effectively. Better to dominate two platforms than underperform on five.
+  </Accordion>
+  <Accordion title="Not tracking post-install quality">
+    Cheap installs are worthless if users never open the app again. Always track retention, engagement, and revenue alongside CPI. The goal is profitable users, not just users.
+  </Accordion>
+  <Accordion title="Ignoring diminishing returns">
+    Every platform has a natural ceiling. As you capture more of the available audience, each marginal user costs more. The answer is horizontal scaling (new platforms, new markets, new creatives), not forcing more money into a saturated channel.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Scaling Decision Framework
+
+Use this framework when deciding how to scale:
+
+```mermaid
+graph TD
+    START["Want to scale?"] --> CHECK{"CPI below<br/>target?"}
+    CHECK -->|No| FIX["Fix first:<br/>New creative,<br/>better targeting,<br/>optimize funnel"]
+    CHECK -->|Yes| IMP{"Impression<br/>share < 50%?"}
+    IMP -->|Yes| VERT["Vertical scale:<br/>+20% budget<br/>every 2-3 days"]
+    IMP -->|No| HORIZ{"New audience<br/>segments<br/>available?"}
+    HORIZ -->|Yes| AUDIENCE["Horizontal scale:<br/>New audiences,<br/>lookalikes,<br/>broader targeting"]
+    HORIZ -->|No| PLAT{"Budget for<br/>new platform?"}
+    PLAT -->|Yes| PLATFORM["Add platform:<br/>TikTok, Google,<br/>Apple Search Ads"]
+    PLAT -->|No| GEO["International<br/>expansion or<br/>creative refresh"]
 ```
-Week 1: Analyze top performers from last 2 weeks
-  → Identify the winning concept, hook, format, and CTA
-  → Document exactly what makes them work
 
-Week 2: Produce variations of winners
-  → Same concept, different hook
-  → Same hook, different format (video → carousel → static)
-  → Same format, different talent/visual
+---
 
-Week 3: Produce new concepts
-  → Test entirely new angles (problem/solution → social proof → tutorial)
-  → These are higher risk but can unlock new audiences
+## Key Takeaways
 
-Week 4: Launch and measure
-  → Add new creatives to existing campaigns
-  → Kill underperformers from last month
-  → Promote new winners to scaling campaigns
-```
+1. **Scale gradually**: The 20% rule protects your performance while growing spend
+2. **Horizontal beats vertical**: When budget increases stop working, expand audiences, platforms, and creatives instead
+3. **Creative is the bottleneck**: At scale, you need a continuous pipeline of fresh creatives (3-5 per week)
+4. **Watch for fatigue**: CTR decline, CPI increase, and high frequency are early warning signs
+5. **Track quality, not just quantity**: Cheap installs with no retention are worse than expensive installs with high LTV
+6. **International expansion unlocks new growth**: Start with Tier 1 English-speaking markets, then localize for Tier 2 and 3
+7. **Use the decision framework**: Follow the logic — fix profitability first, then vertical scale, then horizontal scale
 
-## Common scaling mistakes
-
-<CardGroup cols={2}>
-  <Card title="The Budget Bomb" icon="bomb">
-    Doubling or tripling budget overnight. The algorithm resets, CPI spikes, and you've wasted the excess spend. Always use the 20% rule.
-  </Card>
-  <Card title="The One-Hit Wonder" icon="music">
-    Scaling aggressively based on a single winning creative. When it fatigues (and it will, within 2-4 weeks), your entire campaign crashes. Always have backup creatives.
-  </Card>
-  <Card title="The Platform Spray" icon="spray-can">
-    Launching on 4 platforms simultaneously because "diversification." You can't learn or optimize anything when your attention and budget are split 4 ways. Add platforms one at a time.
-  </Card>
-  <Card title="The Metric Mirage" icon="chart-line">
-    Scaling because CPI is low without checking user quality. 10,000 installs at $0.50 means nothing if nobody opens the app twice. Always check retention before scaling.
-  </Card>
-  <Card title="The Audience Exhaustion" icon="battery-quarter">
-    Scaling a narrow audience until frequency hits 10+. Small audiences saturate fast. When frequency rises, expand the audience — don't just increase budget.
-  </Card>
-  <Card title="The Copy-Paste Trap" icon="clone">
-    Taking your exact Meta ad and running it on TikTok. Each platform has a different creative language and audience behavior. Adapt for each platform.
-  </Card>
-</CardGroup>
-
-## The scaling decision tree
-
-When you're wondering what to do next, follow this flow:
-
-```
-Is your current campaign profitable (CPI below target, ROAS > 1)?
-│
-├── YES → Is the campaign spending its full budget?
-│   │
-│   ├── YES → Has it been stable for 7+ days?
-│   │   │
-│   │   ├── YES → SCALE: Increase budget by 20%
-│   │   │         AND start planning horizontal expansion
-│   │   │
-│   │   └── NO → WAIT: Give it more time to stabilize
-│   │
-│   └── NO → EXPAND AUDIENCE: Targeting may be too narrow
-│            OR increase bid if using manual bidding
-│
-└── NO → Is it in the learning phase still?
-    │
-    ├── YES → WAIT: Let the algorithm finish learning
-    │         (need 50 conversions and 7 days minimum)
-    │
-    └── NO → Has it been running 14+ days?
-        │
-        ├── YES → TROUBLESHOOT: Test new creatives,
-        │         adjust audience, or pause and try
-        │         a different approach
-        │
-        └── NO → WAIT: Some campaigns need 2 weeks
-                  to optimize. Be patient.
-```
-
-## Real-world scaling example
-
-<Accordion title="Case study: Fitness app scaling from $500/month to $10,000/month">
-```
-MONTH 1: Testing ($500/month)
-Platform: Meta only
-Budget: $17/day
-Campaigns: 1 campaign, 5 ad creatives
-Results: CPI $4.20, 119 installs, Day 7 retention 18%
-Winner: UGC testimonial video (CPI $3.10)
-
-MONTH 2: Validation ($1,000/month)
-Platform: Meta only
-Budget: $33/day (gradually increased from $17)
-Campaigns: 2 campaigns (original + new audience test)
-Results: CPI $3.80, 263 installs, Day 7 retention 20%
-Action: Confirmed CPI holds at 2x budget. Added Apple Search Ads.
-
-MONTH 3: Early Growth ($2,000/month)
-Platforms: Meta ($1,400) + Apple Search Ads ($600)
-Results:
-  Meta: CPI $3.60, 389 installs
-  Apple: CPI $2.80, 214 installs
-  Day 30 ROAS: 1.4x (getting close to profitable)
-Action: Created 3 lookalike audiences, tested 8 new creatives
-
-MONTH 4: Growth ($4,000/month)
-Platforms: Meta ($2,400) + Apple ($1,000) + Google ($600)
-Results:
-  Meta: CPI $3.40, 706 installs (scaled best-performing lookalike)
-  Apple: CPI $2.90, 345 installs
-  Google: CPI $4.10, 146 installs (still learning)
-  Blended CPI: $3.34, Day 30 ROAS: 1.8x
-
-MONTH 5: Scaling ($7,000/month)
-Platforms: Meta ($3,500) + Apple ($1,500) + Google ($1,200) + TikTok ($800)
-Results:
-  Blended CPI: $3.20, 2,188 installs
-  Day 30 ROAS: 2.1x (profitable!)
-  Added retargeting campaigns on Meta
-
-MONTH 6: Full Scale ($10,000/month)
-Platforms: Meta ($4,500) + Apple ($2,000) + Google ($2,000) + TikTok ($1,500)
-Results:
-  Blended CPI: $3.10, 3,226 installs
-  Day 30 ROAS: 2.3x
-  Added UK and Canada campaigns
-  Running 15 active campaigns across 4 platforms
-  Testing 12 new creatives per month
-```
-</Accordion>
-
-## What's next
-
-<CardGroup cols={2}>
-  <Card
-    title="Creative Testing"
-    icon="flask"
-    href="/playbook/creative-testing"
-  >
-    Scaling requires a constant supply of fresh creative. Learn how to test systematically and keep your campaigns fresh.
-  </Card>
-  <Card
-    title="Budget Planning"
-    icon="calculator"
-    href="/playbook/budget-planning"
-  >
-    Need to plan your scaling budget? Use our budget planning framework to map out your growth trajectory.
-  </Card>
-</CardGroup>
+<Tip>
+**Final thought**: Scaling is a marathon, not a sprint. The advertisers who scale successfully are the ones who are patient, data-driven, and constantly producing new creative. Rush the process and you waste money. Follow the staircase approach and you build a sustainable growth engine.
+</Tip>

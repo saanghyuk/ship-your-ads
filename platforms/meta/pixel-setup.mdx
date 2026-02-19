@@ -1,125 +1,234 @@
 ---
-title: "Meta Pixel & SDK Setup"
-description: "Complete guide to installing Meta's tracking tools — the Pixel for websites, SDK for mobile apps, and Conversions API for server-side tracking. Includes code for React Native, Swift, and Kotlin."
+title: "Meta Pixel & Conversions API Setup"
+description: "A complete beginner's guide to installing Meta Pixel on your website, setting up the Conversions API (CAPI) for server-side tracking, and verifying that everything works correctly."
 ---
 
-## Why tracking is non-negotiable
+## Why Tracking Matters More Than Anything
 
-Without tracking, running ads is like throwing money into a black hole. You will not know:
-- Which ads are driving installs
-- Which users are valuable (purchases, subscriptions)
-- How to improve your campaigns over time
-- Whether your ads are profitable
+Imagine running a lemonade stand but having no idea how many cups you sold, who your customers were, or whether your "Buy 1 Get 1 Free" sign actually worked. That is what running Meta ads without tracking is like — you are spending money with no way to know what is working.
 
-Meta uses tracking data to power its machine-learning algorithm. The more data you send, the smarter the algorithm gets, and the better your results become. **Tracking is the foundation of everything.**
+Meta Pixel and the Conversions API are your measurement tools. They tell Meta exactly what happens after someone clicks your ad. Did they sign up? Did they make a purchase? Did they browse three pages and leave? This data is absolutely essential for two reasons:
 
-Meta offers three tracking tools:
+1. **You can measure your return on investment.** Without tracking, you literally cannot tell if your ads are profitable or not.
+2. **Meta's algorithm uses this data to improve.** When Meta knows which ad clicks lead to purchases, it gets dramatically better at finding more people who will purchase. Without this data, Meta is flying blind.
 
-| Tool | What it tracks | Where it lives |
-|------|---------------|----------------|
-| **Meta Pixel** | User actions on your website or landing page | JavaScript code on your website |
-| **Meta SDK** | User actions inside your mobile app | Native code in your iOS/Android app |
-| **Conversions API (CAPI)** | Server-side events sent from your server | Your backend server |
-
----
-
-## Which tracking tools do you need?
-
-| Your situation | What to install |
-|---------------|----------------|
-| Mobile app with direct-to-store ads | Meta SDK |
-| Mobile app with a landing page/website | Meta SDK + Meta Pixel |
-| Web app only (no mobile app) | Meta Pixel + Conversions API |
-| Mobile app and you want the best tracking | Meta SDK + Conversions API (recommended) |
+This guide will walk you through every step of setting up both Meta Pixel and the Conversions API. We will start with what they are, then move to installation, then verify everything is working.
 
 <Tip>
-  **For the best results, use both the Meta SDK and the Conversions API together.** The SDK tracks events from the client side (the user's device), while the Conversions API sends events from your server. Using both creates redundancy — if the SDK misses an event (due to ad blockers, network issues, or iOS privacy restrictions), the server-side event still gets through. Meta deduplicates these events automatically.
+Setting up tracking correctly from the very beginning is the single most impactful thing you can do for your ad campaigns. Many advertisers skip this step or do it incorrectly, and then wonder why their campaigns are not performing well. Take your time with this guide — it is worth it.
 </Tip>
 
 ---
 
-## Part 1: Installing the Meta Pixel (for websites)
+## What Is Meta Pixel?
 
-The Meta Pixel is a small piece of JavaScript code that you add to your website. It tracks when people visit your site, which pages they view, and what actions they take (like clicking "Download" or filling out a form).
+Meta Pixel (previously known as Facebook Pixel — Meta renamed it when they rebranded the company) is a small piece of JavaScript code that you place on your website. It looks like this:
 
-### Creating your Pixel
+```html
+<!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'YOUR_PIXEL_ID');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+```
 
-<Steps>
-  <Step title="Go to Events Manager">
-    Navigate to [facebook.com/events_manager](https://www.facebook.com/events_manager2) or find it in the Ads Manager menu under **Events Manager**.
-  </Step>
-  <Step title="Click 'Connect Data Sources'">
-    Click the green **Connect Data Sources** button. Select **Web** and click **Connect**.
-  </Step>
-  <Step title="Name your Pixel">
-    Give it a descriptive name (e.g., "TaskFlow Website Pixel"). You can only have one Pixel per ad account, so keep the name general.
-  </Step>
-  <Step title="Choose installation method">
-    You will see several options:
-    - **Meta Pixel and Conversions API** (recommended) — installs both client-side and server-side tracking
-    - **Meta Pixel only** — just the client-side JavaScript snippet
-    - **Conversions API only** — just server-side tracking
+When someone visits your website, this code runs in their browser and sends information back to Meta. Here is what it does:
 
-    For now, choose **Meta Pixel only** if you want to keep it simple. You can add the Conversions API later.
-  </Step>
-  <Step title="Get your Pixel base code">
-    Meta will generate your unique Pixel code. It looks like this:
+- **Tracks page views** — Meta knows which pages on your site people visit
+- **Tracks events** — You can tell Meta when specific things happen (like a purchase, sign-up, or add-to-cart)
+- **Identifies users** — Meta matches website visitors with Facebook/Instagram users, so it knows which ad led to which action
+- **Builds audiences** — You can create Custom Audiences of people who visited specific pages or took specific actions
 
-    ```html
-    <!-- Meta Pixel Code -->
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', 'YOUR_PIXEL_ID');
-      fbq('track', 'PageView');
-    </script>
-    <noscript>
-      <img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
-    </noscript>
-    <!-- End Meta Pixel Code -->
-    ```
+### How the Pixel Works (Simple Explanation)
 
-    Replace `YOUR_PIXEL_ID` with your actual Pixel ID (a 15-16 digit number).
-  </Step>
-  <Step title="Add the code to your website">
-    Paste this code into the `<head>` section of every page on your website. It must load on every page so Meta can track the full user journey.
+1. Someone sees your ad on Facebook or Instagram
+2. They click on the ad and land on your website
+3. The Meta Pixel code fires in their browser
+4. The Pixel sends data back to Meta: "This person visited this page"
+5. If the person completes an action (like a purchase), the Pixel sends that too
+6. Meta connects the dots: "This ad click led to this purchase"
 
-    **If you use a website builder:**
-    - **Next.js / React:** Add it to your `_document.tsx` or use the `next/script` component
-    - **WordPress:** Use the "Insert Headers and Scripts" plugin or add to your theme's `header.php`
-    - **Shopify:** Go to Online Store > Themes > Edit Code > theme.liquid
-    - **Webflow:** Go to Project Settings > Custom Code > Head Code
-    - **Squarespace:** Go to Settings > Advanced > Code Injection > Header
-  </Step>
-</Steps>
+---
 
-### Adding the Pixel to a Next.js / React website
+## What Is the Conversions API (CAPI)?
 
-If your landing page uses Next.js, here is the recommended approach:
+The Conversions API is the server-side complement to Meta Pixel. While the Pixel runs in the user's browser (client-side), CAPI sends data directly from your server to Meta's servers.
 
-```tsx
-// app/layout.tsx (Next.js App Router)
-import Script from 'next/script'
+### Why Do You Need Both?
 
-const FB_PIXEL_ID = 'YOUR_PIXEL_ID'
+Browser-based tracking (like Meta Pixel) is becoming less reliable because:
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+- **Ad blockers** block tracking pixels for many users
+- **Safari's Intelligent Tracking Prevention (ITP)** limits cookie lifetimes and blocks cross-site tracking
+- **Firefox Enhanced Tracking Protection** blocks many tracking scripts
+- **Privacy regulations** (GDPR, CCPA) require user consent before tracking
+
+The Conversions API solves these problems by sending data from your server, which ad blockers and browser restrictions cannot touch. Meta strongly recommends using both the Pixel and CAPI together for the most complete and accurate data.
+
+Think of it like this:
+- **Meta Pixel** = A camera at the front door of your store (some people can dodge it)
+- **Conversions API** = A receipt printer at the register (captures every transaction no matter what)
+
+Using both together gives you the most complete picture.
+
+<Tip>
+Meta estimates that advertisers who use both Pixel and Conversions API together see, on average, a **13% improvement in cost per action** compared to using Pixel alone. This is because Meta's algorithm has more and better data to work with, so it makes smarter decisions about who to show your ads to.
+</Tip>
+
+---
+
+## Step 1: Create Your Meta Pixel
+
+Before you can install anything, you need to create a Pixel in your Meta Business Suite.
+
+### How to Create Your Pixel:
+
+1. Go to **[business.facebook.com](https://business.facebook.com)** and log in
+2. Click the **hamburger menu** (three horizontal lines) in the top-left corner, or navigate through the left sidebar
+3. Look for **Events Manager** — you can find it under "All Tools" or by searching for it in the search bar at the top
+4. Click on **Events Manager**
+5. You will see a page with your data sources. If this is your first time, it may prompt you to get started
+6. Click **Connect Data Sources** (the green button)
+7. Select **Web** as the data source type
+8. Click **Connect**
+9. Enter a **name** for your Pixel — use something descriptive like "My App Name - Website Pixel"
+10. Enter your **website URL** — this is the URL of the website where you will install the Pixel
+11. Click **Continue**
+
+### Your Pixel ID:
+
+After creating your Pixel, you will be given a **Pixel ID** — a unique number that looks something like `123456789012345`. This is the ID you will use in your Pixel code. Write this number down or copy it to a safe place. You will need it in the next steps.
+
+12. You can find your Pixel ID at any time by going to Events Manager and looking at the top of the page next to your Pixel name
+
+---
+
+## Step 2: Install Meta Pixel on Your Website
+
+There are several ways to install Meta Pixel. We will cover the most common methods.
+
+### Method A: Manual Installation (Adding Code Directly)
+
+This method works for any website. You copy the Pixel code and paste it into your website's HTML.
+
+1. In Events Manager, click on your Pixel
+2. Click **Continue Pixel Setup** or **Add Events** → **From a New Website**
+3. Select **Install code manually**
+4. Meta will show you the Pixel base code (it looks like the code shown earlier in this guide)
+5. **Copy the entire code snippet**
+
+Now you need to paste this code into every page of your website:
+
+6. Open your website's HTML files (or your template/theme editor)
+7. Find the `<head>` section — this is near the top of your HTML, between `<head>` and `</head>` tags
+8. **Paste the Pixel code** just before the closing `</head>` tag
+9. Save the file
+10. Repeat for every page on your website (or if you use a template system, add it to your main template/layout file so it automatically appears on every page)
+
+```html
+<html>
+<head>
+  <title>My Website</title>
+  <!-- Other head content like CSS, meta tags, etc. -->
+
+  <!-- Meta Pixel Code - Paste it here, before </head> -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID_HERE');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID_HERE&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+</head>
+<body>
+  <!-- Your website content -->
+</body>
+</html>
+```
+
+<Tip>
+Replace `YOUR_PIXEL_ID_HERE` with your actual Pixel ID (the number you copied in Step 1). If you forget to replace this placeholder, the Pixel will not work. This is the most common installation mistake we see.
+</Tip>
+
+### Method B: Using Google Tag Manager (GTM)
+
+If your website uses Google Tag Manager, you can install the Pixel through GTM without touching your website code directly.
+
+1. Log into **[tagmanager.google.com](https://tagmanager.google.com)**
+2. Select your website's container
+3. Click **Tags** in the left sidebar
+4. Click **New**
+5. Click **Tag Configuration**
+6. Select **Custom HTML**
+7. Paste the Meta Pixel base code (the same code from Method A) into the HTML field
+8. Click **Triggering**
+9. Select **All Pages** (this makes the Pixel fire on every page)
+10. Give your tag a name like "Meta Pixel - Base Code"
+11. Click **Save**
+12. Click **Submit** in the top-right corner
+13. Add a version name like "Added Meta Pixel" and click **Publish**
+
+### Method C: Using a CMS Plugin (WordPress, Shopify, etc.)
+
+Many popular website platforms have built-in integrations or plugins for Meta Pixel.
+
+**For WordPress:**
+
+1. Install the **"Meta Pixel for WordPress"** plugin (official plugin from Meta)
+2. Go to **Settings → Meta Pixel** in your WordPress dashboard
+3. Enter your **Pixel ID**
+4. Click **Save Changes**
+5. The plugin automatically adds the Pixel code to every page
+
+**For Shopify:**
+
+1. In your Shopify admin, go to **Online Store → Preferences**
+2. Scroll down to the **Meta Pixel** section (previously called Facebook Pixel)
+3. Click **Set up Meta Pixel**
+4. Follow the prompts to connect your Meta Business Suite
+5. Select your Pixel from the list
+6. Click **Connect**
+7. Shopify automatically handles the Pixel installation
+
+**For Next.js / React:**
+
+If you are building a web app with Next.js or React, you can add the Pixel to your main layout or `_app` component:
+
+```jsx
+// pages/_app.js (Next.js) or your main App component
+import { useEffect } from 'react';
+import Script from 'next/script';
+
+function MyApp({ Component, pageProps }) {
   return (
-    <html lang="en">
-      <head>
-        <Script id="fb-pixel" strategy="afterInteractive">
-          {`
+    <>
+      {/* Meta Pixel */}
+      <Script
+        id="meta-pixel"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
             n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -128,908 +237,507 @@ export default function RootLayout({
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '${FB_PIXEL_ID}');
+            fbq('init', 'YOUR_PIXEL_ID_HERE');
             fbq('track', 'PageView');
-          `}
-        </Script>
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: 'none' }}
-            src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
-          />
-        </noscript>
-      </head>
-      <body>{children}</body>
-    </html>
-  )
-}
-```
-
-To track specific events (like button clicks), create a utility function:
-
-```tsx
-// lib/fpixel.ts
-
-export const FB_PIXEL_ID = 'YOUR_PIXEL_ID'
-
-// Track a standard event
-export function trackEvent(eventName: string, params?: Record<string, any>) {
-  if (typeof window !== 'undefined' && window.fbq) {
-    window.fbq('track', eventName, params)
-  }
+          `,
+        }}
+      />
+      <Component {...pageProps} />
+    </>
+  );
 }
 
-// Track a custom event
-export function trackCustomEvent(eventName: string, params?: Record<string, any>) {
-  if (typeof window !== 'undefined' && window.fbq) {
-    window.fbq('trackCustom', eventName, params)
-  }
-}
-
-// Usage example:
-// trackEvent('Lead', { content_name: 'Signup Form' })
-// trackCustomEvent('ClickedDownload', { app_version: '2.0' })
+export default MyApp;
 ```
-
-### Tracking events on your website with the Pixel
-
-After installing the base Pixel code (which automatically tracks `PageView`), you can track specific user actions:
-
-```javascript
-// Track when someone clicks a "Download" button
-document.getElementById('download-btn').addEventListener('click', () => {
-  fbq('track', 'Lead', {
-    content_name: 'App Download Click',
-    content_category: 'download'
-  });
-});
-
-// Track when someone submits an email signup form
-document.getElementById('signup-form').addEventListener('submit', () => {
-  fbq('track', 'CompleteRegistration', {
-    content_name: 'Email Signup',
-    status: true
-  });
-});
-
-// Track when someone views a pricing page
-// (add this to your pricing page)
-fbq('track', 'ViewContent', {
-  content_name: 'Pricing Page',
-  content_type: 'page'
-});
-```
-
----
-
-## Part 2: Installing the Meta SDK (for mobile apps)
-
-The Meta SDK is what you install inside your iOS or Android app. It tracks app installs, opens, and in-app events automatically.
-
-### For iOS (Swift)
-
-<Steps>
-  <Step title="Add the SDK via Swift Package Manager">
-    In Xcode:
-    1. Go to **File** > **Add Package Dependencies**
-    2. In the search field, paste: `https://github.com/facebook/facebook-ios-sdk`
-    3. Click **Add Package**
-    4. Select these libraries at minimum:
-       - `FacebookCore` (required — provides base tracking and analytics)
-       - `FacebookLogin` (optional — only if you use Facebook Login)
-       - `FacebookShare` (optional — only if you use sharing features)
-    5. Click **Add Package** to confirm
-
-    **Alternative: CocoaPods**
-    ```ruby
-    # Podfile
-    pod 'FBSDKCoreKit', '~> 17.0'
-    ```
-    Then run `pod install`.
-  </Step>
-  <Step title="Configure your Info.plist">
-    Add these keys to your `Info.plist` file. You can find your App ID and Client Token in the Meta Developer portal at [developers.facebook.com](https://developers.facebook.com) under your app's settings.
-
-    ```xml
-    <key>FacebookAppID</key>
-    <string>YOUR_APP_ID</string>
-
-    <key>FacebookClientToken</key>
-    <string>YOUR_CLIENT_TOKEN</string>
-
-    <key>FacebookDisplayName</key>
-    <string>Your App Name</string>
-
-    <!-- Required for iOS 9+ -->
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-      <string>fbapi</string>
-      <string>fb-messenger-share-api</string>
-    </array>
-
-    <!-- URL scheme for deep linking -->
-    <key>CFBundleURLTypes</key>
-    <array>
-      <dict>
-        <key>CFBundleURLSchemes</key>
-        <array>
-          <string>fbYOUR_APP_ID</string>
-        </array>
-      </dict>
-    </array>
-    ```
-
-    Replace `YOUR_APP_ID` with your numeric Facebook App ID and `YOUR_CLIENT_TOKEN` with your client token.
-  </Step>
-  <Step title="Initialize the SDK in AppDelegate">
-    ```swift
-    import UIKit
-    import FacebookCore
-
-    @main
-    class AppDelegate: UIResponder, UIApplicationDelegate {
-
-        func application(
-            _ application: UIApplication,
-            didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
-        ) -> Bool {
-            // Initialize the Facebook SDK
-            ApplicationDelegate.shared.application(
-                application,
-                didFinishLaunchingWithOptions: launchOptions
-            )
-
-            // Enable automatic event logging (tracks app installs and opens)
-            Settings.shared.isAutoLogAppEventsEnabled = true
-
-            // Enable advertiser ID collection (required for attribution)
-            Settings.shared.isAdvertiserIDCollectionEnabled = true
-
-            return true
-        }
-
-        func application(
-            _ app: UIApplication,
-            open url: URL,
-            options: [UIApplication.OpenURLOptionsKey: Any] = [:]
-        ) -> Bool {
-            ApplicationDelegate.shared.application(
-                app,
-                open: url,
-                sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
-                annotation: options[UIApplication.OpenURLOptionsKey.annotation]
-            )
-        }
-    }
-    ```
-  </Step>
-  <Step title="Log in-app events">
-    After initialization, you can track any user action:
-
-    ```swift
-    import FacebookCore
-
-    // Track a purchase
-    AppEvents.shared.logPurchase(
-        amount: 9.99,
-        currency: "USD",
-        parameters: [
-            .contentID: "premium_monthly",
-            .contentType: "subscription"
-        ]
-    )
-
-    // Track registration
-    AppEvents.shared.logEvent(.completedRegistration, parameters: [
-        .registrationMethod: "email"
-    ])
-
-    // Track content view
-    AppEvents.shared.logEvent(.viewedContent, parameters: [
-        .contentID: "onboarding_screen_3",
-        .contentType: "screen"
-    ])
-
-    // Track add to cart
-    AppEvents.shared.logEvent(.addedToCart, parameters: [
-        .contentID: "premium_annual",
-        .contentType: "subscription",
-        .currency: "USD"
-    ])
-    AppEvents.shared.logEvent(.addedToCart, valueToSum: 49.99)
-
-    // Track custom event (any event you define)
-    AppEvents.shared.logEvent(AppEvents.Name("CompletedOnboarding"), parameters: [
-        "onboarding_version": "v2",
-        "steps_completed": "5"
-    ])
-    ```
-  </Step>
-</Steps>
-
-### For Android (Kotlin)
-
-<Steps>
-  <Step title="Add the SDK dependency">
-    In your app-level `build.gradle.kts` (or `build.gradle`):
-
-    ```kotlin
-    // build.gradle.kts (Module: app)
-    dependencies {
-        // Meta SDK - Core (required)
-        implementation("com.facebook.android:facebook-android-sdk:17.0.1")
-    }
-    ```
-
-    Or if using Groovy syntax:
-    ```groovy
-    // build.gradle (Module: app)
-    dependencies {
-        implementation 'com.facebook.android:facebook-android-sdk:17.0.1'
-    }
-    ```
-
-    Also add the Maven repository in your project-level `build.gradle.kts`:
-    ```kotlin
-    // build.gradle.kts (Project)
-    allprojects {
-        repositories {
-            mavenCentral()
-        }
-    }
-    ```
-
-    Sync your project after adding the dependency.
-  </Step>
-  <Step title="Configure AndroidManifest.xml">
-    Add these entries inside the `<application>` tag:
-
-    ```xml
-    <application>
-        <!-- ... your existing application content ... -->
-
-        <!-- Meta SDK Configuration -->
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
-        <meta-data
-            android:name="com.facebook.sdk.ClientToken"
-            android:value="@string/facebook_client_token"/>
-
-        <!-- Required for SDK to work -->
-        <provider
-            android:name="com.facebook.FacebookContentProvider"
-            android:authorities="com.facebook.app.FacebookContentProvider{YOUR_APP_ID}"
-            android:exported="true"/>
-    </application>
-
-    <!-- Internet permission (you probably already have this) -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <!-- Required for advertiser ID -->
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
-    ```
-
-    Add your App ID and Client Token to `res/values/strings.xml`:
-    ```xml
-    <resources>
-        <string name="facebook_app_id">YOUR_APP_ID</string>
-        <string name="facebook_client_token">YOUR_CLIENT_TOKEN</string>
-    </resources>
-    ```
-  </Step>
-  <Step title="Initialize the SDK in your Application class">
-    ```kotlin
-    import android.app.Application
-    import com.facebook.FacebookSdk
-    import com.facebook.appevents.AppEventsLogger
-
-    class MyApplication : Application() {
-        override fun onCreate() {
-            super.onCreate()
-
-            // Initialize the Facebook SDK
-            FacebookSdk.sdkInitialize(applicationContext)
-
-            // Enable automatic event logging
-            FacebookSdk.setAutoLogAppEventsEnabled(true)
-
-            // Enable advertiser ID collection
-            FacebookSdk.setAdvertiserIDCollectionEnabled(true)
-
-            // Activate the app (tracks app opens)
-            AppEventsLogger.activateApp(this)
-        }
-    }
-    ```
-
-    Make sure your `AndroidManifest.xml` references this Application class:
-    ```xml
-    <application
-        android:name=".MyApplication"
-        ... >
-    ```
-  </Step>
-  <Step title="Log in-app events">
-    ```kotlin
-    import com.facebook.appevents.AppEventsConstants
-    import com.facebook.appevents.AppEventsLogger
-    import android.os.Bundle
-    import java.math.BigDecimal
-    import java.util.Currency
-
-    class MainActivity : AppCompatActivity() {
-        private lateinit var logger: AppEventsLogger
-
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            logger = AppEventsLogger.newLogger(this)
-        }
-
-        // Track a purchase
-        fun trackPurchase() {
-            logger.logPurchase(
-                BigDecimal("9.99"),
-                Currency.getInstance("USD"),
-                Bundle().apply {
-                    putString(AppEventsConstants.EVENT_PARAM_CONTENT_ID, "premium_monthly")
-                    putString(AppEventsConstants.EVENT_PARAM_CONTENT_TYPE, "subscription")
-                }
-            )
-        }
-
-        // Track registration
-        fun trackRegistration() {
-            logger.logEvent(
-                AppEventsConstants.EVENT_NAME_COMPLETED_REGISTRATION,
-                Bundle().apply {
-                    putString(
-                        AppEventsConstants.EVENT_PARAM_REGISTRATION_METHOD,
-                        "email"
-                    )
-                }
-            )
-        }
-
-        // Track content view
-        fun trackContentView() {
-            logger.logEvent(
-                AppEventsConstants.EVENT_NAME_VIEWED_CONTENT,
-                Bundle().apply {
-                    putString(AppEventsConstants.EVENT_PARAM_CONTENT_ID, "premium_plan")
-                    putString(AppEventsConstants.EVENT_PARAM_CONTENT_TYPE, "product")
-                }
-            )
-        }
-
-        // Track custom event
-        fun trackCustomEvent() {
-            logger.logEvent("CompletedOnboarding", Bundle().apply {
-                putString("onboarding_version", "v2")
-                putInt("steps_completed", 5)
-            })
-        }
-    }
-    ```
-  </Step>
-</Steps>
-
-### For React Native
-
-<Steps>
-  <Step title="Install the React Native Facebook SDK">
-    ```bash
-    npm install react-native-fbsdk-next
-    ```
-
-    For iOS, also run:
-    ```bash
-    cd ios && pod install && cd ..
-    ```
-  </Step>
-  <Step title="Configure native files">
-    **iOS:** Follow the same `Info.plist` configuration as the Swift section above. Also update your `AppDelegate.mm` (or `AppDelegate.swift`):
-
-    ```objc
-    // AppDelegate.mm
-    #import <FBSDKCoreKit/FBSDKCoreKit-Swift.h>
-
-    - (BOOL)application:(UIApplication *)application
-        didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-    {
-      [[FBSDKApplicationDelegate sharedInstance] application:application
-        didFinishLaunchingWithOptions:launchOptions];
-      // ... your other initialization code
-      return YES;
-    }
-
-    - (BOOL)application:(UIApplication *)app
-                openURL:(NSURL *)url
-                options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
-    {
-      return [[FBSDKApplicationDelegate sharedInstance] application:app
-        openURL:url
-        sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-        annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
-    }
-    ```
-
-    **Android:** Follow the same `AndroidManifest.xml` and `strings.xml` configuration as the Kotlin section above.
-  </Step>
-  <Step title="Use the SDK in your React Native code">
-    ```tsx
-    import { AppEventsLogger, Settings } from 'react-native-fbsdk-next';
-
-    // Initialize (call this once, typically in your App.tsx or index.tsx)
-    Settings.initializeSDK();
-
-    // Track a purchase
-    AppEventsLogger.logPurchase(9.99, 'USD', {
-      fb_content_id: 'premium_monthly',
-      fb_content_type: 'subscription',
-    });
-
-    // Track registration
-    AppEventsLogger.logEvent('fb_mobile_complete_registration', {
-      fb_registration_method: 'email',
-    });
-
-    // Track content view
-    AppEventsLogger.logEvent('fb_mobile_content_view', {
-      fb_content_id: 'onboarding_screen_3',
-      fb_content_type: 'screen',
-    });
-
-    // Track add to cart
-    AppEventsLogger.logEvent('fb_mobile_add_to_cart', 49.99, {
-      fb_content_id: 'premium_annual',
-      fb_content_type: 'subscription',
-      fb_currency: 'USD',
-    });
-
-    // Track custom event
-    AppEventsLogger.logEvent('CompletedOnboarding', {
-      onboarding_version: 'v2',
-      steps_completed: '5',
-    });
-    ```
-  </Step>
-</Steps>
-
----
-
-## Part 3: Standard events vs custom events
-
-Meta defines a set of **standard events** that it recognizes and can optimize for. You can also create **custom events** for actions specific to your app.
-
-### Complete list of standard events
-
-| Event name | When to fire it | What Meta uses it for |
-|-----------|----------------|----------------------|
-| `AddPaymentInfo` | User adds a payment method | Optimize for users likely to make purchases |
-| `AddToCart` | User adds an item to cart | Optimize for purchase intent |
-| `AddToWishlist` | User adds an item to a wishlist | Optimize for high-interest users |
-| `CompleteRegistration` | User completes a signup/registration | Optimize for users likely to register |
-| `Contact` | User contacts your business | Optimize for lead generation |
-| `CustomizeProduct` | User customizes a product | Optimize for engaged shoppers |
-| `Donate` | User makes a donation | Optimize for donors |
-| `FindLocation` | User searches for a location | Optimize for local actions |
-| `InitiateCheckout` | User begins checkout process | Optimize for near-purchase users |
-| `Lead` | User submits info (form, signup, trial) | Optimize for lead generation |
-| `Purchase` | User completes a purchase | **Most important event for revenue optimization** |
-| `Schedule` | User schedules an appointment | Optimize for bookings |
-| `Search` | User performs a search | Optimize for engaged users |
-| `StartTrial` | User starts a free trial | Optimize for trial signups |
-| `SubmitApplication` | User submits an application | Optimize for application completions |
-| `Subscribe` | User starts a subscription | Optimize for subscription revenue |
-| `ViewContent` | User views a key page or item | Optimize for engaged browsers |
-
-### When to use custom events
-
-Use custom events when you need to track something that does not fit the standard events:
-
-```javascript
-// Pixel (website)
-fbq('trackCustom', 'CompletedOnboarding', { steps: 5, version: 'v2' });
-fbq('trackCustom', 'SharedContent', { content_type: 'article', method: 'twitter' });
-fbq('trackCustom', 'AchievedLevel', { level: 10, character: 'warrior' });
-```
-
-<Warning>
-  **Always prefer standard events over custom events when possible.** Meta's algorithm can only optimize campaigns for standard events (and custom conversions you create from them). Custom events can be used for measurement and audience building, but they give Meta's delivery system less information to work with.
-</Warning>
-
-### Event parameters
-
-Every event can include **parameters** — extra data that describes the event in detail. Here are the most commonly used parameters:
-
-| Parameter | Description | Example value |
-|-----------|-------------|---------------|
-| `content_id` | A unique identifier for the content | "premium_plan_monthly" |
-| `content_type` | The category of content | "product", "subscription", "screen" |
-| `content_name` | A human-readable name | "Premium Monthly Plan" |
-| `currency` | The currency code for monetary values | "USD", "EUR", "KRW" |
-| `value` | The monetary value of the event | 9.99 |
-| `num_items` | Number of items involved | 3 |
-| `search_string` | The search query text | "running shoes" |
-| `status` | Whether the event was successful | true, false |
 
 <Tip>
-  **Always include `value` and `currency` parameters with purchase events.** Without these, Meta cannot calculate your ROAS (return on ad spend), which is the most important metric for determining if your ads are profitable.
+If you are using a modern JavaScript framework like Next.js or React, make sure the Pixel loads **after** the page is interactive (using `afterInteractive` strategy in Next.js or loading it in `useEffect` in React). Loading it too early can slow down your page, and loading it too late can miss page views.
 </Tip>
 
 ---
 
-## Part 4: Conversions API (server-side tracking)
+## Step 3: Set Up Standard Events
 
-The Conversions API (CAPI) sends events from your server directly to Meta, bypassing the browser or device entirely. This is increasingly important because:
+The base Pixel code only tracks page views. To track specific actions (like purchases, sign-ups, or add-to-cart), you need to set up **events**.
 
-- **iOS privacy changes** (ATT framework) block many client-side tracking signals
-- **Ad blockers** prevent the Meta Pixel from firing on many users' browsers
-- **Browser privacy updates** (cookie restrictions) reduce client-side tracking accuracy
-- **Server-side events are more reliable** because they are not affected by network issues or app crashes
+Meta has a set of **standard events** — predefined event names that Meta's algorithm understands and can optimize for.
 
-### How the Conversions API works
+### Most Important Standard Events:
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant YourApp as Your App / Website
-    participant YourServer as Your Server
-    participant Meta as Meta Servers
+| Event Name | When to Use It | Code |
+|---|---|---|
+| `PageView` | Every page load (already in base code) | `fbq('track', 'PageView');` |
+| `Lead` | When someone submits a form or signs up | `fbq('track', 'Lead');` |
+| `CompleteRegistration` | When someone finishes creating an account | `fbq('track', 'CompleteRegistration');` |
+| `AddToCart` | When someone adds a product to their cart | `fbq('track', 'AddToCart');` |
+| `InitiateCheckout` | When someone starts the checkout process | `fbq('track', 'InitiateCheckout');` |
+| `Purchase` | When someone completes a purchase | `fbq('track', 'Purchase', {value: 9.99, currency: 'USD'});` |
+| `ViewContent` | When someone views a product or content page | `fbq('track', 'ViewContent');` |
+| `Search` | When someone uses your search feature | `fbq('track', 'Search');` |
+| `AddPaymentInfo` | When someone adds payment information | `fbq('track', 'AddPaymentInfo');` |
+| `Subscribe` | When someone subscribes to a service | `fbq('track', 'Subscribe', {value: 4.99, currency: 'USD'});` |
 
-    User->>YourApp: Takes an action (purchase, signup, etc.)
-    YourApp->>YourServer: Sends event data to your backend
-    YourServer->>Meta: Sends event via Conversions API
-    Note over Meta: Matches event to user profile
-    Note over Meta: Uses data to optimize ad delivery
+### How to Add Standard Events to Your Website:
 
-    YourApp-->>Meta: Also sends via SDK/Pixel (redundant)
-    Note over Meta: Deduplicates using event_id
+You add event tracking code to the specific pages or buttons where the action happens. Here are examples:
+
+**Tracking a Purchase (on your "Thank You" or confirmation page):**
+
+```html
+<script>
+  fbq('track', 'Purchase', {
+    value: 29.99,
+    currency: 'USD',
+    content_type: 'product',
+    content_ids: ['product_123']
+  });
+</script>
 ```
 
-### Setting up the Conversions API
+**Tracking a Sign-Up (when the registration form is submitted):**
 
-<Steps>
-  <Step title="Generate an access token">
-    In Events Manager, select your Pixel, go to **Settings**, scroll down to **Conversions API**, and click **Generate Access Token**. Save this token securely — treat it like a password.
-  </Step>
-  <Step title="Send events from your server">
-    Here is an example using Node.js:
+```html
+<script>
+  // Call this when the form is successfully submitted
+  fbq('track', 'CompleteRegistration', {
+    content_name: 'Free Trial',
+    status: true
+  });
+</script>
+```
 
-    ```javascript
-    // server/meta-capi.js
-    const crypto = require('crypto');
+**Tracking an Add-to-Cart (when the "Add to Cart" button is clicked):**
 
-    const PIXEL_ID = 'YOUR_PIXEL_ID';
-    const ACCESS_TOKEN = 'YOUR_ACCESS_TOKEN';
+```javascript
+// Add this to your "Add to Cart" button's click handler
+document.getElementById('add-to-cart-button').addEventListener('click', function() {
+  fbq('track', 'AddToCart', {
+    value: 19.99,
+    currency: 'USD',
+    content_ids: ['product_456'],
+    content_type: 'product'
+  });
+});
+```
 
-    async function sendMetaEvent({
-      eventName,
-      eventTime,
-      userData,
-      customData,
-      eventSourceUrl,
-      eventId, // Important for deduplication
-    }) {
-      const payload = {
-        data: [
-          {
-            event_name: eventName,
-            event_time: eventTime || Math.floor(Date.now() / 1000),
-            event_id: eventId, // Must match the event_id sent by Pixel/SDK
-            event_source_url: eventSourceUrl,
-            action_source: 'website', // or 'app', 'email', 'phone_call', etc.
-            user_data: {
-              // Hash all PII before sending (SHA-256, lowercase, trimmed)
-              em: userData.email
-                ? hashSHA256(userData.email.toLowerCase().trim())
-                : undefined,
-              ph: userData.phone
-                ? hashSHA256(userData.phone.replace(/\D/g, ''))
-                : undefined,
-              fn: userData.firstName
-                ? hashSHA256(userData.firstName.toLowerCase().trim())
-                : undefined,
-              ln: userData.lastName
-                ? hashSHA256(userData.lastName.toLowerCase().trim())
-                : undefined,
-              // These do not need hashing
-              client_ip_address: userData.ipAddress,
-              client_user_agent: userData.userAgent,
-              fbc: userData.fbc, // Facebook click ID (from _fbc cookie)
-              fbp: userData.fbp, // Facebook browser ID (from _fbp cookie)
-              external_id: userData.externalId
-                ? hashSHA256(userData.externalId)
-                : undefined,
-            },
-            custom_data: customData,
-          },
-        ],
-      };
+<Tip>
+Always include the `value` and `currency` parameters for Purchase events. Without these, Meta cannot calculate your return on ad spend (ROAS), which is one of the most important metrics for understanding whether your ads are profitable.
+</Tip>
 
-      const response = await fetch(
-        `https://graph.facebook.com/v21.0/${PIXEL_ID}/events?access_token=${ACCESS_TOKEN}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        }
-      );
+---
 
-      return response.json();
-    }
+## Step 4: Set Up the Conversions API (CAPI)
 
-    function hashSHA256(value) {
-      return crypto.createHash('sha256').update(value).digest('hex');
-    }
+Now let us set up the server-side tracking. The Conversions API sends event data directly from your server to Meta, making it resistant to ad blockers and browser restrictions.
 
-    // Example: Track a purchase
-    sendMetaEvent({
-      eventName: 'Purchase',
-      eventId: 'purchase_12345', // Unique ID for deduplication
-      userData: {
-        email: 'user@example.com',
-        ipAddress: '203.0.113.1',
-        userAgent: 'Mozilla/5.0...',
-        fbp: 'fb.1.1612345678.1234567890', // From _fbp cookie
-        fbc: 'fb.1.1612345678.AbCdEfGhI', // From _fbc cookie (if available)
+### Understanding How CAPI Works:
+
+1. A user takes an action on your website (like making a purchase)
+2. Your server processes that action
+3. Your server sends the event data directly to Meta's API
+4. Meta receives data from both the Pixel (browser) and CAPI (server)
+5. Meta deduplicates the data (so it is not counted twice) using an event ID
+
+### Method A: Using Meta's Partner Integrations
+
+The easiest way to set up CAPI is through a partner integration. Meta has built-in integrations with many platforms:
+
+**For Shopify:**
+
+1. In Events Manager, click on your Pixel
+2. Click **Settings**
+3. Scroll down to **Conversions API**
+4. Click **Set Up Through a Partner Integration**
+5. Select **Shopify**
+6. Follow the prompts to connect your Shopify store
+7. Shopify will automatically set up both Pixel and CAPI
+
+**For WordPress (using a plugin):**
+
+1. Install the **"Meta for WordPress"** plugin (official)
+2. Go to **Settings → Meta**
+3. Click **Get Started** and connect your Meta Business Suite
+4. The plugin will set up both Pixel and CAPI automatically
+
+### Method B: Manual CAPI Setup (For Developers)
+
+If you are building a custom website or app, you will need to implement CAPI in your server code.
+
+**Step 1: Generate an Access Token**
+
+1. Go to Events Manager and click on your Pixel
+2. Click **Settings**
+3. Scroll down to **Conversions API**
+4. Click **Generate Access Token**
+5. Copy the access token — you will need this in your server code
+
+**Step 2: Send Events from Your Server**
+
+Here is an example of sending a Purchase event via CAPI using Node.js:
+
+```javascript
+const fetch = require('node-fetch');
+const crypto = require('crypto');
+
+async function sendConversionEvent(eventData) {
+  const pixelId = 'YOUR_PIXEL_ID';
+  const accessToken = 'YOUR_ACCESS_TOKEN';
+
+  const url = `https://graph.facebook.com/v18.0/${pixelId}/events`;
+
+  const payload = {
+    data: [{
+      event_name: 'Purchase',
+      event_time: Math.floor(Date.now() / 1000),
+      event_id: eventData.eventId, // For deduplication with Pixel
+      action_source: 'website',
+      event_source_url: eventData.pageUrl,
+      user_data: {
+        em: [hashSHA256(eventData.email)], // Hashed email
+        ph: [hashSHA256(eventData.phone)], // Hashed phone
+        client_ip_address: eventData.ipAddress,
+        client_user_agent: eventData.userAgent,
+        fbc: eventData.fbc, // Facebook click ID from cookie
+        fbp: eventData.fbp, // Facebook browser ID from cookie
       },
-      customData: {
+      custom_data: {
+        value: eventData.purchaseValue,
         currency: 'USD',
-        value: 9.99,
-        content_ids: ['premium_monthly'],
+        content_ids: eventData.productIds,
         content_type: 'product',
-      },
-    });
-    ```
-  </Step>
-  <Step title="Set up deduplication">
-    When you send the same event through both the Pixel/SDK and the Conversions API, you must include a matching `event_id` so Meta can deduplicate them. Without this, Meta will count the event twice.
-
-    ```javascript
-    // Generate a unique event ID
-    const eventId = `purchase_${userId}_${Date.now()}`;
-
-    // Send from client (Pixel)
-    fbq('track', 'Purchase', { value: 9.99, currency: 'USD' }, { eventID: eventId });
-
-    // Send from server (CAPI) with the same event_id
-    sendMetaEvent({
-      eventName: 'Purchase',
-      eventId: eventId, // Same ID as the Pixel event
-      // ... rest of the data
-    });
-    ```
-  </Step>
-</Steps>
-
-### Conversions API for mobile apps
-
-For mobile apps, the server-side approach is similar. When a user takes an action in your app, your app sends the event to your server, and your server forwards it to Meta via the Conversions API. Set `action_source` to `'app'` instead of `'website'`.
-
-<Note>
-  Many **Mobile Measurement Partners (MMPs)** like Adjust, AppsFlyer, Branch, and Airbridge can handle the Conversions API integration for you. If you use an MMP, check if they support Meta's CAPI — most do, and it saves you from building the server-side integration yourself.
-</Note>
-
----
-
-## Part 5: Handling iOS 14+ (App Tracking Transparency)
-
-Since iOS 14.5, Apple requires all apps to ask user permission before tracking them across apps and websites. This is the **App Tracking Transparency (ATT)** framework, and it significantly impacts Meta ad tracking on iOS.
-
-### What ATT means for your ads
-
-| User choice | Impact on Meta tracking |
-|------------|------------------------|
-| **Allow tracking** | Full tracking works as before. Meta gets complete data for attribution and optimization. |
-| **Ask App Not to Track** | Meta receives very limited data. Attribution is delayed (up to 72 hours) and limited to aggregated data through SKAdNetwork. |
-
-Industry data shows roughly **25-35% of users opt in** to tracking. This means Meta has limited data on 65-75% of iOS users, which is why the Conversions API and good event setup are so important.
-
-### Implementing ATT
-
-<Steps>
-  <Step title="Add the ATT usage description to Info.plist">
-    ```xml
-    <key>NSUserTrackingUsageDescription</key>
-    <string>We use this data to show you ads that are more relevant to you and to measure the effectiveness of our advertising.</string>
-    ```
-
-    This string appears in the permission prompt. Make it clear and honest — a good description improves opt-in rates.
-  </Step>
-  <Step title="Request tracking permission in your app">
-    **Swift:**
-    ```swift
-    import AppTrackingTransparency
-    import AdSupport
-
-    func requestTrackingPermission() {
-        // Wait until the app is active to avoid timing issues
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            ATTrackingManager.requestTrackingAuthorization { status in
-                switch status {
-                case .authorized:
-                    // User allowed tracking - Meta SDK works fully
-                    print("Tracking authorized")
-                    // You can now access the IDFA
-                    let idfa = ASIdentifierManager.shared().advertisingIdentifier
-                    print("IDFA: \(idfa)")
-                case .denied:
-                    // User denied tracking - limited data
-                    print("Tracking denied")
-                case .notDetermined:
-                    // User has not made a choice yet
-                    print("Tracking not determined")
-                case .restricted:
-                    // Tracking restricted by system (parental controls, MDM, etc.)
-                    print("Tracking restricted")
-                @unknown default:
-                    break
-                }
-            }
-        }
-    }
-    ```
-
-    **React Native:**
-    ```tsx
-    import { requestTrackingPermissionsAsync } from 'expo-tracking-transparency';
-    // Or if not using Expo:
-    // import { requestTrackingPermission } from 'react-native-tracking-transparency';
-
-    async function requestTracking() {
-      const { status } = await requestTrackingPermissionsAsync();
-      if (status === 'granted') {
-        console.log('Tracking allowed');
-      } else {
-        console.log('Tracking denied');
       }
-    }
-    ```
-  </Step>
-  <Step title="Time the prompt correctly">
-    **Do not show ATT on first launch.** Users who have not experienced your app yet have no reason to trust you with tracking permission. Instead:
+    }],
+    access_token: accessToken,
+  };
 
-    1. Let the user experience your app's core value first
-    2. Optionally show a "pre-prompt" screen explaining why tracking helps (before the system prompt)
-    3. Then show the ATT system prompt
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
 
-    This approach can increase opt-in rates from 25% to 40-50%.
-  </Step>
-</Steps>
+  const result = await response.json();
+  return result;
+}
 
-### Configure Aggregated Event Measurement (AEM)
+function hashSHA256(value) {
+  return crypto.createHash('sha256').update(value.toLowerCase().trim()).digest('hex');
+}
+```
 
-For users who deny tracking, Meta uses Apple's SKAdNetwork and its own Aggregated Event Measurement to still provide some attribution data:
+**Step 3: Implement Event Deduplication**
 
-<Steps>
-  <Step title="Verify your domain">
-    In Events Manager, go to your Pixel's Settings and complete domain verification by adding a DNS TXT record or meta tag to your website.
-  </Step>
-  <Step title="Configure your event priority">
-    In Events Manager, go to **Aggregated Event Measurement** and configure up to **8 conversion events** in priority order. The highest-priority event that a user completes will be reported.
+When you use both Pixel and CAPI, the same event might be sent twice (once from the browser, once from the server). Meta uses **event deduplication** to prevent double-counting. To make this work:
 
-    Recommended priority order for app developers:
-    1. Purchase (highest priority)
-    2. Subscribe
-    3. StartTrial
-    4. CompleteRegistration
-    5. AddToCart
-    6. ViewContent
-    7. Lead
-    8. PageView (lowest priority)
-  </Step>
-</Steps>
+1. Generate a unique **event ID** for each event (e.g., a UUID)
+2. Include this event ID in BOTH the Pixel event AND the CAPI event
+3. Meta will match events with the same event ID and count them only once
+
+Browser-side (Pixel):
+```javascript
+const eventId = generateUUID(); // Your function to create a unique ID
+
+fbq('track', 'Purchase', {
+  value: 29.99,
+  currency: 'USD'
+}, { eventID: eventId });
+
+// Also send eventId to your server so it can include it in the CAPI call
+```
+
+Server-side (CAPI):
+```javascript
+// Use the same eventId received from the browser
+const payload = {
+  data: [{
+    event_name: 'Purchase',
+    event_id: eventId, // Same ID as the Pixel event
+    // ... rest of the event data
+  }]
+};
+```
+
+<Tip>
+Event deduplication is critical. Without it, Meta will count every event twice — once from the Pixel and once from CAPI — which will mess up your conversion counts and confuse the algorithm. Always use the same event ID in both your Pixel events and CAPI events.
+</Tip>
 
 ---
 
-## Part 6: Verifying your tracking setup
+## Step 5: Set Up Custom Conversions (Optional)
 
-After installing your tracking, you need to verify everything works before spending money on ads.
+Custom conversions let you track specific actions based on URL rules, without adding any additional code to your website. This is useful if you cannot modify your website code easily.
 
-### Tool 1: Meta Pixel Helper (browser extension)
+### How to Create a Custom Conversion:
 
-<Steps>
-  <Step title="Install the extension">
-    Install the [Meta Pixel Helper](https://chrome.google.com/webstore/detail/meta-pixel-helper/fdgfkebogiimcoedlicjlajpkdmockpc) Chrome extension. It is free and made by Meta.
-  </Step>
-  <Step title="Visit your website">
-    Navigate to your website. The Pixel Helper icon in your toolbar will show a number indicating how many events it detected.
-  </Step>
-  <Step title="Click the icon to see details">
-    You will see:
-    - Which events fired (PageView, Lead, Purchase, etc.)
-    - What parameters were sent with each event
-    - Any errors or warnings (missing parameters, duplicate pixels, etc.)
-    - The Pixel ID that received the events
-  </Step>
-</Steps>
+1. Go to **Events Manager**
+2. Click **Custom Conversions** in the left sidebar
+3. Click **Create Custom Conversion**
+4. Give it a **name** (like "Completed Purchase" or "Signed Up for Trial")
+5. Set the **rule** — for example:
+   - URL contains "thank-you" (for a thank-you page after purchase)
+   - URL contains "registration-complete" (for a registration confirmation page)
+   - URL equals "https://yoursite.com/success" (for a specific success page)
+6. Choose the **category** (Purchase, Lead, Complete Registration, etc.)
+7. Optionally set a **conversion value** (how much each conversion is worth)
+8. Click **Create**
 
-### Tool 2: Test Events in Events Manager
+### When to Use Custom Conversions vs. Standard Events:
 
-<Steps>
-  <Step title="Go to Events Manager">
-    Navigate to Events Manager and select your Pixel or App.
-  </Step>
-  <Step title="Click the 'Test Events' tab">
-    You will see a real-time stream of events as they come in.
-  </Step>
-  <Step title="For web: Enter your website URL">
-    Click **Open Website** and enter your URL. Meta will open your site in a new tab and track every event that fires in real time.
-  </Step>
-  <Step title="For app: Use your test device">
-    Open your app on a physical device (not a simulator) and perform the actions you are tracking. Events should appear in the Test Events tab within seconds.
+- **Use Standard Events** when you can add code to your website. They give you more control and better data.
+- **Use Custom Conversions** when you cannot modify your website code, or as a quick-and-dirty setup while you work on implementing proper standard events.
 
-    To add a test device:
-    1. In Events Manager, click the **Test Events** tab
-    2. Click **Add Test Device**
-    3. Enter your device's Advertising ID (IDFA on iOS, GAID on Android)
-  </Step>
-  <Step title="Verify each event">
-    For each event, check:
-    - The event name is correct
-    - Parameters are present and have correct values
-    - No error warnings appear
-    - Events fire at the right moment (not too early, not duplicated)
-  </Step>
-</Steps>
+---
 
-### Tool 3: Events Manager diagnostics
+## Step 6: Verify Your Pixel Is Working
 
-<Steps>
-  <Step title="Go to Events Manager > Diagnostics tab">
-    Select your data source (Pixel or App) and click the **Diagnostics** tab.
-  </Step>
-  <Step title="Review any issues">
-    Meta groups issues by severity:
-    - **Critical**: Events are not working. Fix these immediately.
-    - **Priority**: Events are partially working but have issues that affect optimization.
-    - **Recommended**: Suggestions for improvement that are not blocking.
+After installation, you MUST verify that your Pixel is actually working. Here is how.
 
-    Common issues you might see:
-    - "Missing parameter" — an event is firing without required parameters
-    - "Inactive events" — events configured but not receiving data
-    - "Duplicate events" — the same event is firing multiple times
-    - "Pixel not loading" — the base Pixel code is not installed correctly
-  </Step>
-</Steps>
+### Method 1: Meta Pixel Helper (Chrome Extension)
 
-### Tool 4: Conversions API event testing
+This is the easiest and most reliable way to check your Pixel.
 
-If you set up the Conversions API, verify it separately:
+1. Open the **Chrome Web Store** ([chrome.google.com/webstore](https://chrome.google.com/webstore))
+2. Search for **"Meta Pixel Helper"**
+3. Click **Add to Chrome** to install the extension
+4. Navigate to your website in Chrome
+5. Click the **Meta Pixel Helper icon** in your browser toolbar (it looks like a small `</>` icon)
+6. The extension will tell you:
+   - Whether a Pixel was found on the page
+   - Your Pixel ID
+   - What events fired (you should see at least a "PageView" event)
+   - Any errors or warnings
 
-<Steps>
-  <Step title="Check the Test Events tab">
-    Server events appear alongside client events in Test Events, tagged with their source (Browser vs Server).
-  </Step>
-  <Step title="Verify deduplication">
-    Send the same event from both the Pixel/SDK and the Conversions API with matching `event_id` values. In Test Events, you should see the events matched together, not counted separately.
-  </Step>
-  <Step title="Use the Payload Helper tool">
-    Meta provides a [Payload Helper](https://developers.facebook.com/docs/marketing-api/conversions-api/payload-helper) tool that generates test payloads for the Conversions API so you can verify your server integration.
-  </Step>
-</Steps>
+**What you want to see:**
+- A green checkmark next to your Pixel ID
+- "PageView" event firing on every page
+- Additional events firing on the correct pages (like "Purchase" on your confirmation page)
 
-### Verification checklist
+**Common issues:**
+- "No Pixel found" — The code is not on the page, or it is not loading correctly
+- "Pixel found but not firing" — The code is on the page but something is preventing it from running (could be a JavaScript error)
+- Wrong Pixel ID — Double-check that the ID in your code matches the one in Events Manager
 
-Before moving on, confirm:
+### Method 2: Test Events in Events Manager
 
-- [ ] Meta Pixel fires `PageView` on every page of your website (if applicable)
-- [ ] Meta SDK fires `Install` events when the app is installed
-- [ ] All standard events fire at the correct moments with correct parameters
-- [ ] Purchase events include `value` and `currency` parameters
-- [ ] Events appear in Events Manager within a few minutes of triggering
-- [ ] No critical errors in the Diagnostics tab
-- [ ] ATT prompt is implemented for iOS (if applicable)
-- [ ] Conversions API is sending events from your server (if applicable)
-- [ ] Deduplication is working between client and server events (if using both)
+Meta provides a built-in testing tool in Events Manager.
 
-<Card
-  title="Your First Meta Campaign"
-  icon="arrow-right"
-  href="/platforms/meta/first-campaign"
->
-  Tracking is live? Let's create your first campaign and start acquiring users.
-</Card>
+1. Go to **Events Manager**
+2. Click on your Pixel
+3. Click the **Test Events** tab
+4. Enter your **website URL** in the "Test browser events" field
+5. Click **Open Website**
+6. Your website will open in a new tab
+7. Browse around your website — visit different pages, click buttons, make a test purchase
+8. Go back to the Events Manager tab
+9. You should see events appearing in real time as you browse your website
+
+<Tip>
+After installing your Pixel, wait about **20 minutes** before checking Events Manager for data. While the Meta Pixel Helper extension shows results instantly, Events Manager can take a short time to process and display incoming events. If you do not see data after 20 minutes, there is likely an installation issue.
+</Tip>
+
+### Method 3: Check Events Manager Overview
+
+After your Pixel has been running for a few hours:
+
+1. Go to **Events Manager**
+2. Click on your Pixel
+3. Click the **Overview** tab
+4. You should see a graph showing events received over time
+5. Below the graph, you will see a list of events (PageView, Purchase, etc.) with counts
+
+---
+
+## Step 7: Verify CAPI Is Working
+
+If you set up the Conversions API, verify it is sending data correctly.
+
+### How to Verify CAPI:
+
+1. Go to **Events Manager**
+2. Click on your Pixel
+3. Click the **Overview** tab
+4. Look at the events list — each event should show how it was received:
+   - **Browser only** — Only received from Pixel
+   - **Server only** — Only received from CAPI
+   - **Browser & Server** — Received from both (this is what you want)
+5. Click on the **Diagnostics** tab
+6. Check for any warnings or errors related to CAPI
+
+### Common CAPI Issues:
+
+- **"Events not received"** — Check your server logs for errors in the API call
+- **"Low match rate"** — You are not sending enough user data (email, phone, etc.) for Meta to match events to users. Send more user data parameters
+- **"Duplicate events detected"** — Your deduplication is not working. Make sure you are using the same event ID in both Pixel and CAPI events
+- **"Events delayed"** — CAPI events should be sent within minutes of the action occurring. If there is a long delay, Meta may not be able to attribute them correctly
+
+<Tip>
+Check the **Event Match Quality** score in Events Manager. This score (out of 10) tells you how well Meta can match your CAPI events to Facebook/Instagram users. A score of 6 or above is good. To improve it, send more user data parameters — hashed email, hashed phone number, IP address, user agent, fbc cookie, and fbp cookie.
+</Tip>
+
+---
+
+## Step 8: Set Up Domain Verification
+
+Domain verification proves to Meta that you own your website. This is important for proper Pixel functionality, especially after Apple's iOS 14.5 privacy changes.
+
+### How to Verify Your Domain:
+
+1. Go to **[business.facebook.com](https://business.facebook.com)**
+2. Click the **Settings** gear icon
+3. In the left sidebar, click **Brand Safety** → **Domains**
+4. Click **Add** and enter your domain name (e.g., `yourwebsite.com`)
+5. Meta will give you three verification options:
+   - **DNS TXT record** — Add a text record to your domain's DNS settings
+   - **HTML file upload** — Upload a verification file to your website's root folder
+   - **Meta-tag verification** — Add a meta tag to your website's `<head>` section
+6. Choose the method that is easiest for you (meta-tag is usually simplest)
+7. Follow the instructions for your chosen method
+8. Click **Verify**
+
+### DNS TXT Record Method (Most Reliable):
+
+1. Log into your domain registrar (GoDaddy, Namecheap, Cloudflare, etc.)
+2. Find your domain's DNS settings
+3. Add a new TXT record with the value Meta provides
+4. Wait for DNS propagation (can take up to 72 hours, but usually much faster)
+5. Go back to Meta and click **Verify**
+
+### Meta-Tag Method (Quickest):
+
+1. Copy the meta tag Meta provides (it looks like `<meta name="facebook-domain-verification" content="abcdefg123456" />`)
+2. Paste it in your website's `<head>` section (same place you put the Pixel code)
+3. Save and publish your website
+4. Go back to Meta and click **Verify**
+
+---
+
+## Step 9: Configure Aggregated Event Measurement (AEM)
+
+After Apple's iOS 14.5 update, Meta introduced Aggregated Event Measurement to comply with Apple's App Tracking Transparency (ATT) framework. This limits you to **8 conversion events per domain** that can be used for optimization.
+
+### How to Configure AEM:
+
+1. Go to **Events Manager**
+2. Click on your Pixel
+3. Click the **Aggregated Event Measurement** tab
+4. Click **Configure Web Events**
+5. Select your **verified domain**
+6. You will see 8 slots for events, ranked by priority
+7. **Rank your events by importance** — the most important event goes at the top:
+   - Priority 1 (highest): `Purchase` (or whatever your most valuable action is)
+   - Priority 2: `Subscribe` or `CompleteRegistration`
+   - Priority 3: `AddToCart` or `Lead`
+   - Priority 4: `InitiateCheckout`
+   - Priority 5-8: Other events you want to track
+8. Click **Submit**
+
+<Tip>
+The ranking matters because when a user opts out of tracking on iOS, Meta can only report **one event** per user per conversion window — and it will report the highest-priority event. For example, if a user views a product, adds it to cart, and purchases, but they opted out of tracking, Meta will only report the Purchase (if it is your highest-priority event). So put your most valuable event at the top.
+</Tip>
+
+---
+
+## Event Tracking Strategies for Different Business Types
+
+### For E-Commerce Apps/Websites:
+
+Recommended events to track (in priority order):
+1. **Purchase** — The most important event
+2. **AddToCart** — Shows buying intent
+3. **InitiateCheckout** — Shows strong buying intent
+4. **ViewContent** — Shows interest in specific products
+5. **Search** — Shows active shopping behavior
+6. **AddPaymentInfo** — Very close to purchasing
+7. **Lead** — Email sign-ups or account creation
+8. **PageView** — Basic engagement
+
+### For SaaS / Subscription Apps:
+
+Recommended events to track (in priority order):
+1. **Subscribe** — Paid subscription started
+2. **StartTrial** — Free trial started
+3. **CompleteRegistration** — Account created
+4. **Lead** — Form submitted or demo requested
+5. **ViewContent** — Viewed pricing page or feature page
+6. **PageView** — Basic engagement
+
+### For Content / Media Apps:
+
+Recommended events to track (in priority order):
+1. **Subscribe** — Subscription started
+2. **CompleteRegistration** — Account created
+3. **Lead** — Newsletter sign-up
+4. **ViewContent** — Article or video viewed
+5. **Search** — Content search
+6. **PageView** — Basic engagement
+
+---
+
+## Troubleshooting Common Pixel Issues
+
+### "Pixel is not firing"
+
+**Possible causes:**
+- The Pixel code is not on the page (check your source code)
+- A JavaScript error is preventing the Pixel from loading
+- An ad blocker is blocking the Pixel
+- The Pixel ID is incorrect
+
+**How to fix:**
+1. View your page source (right-click → View Page Source)
+2. Search for "fbq" or your Pixel ID
+3. If found, check the browser console for JavaScript errors
+4. If not found, re-install the Pixel code
+
+### "Events are being received but not attributed to ads"
+
+**Possible causes:**
+- The attribution window has been exceeded
+- The user is on iOS and opted out of tracking
+- Domain verification is not set up
+- Cookie restrictions are blocking attribution
+
+**How to fix:**
+1. Verify your domain is verified in Business Suite
+2. Set up Conversions API for server-side attribution
+3. Configure Aggregated Event Measurement
+
+### "Duplicate events are being counted"
+
+**Possible causes:**
+- Event deduplication is not working between Pixel and CAPI
+- The event code is firing multiple times on the same page
+- The event is in both the base code and an additional code snippet
+
+**How to fix:**
+1. Check that you are using the same event ID in both Pixel and CAPI events
+2. Check that event code only fires once per action (not on every page load)
+3. Use the Meta Pixel Helper to see how many times each event fires
+
+---
+
+## Your Pixel Setup Checklist
+
+- [ ] Meta Pixel created in Events Manager
+- [ ] Pixel ID copied and saved
+- [ ] Pixel base code installed on all website pages
+- [ ] Standard events configured for key actions (Purchase, Lead, etc.)
+- [ ] Conversions API set up for server-side tracking
+- [ ] Event deduplication configured between Pixel and CAPI
+- [ ] Meta Pixel Helper installed and used to verify Pixel
+- [ ] Test Events tool used to verify events in real time
+- [ ] Domain verified in Business Suite
+- [ ] Aggregated Event Measurement configured with 8 prioritized events
+- [ ] Event Match Quality score checked (aim for 6+ out of 10)
+
+---
+
+## What Comes Next
+
+Your tracking foundation is now in place. Meta Pixel is tracking what happens in the browser, the Conversions API is tracking what happens on the server, and you have configured everything for optimal performance.
+
+In the **First Campaign** guide, we will put this tracking to work by creating your first Meta ad campaign. The events you just set up will be available as optimization targets — so when you tell Meta "I want purchases," it will use all of this tracking data to find the people most likely to buy.
+
+<Tip>
+After your Pixel has been running for at least 24–48 hours, come back to Events Manager and check the data. You want to see consistent PageView events and any other events you configured. If you see a flat line with no data, something is wrong with your installation. Fix it before launching any campaigns — running ads without working tracking is like driving with your eyes closed.
+</Tip>

@@ -1,16 +1,16 @@
 ---
 title: "Attribution Deep Dive"
-description: "How ad platforms know which click led to which conversion — the complete technical guide to attribution."
+description: "How ad platforms know which click led to which conversion -- the complete technical guide to attribution."
 icon: "crosshairs"
 sidebarTitle: "Attribution"
 ---
 
 # Attribution Deep Dive
 
-Imagine you're a detective solving a case. A customer just bought a pair of running shoes from your app. In the 14 days before that purchase, they saw a YouTube ad, clicked a Facebook ad, tapped a TikTok ad, and searched on Google. **Which ad deserves the credit?** That's the attribution problem -- and it's one of the hardest questions in advertising.
+Imagine you are a detective solving a case. A customer just bought a pair of running shoes from your app. In the 14 days before that purchase, they saw a YouTube ad, clicked a Facebook ad, tapped a TikTok ad, and searched on Google. **Which ad deserves the credit?** That is the attribution problem -- and it is one of the hardest questions in advertising.
 
 <Tip>
-**Software engineering analogy**: Attribution is the **distributed tracing** of advertising. Just as OpenTelemetry traces a request across microservices to understand what happened, attribution traces a user's journey across ad touchpoints to understand what drove a conversion. And just like distributed tracing, it relies on propagating identifiers across system boundaries -- which is exactly what privacy regulations are making harder.
+**Think of it this way**: Attribution is the distributed tracing of advertising. Just as OpenTelemetry traces a request across microservices to understand what happened, attribution traces a user's journey across ad touchpoints to understand what drove a conversion. And just like distributed tracing, it relies on propagating identifiers across system boundaries -- which is exactly what privacy regulations are making harder.
 </Tip>
 
 ---
@@ -52,12 +52,12 @@ The two fundamental types of attribution differ in how the user interacted with 
         Note over AD,C: Attribution: Click-through
     ```
 
-    **Why it's trusted**: The user took an intentional action (clicking). There's a strong signal that the ad influenced behavior.
+    **Why it is trusted**: The user took an intentional action (clicking). There is a strong signal that the ad influenced behavior.
 
     **Typical window**: 7-30 days after the click.
   </Tab>
   <Tab title="View-Through Attribution (VTA)">
-    The user **saw** an ad (but didn't click) and later converted.
+    The user **saw** an ad (but did not click) and later converted.
 
     ```mermaid
     sequenceDiagram
@@ -72,7 +72,7 @@ The two fundamental types of attribution differ in how the user interacted with 
         Note over AD,C: Attribution: View-through
     ```
 
-    **Why it's controversial**: Did the user convert *because* they saw the ad, or would they have converted anyway? It's like a billboard on the highway -- the person may have been driving to that store regardless.
+    **Why it is controversial**: Did the user convert *because* they saw the ad, or would they have converted anyway? It is like a billboard on the highway -- the person may have been driving to that store regardless.
 
     **Typical window**: 1-24 hours after the impression (much shorter than click-through).
   </Tab>
@@ -82,11 +82,15 @@ The two fundamental types of attribution differ in how the user interacted with 
 **The view-through attribution trap**: Ad networks love view-through attribution because it lets them claim credit for conversions they may not have influenced. If a network serves millions of impressions, pure statistics guarantee some of those users will convert anyway. Always evaluate VTA claims skeptically and use short windows (1-6 hours) to reduce noise.
 </Warning>
 
+<Tip>
+**Pro Tip**: When comparing performance across ad platforms, always make sure you are using the same attribution windows. Facebook defaulting to 7-day click / 1-day view and Google defaulting to 30-day click can make Google look much better simply because it has a longer window to capture conversions. Normalize your windows before drawing conclusions.
+</Tip>
+
 ---
 
 ## Attribution Models
 
-When a user interacts with multiple ads before converting, **who gets the credit?** Different models answer this differently.
+When a user interacts with multiple ads before converting, **who gets the credit?** Different models answer this differently. Let us walk through each one.
 
 ### The User Journey
 
@@ -209,6 +213,10 @@ Despite being the crudest model, **last-click attribution** remains the industry
 4. **Historical inertia**: Changing models mid-campaign breaks year-over-year comparisons
 5. **Data limitations**: Cross-device and cross-channel tracking is increasingly difficult
 
+<Tip>
+**Pro Tip**: For beginners, start with last-click attribution. It is not perfect, but it is understandable and actionable. As your spend grows past $10,000 per month across multiple channels, start exploring multi-touch models. The worst thing you can do is use a complex attribution model you do not understand -- you will make worse decisions than with simple last-click.
+</Tip>
+
 ---
 
 ## Attribution Windows and Why They Matter
@@ -224,7 +232,7 @@ An **attribution window** (or lookback window) is the time period after an ad in
 <Note>
 **Why windows matter enormously**: Longer windows mean more conversions get attributed (good for ad platforms) but also more false positives (bad for advertisers). Facebook defaults to a 7-day click / 1-day view window. Google defaults to 30-day click. These defaults heavily influence how each platform's performance appears in reports.
 
-Here's the sneaky part: if you compare Facebook and Google using their own default windows, you're comparing apples to oranges. Always normalize attribution windows when comparing channels side by side.
+Here is the sneaky part: if you compare Facebook and Google using their own default windows, you are comparing apples to oranges. Always normalize attribution windows when comparing channels side by side.
 </Note>
 
 ### The Window Size Tradeoff
@@ -281,7 +289,7 @@ Imagine three common conversion paths:
 
 If we "remove" Social from all paths and recalculate conversion rates, the drop in conversions tells us Social's true contribution. Repeat for each channel to get the credit distribution.
 
-This is more sophisticated than heuristic models (linear, time-decay) because it's based on actual observed behavior rather than arbitrary rules.
+This is more sophisticated than heuristic models (linear, time-decay) because it is based on actual observed behavior rather than arbitrary rules.
 </Accordion>
 
 ### Media Mix Modeling (MMM)
@@ -299,12 +307,12 @@ MMM takes a completely different approach -- it uses **aggregate data** (not use
 MMM uses regression analysis to correlate marketing spend with business outcomes while controlling for external factors (seasonality, economic conditions, competitor activity).
 
 <Tip>
-**MMM is making a comeback** because of privacy changes. When you can't track individual users (iOS ATT, cookie deprecation), aggregate modeling becomes the only way to measure channels like TV, podcasts, and billboards alongside digital. Google's Meridian and Meta's Robyn are open-source MMM tools that have accelerated adoption.
+**Pro Tip**: MMM is making a comeback because of privacy changes. When you cannot track individual users (iOS ATT, cookie deprecation), aggregate modeling becomes the only way to measure channels like TV, podcasts, and billboards alongside digital. Google's Meridian and Meta's Robyn are open-source MMM tools that have accelerated adoption. If your monthly ad spend exceeds $50,000, it is worth investing in MMM.
 </Tip>
 
 ### Incrementality Testing
 
-The gold standard of measurement. Incrementality testing answers: **"What would have happened if we hadn't shown this ad?"**
+The gold standard of measurement. Incrementality testing answers: **"What would have happened if we had not shown this ad?"**
 
 <Steps>
   <Step title="Split your audience randomly">
@@ -330,14 +338,14 @@ The gold standard of measurement. Incrementality testing answers: **"What would 
 </Steps>
 
 <Warning>
-Incrementality tests are expensive -- you're deliberately *not* showing ads to a portion of your audience, which means lost potential conversions during the test period. But they're the only way to prove causation rather than correlation. Think of it as an A/B test for advertising effectiveness itself.
+Incrementality tests are expensive -- you are deliberately *not* showing ads to a portion of your audience, which means lost potential conversions during the test period. But they are the only way to prove causation rather than correlation. Think of it as an A/B test for advertising effectiveness itself.
 </Warning>
 
 ---
 
 ## Matching Methods: How Attribution Connects the Dots
 
-Attribution systems need to connect "User A clicked this ad" with "User A installed this app." But how do you know it's the same user?
+Attribution systems need to connect "User A clicked this ad" with "User A installed this app." But how do you know it is the same user?
 
 ### Deterministic Matching
 
@@ -351,11 +359,11 @@ Uses **unique identifiers** that definitively link a user across touchpoints.
 | **Email / Phone (hashed)** | Cross-platform | `sha256("user@example.com")` |
 | **Login ID** | Logged-in platforms | Google, Facebook, Amazon user IDs |
 
-**Accuracy**: ~99%. If the IDFA on the ad click matches the IDFA on the app install, it's definitively the same device.
+**Accuracy**: approximately 99%. If the IDFA on the ad click matches the IDFA on the app install, it is definitively the same device.
 
 ### Probabilistic Matching
 
-When deterministic IDs aren't available (user opted out, cross-device), attribution falls back to **statistical estimation**.
+When deterministic IDs are not available (user opted out, cross-device), attribution falls back to **statistical estimation**.
 
 Signals used for probabilistic matching:
 - IP address
@@ -365,7 +373,7 @@ Signals used for probabilistic matching:
 - Carrier
 - Connection type (Wi-Fi vs. cellular)
 
-**Accuracy**: ~70-85%. It's an educated guess, not a certainty. Two people on the same office Wi-Fi with the same iPhone model could be confused.
+**Accuracy**: approximately 70-85%. It is an educated guess, not a certainty. Two people on the same office Wi-Fi with the same iPhone model could be confused.
 
 ### Device Graphs
 
@@ -383,9 +391,9 @@ graph TD
     D1 -.->|Email match| D2
 ```
 
-**Deterministic device graphs** (Google, Facebook, Amazon) link devices through logged-in user accounts. When you use Gmail on your phone and Chrome on your laptop, Google knows they're you.
+**Deterministic device graphs** (Google, Facebook, Amazon) link devices through logged-in user accounts. When you use Gmail on your phone and Chrome on your laptop, Google knows they are you.
 
-**Probabilistic device graphs** (Tapad, LiveRamp, Oracle) use statistical signals to infer device relationships. Less accurate but covers users who aren't logged in.
+**Probabilistic device graphs** (Tapad, LiveRamp, Oracle) use statistical signals to infer device relationships. Less accurate but covers users who are not logged in.
 
 ---
 
@@ -407,16 +415,16 @@ In April 2021, Apple launched **ATT** with iOS 14.5, fundamentally changing mobi
 
     The prompt reads: *"Allow [App Name] to track your activity across other companies' apps and websites?"*
 
-    There's no way for developers to customize this prompt or make it more appealing. Apple controls the exact wording.
+    There is no way for developers to customize this prompt or make it more appealing. Apple controls the exact wording.
   </Step>
   <Step title="Opt-in rates are devastatingly low">
     Only **20-25%** of users opt in globally. In privacy-conscious markets (Germany, France), opt-in rates drop to 10-15%. This means **75-80% of iOS users are invisible** to traditional attribution.
 
     The numbers are even worse for certain app categories:
-    - Social media apps: ~15% opt-in
-    - Gaming apps: ~20% opt-in
-    - Shopping apps: ~25% opt-in
-    - Banking/finance apps: ~10% opt-in
+    - Social media apps: approximately 15% opt-in
+    - Gaming apps: approximately 20% opt-in
+    - Shopping apps: approximately 25% opt-in
+    - Banking/finance apps: approximately 10% opt-in
   </Step>
   <Step title="Impact on the advertising ecosystem">
     - **Facebook reported** $10 billion in lost revenue in 2022 due to ATT
@@ -428,14 +436,14 @@ In April 2021, Apple launched **ATT** with iOS 14.5, fundamentally changing mobi
 </Steps>
 
 <Note>
-ATT didn't just affect attribution -- it broke the **feedback loop** that ad platforms relied on. Without conversion data flowing back from 75% of iOS users, platforms like Facebook couldn't optimize their ad delivery algorithms effectively. This is why Meta invested $10B+ in AI/ML to rebuild targeting and measurement capabilities without user-level signals.
+ATT did not just affect attribution -- it broke the **feedback loop** that ad platforms relied on. Without conversion data flowing back from 75% of iOS users, platforms like Facebook could not optimize their ad delivery algorithms effectively. This is why Meta invested $10B+ in AI/ML to rebuild targeting and measurement capabilities without user-level signals.
 </Note>
 
 ---
 
 ## SKAdNetwork (SKAN): Apple's Attribution Alternative
 
-Apple created **SKAdNetwork** as a privacy-preserving attribution framework for iOS. It provides attribution without revealing user-level data.
+Apple created **SKAdNetwork** as a privacy-preserving attribution framework for iOS. It provides attribution without revealing user-level data. Think of it as Apple saying: "We will tell you that your ad worked, but we will not tell you which specific user it worked on."
 
 ### How SKAN Works
 
@@ -477,7 +485,7 @@ sequenceDiagram
     - Still limited to 100 campaign IDs and 6-bit values
     - View-through attribution partially supported
 
-    Honestly, SKAN 3.0 was a minor upgrade. The fundamental constraints remained.
+    SKAN 3.0 was a minor upgrade. The fundamental constraints remained.
   </Tab>
   <Tab title="SKAN 4.0 (AdAttributionKit)">
     The big leap, released with iOS 16.1:
@@ -538,6 +546,10 @@ Event bits (E): 2 bits = 4 event combinations
 This lets you report both revenue ranges and key funnel events in a single 6-bit value. MMPs like Airbridge, AppsFlyer, and Adjust provide conversion value management tools that optimize these schemas automatically based on your historical data.
 </Accordion>
 
+<Tip>
+**Pro Tip**: If you are just getting started with SKAN, do not try to build a custom conversion value schema from scratch. Use your MMP's built-in conversion value management tools. They have already solved this optimization problem for thousands of apps and will automatically configure the best schema based on your data patterns.
+</Tip>
+
 ---
 
 ## Android Privacy Sandbox
@@ -548,12 +560,12 @@ Google is following Apple's direction but taking a more gradual, collaborative a
 
 Replaces behavioral tracking with **interest-based categories**:
 
-1. Chrome/Android classifies websites and apps into topics from a taxonomy (~470 topics)
+1. Chrome and Android classify websites and apps into topics from a taxonomy (approximately 470 topics)
 2. Each week, the system records your top 5 topics based on usage
 3. When an ad is shown, the API returns 3 random topics (one per week for the last 3 weeks)
 4. Advertisers can target users based on these broad interest categories
 
-**Key difference from cookies/IDFA**: Advertisers see coarse interest categories, not specific browsing history or cross-app behavior. You can target "people interested in running" but not "people who viewed Nike Pegasus 41 in size 10."
+**Key difference from cookies and IDFA**: Advertisers see coarse interest categories, not specific browsing history or cross-app behavior. You can target "people interested in running" but not "people who viewed Nike Pegasus 41 in size 10."
 
 ### Attribution Reporting API
 
@@ -561,7 +573,7 @@ Google's alternative to SKAdNetwork, with two report types:
 
 <Tabs>
   <Tab title="Event-Level Reports">
-    - Links a specific ad click/view to a conversion
+    - Links a specific ad click or view to a conversion
     - Limited conversion data: 3 bits for clicks (8 values), 1 bit for views (2 values)
     - Delayed by at least 2 days (clicks) or up to 30+ days (views) with noise added
     - Useful for campaign optimization at a basic level
@@ -611,7 +623,7 @@ sequenceDiagram
 - Increasingly the only option as client-side tracking breaks down
 
 <Tip>
-**S2S is becoming mandatory, not optional.** Meta now heavily penalizes advertisers who rely solely on the browser pixel. Their algorithm gives significant preference to Conversions API data for optimization. If you're not sending S2S conversions, your campaigns are likely underperforming compared to competitors who do.
+**Pro Tip**: S2S is becoming mandatory, not optional. Meta now heavily penalizes advertisers who rely solely on the browser pixel. Their algorithm gives significant preference to Conversions API data for optimization. If you are not sending S2S conversions, your campaigns are likely underperforming compared to competitors who do. Make S2S integration a priority.
 </Tip>
 
 ---
@@ -624,13 +636,13 @@ sequenceDiagram
 
 <CardGroup cols={2}>
   <Card title="Single Source of Truth" icon="database">
-    Without an MMP, each ad network reports its own numbers. Facebook says "we drove 1,000 installs," Google says "we drove 800," and TikTok says "we drove 600." But your actual total is only 1,200. Who's right? The MMP deduplicates and provides the real answer.
+    Without an MMP, each ad network reports its own numbers. Facebook says "we drove 1,000 installs," Google says "we drove 800," and TikTok says "we drove 600." But your actual total is only 1,200. Who is right? The MMP deduplicates and provides the real answer.
   </Card>
   <Card title="App Store Gap" icon="mobile">
     When a user clicks a mobile ad, they go to the App Store, download the app, then open it. Connecting the original click to the eventual app open requires specialized infrastructure that spans this "app store gap" -- something no individual ad network can solve alone.
   </Card>
   <Card title="Deep Linking" icon="link">
-    MMPs route users to specific in-app content -- not just the home screen. This powers personalized onboarding experiences ("Welcome! Here's the product you were looking at") and significantly improves conversion rates.
+    MMPs route users to specific in-app content -- not just the home screen. This powers personalized onboarding experiences ("Welcome! Here is the product you were looking at") and significantly improves conversion rates.
   </Card>
   <Card title="Fraud Protection" icon="shield">
     MMPs detect and block fraudulent installs (bots, click farms, SDK spoofing) before you pay for them. This can save 10-30% of ad spend that would otherwise go to fraudsters.
@@ -641,7 +653,7 @@ sequenceDiagram
 
 <Tabs>
   <Tab title="AppsFlyer">
-    **Founded**: 2011, Israel. **Market position**: Market leader (~65-70% share among top apps).
+    **Founded**: 2011, Israel. **Market position**: Market leader (approximately 65-70% share among top apps).
 
     Known for broadest SRN (Self-Reporting Network) integrations, strong fraud protection (Protect360), and comprehensive analytics. First mover advantage in securing Google and Meta partnerships gave them a powerful moat. Their Protect360 fraud solution and OneLink deep linking are industry benchmarks.
   </Tab>
@@ -699,7 +711,7 @@ sequenceDiagram
 ```
 
 <Warning>
-**Only ~6 MMPs have certified partnerships with both Google and Meta.** This is the single most important competitive factor in the MMP market. Without these partnerships, an MMP can't receive attribution claims from or send postbacks to Google Ads, YouTube, Facebook, and Instagram -- which account for ~50% of mobile ad spend. This is why the MMP market has consolidated around a handful of players, and why it's extremely difficult for new entrants to compete.
+**Only approximately 6 MMPs have certified partnerships with both Google and Meta.** This is the single most important competitive factor in the MMP market. Without these partnerships, an MMP cannot receive attribution claims from or send postbacks to Google Ads, YouTube, Facebook, and Instagram -- which account for approximately 50% of mobile ad spend. This is why the MMP market has consolidated around a handful of players, and why it is extremely difficult for new entrants to compete.
 </Warning>
 
 ---
@@ -727,17 +739,17 @@ graph LR
     end
 ```
 
-SANs don't allow MMP tracking links on their ads. Instead, they report their own attribution claims to the MMP. The MMP must trust the SAN's data and deduplicate across all sources (other networks + all SANs) to determine the final winner.
+SANs do not allow MMP tracking links on their ads. Instead, they report their own attribution claims to the MMP. The MMP must trust the SAN's data and deduplicate across all sources (other networks + all SANs) to determine the final winner.
 
 <Note>
-**The SAN advantage in the privacy era**: Because SANs have logged-in user data (your Google account, Facebook profile), they can perform deterministic matching even without IDFA/GAID. This is why Meta and Google's attribution remained relatively strong post-ATT compared to smaller networks that relied entirely on device IDs.
+**The SAN advantage in the privacy era**: Because SANs have logged-in user data (your Google account, Facebook profile), they can perform deterministic matching even without IDFA or GAID. This is why Meta and Google's attribution remained relatively strong post-ATT compared to smaller networks that relied entirely on device IDs.
 </Note>
 
 ---
 
 ## Postback Flows
 
-Postbacks are the server-to-server callbacks that feed conversion data back to ad networks. They're the circulatory system of mobile attribution.
+Postbacks are the server-to-server callbacks that feed conversion data back to ad networks. They are the circulatory system of mobile attribution.
 
 ```mermaid
 sequenceDiagram
@@ -763,7 +775,7 @@ sequenceDiagram
 - **Revenue postback**: Includes revenue data for ROAS optimization
 - **Rejection postback**: Sent when a claimed install is flagged as fraud
 
-**Why postbacks are critical**: They're the feedback loop that makes campaign optimization work. Without timely, accurate postbacks, ad platforms can't train their ML models to find the right users. More postback data = better algorithm optimization = better campaign performance.
+**Why postbacks are critical**: They are the feedback loop that makes campaign optimization work. Without timely, accurate postbacks, ad platforms cannot train their ML models to find the right users. More postback data = better algorithm optimization = better campaign performance.
 
 ---
 
@@ -772,7 +784,7 @@ sequenceDiagram
 **Fingerprinting** was a probabilistic matching technique that created a "fingerprint" of the user's device using non-unique signals: IP address, user agent, screen resolution, OS version, language, and timezone.
 
 <Warning>
-**Fingerprinting is dead (or should be).** Apple explicitly banned fingerprinting in 2021, stating it violates their developer guidelines regardless of user consent status. Google is moving toward similar restrictions on Android. While some networks still attempt fingerprinting under euphemistic names like "probabilistic matching" or "advanced modeling," it's considered a **violation of platform policies** and can result in app removal from the App Store. Any MMP or network still relying on fingerprinting is playing a dangerous game.
+**Fingerprinting is dead (or should be).** Apple explicitly banned fingerprinting in 2021, stating it violates their developer guidelines regardless of user consent status. Google is moving toward similar restrictions on Android. While some networks still attempt fingerprinting under euphemistic names like "probabilistic matching" or "advanced modeling," it is considered a **violation of platform policies** and can result in app removal from the App Store. Any MMP or network still relying on fingerprinting is playing a dangerous game.
 </Warning>
 
 ---
@@ -792,14 +804,14 @@ If the app is installed, it opens directly to that product. If not, the link fai
 
 ### Deferred Deep Links
 
-The magic of deferred deep linking is that it works **even when the app isn't installed yet**:
+The magic of deferred deep linking is that it works **even when the app is not installed yet**:
 
 <Steps>
   <Step title="User clicks the link">
     The MMP records the deep link destination (`product/running-shoes-12345`) along with the click data (device info, timestamp, campaign details).
   </Step>
   <Step title="App not installed -- redirect to App Store">
-    The MMP detects the app isn't installed and redirects the user to the App Store or Play Store.
+    The MMP detects the app is not installed and redirects the user to the App Store or Play Store.
   </Step>
   <Step title="User installs and opens the app">
     The MMP SDK fires on first launch and checks with the MMP server: "Do you have a deferred deep link for this device?"
@@ -813,7 +825,7 @@ The magic of deferred deep linking is that it works **even when the app isn't in
 </Steps>
 
 <Tip>
-**Why deferred deep links matter for conversion rates**: Without deferred deep linking, a new user clicks an ad for running shoes, installs the app, and lands on the generic home screen. They have to search for the shoes again -- and many won't bother. With deferred deep linking, they land directly on the product page. This can improve conversion rates by **2-3x** because you eliminate the friction of re-finding the product.
+**Pro Tip**: Deferred deep links can improve conversion rates by **2-3x** because they eliminate the friction of re-finding the product. Without deferred deep linking, a new user clicks an ad for running shoes, installs the app, and lands on the generic home screen. They have to search for the shoes again -- and many will not bother. With deferred deep linking, they land directly on the product page. If you are running app install campaigns, deferred deep linking is one of the highest-ROI investments you can make.
 </Tip>
 
 ---
@@ -828,7 +840,7 @@ The magic of deferred deep linking is that it works **even when the app isn't in
     Last-click is simple but flawed. Data-driven is accurate but complex. The best approach combines MTA for digital channels, MMM for cross-channel measurement, and incrementality testing for causal proof.
   </Card>
   <Card title="MMPs are essential infrastructure" icon="server">
-    Without an MMP, mobile advertisers can't deduplicate conversions, can't get a unified view across channels, and can't send standardized postbacks to optimize campaigns. Only ~6 MMPs have Google + Meta SRN partnerships.
+    Without an MMP, mobile advertisers cannot deduplicate conversions, cannot get a unified view across channels, and cannot send standardized postbacks to optimize campaigns. Only approximately 6 MMPs have Google + Meta SRN partnerships.
   </Card>
   <Card title="Privacy is reshaping everything" icon="lock">
     SKAN, Privacy Sandbox, and the end of third-party cookies are forcing the industry to measure effectiveness with far less user-level data. Advertisers who adapt to aggregate measurement will thrive; those who cling to user-level tracking will struggle.

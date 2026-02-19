@@ -3,631 +3,284 @@ title: "Retargeting"
 description: "The complete guide to retargeting — bring back users who visited your site, saw your ad, installed but churned, or showed interest but didn't convert. Includes setup for every major platform."
 ---
 
-## Don't let interested users slip away
+# Retargeting
 
-Most people don't convert on the first touchpoint. They visit your website, check your App Store page, maybe even install but never open the app. **Retargeting brings them back.** It's the art of showing relevant ads to people who already know you exist.
+You have spent money to get someone interested in your product. They visited your website, downloaded your app, or clicked your ad — but they did not convert. Without retargeting, that user (and the money you spent to reach them) is gone forever.
 
-Retargeting campaigns typically have **2-5x better conversion rates** and **lower costs** than prospecting campaigns — because you're reaching people who already showed interest. They just need a nudge.
-
-## How retargeting works
-
-Here's the big picture of what happens:
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    THE RETARGETING CYCLE                     │
-│                                                             │
-│  1. USER INTERACTS                                          │
-│     ├── Sees your ad (but doesn't click)                    │
-│     ├── Visits your website                                 │
-│     ├── Views your App Store page                           │
-│     ├── Installs but doesn't sign up                        │
-│     └── Signs up but doesn't purchase                       │
-│                         ↓                                   │
-│  2. TRACKING RECORDS IT                                     │
-│     ├── Meta Pixel records website visit                    │
-│     ├── SDK records app install/activity                    │
-│     ├── Platform records ad engagement                      │
-│     └── User gets added to retargeting audience             │
-│                         ↓                                   │
-│  3. YOU SHOW A TARGETED AD                                  │
-│     ├── Different message than original ad                  │
-│     ├── Addresses why they didn't convert                   │
-│     ├── Creates urgency or removes objection                │
-│     └── Appears on their feed / search / content            │
-│                         ↓                                   │
-│  4. USER CONVERTS (at much higher rate)                     │
-│     ├── Installs the app                                    │
-│     ├── Completes sign-up                                   │
-│     ├── Makes a purchase                                    │
-│     └── Re-engages after going dormant                      │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
-
-<Note>
-  **Retargeting isn't creepy — it's helpful (when done right).** Think about it from the user's perspective: they looked at your app, were interested, but got distracted. A gentle reminder a few days later is often welcome. It only becomes creepy when you do it too aggressively or for too long. That's why frequency caps matter.
-</Note>
-
-## Funnel-stage retargeting
-
-The most effective retargeting strategy treats different users differently based on where they are in the funnel. Someone who watched 50% of your video ad is very different from someone who installed your app and churned after a week.
-
-### The retargeting funnel
-
-```
-     ┌───────────────────────────────────────┐
-     │           AWARENESS                    │
-     │   Video viewers, ad engagers           │  ← Largest audience,
-     │   Goal: Move to consideration          │     lowest intent
-     ├───────────────────────────────────────┤
-     │         CONSIDERATION                  │
-     │   Website visitors, store viewers      │  ← Medium audience,
-     │   Goal: Drive install                  │     medium intent
-     ├───────────────────────────────────────┤
-     │         ACTIVATION                     │
-     │   Installed but not signed up          │  ← Small audience,
-     │   Goal: Complete onboarding            │     high intent
-     ├───────────────────────────────────────┤
-     │          RETENTION                     │
-     │   Signed up but inactive (7-30d)       │  ← Small audience,
-     │   Goal: Re-engage                      │     was engaged
-     ├───────────────────────────────────────┤
-     │           REVENUE                      │
-     │   Active but hasn't purchased          │  ← Smallest audience,
-     │   Goal: Upsell / convert to paid       │     highest value
-     └───────────────────────────────────────┘
-```
-
-### Strategy for each funnel stage
-
-| Stage | Audience definition | Time window | Message strategy | Example ad |
-|-------|-------------------|-------------|-----------------|-----------|
-| **Awareness** | Watched 25%+ of your video ad, or engaged with your social content | 1-14 days | Deepen interest, show more value | "Liked what you saw? Here's how [App] helped 50K people save money." |
-| **Consideration** | Visited your website or App Store page but didn't install | 1-30 days | Address objections, reduce friction | "Still thinking about it? Try [App] free for 7 days — no credit card needed." |
-| **Activation** | Installed the app but didn't complete sign-up or onboarding | 1-14 days | Remind and motivate to finish setup | "You're 90% there! Finish setting up [App] and start seeing results." |
-| **Retention** | Completed onboarding but hasn't opened the app in 7-30 days | 7-60 days | Show new features, remind of value | "We've added 3 new features since your last visit. Come see what's new!" |
-| **Revenue** | Active user who hasn't made a purchase | 7-30 days | Offer incentive, show premium value | "Unlock Pro for 50% off this week. Get [premium feature] and [premium feature]." |
+Retargeting (also called remarketing) lets you show ads specifically to people who already interacted with your brand. These people are your warmest audience — they already know you. They just need a nudge.
 
 <Tip>
-  **The closer someone is to converting, the more you should spend per impression to retarget them.** A user who installed your app and completed onboarding is worth 10x more in retargeting budget than someone who watched 3 seconds of your video. Weight your budget accordingly.
+**Why retargeting matters**: On average, only 2-5% of first-time website visitors convert. That means 95-98% leave without taking action. Retargeting gives you a second (and third, and fourth) chance to convert them. Retargeting campaigns typically have 2-3x higher conversion rates and 50-70% lower CPA than cold prospecting campaigns.
 </Tip>
 
-## Setting up retargeting on each platform
+---
 
-### Meta (Facebook & Instagram)
+## The Retargeting Funnel
 
-Meta has the most powerful retargeting capabilities. Here's how to set it up:
+Different users need different retargeting strategies based on where they are in their journey:
+
+```mermaid
+graph TD
+    A["Awareness<br/>Saw your ad but didn't click"] --> B["Consideration<br/>Visited site/store but didn't act"]
+    B --> C["Activation<br/>Signed up / installed but didn't purchase"]
+    C --> D["Retention<br/>Purchased once but haven't returned"]
+    D --> E["Revenue<br/>Active users you want to upsell"]
+```
+
+| Funnel Stage | Who They Are | Retargeting Goal | Creative Approach |
+|---|---|---|---|
+| **Awareness** | Saw your ad, did not click | Get them to click | Reinforce the value proposition with a different angle |
+| **Consideration** | Visited your site/app store page | Get them to install or sign up | Social proof, reviews, limited-time offer |
+| **Activation** | Installed app but did not complete key action | Get them to complete onboarding | Show the "aha moment," tutorial, or benefit they missed |
+| **Retention** | Purchased once but went quiet | Get them to return | New features, new content, personalized recommendations |
+| **Revenue** | Active users | Upsell, cross-sell, upgrade | Premium features, bundles, loyalty rewards |
+
+---
+
+## Platform Setup: How to Create Retargeting Audiences
+
+### Meta (Facebook / Instagram)
 
 <Steps>
-  <Step title="Install the Meta Pixel on your website (if you have one)">
-    ```javascript
-    // Add this to your website's <head> tag
-    // Replace YOUR_PIXEL_ID with your actual pixel ID from Meta Events Manager
-
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'YOUR_PIXEL_ID');
-    fbq('track', 'PageView');
-    ```
+  <Step title="Go to Audiences in Ads Manager">
+    Navigate to **Audiences** in your Meta Ads Manager (under Assets or directly from the menu).
   </Step>
-  <Step title="Install Meta SDK in your app">
-    Follow the SDK Integration Guide for the full setup. The SDK automatically tracks installs and app opens.
+  <Step title="Create a Custom Audience">
+    Click **"Create Audience" > "Custom Audience"** and choose your source:
+
+    | Source | What It Retargets | Setup Needed |
+    |---|---|---|
+    | **Website** | People who visited specific pages | Meta Pixel installed |
+    | **App Activity** | People who took actions in your app | Meta SDK installed |
+    | **Customer List** | Your existing email/phone list | Upload hashed list |
+    | **Video** | People who watched your video ads | No additional setup |
+    | **Instagram/Facebook engagement** | People who interacted with your profile or ads | No additional setup |
   </Step>
-  <Step title="Create Custom Audiences in Meta Ads Manager">
-    Go to **Audiences** > **Create Audience** > **Custom Audience** and choose your source:
-
-    **Website Custom Audience:**
-    - All website visitors (last 30 days)
-    - Visitors to specific pages (e.g., pricing page)
-    - Visitors by time spent (top 25% by time on site)
-
-    **App Activity Custom Audience:**
-    - Anyone who opened your app
-    - People who completed specific events (sign-up, add-to-cart)
-    - People who haven't opened in X days (lapsed users)
-    - People who purchased (for exclusion OR upsell)
-
-    **Engagement Custom Audience:**
-    - People who watched 25/50/75/95% of your video ads
-    - People who engaged with your Facebook/Instagram page
-    - People who opened or completed a lead form
+  <Step title="Define your audience rules">
+    Examples:
+    - "People who visited the pricing page in the last 14 days but did not purchase"
+    - "People who added to cart in the last 7 days but did not check out"
+    - "People who installed the app in the last 30 days but did not subscribe"
   </Step>
-  <Step title="Create retargeting campaigns">
-    Create a new campaign with these settings:
-
-    ```
-    Campaign objective:   App Installs (for consideration stage)
-                          OR Conversions (for revenue stage)
-    Audience:             Your Custom Audience from Step 3
-    Exclusions:           Exclude people who already converted
-                          (e.g., exclude purchasers from install campaign)
-    Budget:               15-25% of your total ad budget
-    Placements:           Automatic (Meta distributes to best placements)
-    Creative:             Retargeting-specific ads (NOT your prospecting ads)
-    ```
+  <Step title="Use the audience in your campaigns">
+    When creating a new ad set, select your Custom Audience as the target audience.
   </Step>
 </Steps>
 
-#### Meta retargeting audience recipes
-
-| Audience name | Source | Definition | Use for |
-|---------------|--------|-----------|---------|
-| **Video Engagers** | Engagement | Watched 50%+ of any video ad, last 14 days | Moving awareness → consideration |
-| **Website Visitors** | Website (Pixel) | Visited any page, last 30 days, excluding installers | Driving installs |
-| **App Installers - Not Signed Up** | App Activity | Installed app, did NOT complete registration event, last 14 days | Driving activation |
-| **Lapsed Users** | App Activity | Completed registration, last app open > 14 days ago | Re-engagement |
-| **Free Users** | App Activity | Active in last 30 days, no purchase event | Upsell to premium |
-
 ### Google Ads
 
-Google offers retargeting through Display, YouTube, and Search campaigns:
-
 <Steps>
-  <Step title="Set up Google Tag on your website">
-    ```html
-    <!-- Add to <head> -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-YOUR_CONVERSION_ID"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-YOUR_CONVERSION_ID');
-    </script>
-    ```
+  <Step title="Create remarketing lists">
+    In Google Ads, go to **Tools > Audience Manager** and create remarketing lists based on:
+    - Website visitors (requires Google tag installed)
+    - App users (requires Firebase SDK)
+    - YouTube viewers
+    - Customer match (email/phone upload)
   </Step>
-  <Step title="Link Firebase to Google Ads">
-    In Firebase Console > **Project Settings** > **Integrations** > **Google Ads**, link your accounts. This automatically shares app audiences.
-  </Step>
-  <Step title="Create remarketing audiences in Google Ads">
-    Go to **Tools & Settings** > **Audience Manager** > **Your data segments**:
-
-    **Website visitors:**
-    - All visitors (last 30 days)
-    - Visitors to specific URLs
-    - Visitors who completed a conversion
-
-    **App users (via Firebase link):**
-    - All app users
-    - Users who completed specific events
-    - Users who haven't used the app in X days
-    - Purchasers (for exclusion or upsell)
-
-    **YouTube viewers:**
-    - Watched any video from your channel
-    - Watched specific videos
-    - Subscribed to your channel
-  </Step>
-  <Step title="Create remarketing campaigns">
-    ```
-    Campaign type:    Display (for visual retargeting)
-                      OR Search (for search retargeting)
-                      OR Video (for YouTube retargeting)
-    Audience:         Your remarketing segment from Step 3
-    Exclusions:       Exclude converters
-    Budget:           15-20% of your Google Ads budget
-    Bidding:          Target CPA or Maximize Conversions
-    ```
+  <Step title="Apply to campaigns">
+    Add your remarketing audience to a Display, Search, or YouTube campaign as a targeting criterion.
   </Step>
 </Steps>
 
 ### TikTok
 
 <Steps>
-  <Step title="Install TikTok Pixel on your website">
-    Go to **Assets** > **Events** > **Website Pixel** and follow the setup wizard. Add the pixel code to your website's `<head>`.
+  <Step title="Create a Custom Audience in Ads Manager">
+    Go to **Assets > Audiences > Create Audience > Custom Audience**.
   </Step>
-  <Step title="Install TikTok SDK in your app">
-    Follow the SDK Integration Guide for the full setup.
-  </Step>
-  <Step title="Create Custom Audiences">
-    Go to **Assets** > **Audiences** > **Create Audience** > **Custom Audience**:
-
-    **App Activity:**
-    - App install
-    - App open
-    - Specific in-app events
-    - Inactive users (no activity in X days)
-
-    **Website Traffic (Pixel):**
-    - All visitors
-    - Visitors to specific pages
-    - Visitors who completed events
-
-    **Engagement:**
-    - Viewed your ad
-    - Clicked your ad
-    - Watched 2s/6s/full video
-    - Engaged with your TikTok profile
-  </Step>
-  <Step title="Create retargeting ad groups">
-    ```
-    Campaign objective:   App Installs or Conversions
-    Audience:             Your Custom Audience
-    Exclusions:           Exclude people who already converted
-    Budget:               $20+/day minimum
-    Creative:             TikTok-native retargeting content
-    Note:                 TikTok retargeting audiences can be small —
-                          if audience is under 1,000, combine segments
-    ```
+  <Step title="Choose your source">
+    - **App Activity**: Users who installed, opened, or took specific actions
+    - **Website Traffic**: Visitors tracked by TikTok Pixel
+    - **Customer File**: Upload hashed email/phone list
+    - **Engagement**: People who interacted with your TikTok ads
   </Step>
 </Steps>
 
 ### Apple Search Ads
 
-<Note>
-  **Apple Search Ads doesn't support traditional retargeting in the same way as Meta, Google, or TikTok.** However, you can set up "Returning Users" campaigns to target people who previously downloaded your app but may have deleted it. This is useful for re-engagement after major updates.
+Apple Search Ads has more limited retargeting, but you can target:
 
-  To set this up: When creating a campaign, under **Customer Type**, select **"Returning Users"** (users who have downloaded your app before).
-</Note>
+- **Returning users**: People who have downloaded your app before but may have deleted it
+- **Users of your other apps**: If you have multiple apps, target users of App A with ads for App B
+- **All users / New users**: Segment by whether they have ever downloaded your app
 
-## Retargeting creative best practices
+---
 
-Retargeting ads must be **different** from your prospecting ads. These people already know you — talk to them accordingly.
+## Creative Best Practices for Retargeting
 
-### Prospecting vs. retargeting creative
+Retargeting ads should be **different** from your prospecting (cold audience) ads. The person already knows who you are. Here is what to do differently:
 
-| Element | Prospecting ad | Retargeting ad |
-|---------|---------------|---------------|
-| **Tone** | Introduce yourself, explain what you do | Assume familiarity, address the "why not?" |
-| **Hook** | "Discover the app that..." | "Still thinking about [App]?" |
-| **Content** | Features, benefits, differentiation | Objection handling, social proof, urgency |
-| **CTA** | "Learn More" or "Try Free" | "Come Back" or "Claim Your Offer" |
-| **Offer** | Usually none | Discount, extended trial, bonus feature |
-| **Creative style** | Broad appeal, attention-grabbing | Personalized, reminder-style |
+### For Website/App Store Visitors Who Did Not Convert
 
-### Retargeting creative strategies by funnel stage
+| Strategy | Example |
+|---|---|
+| **Remind them** | "Still thinking about it? Here's what you're missing." |
+| **Add social proof** | "Join 50,000+ users who already switched" |
+| **Offer an incentive** | "Come back and get 20% off your first month" |
+| **Address objections** | "Worried about X? Here's why you shouldn't be." |
 
-<CardGroup cols={2}>
-  <Card title="Acknowledge them" icon="hand-wave">
-    "Still interested in [App Name]?" Show that you know they've been around. This feels personal (in a good way) and re-establishes the connection. Works best for consideration stage.
-  </Card>
-  <Card title="Address objections" icon="shield">
-    If they didn't convert, there's a reason. Address common objections directly: "No credit card required." "Set up in 2 minutes." "Free forever — paid plan optional." Remove the friction.
-  </Card>
-  <Card title="Create urgency" icon="clock">
-    Limited-time offers, expiring discounts, or countdowns. "Get 50% off Pro — this week only." "The new version launches Friday — get in before prices go up." Push fence-sitters to act.
-  </Card>
-  <Card title="Show social proof" icon="star">
-    Reviews, testimonials, user counts, and app store ratings. "Join 50K+ users who already made the switch." "4.8 stars with 10K+ reviews." Numbers reduce uncertainty.
-  </Card>
-  <Card title="Show what's new" icon="sparkles">
-    For lapsed users, highlight new features or improvements since they last used the app. "We've completely redesigned the dashboard based on your feedback." Makes re-engagement feel fresh.
-  </Card>
-  <Card title="Offer an incentive" icon="gift">
-    For high-value conversion goals (purchases, subscriptions), a direct incentive can justify the investment. "Come back and get your first month free." Only use for bottom-of-funnel audiences.
-  </Card>
-</CardGroup>
+### For Users Who Installed But Did Not Activate
 
-### Example retargeting ad scripts
+| Strategy | Example |
+|---|---|
+| **Show the value** | "You haven't tried [key feature] yet — here's how" |
+| **Tutorial / walkthrough** | "Set up in 60 seconds: here's how" |
+| **Personalize** | "Your [goal] journey starts with one tap" |
 
-<Accordion title="Script 1: Consideration stage (website visitor who didn't install)">
-```
-[HOOK - 3 seconds]
-"Hey, I noticed you checked out [App Name] the other day..."
+### For Churned Users
 
-[BODY - 10 seconds]
-"I get it — there are a lot of apps out there. But here's what
-makes us different: [key differentiator]. And you can try it
-completely free."
-
-[CTA - 3 seconds]
-"Download free — no credit card, no commitment."
-
-Visual: Casual, speaking-to-camera UGC style
-Length: 15-20 seconds
-Format: 9:16 vertical for Stories/Reels
-```
-</Accordion>
-
-<Accordion title="Script 2: Activation stage (installed but didn't sign up)">
-```
-[HOOK - 3 seconds]
-"You downloaded [App Name] — nice! But you haven't finished
-setting up yet..."
-
-[BODY - 10 seconds]
-"It takes literally 30 seconds to create your account, and
-then [key benefit] starts working for you immediately. Here's
-what you're missing out on..."
-
-[Show quick screen recording of the setup flow]
-
-[CTA - 3 seconds]
-"Open [App Name] and finish setting up. Future you will thank you."
-
-Visual: Mix of talking head and screen recording
-Length: 15-25 seconds
-```
-</Accordion>
-
-<Accordion title="Script 3: Revenue stage (active user, hasn't purchased)">
-```
-[HOOK - 3 seconds]
-"You've been using [App Name] for a while now..."
-
-[BODY - 10 seconds]
-"Imagine [App] with [premium feature 1], [premium feature 2],
-and [premium feature 3]. That's what Pro gives you.
-
-And this week, it's 50% off."
-
-[Show premium features in action]
-
-[CTA - 3 seconds]
-"Upgrade to Pro — 50% off this week only."
-
-Visual: Polished screen recording showing premium features
-Length: 15-20 seconds
-```
-</Accordion>
-
-## Dynamic retargeting
-
-Dynamic retargeting shows users the *specific* products or content they viewed, not just generic ads. It's most useful for e-commerce and content apps.
-
-### When to use dynamic retargeting
-
-| App type | Dynamic retargeting use case |
-|----------|---------------------------|
-| **E-commerce** | Show the exact products the user viewed or added to cart |
-| **Travel** | Show the destinations or hotels the user searched for |
-| **Real estate** | Show similar listings to ones the user viewed |
-| **Content/media** | Show content recommendations based on viewing history |
-| **General app** | Usually not applicable — use standard retargeting instead |
-
-### Setting up dynamic retargeting
-
-Dynamic retargeting requires a **product catalog** connected to your ad platform:
-
-| Platform | Catalog requirement | Setup location |
-|----------|-------------------|---------------|
-| **Meta** | Product catalog in Commerce Manager | Commerce Manager > Catalogs |
-| **Google** | Product feed in Merchant Center | Google Merchant Center |
-| **TikTok** | Product catalog in TikTok Business Center | Assets > Catalogs |
-
-<Note>
-  **Dynamic retargeting is an advanced feature.** If your app doesn't have a product catalog (most non-e-commerce apps don't), standard retargeting with well-crafted creative is just as effective. Don't force dynamic retargeting where it doesn't make sense.
-</Note>
-
-## Frequency capping: don't be creepy
-
-Retargeting can cross the line from helpful reminder to stalker energy very quickly. Frequency caps control how often someone sees your retargeting ads.
-
-### Recommended frequency caps
-
-| Audience warmth | Who they are | Max frequency | Time window | Max retargeting duration |
-|----------------|-------------|--------------|-------------|------------------------|
-| **Hot** | Visited this week, engaged with ad | 1-2 impressions/day | 7 days | 14 days |
-| **Warm** | Visited this month, watched video | 3-5 impressions/week | 14-21 days | 30 days |
-| **Cool** | Visited 30+ days ago | 1-2 impressions/week | 30 days | 60 days |
-| **Lapsed app users** | Haven't used app in 30+ days | 2-3 impressions/week | 30 days | 90 days |
-
-### How to set frequency caps on each platform
-
-| Platform | Frequency cap setting | Location |
-|----------|---------------------|----------|
-| **Meta** | Set at ad set level: Reach & Frequency campaign type, or use Reach objective | Campaign creation > Ad Set > Optimization & Delivery |
-| **Google** | Set at campaign level for Display campaigns | Campaign Settings > Additional Settings > Frequency Capping |
-| **TikTok** | Set at ad group level | Ad Group > Frequency & Schedule |
-| **Apple Search Ads** | No frequency cap setting (managed automatically) | N/A |
-
-<Warning>
-  **If someone sees your retargeting ad 10+ times and doesn't convert, showing it 10 more times won't help.** In fact, it will actively damage your brand perception. People who feel "followed" by ads develop negative associations with the brand. Set frequency caps and respect them. If someone doesn't convert after reasonable exposure, move on.
-</Warning>
-
-## Exclude converters: critical but often forgotten
-
-One of the most common retargeting mistakes is **showing ads to people who already converted**. This wastes budget and annoys users.
-
-### Exclusion audiences to create
-
-| Campaign type | Who to exclude |
-|--------------|---------------|
-| **Install campaigns** | People who already installed your app |
-| **Sign-up campaigns** | People who already completed registration |
-| **Purchase campaigns** | People who already made a purchase (or exclude recent purchasers for 7-14 days) |
-| **Re-engagement campaigns** | People who re-engaged in the last 7 days |
-
-### How to set up exclusions
-
-```
-On every retargeting campaign:
-
-1. Create a Custom Audience of people who completed the goal action
-   → Example: "Purchasers - Last 30 days"
-
-2. In your campaign's ad set / ad group settings, add this audience
-   as an EXCLUSION
-
-3. This prevents them from seeing the ad
-
-Why this matters:
-→ Saves budget (no impressions wasted on already-converted users)
-→ Prevents user annoyance ("I already bought this, stop showing me ads!")
-→ Improves campaign metrics (higher conversion rates since you removed
-   people who can't convert again)
-```
-
-## Budget allocation for retargeting
-
-Retargeting should be a portion of your total budget — not the majority:
-
-```
-Total monthly ad budget: $3,000
-
-├── 70-75% → Prospecting ($2,100-2,250)
-│   └── Finding NEW users who don't know your app exists
-│
-├── 15-20% → Retargeting ($450-600)
-│   ├── Consideration: Website visitors → install ($200-300)
-│   ├── Activation: Installers → sign-up ($100-150)
-│   └── Revenue: Active users → purchase ($100-150)
-│
-└── 5-10% → Re-engagement ($150-300)
-    └── Lapsed users → re-open the app
-```
-
-### Why not spend more on retargeting?
-
-Retargeting audiences are **small** compared to prospecting audiences. If you allocate too much budget to retargeting:
-
-- You'll hit frequency caps quickly (same people see ads too often)
-- CPMs increase as you bid against yourself for a small audience
-- You'll exhaust the audience without new prospects to refill it
-- The funnel runs dry — retargeting needs prospecting to feed it
+| Strategy | Example |
+|---|---|
+| **New features** | "We added [feature] since you left — check it out" |
+| **Win-back offer** | "We miss you. Here's 1 month free." |
+| **FOMO** | "Your friends are already using [new feature]" |
 
 <Tip>
-  **Think of prospecting and retargeting as a system.** Prospecting fills the top of the funnel (awareness). Retargeting pushes people through each stage. Without prospecting, retargeting audiences shrink. Without retargeting, you lose people who were interested but not ready. You need both.
+**Pro Tip**: Never show the same ad to retargeting audiences that you showed during prospecting. They already saw that ad. Retargeting creative should address the specific reason they did not convert. Did they leave because of price? Show a discount. Did they leave because they did not understand the product? Show a tutorial. Match the message to the objection.
 </Tip>
 
-## Cross-platform retargeting
+---
 
-Users live on multiple platforms. A smart retargeting strategy uses this to your advantage:
+## Frequency Capping: Do Not Be Creepy
 
-### Cross-platform retargeting flow
+The biggest risk with retargeting is annoying your audience by showing them the same ad too many times. This is called **ad fatigue** and it can actually hurt your brand.
 
+### Recommended Frequency Caps
+
+| Funnel Stage | Recommended Frequency Cap | Why |
+|---|---|---|
+| **Consideration** | 2-3 impressions per user per day | They are interested but need a nudge, not harassment |
+| **Activation** | 1-2 per day | Gentle reminders, not pressure |
+| **Retention** | 3-5 per week | Less frequent, more relevant |
+| **Win-back** | 1-2 per week | Very light touch — they left for a reason |
+
+### How to Set Frequency Caps
+
+- **Meta**: Set at the ad set level under "Optimization and Delivery" (limited controls, mostly algorithmic)
+- **Google**: Set at the campaign level under "Additional Settings > Frequency Capping"
+- **TikTok**: Set at the ad group level under "Frequency" settings
+- **Programmatic (DV360, TTD)**: Full control over impressions per user per day/week
+
+<Tip>
+**Pro Tip**: If you cannot set explicit frequency caps (Meta makes this difficult for some campaign types), control frequency by keeping your retargeting audience **large** relative to your budget. A $20/day budget against a 100,000-person audience will naturally result in low frequency. The same $20/day against a 1,000-person audience will result in very high frequency.
+</Tip>
+
+---
+
+## Exclusion Audiences: Equally Important
+
+Exclusion audiences tell the platform who **NOT** to show your ads to. This is just as important as targeting:
+
+| Exclusion | Why |
+|---|---|
+| **Existing subscribers/customers** | Do not waste money retargeting people who already converted |
+| **Recent converters (7-14 days)** | Give them time to experience the product before upselling |
+| **People who opted out / unsubscribed** | Respect their decision |
+| **Employees and team members** | You do not want to inflate your own metrics |
+
+<Steps>
+  <Step title="Create exclusion audiences">
+    Using the same Custom Audience creation process, create audiences for people you want to exclude.
+  </Step>
+  <Step title="Apply exclusions to every campaign">
+    In your ad set / ad group targeting, add these as **exclusions**. This is critical for both retargeting AND prospecting campaigns.
+  </Step>
+</Steps>
+
+---
+
+## Dynamic Retargeting
+
+**Dynamic retargeting** automatically shows users the specific products or content they viewed. Instead of a generic ad, each person sees the exact items they browsed.
+
+### How It Works
+
+1. User visits your site and views Product A, Product B, and Product C
+2. Your pixel tracks which products they viewed
+3. When you retarget them, the ad automatically shows Product A, B, and C in a carousel
+4. Each user sees a personalized ad based on their browsing behavior
+
+### Platform Support
+
+| Platform | Dynamic Retargeting | Setup Requirement |
+|---|---|---|
+| **Meta** | Yes (Dynamic Ads / Advantage+ Catalog) | Product catalog upload |
+| **Google** | Yes (Dynamic Remarketing) | Google Merchant Center feed |
+| **TikTok** | Yes (Catalog Ads) | Product catalog upload |
+| **Apple Search Ads** | No | Not applicable |
+
+<Tip>
+**Pro Tip**: Dynamic retargeting is most powerful for e-commerce and travel businesses where users browse multiple products. If you have a product catalog, set up dynamic retargeting immediately — it typically delivers the lowest CPA of any campaign type because the ads are highly personalized and relevant.
+</Tip>
+
+---
+
+## Budget Allocation for Retargeting
+
+A common question: what percentage of your total ad budget should go to retargeting?
+
+| Total Monthly Budget | Retargeting Allocation | Why |
+|---|---|---|
+| **Under $3,000** | 10-15% | Small retargeting audiences; focus most budget on prospecting |
+| **$3,000 - $10,000** | 15-25% | Growing retargeting pool; meaningful volume |
+| **$10,000 - $50,000** | 20-30% | Large retargeting audiences; multiple funnel stages |
+| **$50,000+** | 25-35% | Full-funnel retargeting across all platforms |
+
+<Tip>
+**Pro Tip**: Your retargeting audience size depends on your prospecting spend. More money spent on prospecting means more people visit your site or app store page, which means a larger retargeting audience. The two work together — do not treat them as separate strategies.
+</Tip>
+
+---
+
+## Cross-Platform Retargeting
+
+Your best retargeting strategy uses multiple platforms to reach users wherever they spend time:
+
+```mermaid
+graph LR
+    USER["User visits<br/>your website"] --> META["Retarget on<br/>Facebook/Instagram"]
+    USER --> GOOGLE["Retarget on<br/>Google Display"]
+    USER --> TIKTOK["Retarget on<br/>TikTok"]
+    USER --> EMAIL["Retarget via<br/>Email"]
 ```
-User sees your Meta ad → visits your website
-    ↓
-Google Display retargeting shows them an ad on news sites
-    ↓
-User sees your TikTok retargeting ad
-    ↓
-User searches for your app on App Store
-    ↓
-Apple Search Ads captures the install
 
-Result: Multiple touchpoints across platforms
-        increased the likelihood of conversion
-```
+### How to Set Up Cross-Platform Retargeting
 
-### How to implement cross-platform retargeting
+1. Install pixels/tags from all platforms on your website
+2. Create retargeting audiences on each platform
+3. Coordinate messaging across platforms (do not show the exact same ad everywhere)
+4. Monitor total frequency across all platforms to avoid over-exposure
 
-| Step | What to do | Why |
-|------|-----------|-----|
-| 1. Install all tracking pixels/SDKs | Meta Pixel, Google Tag, TikTok Pixel on website; all SDKs in app | Each platform can only retarget users it has tracked |
-| 2. Create retargeting audiences on each platform | Each platform will build its own audience from its own tracking data | Audiences will overlap but that's okay at reasonable frequency |
-| 3. Use different creative per platform | TikTok-native on TikTok, polished on Meta, text-heavy on Google Search | Each platform has different user expectations |
-| 4. Stagger timing | Meta retargeting days 1-7, Google retargeting days 3-14, TikTok retargeting days 7-21 | Avoids overwhelming the user on all platforms simultaneously |
-| 5. Monitor combined frequency | Use an MMP or manual tracking to estimate total ad exposure | Total frequency across platforms shouldn't exceed 2-3x per day |
+---
 
-## Real campaign setup examples
+## iOS Privacy Impact on Retargeting
 
-### Example 1: Complete retargeting funnel for a SaaS app
+With iOS App Tracking Transparency (ATT), retargeting on iOS has become significantly harder:
 
-<Accordion title="Full campaign setup details">
-```
-APP: Project management tool (freemium, $12/month pro plan)
+| Scenario | Impact |
+|---|---|
+| User opts in to tracking | Full retargeting available (only ~20-25% of iOS users) |
+| User opts out of tracking | Very limited retargeting — platform-based only (engagement, video views) |
+| Web-based retargeting | Still works via first-party cookies (limited to the same browser/device) |
 
-CAMPAIGN 1: Awareness → Consideration
-  Platform: Meta
-  Audience: People who watched 50%+ of video ads (last 14 days)
-  Excluding: Anyone who already visited the website or installed
-  Budget: $10/day
-  Creative: "Here's what 50K teams use to stay organized" (social proof)
-  CTA: Learn More → landing page
+### What Still Works
 
-CAMPAIGN 2: Consideration → Install
-  Platform: Meta + Google Display
-  Audience: Website visitors (last 30 days) who didn't install
-  Excluding: App installers
-  Budget: $15/day (Meta $10, Google $5)
-  Creative: "Try free for 14 days — no credit card needed" (objection removal)
-  CTA: Download Free
+- **Engagement-based retargeting**: Target people who interacted with your content on the platform itself (liked, commented, watched video). This does not require cross-app tracking.
+- **Customer list uploads**: Upload hashed email/phone lists to create audiences. This works regardless of ATT.
+- **Server-side tracking**: Meta's Conversions API and Google's Enhanced Conversions improve retargeting signal despite client-side limitations.
 
-CAMPAIGN 3: Install → Activation
-  Platform: Meta
-  Audience: App installers who didn't complete onboarding (last 14 days)
-  Excluding: Anyone who completed onboarding
-  Budget: $5/day
-  Creative: "You're 2 minutes away from a more organized life" (motivation)
-  CTA: Open App (deep link to onboarding)
+---
 
-CAMPAIGN 4: Active → Purchase
-  Platform: Meta
-  Audience: Active users (last 30 days) who haven't purchased
-  Excluding: Pro subscribers
-  Budget: $8/day
-  Creative: "Unlock Pro features — 30% off this month" (incentive)
-  CTA: Upgrade Now (deep link to upgrade screen)
+## Key Takeaways
 
-CAMPAIGN 5: Lapsed → Re-engaged
-  Platform: Meta + TikTok
-  Audience: Last app open > 21 days ago
-  Excluding: Active users (last 21 days)
-  Budget: $5/day
-  Creative: "We've made some big changes since you left" (new features)
-  CTA: Open App
+1. **Retargeting converts 2-3x better** than cold prospecting because you are reaching people who already know you
+2. **Match your message to the funnel stage**: Awareness, consideration, activation, retention, and revenue each need different creative
+3. **Set frequency caps**: 2-3 impressions per day maximum for most retargeting. More than that is annoying.
+4. **Use exclusion audiences**: Do not retarget people who already converted
+5. **Allocate 15-30% of budget** to retargeting depending on your total spend
+6. **Dynamic retargeting** is the most powerful form — show users the specific products they viewed
+7. **iOS privacy limits retargeting** on mobile, but engagement-based and list-based approaches still work
 
-TOTAL RETARGETING BUDGET: $43/day = ~$1,300/month
-(Should be ~20% of a ~$6,500/month total ad budget)
-```
-</Accordion>
-
-### Example 2: Simple retargeting for a new app (small budget)
-
-<Accordion title="Full campaign setup details">
-```
-APP: Habit tracking app (subscription, $4.99/month)
-TOTAL BUDGET: $600/month
-
-You don't need a 5-campaign funnel when starting out.
-Start with ONE retargeting campaign:
-
-CAMPAIGN: Catch the interested ones
-  Platform: Meta
-  Audience: Combined audience:
-    → Video viewers (50%+ watched, last 14 days)
-    → Website visitors (last 30 days)
-    → App installers who haven't opened in 7+ days
-  Excluding: Active users (opened app in last 7 days)
-  Budget: $3/day (~$90/month, 15% of total budget)
-  Creative: Carousel showing 3 benefits + a testimonial
-  CTA: "Try Free" or "Open App" depending on audience
-
-The other $510/month goes to prospecting.
-
-When you scale past $1,500/month total, add separate
-retargeting campaigns for each funnel stage.
-```
-</Accordion>
-
-## Measuring retargeting performance
-
-| Metric | Prospecting benchmark | Retargeting benchmark | Why it's different |
-|--------|---------------------|---------------------|--------------------|
-| **CTR** | 1-2% | 2-5% | Users already know you |
-| **CPI** | $2-5 | $0.50-2 | Higher conversion rate |
-| **Conversion rate** | 2-5% | 10-25% | Warm audience |
-| **Frequency** | 1-3 | Keep under 4-5/week | Higher tolerance but still limited |
-| **ROAS** | 1-3x | 3-10x | Much more efficient per dollar |
-
-<Warning>
-  **Don't compare retargeting ROAS to prospecting ROAS and conclude "retargeting is way better."** Retargeting only works because prospecting filled the funnel. The prospecting campaign that got $0 direct ROAS actually *created* the retargeting audience that got 8x ROAS. They work as a system. Evaluate total blended ROAS across both.
-</Warning>
-
-## What's next
-
-<CardGroup cols={2}>
-  <Card
-    title="Vibe Coder Quick Start"
-    icon="rocket"
-    href="/playbook/vibe-coder-quick-start"
-  >
-    Want the TL;DR of everything? Check out the Vibe Coder Quick Start — launch your first ad in 60 minutes.
-  </Card>
-  <Card
-    title="Creative Testing"
-    icon="flask"
-    href="/playbook/creative-testing"
-  >
-    Your retargeting creative needs to be different from your prospecting creative. Learn how to test systematically.
-  </Card>
-</CardGroup>
+<Tip>
+**Final thought**: Retargeting is one of the highest-ROI advertising strategies available. Every dollar you spend on prospecting creates potential retargeting audiences. Every dollar you spend on retargeting converts those audiences more efficiently. The two strategies are complementary — invest in both.
+</Tip>

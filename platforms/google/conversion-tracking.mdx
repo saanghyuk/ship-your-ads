@@ -1,839 +1,548 @@
 ---
 title: "Google Conversion Tracking"
-description: "Complete guide to conversion tracking for Google Ads. Firebase SDK installation for React Native, Swift, and Kotlin. Google Tag for web. Server-side enhanced conversions. Debugging, verification, and conversion windows."
+description: "A complete beginner's guide to setting up conversion tracking for Google Ads — installing Google Tag (gtag.js), creating conversion actions, enhanced conversions, and verifying everything works."
 ---
 
-## Measure it or it didn't happen
+## Why Conversion Tracking Is Non-Negotiable
 
-Google's ad algorithm optimizes toward conversions -- but only if it can see them. Without proper conversion tracking, Google is flying blind, spending your money with no signal about what's working. This guide covers every tracking method in detail.
+Without conversion tracking, Google Ads is like a delivery driver without GPS. The driver might eventually get your package delivered, but it will take longer, cost more, and some packages will end up at the wrong address. Conversion tracking is the GPS that tells Google exactly where the valuable outcomes are, so it can drive traffic directly to them.
 
-## How Google Ads conversion tracking works
+Here is what conversion tracking does:
 
-Here's the flow at a high level:
+- **Tells you which ads, keywords, and audiences drive actual business results** — not just clicks
+- **Enables Smart Bidding** — Google's automated bid strategies that optimize for conversions instead of clicks
+- **Shows your return on investment** — Know exactly how much revenue each dollar of ad spend generates
+- **Improves campaign performance over time** — Google's algorithm learns from conversion data and gets better at finding people who will convert
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant GoogleAd as Google Ad
-    participant App as Your App
-    participant Firebase as Firebase Analytics
-    participant GAds as Google Ads
-
-    User->>GoogleAd: Sees and clicks ad
-    GoogleAd->>App: User arrives at app/store
-    User->>App: Installs and uses app
-    App->>Firebase: Logs events (install, sign_up, purchase)
-    Firebase->>GAds: Sends conversion data
-    GAds->>GAds: Attributes conversion to ad click
-    GAds->>GAds: Optimizes future ad delivery
-```
-
-## Tracking options comparison
-
-| Method | Best for | Tracks | Complexity | Cost |
-|--------|---------|--------|------------|------|
-| **Firebase SDK** | Android & iOS apps | Installs, in-app events, revenue | Medium | Free |
-| **Google Play integration** | Android only | Installs only (no in-app events) | Low | Free |
-| **Third-party MMP** (Adjust, AppsFlyer, Branch) | Multi-platform attribution, large-scale apps | Everything + cross-platform | Medium-High | Paid ($$$) |
-| **Google Tag (gtag.js)** | Websites and web apps | Page views, clicks, form submissions | Low | Free |
-| **Google Tag Manager (GTM)** | Complex web tracking with many events | Everything on web | Medium | Free |
-| **Server-side tagging** | Privacy-focused tracking, enhanced accuracy | Server events, offline conversions | High | Free (hosting costs) |
+Without conversion tracking, you only see clicks and impressions. With it, you see the full picture — from ad click to purchase, sign-up, or any other action that matters to your business.
 
 <Tip>
-  **Decision guide:**
-  - **Have a mobile app only?** Use Firebase SDK.
-  - **Have a website that links to the app store?** Use Firebase SDK for the app + Google Tag for the website.
-  - **Already using Adjust, AppsFlyer, or Branch?** Use your existing MMP. No need to add Firebase just for Google Ads.
-  - **Building a web app (not native)?** Use Google Tag or Google Tag Manager.
+Set up conversion tracking BEFORE launching your first campaign. Starting a campaign without conversion tracking wastes your initial budget on unoptimized delivery. Those first dollars should be teaching Google's algorithm who your best customers are — but without tracking, that learning never happens.
 </Tip>
 
-## Firebase SDK installation
-
-Firebase Analytics (also called Google Analytics for Firebase) is the recommended tracking solution for mobile apps. Here's how to install it on every major platform.
-
-<Tabs>
-  <Tab title="Android (Kotlin)">
-    ### Step 1: Add Firebase to your project
-
-    Add the Google services plugin to your **project-level** `build.gradle`:
-
-    ```kotlin
-    // build.gradle (project-level)
-    plugins {
-        id("com.google.gms.google-services") version "4.4.0" apply false
-    }
-    ```
-
-    Apply the plugin in your **app-level** `build.gradle`:
-
-    ```kotlin
-    // app/build.gradle
-    plugins {
-        id("com.android.application")
-        id("com.google.gms.google-services")
-    }
-    ```
-
-    ### Step 2: Add Firebase Analytics dependency
-
-    ```kotlin
-    // app/build.gradle
-    dependencies {
-        // Firebase BOM (Bill of Materials) - manages all Firebase version numbers
-        implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
-
-        // Firebase Analytics (no version number needed when using BOM)
-        implementation("com.google.firebase:firebase-analytics")
-    }
-    ```
-
-    ### Step 3: Place the config file
-
-    Make sure `google-services.json` (downloaded from Firebase Console) is in your `app/` directory.
-
-    ### Step 4: Initialize and log events
-
-    Firebase Analytics initializes automatically. You can log custom events anywhere in your app:
-
-    ```kotlin
-    import com.google.firebase.analytics.FirebaseAnalytics
-    import com.google.firebase.analytics.logEvent
-
-    class MainActivity : AppCompatActivity() {
-
-        private lateinit var firebaseAnalytics: FirebaseAnalytics
-
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            firebaseAnalytics = FirebaseAnalytics.getInstance(this)
-        }
-
-        // Log a sign-up event
-        fun onUserSignUp(method: String) {
-            firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SIGN_UP) {
-                param(FirebaseAnalytics.Param.METHOD, method)
-            }
-        }
-
-        // Log a purchase event with revenue
-        fun onPurchase(itemId: String, price: Double, currency: String) {
-            firebaseAnalytics.logEvent(FirebaseAnalytics.Event.PURCHASE) {
-                param(FirebaseAnalytics.Param.ITEM_ID, itemId)
-                param(FirebaseAnalytics.Param.VALUE, price)
-                param(FirebaseAnalytics.Param.CURRENCY, currency)
-            }
-        }
-
-        // Log a custom event
-        fun onFeatureUsed(featureName: String) {
-            firebaseAnalytics.logEvent("feature_used") {
-                param("feature_name", featureName)
-            }
-        }
-    }
-    ```
-
-    ### Step 5: Enable debug mode
-
-    To see events in real-time in Firebase DebugView:
-
-    ```bash
-    # Enable debug mode on a connected Android device
-    adb shell setprop debug.firebase.analytics.app com.yourcompany.yourapp
-
-    # Disable debug mode when done
-    adb shell setprop debug.firebase.analytics.app .none.
-    ```
-  </Tab>
-  <Tab title="iOS (Swift)">
-    ### Step 1: Add Firebase via Swift Package Manager
-
-    1. In Xcode, go to **File** > **Add Package Dependencies**
-    2. Enter the URL: `https://github.com/firebase/firebase-ios-sdk`
-    3. Select version **11.0.0** or later
-    4. Choose **FirebaseAnalytics** from the package products
-    5. Click **Add Package**
-
-    Alternatively, using CocoaPods:
-
-    ```ruby
-    # Podfile
-    pod 'FirebaseAnalytics'
-    ```
-
-    Then run `pod install`.
-
-    ### Step 2: Place the config file
-
-    Make sure `GoogleService-Info.plist` (downloaded from Firebase Console) is added to your Xcode project root.
-
-    ### Step 3: Initialize Firebase
-
-    ```swift
-    // AppDelegate.swift
-    import UIKit
-    import FirebaseCore
-
-    @main
-    class AppDelegate: UIResponder, UIApplicationDelegate {
-        func application(
-            _ application: UIApplication,
-            didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
-        ) -> Bool {
-            FirebaseApp.configure()
-            return true
-        }
-    }
-    ```
-
-    If using SwiftUI with no AppDelegate:
-
-    ```swift
-    // YourApp.swift
-    import SwiftUI
-    import FirebaseCore
-
-    @main
-    struct YourApp: App {
-        init() {
-            FirebaseApp.configure()
-        }
-
-        var body: some Scene {
-            WindowGroup {
-                ContentView()
-            }
-        }
-    }
-    ```
-
-    ### Step 4: Log events
-
-    ```swift
-    import FirebaseAnalytics
-
-    // Log a sign-up event
-    func logSignUp(method: String) {
-        Analytics.logEvent(AnalyticsEventSignUp, parameters: [
-            AnalyticsParameterMethod: method
-        ])
-    }
-
-    // Log a purchase event with revenue
-    func logPurchase(itemId: String, price: Double, currency: String) {
-        Analytics.logEvent(AnalyticsEventPurchase, parameters: [
-            AnalyticsParameterItemID: itemId,
-            AnalyticsParameterValue: price,
-            AnalyticsParameterCurrency: currency
-        ])
-    }
-
-    // Log a custom event
-    func logFeatureUsed(featureName: String) {
-        Analytics.logEvent("feature_used", parameters: [
-            "feature_name": featureName
-        ])
-    }
-    ```
-
-    ### Step 5: Enable debug mode
-
-    In Xcode, edit your scheme:
-    1. **Product** > **Scheme** > **Edit Scheme**
-    2. Select **Run** > **Arguments**
-    3. Add `-FIRDebugEnabled` to **Arguments Passed On Launch**
-
-    To disable: add `-FIRDebugDisabled` instead.
-  </Tab>
-  <Tab title="React Native">
-    ### Step 1: Install React Native Firebase
-
-    ```bash
-    # Install the core module
-    npm install @react-native-firebase/app
-
-    # Install the analytics module
-    npm install @react-native-firebase/analytics
-    ```
-
-    ### Step 2: Native configuration
-
-    **Android:**
-    Place `google-services.json` in `android/app/`.
-
-    Add to `android/build.gradle`:
-    ```groovy
-    buildscript {
-        dependencies {
-            classpath 'com.google.gms:google-services:4.4.0'
-        }
-    }
-    ```
-
-    Add to `android/app/build.gradle`:
-    ```groovy
-    apply plugin: 'com.google.gms.google-services'
-    ```
-
-    **iOS:**
-    Place `GoogleService-Info.plist` in `ios/YourApp/`.
-
-    ```bash
-    cd ios && pod install && cd ..
-    ```
-
-    Initialize Firebase in `ios/YourApp/AppDelegate.mm`:
-    ```objectivec
-    #import <Firebase.h>
-
-    - (BOOL)application:(UIApplication *)application
-        didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-        [FIRApp configure];
-        // ... existing code
-        return YES;
-    }
-    ```
-
-    ### Step 3: Log events in your React Native code
-
-    ```tsx
-    import analytics from '@react-native-firebase/analytics';
-
-    // Log a sign-up event
-    async function onSignUp(method: string) {
-      await analytics().logSignUp({ method });
-    }
-
-    // Log a purchase event with revenue
-    async function onPurchase(
-      itemId: string,
-      price: number,
-      currency: string
-    ) {
-      await analytics().logPurchase({
-        value: price,
-        currency: currency,
-        items: [{ item_id: itemId }],
-      });
-    }
-
-    // Log a custom event
-    async function onFeatureUsed(featureName: string) {
-      await analytics().logEvent('feature_used', {
-        feature_name: featureName,
-      });
-    }
-
-    // Log screen views (important for analytics)
-    async function onScreenView(screenName: string) {
-      await analytics().logScreenView({
-        screen_name: screenName,
-        screen_class: screenName,
-      });
-    }
-    ```
-
-    ### Step 4: Enable debug mode
-
-    **Android:**
-    ```bash
-    adb shell setprop debug.firebase.analytics.app com.yourcompany.yourapp
-    ```
-
-    **iOS:**
-    Add `-FIRDebugEnabled` to your Xcode scheme's launch arguments.
-
-    <Tip>
-      **React Native Firebase documentation** is excellent. Visit [rnfirebase.io](https://rnfirebase.io) for the latest installation guides if you run into platform-specific issues.
-    </Tip>
-  </Tab>
-  <Tab title="Flutter">
-    ### Step 1: Install the plugin
-
-    ```bash
-    flutter pub add firebase_core
-    flutter pub add firebase_analytics
-    ```
-
-    ### Step 2: Configure with FlutterFire CLI
-
-    ```bash
-    # Install FlutterFire CLI
-    dart pub global activate flutterfire_cli
-
-    # Configure Firebase for your project
-    flutterfire configure
-    ```
-
-    This will automatically create and place config files for Android and iOS.
-
-    ### Step 3: Initialize and log events
-
-    ```dart
-    import 'package:firebase_core/firebase_core.dart';
-    import 'package:firebase_analytics/firebase_analytics.dart';
-    import 'firebase_options.dart';
-
-    // Initialize in main()
-    void main() async {
-      WidgetsFlutterBinding.ensureInitialized();
-      await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      );
-      runApp(MyApp());
-    }
-
-    // Log events anywhere
-    final analytics = FirebaseAnalytics.instance;
-
-    // Sign-up event
-    await analytics.logSignUp(signUpMethod: 'email');
-
-    // Purchase event
-    await analytics.logPurchase(
-      currency: 'USD',
-      value: 9.99,
-      items: [AnalyticsEventItem(itemId: 'premium_monthly')],
-    );
-
-    // Custom event
-    await analytics.logEvent(
-      name: 'feature_used',
-      parameters: {'feature_name': 'dark_mode'},
-    );
-    ```
-  </Tab>
-</Tabs>
-
-## Key Firebase events for Google Ads
-
-Not every event should be imported as a "conversion" in Google Ads. Too many conversions dilute the optimization signal. Here's what to track and what to import:
-
-### Standard Firebase events (recommended)
-
-These events are predefined by Firebase and understood by Google Ads:
-
-| Event Name | When to log | Import as conversion? | Why |
-|-----------|------------|----------------------|-----|
-| `first_open` | Automatically logged on first app launch | **Yes** | Your primary install event |
-| `sign_up` | User creates an account | **Yes** | High-value engagement signal |
-| `login` | User logs in | No | Too frequent, not a conversion |
-| `tutorial_complete` | User finishes onboarding | Maybe | Good signal if onboarding is a funnel step |
-| `purchase` | User makes a purchase | **Yes (primary)** | Your highest-value event |
-| `in_app_purchase` | User buys via in-app purchase | **Yes** | Revenue event |
-| `add_to_cart` | User adds item to cart | Optional | Mid-funnel signal |
-| `begin_checkout` | User starts checkout | Optional | Late-funnel signal |
-| `ad_impression` | User sees an in-app ad | No | Only relevant for ad-monetized apps |
-| `screen_view` | User views a screen | No | Too frequent |
-| `app_exception` | App crashes | No | Diagnostic, not a conversion |
-
-### Custom events for your app
-
-You can log any custom event name. Keep these rules in mind:
-
-```
-Event naming rules:
-- Lowercase with underscores: feature_used (not FeatureUsed)
-- Max 40 characters
-- Max 500 distinct event names per app
-- Max 25 parameters per event
-- Don't prefix with "firebase_", "google_", or "ga_" (reserved)
+---
+
+## How Google Conversion Tracking Works
+
+Here is the simple version of how it works:
+
+1. You place **Google Tag (gtag.js)** code on your website
+2. Someone clicks your Google ad and lands on your website
+3. The Google Tag drops a cookie in their browser, noting that they came from a Google ad
+4. The person browses your website, maybe leaves, maybe comes back later
+5. When they complete a valuable action (purchase, sign-up, etc.), the Google Tag fires a **conversion event**
+6. Google Ads receives the conversion data and attributes it to the specific ad, keyword, and campaign that drove the click
+7. You can now see exactly which parts of your advertising are driving results
+
+### What Is Google Tag (gtag.js)?
+
+Google Tag is a JavaScript snippet that you place on your website. It serves as the foundation for all Google tracking — including Google Ads conversion tracking, Google Analytics, and remarketing. Think of it as Google's version of Meta Pixel.
+
+The code looks like this:
+
+```html
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-XXXXXXXXX');
+</script>
 ```
 
-**Examples of useful custom events:**
+The `AW-XXXXXXXXX` is your unique Google Ads conversion ID. You will get this during setup.
 
+---
+
+## Step 1: Create Your Conversion Actions
+
+Before installing any code, you need to tell Google what you want to track. Each trackable action is called a "conversion action."
+
+### How to Create a Conversion Action:
+
+1. Log into **[ads.google.com](https://ads.google.com)**
+2. Click the **wrench icon** (Tools and Settings) in the top navigation
+3. Under **Measurement**, click **Conversions**
+4. Click **+ New conversion action**
+5. Select the source of your conversions:
+   - **Website** — Track actions on your website (most common)
+   - **App** — Track actions in your mobile app
+   - **Phone calls** — Track calls generated by your ads
+   - **Import** — Import conversions from other tools (like a CRM)
+6. For this guide, select **Website**
+
+### Option A: Let Google Scan Your Website (Easiest)
+
+7. Enter your **website URL**
+8. Click **Scan**
+9. Google will scan your website and suggest conversion actions based on what it finds (like form submissions, page views, button clicks)
+10. Select the actions you want to track
+11. Click **Save and Continue**
+
+### Option B: Create Conversion Actions Manually (More Control)
+
+7. Click **+ Add a conversion action manually**
+8. Configure the conversion action:
+
+   **Goal and action optimization:**
+   - **Purchase** — Someone completes a purchase
+   - **Sign-up** — Someone creates an account
+   - **Lead** — Someone submits a contact form
+   - **Page view** — Someone visits a specific page
+   - **Other** — Any other custom action
+
+9. **Conversion name:** Give it a descriptive name like "Website Purchase" or "Free Trial Signup"
+
+10. **Value:** Choose how to assign a monetary value:
+    - **Use the same value for each conversion** — Enter a fixed dollar amount (good for leads or sign-ups with a known value)
+    - **Use different values for each conversion** — The value is passed dynamically from your website code (good for e-commerce where each purchase has a different amount)
+    - **Do not use a value** — Not recommended, as values help Google optimize for profitability
+
+11. **Count:** Choose how to count conversions:
+    - **Every** — Count every conversion (use for purchases — each purchase matters)
+    - **One** — Count only one conversion per ad click (use for sign-ups — you only need to count one sign-up per user)
+
+12. **Click-through conversion window:** How long after a click to attribute a conversion
+    - Default: 30 days
+    - Options: 1 day, 7 days, 30 days, 60 days, 90 days
+    - 30 days is recommended for most businesses
+
+13. **View-through conversion window:** How long after an ad view (without click) to attribute
+    - Default: 1 day
+    - Options: 1 day, 3 days, 7 days, 14 days, 30 days
+
+14. **Attribution model:** How to distribute credit when multiple ads contribute to a conversion
+    - **Data-driven (recommended):** Google uses machine learning to assign credit based on actual patterns
+    - **Last click:** All credit goes to the last ad clicked before conversion
+    - Use **Data-driven** unless you have a specific reason not to
+
+15. Click **Done** and then **Save and Continue**
+
+<Tip>
+Create separate conversion actions for each important action on your website. For example, create one for "Purchase," another for "Sign Up," and another for "Contact Form Submit." This gives you granular visibility into which actions your ads are driving. Label your primary business goal (usually Purchase) as a "Primary" conversion action — this is the one Google will optimize for by default.
+</Tip>
+
+---
+
+## Step 2: Install Google Tag on Your Website
+
+After creating your conversion actions, Google will show you the installation instructions.
+
+### Method A: Install Google Tag Manually
+
+16. After saving your conversion action, Google will show you the **Google Tag code**
+17. Copy the **Google Tag snippet** — it consists of two parts:
+    - Part 1: The global site tag (goes on every page)
+    - Part 2: The event snippet (goes on conversion pages only)
+
+**Part 1: Global Site Tag (Every Page)**
+
+Paste this in the `<head>` section of EVERY page on your website:
+
+```html
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-XXXXXXXXX');
+</script>
 ```
-subscription_started     → User starts a paid subscription
-free_trial_started       → User begins a free trial
-level_completed          → User completes a game level (with level_number parameter)
-content_created          → User creates content in your app
-invite_sent              → User invites a friend
-rating_submitted         → User rates something in your app
-profile_completed        → User fills out their profile
-notification_enabled     → User enables push notifications
+
+**Part 2: Event Snippet (Conversion Pages Only)**
+
+Paste this ONLY on the page where the conversion happens (like your "thank you" or confirmation page):
+
+```html
+<!-- Event snippet for Purchase conversion page -->
+<script>
+  gtag('event', 'conversion', {
+    'send_to': 'AW-XXXXXXXXX/AbCdEfGhIjKlMnOp',
+    'value': 29.99,
+    'currency': 'USD',
+    'transaction_id': 'ORDER_12345'
+  });
+</script>
 ```
 
-<Warning>
-  **Pick ONE primary conversion event for Google Ads optimization.** This should be the event that best represents a valuable user for your business. Usually it's `purchase` (for paid apps) or `sign_up` (for free apps). Google Ads works best when it has one clear target to optimize toward.
-</Warning>
+Replace:
+- `AW-XXXXXXXXX` with your Google Ads conversion ID
+- `AW-XXXXXXXXX/AbCdEfGhIjKlMnOp` with your full conversion label
+- `29.99` with the actual conversion value (or make it dynamic)
+- `ORDER_12345` with the actual order/transaction ID (for deduplication)
 
-## Importing conversions to Google Ads
+### Method B: Install Using Google Tag Manager (GTM)
 
-After your Firebase SDK is logging events, you need to tell Google Ads which events to use for optimization.
+If your website uses Google Tag Manager:
 
-<Steps>
-  <Step title="Open Conversions in Google Ads">
-    Go to **Tools & Settings** (wrench) > **Measurement** > **Conversions**.
-  </Step>
-  <Step title="Create a new conversion action">
-    Click **+ New conversion action** > **App** > Select your app platform (Android/iOS) > **Firebase**.
-  </Step>
-  <Step title="Select events to import">
-    You'll see a list of Firebase events that have been logged at least once. Select the events you want to track as conversions.
+18. Log into **[tagmanager.google.com](https://tagmanager.google.com)**
+19. Select your container
+20. Click **Tags** → **New**
+21. Click **Tag Configuration**
+22. Select **Google Ads Conversion Tracking**
+23. Enter your:
+    - **Conversion ID:** `AW-XXXXXXXXX`
+    - **Conversion Label:** The label from your conversion action
+    - **Conversion Value:** The value (can be a variable for dynamic values)
+    - **Currency Code:** `USD` or your currency
+24. Click **Triggering**
+25. Create a trigger that fires on your conversion page:
+    - **Trigger type:** Page View
+    - **This trigger fires on:** Some Page Views
+    - **Condition:** Page URL contains "thank-you" (or whatever your confirmation page URL contains)
+26. Click **Save**
+27. Click **Submit** → **Publish**
 
-    For each event, configure:
-    - **Conversion name:** A descriptive name (e.g., "App Install," "In-App Purchase")
-    - **Value:** Choose "Use the value from Firebase" for purchase events, or set a fixed value
-    - **Count:** "One" for sign_up/install (count once per user), "Every" for purchases (count each one)
-  </Step>
-  <Step title="Set your primary conversion">
-    In the conversion list, click on your most important conversion (usually purchase or sign_up). Under **Goal and action optimization**, set it as **Primary**. Set others as **Secondary**.
+### Method C: For Next.js / React Applications
 
-    - **Primary conversions:** Google Ads actively optimizes campaigns toward these
-    - **Secondary conversions:** Tracked and reported but not used for bid optimization
-  </Step>
-  <Step title="Wait for data to flow">
-    It can take **up to 24 hours** for Firebase events to appear in Google Ads as conversions. Don't panic if you don't see them immediately.
-  </Step>
-</Steps>
+```jsx
+// pages/_app.js or your main layout
+import Script from 'next/script';
 
-### Conversion value setup for revenue tracking
-
-If your app makes money, you should pass revenue values with your conversion events:
-
-```kotlin
-// Android (Kotlin) - Log purchase with value
-firebaseAnalytics.logEvent(FirebaseAnalytics.Event.PURCHASE) {
-    param(FirebaseAnalytics.Param.VALUE, 9.99)
-    param(FirebaseAnalytics.Param.CURRENCY, "USD")
-    param(FirebaseAnalytics.Param.TRANSACTION_ID, "txn_12345")
+function MyApp({ Component, pageProps }) {
+  return (
+    <>
+      {/* Google Ads Tag */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX"
+        strategy="afterInteractive"
+      />
+      <Script
+        id="google-ads-config"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-XXXXXXXXX');
+          `,
+        }}
+      />
+      <Component {...pageProps} />
+    </>
+  );
 }
+
+export default MyApp;
 ```
 
-```swift
-// iOS (Swift) - Log purchase with value
-Analytics.logEvent(AnalyticsEventPurchase, parameters: [
-    AnalyticsParameterValue: 9.99,
-    AnalyticsParameterCurrency: "USD",
-    AnalyticsParameterTransactionID: "txn_12345"
-])
-```
-
-In Google Ads, when importing this conversion, select **"Use the value from Firebase"** to pass through the actual revenue amount. This enables ROAS-based bidding strategies later.
-
-## Google Tag for web conversions
-
-If you have a website or landing page that drives users to the app store, you need the Google Tag installed there too.
-
-### Basic Google Tag installation
-
-<Tabs>
-  <Tab title="Direct HTML">
-    Add this to the `<head>` of every page on your site:
-
-    ```html
-    <!-- Google Tag (gtag.js) -->
-    <script async
-      src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX">
-    </script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-XXXXXXXXX');
-    </script>
-    ```
-
-    Replace `AW-XXXXXXXXX` with your Google Ads conversion ID. Find it in **Tools & Settings** > **Conversions** > click any conversion > **Tag setup**.
-  </Tab>
-  <Tab title="Next.js / React">
-    For Next.js apps, use the Script component:
-
-    ```tsx
-    // app/layout.tsx (Next.js App Router)
-    import Script from 'next/script';
-
-    export default function RootLayout({
-      children,
-    }: {
-      children: React.ReactNode;
-    }) {
-      return (
-        <html lang="en">
-          <head>
-            <Script
-              src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX"
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'AW-XXXXXXXXX');
-              `}
-            </Script>
-          </head>
-          <body>{children}</body>
-        </html>
-      );
-    }
-    ```
-  </Tab>
-  <Tab title="Google Tag Manager">
-    If you're using Google Tag Manager (GTM):
-
-    1. Log in to [tagmanager.google.com](https://tagmanager.google.com)
-    2. Create a new Tag > **Google Ads Conversion Tracking**
-    3. Enter your Conversion ID and Conversion Label
-    4. Set the trigger (e.g., "All Pages" for the base tag, or specific events)
-    5. Preview, test, and publish
-
-    GTM is recommended if you have multiple tracking scripts or need to manage tags without code changes.
-  </Tab>
-</Tabs>
-
-### Tracking specific web conversions
+To track a conversion event (e.g., after a purchase):
 
 ```javascript
-// Track when someone clicks "Download on App Store"
-function onAppStoreClick() {
-  gtag('event', 'conversion', {
-    'send_to': 'AW-XXXXXXXXX/AbCdEf123',
-    'event_callback': function() {
-      window.location = 'https://apps.apple.com/app/your-app/id123456789';
-    }
-  });
-}
-
-// Track when someone clicks "Get it on Google Play"
-function onPlayStoreClick() {
-  gtag('event', 'conversion', {
-    'send_to': 'AW-XXXXXXXXX/GhIjKl456',
-    'event_callback': function() {
-      window.location = 'https://play.google.com/store/apps/details?id=com.yourapp';
-    }
-  });
-}
-
-// Track a sign-up form submission
-function onSignUpSubmit() {
-  gtag('event', 'conversion', {
-    'send_to': 'AW-XXXXXXXXX/MnOpQr789',
-    'value': 5.0,
-    'currency': 'USD'
-  });
+// Call this function when a conversion happens
+function trackPurchase(orderId, value) {
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'conversion', {
+      'send_to': 'AW-XXXXXXXXX/AbCdEfGhIjKlMnOp',
+      'value': value,
+      'currency': 'USD',
+      'transaction_id': orderId,
+    });
+  }
 }
 ```
-
-Find the `send_to` value (Conversion ID / Conversion Label) in **Tools & Settings** > **Conversions** > click the conversion > **Tag setup** > **Use Google Tag Manager** (even if you're not using GTM, this page shows the values).
-
-## Enhanced conversions (server-side tracking)
-
-Enhanced conversions improve tracking accuracy by sending hashed first-party data (like email addresses) from your server to Google. This is especially important as browser cookies become less reliable.
-
-### How enhanced conversions work
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant Website as Your Website
-    participant Server as Your Server
-    participant Google as Google Ads API
-
-    User->>Website: Signs up with email@example.com
-    Website->>Server: Sends conversion event + email
-    Server->>Server: Hashes email with SHA-256
-    Server->>Google: Sends hashed email + conversion data
-    Google->>Google: Matches hash to Google account
-    Google->>Google: Attributes conversion to ad click
-```
-
-### Setting up enhanced conversions
-
-<Steps>
-  <Step title="Enable enhanced conversions in Google Ads">
-    Go to **Tools & Settings** > **Conversions** > click on your conversion action > **Enhanced conversions** > turn it **On**.
-  </Step>
-  <Step title="Choose your implementation method">
-    - **Google Tag (automatic):** The Google Tag automatically collects and hashes user data from form fields. Easiest option.
-    - **Google Tag (manual):** You specify which data fields to send. More control.
-    - **API:** Send conversion data server-to-server. Most reliable.
-  </Step>
-  <Step title="For API implementation (recommended for apps)">
-    ```javascript
-    // Node.js example: Send enhanced conversion via Google Ads API
-    const crypto = require('crypto');
-
-    function hashEmail(email) {
-      return crypto
-        .createHash('sha256')
-        .update(email.trim().toLowerCase())
-        .digest('hex');
-    }
-
-    // Send to Google Ads Conversion API
-    const conversionData = {
-      conversion_action: 'customers/1234567890/conversionActions/987654321',
-      conversion_date_time: '2026-02-19 12:00:00-05:00',
-      conversion_value: 9.99,
-      currency_code: 'USD',
-      user_identifiers: [
-        {
-          hashed_email: hashEmail('user@example.com')
-        }
-      ]
-    };
-    ```
-  </Step>
-</Steps>
 
 <Tip>
-  **Enhanced conversions typically recover 5-15% of conversions** that would otherwise be lost due to cookie restrictions, browser privacy features, and cross-device journeys. It's especially valuable for iOS users where tracking is most limited.
+If you already have Google Analytics 4 (GA4) installed on your website, you can import GA4 conversions into Google Ads instead of installing a separate Google Ads tag. Go to Google Ads → Tools → Conversions → New Conversion Action → Import → Google Analytics 4. This is often the easiest approach if GA4 is already tracking your key events.
 </Tip>
 
-## Offline conversion tracking
+---
 
-If your app's most valuable events happen long after the initial click (like a subscription purchase 7 days after install), you can upload conversions later.
+## Step 3: Set Up Enhanced Conversions (Recommended)
 
-### When to use offline conversion imports
+Enhanced conversions improve the accuracy of your conversion tracking by sending hashed first-party data (like email addresses) along with your conversion tags. This helps Google match conversions even when cookies are blocked.
 
-- Free trial that converts to paid after 7-14 days
-- In-app purchases that happen days/weeks after install
-- Revenue data that comes from your backend, not the app
-- CRM data (user became a paying customer)
+### Why Enhanced Conversions Matter:
 
-### How to import offline conversions
+- Browser cookie restrictions are limiting standard tracking accuracy
+- Enhanced conversions use first-party data to fill the gaps
+- Google reports that enhanced conversions can recover up to 5% more conversions that would otherwise be lost
 
-<Steps>
-  <Step title="Capture the Google Click ID (GCLID)">
-    When someone clicks your Google ad and arrives at your website, the URL will contain a `gclid` parameter:
-    ```
-    https://yoursite.com/landing?gclid=CjwKCAjw_example_click_id
-    ```
-    Store this GCLID alongside the user record in your database.
-  </Step>
-  <Step title="Create an offline conversion action">
-    In Google Ads: **Tools & Settings** > **Conversions** > **+ New conversion action** > **Import** > **Other data sources or CRMs** > **Track conversions from clicks**.
-  </Step>
-  <Step title="Upload conversions">
-    Prepare a CSV with:
-    ```csv
-    Google Click ID,Conversion Name,Conversion Time,Conversion Value,Conversion Currency
-    CjwKCAjw_example,Subscription Purchase,2026-02-19 14:30:00,29.99,USD
-    ```
+### How to Enable Enhanced Conversions:
 
-    Upload via **Tools & Settings** > **Conversions** > **Uploads** > **+** > upload your CSV.
-  </Step>
-</Steps>
+28. Go to **Google Ads** → **wrench icon** → **Conversions**
+29. Click on the conversion action you want to enhance
+30. Click **Settings** → scroll to **Enhanced conversions**
+31. Toggle **Turn on enhanced conversions**
+32. Choose your implementation method:
+    - **Google Tag** — If you installed gtag.js manually
+    - **Google Tag Manager** — If you use GTM
+    - **Google Ads API** — For server-side implementation
 
-You can also automate this using the Google Ads API for scheduled uploads.
+### Implementation with Google Tag:
 
-## Conversion windows and counting
+Add user data to your conversion event code:
 
-### Conversion windows
+```html
+<script>
+  gtag('set', 'user_data', {
+    "email": "user@example.com",      // User's email (Google will hash it)
+    "phone_number": "+11234567890",    // User's phone
+    "address": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "street": "123 Main St",
+      "city": "Anytown",
+      "region": "CA",
+      "postal_code": "12345",
+      "country": "US"
+    }
+  });
 
-A conversion window is how long after a click (or view) Google will attribute a conversion to an ad. Configure this per conversion action:
+  gtag('event', 'conversion', {
+    'send_to': 'AW-XXXXXXXXX/AbCdEfGhIjKlMnOp',
+    'value': 29.99,
+    'currency': 'USD',
+    'transaction_id': 'ORDER_12345'
+  });
+</script>
+```
 
-| Window Type | Default | Range | When to change |
-|------------|---------|-------|---------------|
-| **Click-through window** | 30 days | 1-90 days | Shorten if your app has a quick decision cycle, lengthen for complex purchases |
-| **View-through window** | 1 day | 1-30 days | Keep at 1 day for conservative attribution |
-| **Engaged-view window** | 3 days | 1-30 days | For YouTube ads (user watched 10+ seconds) |
+Google automatically hashes (encrypts) the user data before sending it. The raw data never leaves the user's browser.
 
-**To change:** Go to **Tools & Settings** > **Conversions** > click a conversion action > **Edit settings** > **Conversion window**.
+---
 
-<Note>
-  **Longer windows = more attributed conversions.** A 90-day window will show more conversions than a 7-day window because it captures users who took longer to convert. But those delayed conversions are often lower quality. Start with 30 days (the default) and adjust based on your data.
-</Note>
+## Step 4: Verify Your Conversion Tracking
 
-### Conversion counting
+After installing the tracking code, you need to verify it is working correctly.
 
-| Setting | When a user converts 3 times | Best for |
-|---------|----------------------------|----------|
-| **One** | Counts as 1 conversion | Install, sign-up (once per user) |
-| **Every** | Counts as 3 conversions | Purchases (each has value) |
+### Method 1: Google Tag Assistant
 
-**Rule of thumb:** Use "One" for milestone events (install, sign-up), "Every" for revenue events (purchase, subscription renewal).
+Google provides a Tag Assistant tool to verify your tags.
 
-## Debugging with Firebase DebugView
+33. Install the **Google Tag Assistant** Chrome extension from the Chrome Web Store
+34. Navigate to your website
+35. Click the **Tag Assistant icon** in your browser toolbar
+36. Click **Enable** and refresh the page
+37. Tag Assistant will show you:
+    - Which Google tags are on the page
+    - Whether they are firing correctly
+    - Any errors or warnings
 
-Firebase DebugView shows events in real-time (instead of the usual hours-long delay). This is essential for verifying your tracking works before spending money on ads.
+**What you want to see:**
+- A green indicator next to your Google Ads tag
+- The correct Conversion ID (AW-XXXXXXXXX)
+- No error messages
 
-<Steps>
-  <Step title="Enable debug mode on your device">
-    **Android:**
-    ```bash
-    adb shell setprop debug.firebase.analytics.app com.yourcompany.yourapp
-    ```
+### Method 2: Google Ads Conversion Status
 
-    **iOS:**
-    Add `-FIRDebugEnabled` to your Xcode scheme's launch arguments.
-  </Step>
-  <Step title="Open DebugView">
-    In the Firebase Console, go to **Analytics** > **DebugView**.
-  </Step>
-  <Step title="Trigger events in your app">
-    Open your app on the debug device and perform the actions you're tracking (sign up, make a test purchase, etc.).
-  </Step>
-  <Step title="Verify events appear">
-    Events should appear in DebugView within seconds. Check:
-    - The event name matches what you expect
-    - Parameters are present and correct (value, currency, item_id, etc.)
-    - There are no duplicate events
-    - Events fire at the right moment (not too early, not too late)
-  </Step>
-  <Step title="Check the full pipeline">
-    After verifying in DebugView:
-    1. Wait 24 hours
-    2. Check **Firebase Console** > **Analytics** > **Events** for your events
-    3. Check **Google Ads** > **Tools & Settings** > **Conversions** to confirm data is flowing
-  </Step>
-</Steps>
+38. Go to **Google Ads** → **wrench icon** → **Conversions**
+39. Look at the **Status** column for each conversion action:
+    - **Recording conversions** — Working correctly
+    - **No recent conversions** — Tag is installed but no conversions have happened yet (this is normal for new setups)
+    - **Tag inactive** — The tag is not firing. Check your installation
+    - **Unverified** — Google has not received any tag data yet
 
-### Common debugging issues
+### Method 3: Real-Time Testing
 
-<AccordionGroup>
-  <Accordion title="Events show in DebugView but not in Google Ads">
-    - Wait at least 24 hours. Firebase-to-Google Ads data transfer is not real-time.
-    - Verify the Firebase-to-Google Ads link is active in BOTH Firebase Console and Google Ads.
-    - Make sure you've imported the specific event as a conversion in Google Ads.
-  </Accordion>
-  <Accordion title="Events are not appearing in DebugView">
-    - Verify debug mode is enabled (check the ADB command or Xcode arguments).
-    - Make sure you're looking at the correct Firebase project.
-    - Confirm the Firebase SDK is initialized before logging events.
-    - Check that `google-services.json` (Android) or `GoogleService-Info.plist` (iOS) is in the correct location.
-  </Accordion>
-  <Accordion title="Duplicate events are appearing">
-    - Check that you're not logging the same event from multiple places in your code.
-    - If using both Firebase SDK and a third-party MMP, they may both log `first_open`.
-    - In React Native, check that Firebase isn't initializing twice (common with hot reload).
-  </Accordion>
-  <Accordion title="Purchase values are showing as $0">
-    - Make sure you're passing `value` AND `currency` parameters. Both are required for revenue tracking.
-    - Verify the value is a number, not a string.
-    - In Google Ads conversion settings, confirm "Use the value from Firebase" is selected.
-  </Accordion>
-  <Accordion title="Google Tag not firing on website">
-    - Install the **Tag Assistant** Chrome extension to debug.
-    - Check that the Google Tag script is in the `<head>` and loads on every page.
-    - Verify your Conversion ID (AW-XXXXXXXXX) is correct.
-    - Check for ad blockers or privacy extensions that may block the tag.
-  </Accordion>
-</AccordionGroup>
+40. Open your website in a browser
+41. Complete a test conversion (make a test purchase, fill out a form, etc.)
+42. Go to Google Ads → Conversions
+43. Check if the test conversion appears (may take up to a few hours)
+44. For faster verification, use the **Tag Assistant debug mode**
 
-## Conversion tracking checklist
+<Tip>
+After installation, conversion status may show "Unverified" or "No recent conversions" for up to **24-48 hours**. This is normal — Google needs time to process the first events. If the status still shows "Tag inactive" after 48 hours, there is a problem with your installation that needs to be fixed.
+</Tip>
 
-Before launching any campaigns, verify:
+---
 
-- [ ] Firebase SDK installed and initialized in your app
-- [ ] Firebase project linked to Google Ads (both directions verified)
-- [ ] Key events logging correctly (verified in DebugView)
-- [ ] Events imported as conversions in Google Ads
-- [ ] ONE primary conversion set (the event you want Google to optimize toward)
-- [ ] Conversion values configured for revenue events
-- [ ] Conversion windows set appropriately (30 days default is fine for most)
-- [ ] Conversion counting set correctly (One vs. Every)
-- [ ] Google Tag installed on website (if applicable)
-- [ ] Enhanced conversions enabled (if collecting user emails)
-- [ ] DebugView confirmed events are flowing
-- [ ] 24-hour check confirmed conversions appear in Google Ads
+## Step 5: Set Up Remarketing Tags (Bonus)
 
-<Card
-  title="Google Search Ads"
-  icon="arrow-right"
-  href="/platforms/google/search-ads"
->
-  Conversion tracking verified? Let's create your first Search Ads campaign and start capturing high-intent users.
-</Card>
+While you are setting up tracking, it is a good time to also set up remarketing tags. These allow you to show ads to people who have previously visited your website.
+
+### How Remarketing Works:
+
+1. The Google Tag on your website collects anonymized data about your visitors
+2. Google builds audience lists based on which pages people visited
+3. You can then target these audiences with Display or Search campaigns
+4. This is called "remarketing" or "retargeting"
+
+### How to Create Remarketing Audiences:
+
+45. Go to **Google Ads** → **wrench icon** → **Audience Manager**
+46. Click the **+** button to create a new audience segment
+47. Select **Website visitors**
+48. Configure your audience:
+    - **Segment name:** "All Website Visitors - Last 30 Days"
+    - **Segment members:** Visitors of a page
+    - **Visited page URL:** Contains "/" (this matches all pages)
+    - **Membership duration:** 30 days (how long someone stays in the audience)
+49. Click **Create Segment**
+
+### Useful Remarketing Audiences to Create:
+
+| Audience | URL Rule | Duration | Best For |
+|---|---|---|---|
+| All visitors | URL contains "/" | 30 days | General retargeting |
+| Product page visitors | URL contains "/products" | 14 days | Product interest retargeting |
+| Cart abandoners | URL contains "/cart" | 7 days | High-intent retargeting |
+| Converted users | URL contains "/thank-you" | 540 days | Exclusion or upselling |
+| Blog readers | URL contains "/blog" | 30 days | Content engagement retargeting |
+
+---
+
+## Step 6: Track Phone Call Conversions (Optional)
+
+If phone calls are important to your business, Google can track calls that come from your ads.
+
+### Types of Call Tracking:
+
+#### Calls from Ads
+
+Track when someone clicks a phone number directly in your ad (on mobile).
+
+50. When creating a conversion action, select **Phone calls** → **Calls from ads**
+51. Set the minimum call duration to count as a conversion (e.g., 60 seconds)
+52. Google will automatically track calls made by tapping your ad
+
+#### Calls from Your Website
+
+Track when someone visits your website from an ad and then calls a phone number on your site.
+
+53. Select **Phone calls** → **Calls to a phone number on your website**
+54. Enter your **business phone number**
+55. Google will dynamically replace the phone number on your website with a Google forwarding number when the visitor came from an ad
+56. This lets Google track which calls came from which ads
+
+---
+
+## Step 7: Import Offline Conversions (Advanced)
+
+If your sales process happens offline (like phone sales or in-person consultations), you can import those conversions back into Google Ads.
+
+### Why Import Offline Conversions:
+
+- A customer clicks your ad, fills out a form (tracked as a "Lead" conversion)
+- Your sales team calls the lead and closes a deal
+- The actual revenue happens offline, outside your website
+- Importing this data back into Google Ads helps the algorithm understand which leads are actually valuable
+
+### How to Import Offline Conversions:
+
+57. Create a conversion action with the type **Import** → **Other data sources or CRMs**
+58. Record the **Google Click ID (GCLID)** when someone submits a form on your website
+59. When an offline conversion happens, upload a file to Google Ads matching the GCLID to the conversion
+60. Google Ads will attribute the offline conversion to the original ad click
+
+This is an advanced feature — start with standard website tracking first.
+
+---
+
+## Conversion Tracking Best Practices
+
+### 1. Use Meaningful Values
+
+Always assign monetary values to your conversions when possible:
+
+- **Purchase:** Use the actual purchase amount
+- **Lead form:** Estimate the average value of a lead (e.g., if 10% of leads buy a $500 product, a lead is worth $50)
+- **Sign-up:** Estimate the lifetime value of a signed-up user
+
+### 2. Avoid Double-Counting
+
+- Use **transaction IDs** for purchase conversions to prevent the same purchase from being counted twice
+- Set the count to **"One"** for non-repeatable conversions (like sign-ups)
+- Set the count to **"Every"** for repeatable conversions (like purchases)
+
+### 3. Mark Primary vs. Secondary Conversions
+
+- **Primary conversions:** Used for bidding optimization (your main goal, like Purchase)
+- **Secondary conversions:** Used for observation only (supporting events like Page View or Add to Cart)
+- Go to each conversion action's settings to change its optimization goal
+
+### 4. Align Conversion Windows with Your Sales Cycle
+
+- **Short sales cycle** (impulse purchases): Use a 7-day click window
+- **Medium sales cycle** (considered purchases): Use a 30-day click window
+- **Long sales cycle** (B2B, expensive products): Use a 60-90 day click window
+
+<Tip>
+Start with Google's default 30-day click-through window and 1-day view-through window. These defaults work well for most businesses. Only change them if you have a specific reason — like a very long sales cycle where customers take months to decide. Changing windows mid-campaign will affect your historical data comparison, so decide early and stick with it.
+</Tip>
+
+---
+
+## Troubleshooting Common Tracking Issues
+
+### "Tag inactive" status in Google Ads
+
+**Possible causes:**
+- The Google Tag code is not on your website
+- The code has a typo in the conversion ID
+- The code is blocked by an ad blocker or content security policy
+
+**Fixes:**
+1. View your page source and search for your conversion ID
+2. Use Tag Assistant to check if the tag loads
+3. Check your browser console for JavaScript errors
+4. Make sure the code is in the `<head>` section, not inside a hidden element
+
+### "Conversions showing in Google Analytics but not Google Ads"
+
+**Possible causes:**
+- Google Analytics and Google Ads are not linked
+- You are using GA4 events but have not imported them into Google Ads
+- The attribution models differ between the two platforms
+
+**Fixes:**
+1. Link your GA4 property to Google Ads (Tools → Linked accounts)
+2. Import GA4 conversions into Google Ads (Tools → Conversions → Import)
+3. Remember that attribution differences can cause different numbers
+
+### "Conversion numbers seem too high"
+
+**Possible causes:**
+- Duplicate conversion events firing on the same page
+- The conversion tag is on the wrong page (firing on every page instead of just the conversion page)
+- Count is set to "Every" for a non-repeatable action
+
+**Fixes:**
+1. Use Tag Assistant to check how many times the tag fires per page
+2. Verify the event snippet is only on your conversion page
+3. Add a transaction ID to prevent duplicate counting
+4. Review your count setting (Every vs. One)
+
+### "Conversion numbers seem too low"
+
+**Possible causes:**
+- Enhanced conversions is not enabled
+- The conversion tag fires before the page fully loads (race condition)
+- Cookie consent blocking the tag for many users
+
+**Fixes:**
+1. Enable enhanced conversions
+2. Make sure the tag loads with `async` attribute
+3. Review your cookie consent implementation
+4. Check the conversion window (maybe it is too short)
+
+---
+
+## Your Conversion Tracking Checklist
+
+- [ ] Conversion actions created for all key business outcomes
+- [ ] Values assigned to each conversion action
+- [ ] Count settings correct (Every for purchases, One for sign-ups)
+- [ ] Google Tag (gtag.js) installed on all website pages
+- [ ] Event snippets placed on correct conversion pages
+- [ ] Enhanced conversions enabled
+- [ ] Tag Assistant used to verify installation
+- [ ] Conversion status checked in Google Ads (aim for "Recording conversions")
+- [ ] Remarketing audiences created
+- [ ] Google Analytics linked to Google Ads
+- [ ] Test conversion completed to verify end-to-end tracking
+
+---
+
+## What Comes Next
+
+Your conversion tracking is now set up and verified. Google Ads can now see exactly what happens after someone clicks your ad — which is the foundation for effective campaign optimization.
+
+In the **Search Ads** guide, we will create your first Google Search campaign using everything you have set up so far. You will learn how to research keywords, write compelling ad copy, and structure your campaign for maximum Quality Score and minimum cost per click.
+
+<Tip>
+Conversion data typically needs **24-48 hours** to fully appear in Google Ads after a conversion occurs. Do not panic if you complete a test conversion and it does not show up immediately. Check again the next day. If it still does not appear after 48 hours, revisit the troubleshooting section above.
+</Tip>

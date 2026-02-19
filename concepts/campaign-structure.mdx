@@ -3,39 +3,53 @@ title: "Campaign Structure"
 description: "Every ad platform uses a 3-level hierarchy: Campaign > Ad Set > Ad. Master this structure and you master organized, scalable advertising."
 ---
 
-## Why structure matters
+## Think of it like organizing a school
 
-Imagine your desk is a mess — papers everywhere, no folders, no labels. You would waste hours finding anything. Campaign structure is the filing system for your ads. A clean structure means:
+If you have ever organized anything — a closet, a music library, even a school — you already understand campaign structure. Here is the analogy:
 
-- You can quickly see what is working and what is not
-- The platform's algorithm can optimize more effectively
-- You can scale without chaos
-- A/B testing becomes straightforward
-- Reporting is clear and actionable
+- **Campaign** = The school itself (the big-picture mission: "educate students")
+- **Ad Set / Ad Group** = Different classrooms (each has a specific group of students, a teacher, a schedule)
+- **Ad** = The actual lessons taught in each classroom (the content students experience)
+
+A school needs a clear structure to function. If you threw all students into one room with random lessons, it would be chaos. The same goes for your ads. Structure is what turns chaos into results.
 
 <Note>
-  Every major ad platform uses the same 3-level hierarchy. Learn it once and you can apply it to Meta, Google, TikTok, Apple, Snap, Twitter/X, LinkedIn — any platform.
+  Here is the beautiful thing: **every major ad platform uses this exact same 3-level hierarchy**. Learn it once and you can apply it to Meta, Google, TikTok, Apple, Snap, LinkedIn — any platform you will ever use.
 </Note>
 
 ---
 
-## The 3-level hierarchy
+## Why structure matters so much
 
-Think of it like a company org chart:
+Imagine your desk is covered in papers — no folders, no labels, no system. You would waste hours finding anything. Campaign structure is the filing system for your ads. A clean structure means:
+
+- You can quickly see what is working and what is not
+- The platform's algorithm can optimize more effectively
+- You can scale without everything falling apart
+- A/B testing becomes straightforward
+- Reporting is clear and actionable
+
+<Tip>
+  **Pro Tip: Bad structure is the #1 reason beginner campaigns fail.** Not bad creatives, not wrong targeting — bad structure. If your campaign is organized well, the algorithm has room to learn and optimize. If it is messy, the algorithm is lost and so are you.
+</Tip>
+
+---
+
+## The 3-level hierarchy visualized
 
 ```mermaid
 graph TD
-    C[Campaign] --> AS1[Ad Set / Ad Group 1]
-    C --> AS2[Ad Set / Ad Group 2]
-    C --> AS3[Ad Set / Ad Group 3]
-    AS1 --> A1[Ad 1a]
-    AS1 --> A2[Ad 1b]
-    AS1 --> A3[Ad 1c]
-    AS2 --> A4[Ad 2a]
-    AS2 --> A5[Ad 2b]
-    AS3 --> A6[Ad 3a]
-    AS3 --> A7[Ad 3b]
-    AS3 --> A8[Ad 3c]
+    C["Campaign<br/>(The Goal)"] --> AS1["Ad Set 1<br/>(Audience A)"]
+    C --> AS2["Ad Set 2<br/>(Audience B)"]
+    C --> AS3["Ad Set 3<br/>(Audience C)"]
+    AS1 --> A1[Ad 1a - Video]
+    AS1 --> A2[Ad 1b - Image]
+    AS1 --> A3[Ad 1c - Carousel]
+    AS2 --> A4[Ad 2a - Video]
+    AS2 --> A5[Ad 2b - Image]
+    AS3 --> A6[Ad 3a - Video]
+    AS3 --> A7[Ad 3b - Image]
+    AS3 --> A8[Ad 3c - Carousel]
 
     style C fill:#4A90D9,color:#fff
     style AS1 fill:#7B68EE,color:#fff
@@ -53,341 +67,325 @@ graph TD
 
 ### What each level controls
 
-| Level | What it decides | Think of it as... |
-|-------|----------------|-------------------|
-| **Campaign** | The overall goal and (optionally) total budget | "What do I want to achieve?" |
-| **Ad Set / Ad Group** | Who sees the ads, when, where, and how much to spend | "Who am I talking to?" |
-| **Ad** | The actual creative — image, video, text, and call to action | "What am I showing them?" |
+| Level | What it decides | Think of it as... | Example |
+|---|---|---|---|
+| **Campaign** | The overall goal and (optionally) total budget | "What do I want to achieve?" | "I want app installs in the US" |
+| **Ad Set / Ad Group** | Who sees the ads, when, where, and how much to spend | "Who am I talking to?" | "Women aged 25-34 who like yoga" |
+| **Ad** | The actual creative — image, video, text, and call to action | "What am I showing them?" | "A 15-second video of the app in action" |
 
 ---
 
 ## Level 1: Campaign — the big picture
 
-The campaign is the top level. Here you set:
+The campaign is the top level, the container for everything. Here is where you make two critical decisions.
 
-### Campaign objective
+### Decision 1: Campaign objective
 
-This tells the platform what you want to achieve. The platform's algorithm will optimize delivery to get you the most of whatever you picked.
+This tells the platform what you want to achieve. The algorithm will then optimize everything to get you more of whatever you picked. Choosing the wrong objective is like telling a taxi driver the wrong address — you will end up somewhere you do not want to be.
 
 <Tabs>
-  <Tab title="Meta">
-    Meta uses the **Outcome-Driven Ad Experiences (ODAX)** framework with 6 objectives:
+  <Tab title="Meta (Facebook / Instagram)">
+    Meta uses the **ODAX** framework with 6 objectives:
 
     | Objective | What it optimizes for | Use when... |
-    |-----------|----------------------|-------------|
+    |---|---|---|
     | **Awareness** | Maximum impressions / reach | You want brand visibility |
-    | **Traffic** | Link clicks to a destination | You want website or app visits |
+    | **Traffic** | Link clicks to a destination | You want website or app page visits |
     | **Engagement** | Post likes, comments, shares | You want social proof |
     | **Leads** | Form submissions | You want contact information |
-    | **App Promotion** | App installs or in-app events | You want app downloads |
+    | **App Promotion** | App installs or in-app events | **You want app downloads (start here!)** |
     | **Sales** | Purchases or conversions | You want revenue |
   </Tab>
   <Tab title="Google Ads">
     Google Ads objectives vary by campaign type:
 
     | Campaign Type | Objective | Where ads appear |
-    |--------------|-----------|-----------------|
+    |---|---|---|
     | **Search** | Clicks / conversions from search queries | Google Search results |
     | **Performance Max** | Conversions across all Google inventory | Search, YouTube, Display, Gmail, Maps, Discover |
     | **Display** | Awareness / clicks on banner ads | Websites and apps in Google Display Network |
     | **Video** | Video views / conversions from YouTube | YouTube and video partners |
     | **App** | App installs / in-app conversions | Search, Play Store, YouTube, Display |
     | **Shopping** | Product sales | Google Shopping, Search |
-    | **Demand Gen** | Conversions from visually rich ads | YouTube, Discover, Gmail |
+    | **Demand Gen** | Conversions from visual ads | YouTube, Discover, Gmail |
   </Tab>
   <Tab title="TikTok">
-    TikTok uses a similar framework:
-
     | Objective | What it optimizes for | Use when... |
-    |-----------|----------------------|-------------|
+    |---|---|---|
     | **Reach** | Maximum unique users | You want awareness |
     | **Traffic** | Clicks to your destination | You want visits |
     | **Video Views** | Maximum video plays | You want video engagement |
     | **Community Interaction** | Followers / profile visits | You want TikTok growth |
-    | **App Promotion** | App installs / re-engagement | You want app downloads |
+    | **App Promotion** | App installs / re-engagement | **You want app downloads (start here!)** |
     | **Lead Generation** | Form submissions | You want leads |
     | **Website Conversions** | On-site actions | You want purchases/signups |
     | **Product Sales** | Catalog sales | You want e-commerce revenue |
   </Tab>
   <Tab title="Apple Search Ads">
-    Apple Search Ads is simpler — it has one primary objective:
+    Apple Search Ads is simpler — ads only appear in the App Store:
 
     | Tier | Objective | How it works |
-    |------|-----------|-------------|
-    | **Basic** | App installs | Fully automated, minimal setup |
+    |---|---|---|
+    | **Basic** | App installs | Fully automated, just set budget and go |
     | **Advanced** | App installs + in-app events | Full control over keywords, bids, audiences |
-
-    Apple Search Ads only runs in the App Store, so the objective is always related to driving app installs or re-engagement.
   </Tab>
 </Tabs>
 
 <Tip>
-  **For your first campaign:** Choose **App Installs** (or the equivalent on your platform). It is the most straightforward objective and gives the algorithm a clear signal to optimize toward.
+  **Pro Tip for your first campaign: Choose "App Installs" (or "App Promotion" on Meta).** It is the most straightforward objective and gives the algorithm the clearest signal. Do not overthink it — you can always create new campaigns with different objectives later.
 </Tip>
 
-### Campaign budget (optional at this level)
+### Decision 2: Campaign budget (optional at this level)
 
-Some platforms let you set a **Campaign Budget Optimization (CBO)** — a single budget that the platform distributes across all ad sets automatically.
+Some platforms let you set a **Campaign Budget Optimization (CBO)** — a single budget that the platform distributes across all ad sets automatically. Or you can set budgets individually at the ad set level.
 
-| Approach | How it works | Best for |
-|----------|-------------|----------|
-| **Campaign Budget (CBO)** | One budget, platform distributes across ad sets | Hands-off optimization, testing audiences |
-| **Ad Set Budget (ABO)** | Each ad set has its own budget | Precise control, specific audience budgets |
+| Approach | How it works | Best for | Analogy |
+|---|---|---|---|
+| **Campaign Budget (CBO)** | One budget, platform distributes automatically | Hands-off optimization, testing audiences | Giving the school principal one pot of money and letting them allocate to classrooms |
+| **Ad Set Budget (ABO)** | Each ad set has its own budget | Precise control, specific audience budgets | Giving each teacher their own budget directly |
 
 <Note>
-  **Meta calls this "Advantage Campaign Budget" (formerly CBO).** Google calls it "Shared Budgets." TikTok calls it "Campaign Budget Optimization." Same concept, different names.
+  **Different names, same thing:** Meta calls it "Advantage Campaign Budget." Google calls it "Shared Budgets." TikTok calls it "Campaign Budget Optimization." Do not let the naming confuse you — it is the same concept everywhere.
 </Note>
 
 ---
 
 ## Level 2: Ad Set / Ad Group — the targeting layer
 
-This is where you define the audience, placement, schedule, and (optionally) budget.
+This is where you define WHO sees your ads, WHEN they see them, WHERE they appear, and HOW MUCH to spend. This is the most important level for performance.
 
 ### What you configure at this level
 
 <CardGroup cols={2}>
-  <Card title="Audience" icon="users">
-    **Who** sees your ads: age, gender, location, interests, behaviors, custom audiences, lookalike audiences. This is your targeting configuration.
+  <Card title="Audience (Who)" icon="users">
+    Age, gender, location, interests, behaviors, custom audiences, lookalike audiences. This is your targeting configuration. Think of it as choosing which classroom each student goes to.
   </Card>
-  <Card title="Placements" icon="layout-grid">
-    **Where** your ads appear: Instagram Feed, Facebook Stories, Google Search, YouTube, TikTok For You Page, etc. You can choose automatic (recommended) or manual placements.
+  <Card title="Placements (Where)" icon="table-layout">
+    Instagram Feed, Facebook Stories, Google Search, YouTube, TikTok For You Page, etc. You can choose **automatic** (recommended for beginners) or **manual** placements.
   </Card>
-  <Card title="Schedule" icon="calendar">
-    **When** your ads run: start date, end date, time-of-day scheduling (dayparting). You can run ads continuously or during specific hours.
+  <Card title="Schedule (When)" icon="calendar">
+    Start date, end date, time-of-day scheduling (called "dayparting"). You can run ads 24/7 or only during specific hours.
   </Card>
-  <Card title="Budget & Bid" icon="dollar-sign">
-    **How much** you spend (if not using campaign-level budget) and your bidding strategy. Daily budget or lifetime budget, with optional bid caps.
+  <Card title="Budget & Bid (How Much)" icon="dollar-sign">
+    If not using campaign-level budget: daily or lifetime budget for this specific ad set, plus your bidding strategy.
   </Card>
 </CardGroup>
 
-### Example ad set configurations
+### A real example with ad sets
+
+Here is what a real campaign structure looks like:
 
 ```
 Campaign: "Summer App Launch - Installs"
-  │
-  ├── Ad Set 1: "US - Young Adults - Broad"
-  │     Audience: US, Ages 18-34, All genders
-  │     Interests: Broad (let algorithm decide)
-  │     Placements: Automatic
-  │     Budget: $20/day
-  │
-  ├── Ad Set 2: "US - Fitness Enthusiasts"
-  │     Audience: US, Ages 18-44
-  │     Interests: Fitness, Running, Gym, Yoga
-  │     Placements: Instagram Feed + Stories
-  │     Budget: $15/day
-  │
-  └── Ad Set 3: "UK + EU - Broad"
-        Audience: UK, Germany, France, Ages 18-44
-        Interests: Broad
-        Placements: Automatic
-        Budget: $15/day
+  |
+  |-- Ad Set 1: "US - Young Adults - Broad"
+  |     Audience: US, Ages 18-34, All genders
+  |     Interests: Broad (let algorithm decide)
+  |     Placements: Automatic
+  |     Budget: $20/day
+  |
+  |-- Ad Set 2: "US - Fitness Enthusiasts"
+  |     Audience: US, Ages 18-44
+  |     Interests: Fitness, Running, Gym, Yoga
+  |     Placements: Instagram Feed + Stories
+  |     Budget: $15/day
+  |
+  |-- Ad Set 3: "UK + EU - Broad"
+  |     Audience: UK, Germany, France, Ages 18-44
+  |     Interests: Broad
+  |     Placements: Automatic
+  |     Budget: $15/day
 ```
 
+Notice how each ad set targets a DIFFERENT audience. This is how you test which audience works best while keeping everything organized.
+
 <Warning>
-  **Do not create too many ad sets.** Each ad set needs enough budget to exit the learning phase (typically 50 conversions per week). If you split $50/day across 10 ad sets, each gets only $5/day — not enough data for the algorithm to learn. **Start with 2-4 ad sets maximum.**
+  **Do not create too many ad sets.** This is the most common beginner mistake. Each ad set needs enough budget to exit the "learning phase" — Meta recommends about **50 conversions per week** per ad set for optimal learning. If you split $50/day across 10 ad sets, each gets only $5/day — nowhere near enough data for the algorithm to learn. **Start with 2-4 ad sets maximum.**
 </Warning>
 
 ---
 
 ## Level 3: Ad — the creative
 
-This is what the user actually sees. Each ad consists of:
+This is what the user actually sees. It is the moment of truth — your ad needs to stop someone mid-scroll and make them take action.
 
-| Component | Description | Example |
-|-----------|------------|---------|
-| **Visual** | Image, video, or carousel | A 15-second app demo video |
-| **Primary text** | The main copy above the visual | "Track your workouts in 30 seconds" |
+Each ad consists of these components:
+
+| Component | What it is | Example |
+|---|---|---|
+| **Visual** | Image, video, or carousel | A 15-second video showing your app's best feature |
+| **Primary text** | The main copy above the visual | "Track your workouts in 30 seconds flat" |
 | **Headline** | Bold text below the visual | "The #1 Fitness App" |
 | **Description** | Supporting text (not always shown) | "Join 50,000+ users" |
 | **CTA button** | The action button | "Install Now" |
-| **Destination** | Where the click goes | App Store / Play Store link |
+| **Destination** | Where the tap goes | App Store or Play Store link |
 
 ### How many ads per ad set?
 
 | Approach | Number of ads | When to use |
-|----------|--------------|-------------|
-| **Minimum** | 3 ads | Always have at least 3 for the algorithm to compare |
-| **Recommended** | 3-6 ads | Good balance of variety and data collection |
-| **Advanced** | 6-10+ ads | When you have proven creatives and want to test iterations |
+|---|---|---|
+| **Minimum** | 3 ads | Always have at least 3 so the algorithm can compare |
+| **Recommended** | 3-6 ads | Sweet spot of variety and data collection |
+| **Advanced** | 6-10+ ads | When you have proven winners and want to test iterations |
 
 <Tip>
-  **Variety matters more than volume.** Three ads with genuinely different approaches (different hooks, different visuals, different formats) will outperform ten ads that are slight variations of the same thing.
+  **Pro Tip: Variety matters way more than volume.** Three ads with genuinely DIFFERENT approaches (different hooks, different visuals, different formats) will crush ten ads that are minor tweaks of the same thing. Think "video demo vs. user testimonial vs. feature showcase" — not "same video with slightly different thumbnail."
 </Tip>
 
 ---
 
-## Platform comparison: terminology and structure
+## Platform terminology: the same thing with different names
 
-Every platform uses the same 3-level hierarchy, but the naming differs:
+Every platform uses the same 3-level hierarchy, but they call things by different names. Here is your translation guide:
 
 | Feature | Meta | Google Ads | TikTok | Apple Search Ads |
-|---------|------|-----------|--------|-----------------|
+|---|---|---|---|---|
 | **Level 1** | Campaign | Campaign | Campaign | Campaign |
 | **Level 2** | Ad Set | Ad Group | Ad Group | Ad Group |
-| **Level 3** | Ad | Ad | Ad | Keyword (+ Creative Set) |
+| **Level 3** | Ad | Ad | Ad | Keyword + Creative Set |
 | **Objective set at** | Campaign | Campaign | Campaign | Campaign |
 | **Budget can be set at** | Campaign or Ad Set | Campaign or Ad Group | Campaign or Ad Group | Campaign or Ad Group |
 | **Targeting set at** | Ad Set | Ad Group | Ad Group | Ad Group |
-| **Bidding set at** | Ad Set | Ad Group / Campaign | Ad Group | Ad Group / Keyword |
-| **Placements set at** | Ad Set | Campaign (by type) | Ad Group | N/A (App Store only) |
-| **Campaign budget optimization** | Advantage Campaign Budget | Shared Budget / auto | Campaign Budget Optimization | Balanced distribution |
-| **Max campaigns** | 5,000 per account | 10,000 per account | 999 per account | No hard limit |
-| **Max ad sets/groups per campaign** | 5,000 | 20,000 | 999 | 2,000 |
-| **Max ads per ad set/group** | 50 (6 recommended) | 15 (3+ recommended) | 20 | Keywords (unlimited) |
+| **Max ad sets/groups** | 5,000 per campaign | 20,000 per campaign | 999 per campaign | 2,000 per campaign |
+| **Recommended ads per set** | 3-6 | 3-15 | 3-20 | N/A (keyword-based) |
 
 <Note>
-  **Apple Search Ads is unique.** Instead of uploading creative assets, Apple pulls your app icon, screenshots, and metadata from your App Store listing. At the "ad" level, you are mostly managing keywords (search terms you want to bid on) and Creative Sets (combinations of your App Store screenshots).
+  **Apple Search Ads is a bit unique.** Instead of uploading creative assets like images and videos, Apple automatically pulls your app icon, screenshots, and metadata from your App Store listing. At the "ad" level, you are mostly managing keywords (search terms you want to bid on) and Creative Sets (combinations of your App Store screenshots).
 </Note>
 
 ---
 
-## Naming conventions — keep it clean
+## Naming conventions — save your future self
 
-As you create more campaigns, naming becomes critical. Without a system, you end up with "Campaign 1 copy (3) final FINAL."
+As you create more campaigns, naming becomes CRITICAL. Without a system, you end up with "Campaign 1 copy (3) final FINAL v2" — and trust us, it happens faster than you think.
 
-### Recommended naming formula
+### The recommended naming formula
 
 ```
 [Objective] - [Platform] - [Geo] - [Audience] - [Date]
 ```
 
-### Examples
+### Examples at each level
 
-| Level | Name | What it tells you |
-|-------|------|-------------------|
-| Campaign | `Installs - Meta - US - Broad - 2024Q1` | Install campaign on Meta, targeting US, broad audience, Q1 2024 |
-| Ad Set | `US_18-34_Fitness_AutoPlace` | US audience, 18-34, fitness interest, auto placements |
-| Ad | `VideoDemo_15s_HookA_v2` | 15-second video demo, using Hook A, version 2 |
-
-### Naming conventions by platform
+| Level | Name | What it tells you instantly |
+|---|---|---|
+| Campaign | `Installs_Meta_US_Broad_2025Q1` | Install campaign on Meta, US, broad audience, Q1 2025 |
+| Ad Set | `US_18-34_Fitness_AutoPlace` | US, ages 18-34, fitness interest, auto placements |
+| Ad | `Video_AppDemo_15s_HookA_v2` | 15-second video app demo, using Hook A, version 2 |
 
 <Tabs>
-  <Tab title="Meta">
+  <Tab title="Meta naming">
     ```
-    Campaign: [Objective]_[Geo]_[Audience Type]_[Budget Type]_[Date]
-    Ad Set:   [Geo]_[Age]_[Interest/Audience]_[Placement]
+    Campaign: [Objective]_[Geo]_[AudienceType]_[BudgetType]_[Date]
+    Ad Set:   [Geo]_[Age]_[Interest]_[Placement]
     Ad:       [Format]_[Hook]_[Version]
 
     Example:
-    Campaign: Installs_US_Prospecting_CBO_Jan2024
+    Campaign: Installs_US_Prospecting_CBO_Jan2025
     Ad Set:   US_18-34_FitnessInterest_AutoPlace
     Ad:       Video_15s_PainPoint_v3
     ```
   </Tab>
-  <Tab title="Google Ads">
+  <Tab title="Google Ads naming">
     ```
     Campaign: [Type]_[Geo]_[Objective]_[Date]
-    Ad Group: [Theme/Keywords]_[Match Type]
+    Ad Group: [Theme/Keywords]_[MatchType]
     Ad:       [Format]_[Variation]
 
     Example:
-    Campaign: Search_US_AppInstalls_Jan2024
+    Campaign: Search_US_AppInstalls_Jan2025
     Ad Group: FitnessApp_BroadMatch
     Ad:       RSA_BenefitFocused_v2
     ```
   </Tab>
-  <Tab title="TikTok">
+  <Tab title="TikTok naming">
     ```
     Campaign: [Objective]_[Geo]_[Strategy]_[Date]
     Ad Group: [Geo]_[Age]_[Targeting]_[Bid]
     Ad:       [CreatorName/Style]_[Length]_[Hook]_[Version]
 
     Example:
-    Campaign: AppInstall_US_LowestCost_Jan2024
+    Campaign: AppInstall_US_LowestCost_Jan2025
     Ad Group: US_18-34_BroadInterest_Auto
     Ad:       UGC_Sarah_15s_ProblemHook_v1
-    ```
-  </Tab>
-  <Tab title="Apple Search Ads">
-    ```
-    Campaign: [Geo]_[Type]_[Date]
-    Ad Group: [Theme]_[Match Type]
-    Keywords: [keyword] - [match type]
-
-    Example:
-    Campaign: US_Brand_Jan2024
-    Ad Group: CompetitorTerms_Exact
-    Keywords: "fitness tracker app" - Exact Match
     ```
   </Tab>
 </Tabs>
 
 <Tip>
-  **Use a spreadsheet or project management tool** to maintain a naming convention guide for your team. Consistency across team members is more important than the specific format you choose.
+  **Pro Tip: Set up your naming convention BEFORE you launch your first campaign.** It is 10x harder to rename everything after the fact. Write it down, share it with your team, and stick to it. Consistency matters more than perfection — pick a format and commit.
 </Tip>
 
 ---
 
-## How structure affects optimization
+## How structure affects the algorithm
 
-Your campaign structure directly impacts how well the platform's algorithm can optimize. Here is why:
+Here is something most beginners do not realize: your campaign structure directly impacts how well the platform's algorithm can optimize. The algorithm NEEDS data to learn, and your structure determines how that data flows.
 
 ### The learning phase and data distribution
 
-Every ad set needs approximately **50 conversion events per week** to exit the learning phase and optimize effectively. Your structure determines how data is distributed:
+Every ad set needs approximately **50 conversion events per week** to exit the "learning phase" and optimize effectively. This is not just a Meta thing — Google and TikTok have similar requirements. Your structure determines whether each ad set gets enough data:
 
 ```
-Scenario A: Too granular (bad)
+Scenario A: Too many ad sets (BAD)
 Campaign Budget: $50/day
-├── Ad Set 1: $5/day → ~1-2 installs/day → 7-14/week ❌
-├── Ad Set 2: $5/day → ~1-2 installs/day → 7-14/week ❌
-├── Ad Set 3: $5/day → ~1-2 installs/day → 7-14/week ❌
-├── Ad Set 4: $5/day → ~1-2 installs/day → 7-14/week ❌
-├── ... (10 ad sets, none learning properly)
+|-- Ad Set 1: $5/day --> ~1-2 installs/day --> 7-14/week  (Not enough!)
+|-- Ad Set 2: $5/day --> ~1-2 installs/day --> 7-14/week  (Not enough!)
+|-- Ad Set 3: $5/day --> ~1-2 installs/day --> 7-14/week  (Not enough!)
+|-- Ad Set 4: $5/day --> ~1-2 installs/day --> 7-14/week  (Not enough!)
+|-- ... (10 ad sets, NONE learning properly)
 
-Scenario B: Consolidated (good)
+Scenario B: Consolidated structure (GOOD)
 Campaign Budget: $50/day
-├── Ad Set 1: $25/day → ~8-12 installs/day → 56-84/week ✅
-├── Ad Set 2: $25/day → ~8-12 installs/day → 56-84/week ✅
+|-- Ad Set 1: $25/day --> ~8-12 installs/day --> 56-84/week  (Learning!)
+|-- Ad Set 2: $25/day --> ~8-12 installs/day --> 56-84/week  (Learning!)
 ```
 
 <Warning>
-  **Fragmentation is the most common structural mistake.** Every time you split your budget into another ad set, you dilute the data each one receives. Fewer ad sets with larger budgets almost always outperform many ad sets with small budgets.
+  **Fragmentation is the #1 structural mistake.** Every time you split your budget into another ad set, you dilute the data each one receives. Fewer ad sets with larger budgets almost ALWAYS outperform many ad sets with small budgets. When in doubt, consolidate.
 </Warning>
 
-### Structure and algorithmic optimization
+### How structure choices impact performance
 
-| Structure choice | Impact on optimization |
-|-----------------|----------------------|
+| Structure choice | Impact on the algorithm |
+|---|---|
 | Too many campaigns | Budget spread thin, no campaign gets enough data |
-| Too many ad sets | Each ad set starved of conversions, stuck in learning |
-| Too few ads per ad set | Algorithm has nothing to compare, can't find winner |
-| One ad per ad set | No creative testing, no optimization possible |
-| CBO with uneven ad sets | Algorithm will favor the easiest audience, may ignore niche ones |
+| Too many ad sets | Each ad set starved of conversions, stuck in "learning" forever |
+| Too few ads per ad set | Algorithm has nothing to compare, cannot find a winner |
+| Only one ad per ad set | Zero creative testing, zero optimization |
+| CBO with uneven ad sets | Algorithm favors the easiest audience, may ignore niche ones |
 
 ---
 
-## A/B testing via structure
+## A/B testing through structure
 
-Your campaign structure is your A/B testing framework. Test one variable at a time:
+Your campaign structure IS your testing framework. The key rule is: **test one variable at a time.** If you change the audience AND the creative simultaneously, you will never know which change caused the results.
 
 <Steps>
-  <Step title="Testing different audiences">
-    Create **multiple ad sets** within the same campaign, each with a different audience but the **same ads**. This tells you which audience responds best.
+  <Step title="Testing different audiences = Multiple ad sets, SAME ads">
+    Create multiple ad sets within one campaign, each targeting a different audience, but using the exact same ads in each. This isolates the audience variable.
 
     ```
     Campaign: Install_Testing_Audiences
-    ├── Ad Set: "Broad 18-34" → [Ad A, Ad B, Ad C]
-    ├── Ad Set: "Fitness Interest" → [Ad A, Ad B, Ad C]  (same ads)
-    └── Ad Set: "Lookalike 1%" → [Ad A, Ad B, Ad C]  (same ads)
+    |-- Ad Set: "Broad 18-34"       --> [Ad A, Ad B, Ad C]
+    |-- Ad Set: "Fitness Interest"   --> [Ad A, Ad B, Ad C]  (same ads!)
+    |-- Ad Set: "Lookalike 1%"       --> [Ad A, Ad B, Ad C]  (same ads!)
     ```
   </Step>
-  <Step title="Testing different creatives">
-    Use **one ad set** with **multiple ads** inside it. Same audience, different creatives. This tells you which creative resonates best.
+  <Step title="Testing different creatives = ONE ad set, multiple ads">
+    Use one ad set with multiple different ads inside it. Same audience, different creatives. This isolates the creative variable.
 
     ```
     Campaign: Install_Testing_Creatives
-    └── Ad Set: "US 18-34 Broad"
-        ├── Ad: Video - Problem/Solution hook
-        ├── Ad: Video - UGC testimonial
-        ├── Ad: Image carousel - Features
-        └── Ad: Video - App demo
+    |-- Ad Set: "US 18-34 Broad"
+        |-- Ad: Video - Problem/Solution hook
+        |-- Ad: Video - UGC testimonial
+        |-- Ad: Image carousel - Features
+        |-- Ad: Video - App demo
     ```
   </Step>
-  <Step title="Testing different objectives or bid strategies">
-    Create **separate campaigns** with different settings. This tests fundamental strategic differences.
+  <Step title="Testing different strategies = Separate campaigns">
+    Create separate campaigns with different objectives or bid strategies. This tests fundamental strategic differences.
 
     ```
     Campaign A: "Installs - Lowest Cost"
@@ -397,18 +395,18 @@ Your campaign structure is your A/B testing framework. Test one variable at a ti
 </Steps>
 
 <Note>
-  **Meta's built-in A/B test tool** lets you formally split-test campaigns or ad sets with proper statistical significance. Google has "Experiments." TikTok has "Split Test." Use these when you want clean results — they prevent audience overlap between test groups.
+  **Meta has a built-in A/B test tool** that formally split-tests campaigns or ad sets with proper statistical significance. Google has "Experiments." TikTok has "Split Test." Use these when you want clean, reliable results — they prevent audience overlap between test groups.
 </Note>
 
 ---
 
-## Budget inheritance and distribution
+## Budget flow: CBO vs. ABO explained
 
-Understanding how budget flows through the hierarchy is crucial:
+Understanding how money flows through the hierarchy is crucial. Let's compare the two approaches:
 
 ```mermaid
 graph TD
-    C["Campaign Budget: $100/day"] --> AS1["Ad Set 1: Gets $60/day (auto)"]
+    C["Campaign Budget: $100/day (CBO)"] --> AS1["Ad Set 1: Gets $60/day (auto)"]
     C --> AS2["Ad Set 2: Gets $30/day (auto)"]
     C --> AS3["Ad Set 3: Gets $10/day (auto)"]
 
@@ -422,124 +420,109 @@ graph TD
     style AS3 fill:#7B68EE,color:#fff
 ```
 
-### Campaign-level budget (CBO)
+### Campaign Budget Optimization (CBO)
 
-When you set the budget at the campaign level, the platform **automatically distributes** budget across ad sets based on performance. The ad set that delivers the best results gets more budget.
+The platform **automatically distributes** budget across ad sets based on performance. The best-performing ad set gets more money.
 
-**Pros:**
-- Hands-off optimization
-- Budget automatically shifts to best performers
-- Good for testing multiple audiences simultaneously
+**Pros:** Hands-off, budget shifts to best performers, great for testing audiences
+**Cons:** Less control, winning ad set may dominate and starve others, hard to guarantee minimum spend
 
-**Cons:**
-- Less control over individual ad set spend
-- Winning ad set may dominate, starving others of data
-- Hard to guarantee minimum spend on specific audiences
+### Ad Set Budget (ABO)
 
-### Ad-set-level budget (ABO)
+**You control exactly** how much each ad set spends.
 
-When you set the budget at the ad set level, **you control exactly** how much each ad set spends.
-
-**Pros:**
-- Full control over budget distribution
-- Guaranteed minimum spend per audience
-- Better for learning what specific audiences cost
-
-**Cons:**
-- Requires more manual management
-- You might over-invest in underperforming ad sets
-- More time-consuming as you scale
+**Pros:** Full control, guaranteed minimum spend per audience, better for learning individual audience costs
+**Cons:** More manual work, you might over-invest in underperformers, more time-consuming
 
 <Tip>
-  **Starting out?** Use **ad set level budgets (ABO)** so you can control exactly how much goes where. Switch to **campaign budget optimization (CBO)** once you have proven audiences and want the algorithm to distribute spend for you.
+  **Pro Tip for beginners: Start with ABO (ad set level budgets).** This gives you clear visibility into what each audience costs. Once you have identified your winning audiences and want the algorithm to handle distribution, switch to CBO. Think of it as learning to drive with manual transmission first — then switching to automatic once you are comfortable.
 </Tip>
 
 ---
 
 ## Real-world campaign structures
 
-Here are practical structures for common scenarios:
+Here are practical, copy-and-use structures for different stages:
 
 <Tabs>
-  <Tab title="Beginner: First Campaign">
+  <Tab title="Beginner: Your First Campaign">
     ```
     Campaign: "App Installs - [Country] - Launch"
-    ├── Ad Set 1: "Broad Audience"
-    │   ├── Ad: Video - App demo (15s)
-    │   ├── Ad: Video - Problem/Solution (15s)
-    │   └── Ad: Image - Key feature highlight
-    └── Ad Set 2: "Interest-Based"
-        ├── Ad: Video - App demo (15s)      (same ads)
-        ├── Ad: Video - Problem/Solution (15s)
-        └── Ad: Image - Key feature highlight
+    |-- Ad Set 1: "Broad Audience"
+    |   |-- Ad: Video - App demo (15s)
+    |   |-- Ad: Video - Problem/Solution (15s)
+    |   |-- Ad: Image - Key feature highlight
+    |
+    |-- Ad Set 2: "Interest-Based"
+        |-- Ad: Video - App demo (15s)        (same ads!)
+        |-- Ad: Video - Problem/Solution (15s)
+        |-- Ad: Image - Key feature highlight
 
     Budget: $15-20/day per ad set
     Duration: 7-14 days
+    Goal: Learn your CPI and find what works
     ```
+
+    This structure tests broad vs. interest-based targeting with the same creatives. Simple and effective.
   </Tab>
-  <Tab title="Intermediate: Scaling">
+  <Tab title="Intermediate: Scaling Up">
     ```
     Campaign 1: "Prospecting - Broad" (CBO: $100/day)
-    ├── Ad Set: "US 18-34 Broad"
-    │   ├── 4-6 ads (mix of video + image)
-    ├── Ad Set: "US 35-54 Broad"
-    │   └── 4-6 ads
-    └── Ad Set: "Lookalike 1-3%"
-        └── 4-6 ads
+    |-- Ad Set: "US 18-34 Broad" --> 4-6 ads (video + image mix)
+    |-- Ad Set: "US 35-54 Broad" --> 4-6 ads
+    |-- Ad Set: "Lookalike 1-3%" --> 4-6 ads
 
     Campaign 2: "Retargeting" ($30/day)
-    ├── Ad Set: "Visited but didn't install"
-    │   └── 3-4 ads (different messaging)
-    └── Ad Set: "Installed but inactive"
-        └── 3-4 ads (re-engagement focused)
+    |-- Ad Set: "Visited but didn't install" --> 3-4 ads
+    |-- Ad Set: "Installed but inactive"     --> 3-4 ads
 
-    Campaign 3: "Testing New Creatives" ($20/day)
-    └── Ad Set: "Best audience"
-        └── 5-8 new creative variations
+    Campaign 3: "Creative Testing" ($20/day)
+    |-- Ad Set: "Best audience"              --> 5-8 new variations
     ```
   </Tab>
   <Tab title="Advanced: Full Funnel">
     ```
-    AWARENESS CAMPAIGNS
+    TOP OF FUNNEL (Awareness)
     Campaign: "TOF - Video Views - Brand"
-    └── Multiple ad sets by audience segment
-        └── Brand story / educational videos
+    |-- Multiple ad sets by segment
+        |-- Brand story / educational videos
 
-    CONSIDERATION CAMPAIGNS
+    MIDDLE OF FUNNEL (Consideration)
     Campaign: "MOF - Traffic - Features"
-    └── Ad sets targeting video viewers + engagers
-        └── Feature-focused creatives with CTAs
+    |-- Ad sets targeting video viewers + engagers
+        |-- Feature-focused creatives with CTAs
 
-    CONVERSION CAMPAIGNS
-    Campaign: "BOF - Installs - Broad Prospecting" (CBO)
-    └── Multiple proven audience ad sets
-        └── Best-performing creatives
+    BOTTOM OF FUNNEL (Conversion)
+    Campaign: "BOF - Installs - Prospecting" (CBO)
+    |-- Multiple proven audience ad sets
+        |-- Best-performing creatives
 
     Campaign: "BOF - Installs - Retargeting"
-    └── Custom audience ad sets
-        └── Urgency / social proof creatives
+    |-- Custom audience ad sets
+        |-- Urgency / social proof creatives
 
-    RETENTION CAMPAIGNS
+    RETENTION
     Campaign: "Retention - Re-engagement"
-    └── Lapsed user audiences
-        └── New feature / update creatives
+    |-- Lapsed user audiences
+        |-- New feature / update creatives
     ```
   </Tab>
 </Tabs>
 
 ---
 
-## Common structural mistakes
+## Common structural mistakes (and how to avoid them)
 
-| Mistake | Why it hurts | Fix |
-|---------|-------------|-----|
+| Mistake | Why it hurts | What to do instead |
+|---|---|---|
 | One campaign per creative | Fragments budget, prevents creative comparison | Put multiple creatives in one ad set |
-| 20+ ad sets in one campaign | Each ad set starved of data | Consolidate to 3-5 ad sets |
-| Mixing objectives in one campaign | Algorithm confused, poor optimization | One objective per campaign |
+| 20+ ad sets in one campaign | Each ad set starved of data (needs 50 conversions/week!) | Consolidate to 3-5 ad sets max |
+| Mixing objectives in one campaign | Algorithm gets confused, poor optimization | One objective per campaign, always |
 | Never pausing underperformers | Wasting budget on losers | Review weekly, pause bottom performers |
-| Duplicating campaigns instead of iterating | Loses historical data | Edit existing, create new only for true tests |
-| No naming convention | Cannot find or compare anything at scale | Adopt naming system before launching |
-| Testing audience AND creative simultaneously | Cannot isolate what worked | Test one variable at a time |
+| Duplicating campaigns instead of iterating | Loses historical data and learnings | Edit existing campaigns, create new ones only for true tests |
+| No naming convention | Cannot find or compare anything | Adopt a naming system before you launch |
+| Testing audience AND creative at the same time | Cannot isolate what worked | Test one variable at a time |
+| Starting with CBO before knowing your audiences | Algorithm picks the "easy" wins, not the best ones | Start with ABO, switch to CBO once you know what works |
 
 ---
 
@@ -547,19 +530,19 @@ Here are practical structures for common scenarios:
 
 <Steps>
   <Step title="Three levels, always">
-    Campaign (goal) > Ad Set (audience) > Ad (creative). This hierarchy is universal across platforms.
+    Campaign (goal) > Ad Set (audience) > Ad (creative). This hierarchy is universal across every platform you will ever use.
   </Step>
   <Step title="Structure equals strategy">
-    How you organize campaigns determines what you can test, how the algorithm learns, and how easily you can scale.
+    How you organize campaigns determines what you can test, how the algorithm learns, and how easily you can scale. Good structure = good results.
   </Step>
   <Step title="Consolidation beats fragmentation">
-    Fewer, well-funded ad sets outperform many starved ones. Give the algorithm enough data to learn.
+    Fewer, well-funded ad sets outperform many starved ones. Each ad set needs about 50 conversions per week to learn. Give the algorithm enough data.
   </Step>
   <Step title="Test one variable at a time">
-    Different audiences = different ad sets. Different creatives = different ads. Different strategies = different campaigns.
+    Different audiences = different ad sets. Different creatives = different ads within one ad set. Different strategies = different campaigns. Never change everything at once.
   </Step>
-  <Step title="Name everything clearly">
-    A consistent naming convention saves hours of confusion later. Establish one before you launch.
+  <Step title="Name everything clearly from day one">
+    A consistent naming convention saves hours of confusion later. Set it up before you launch your first campaign — not after you have 50 unnamed campaigns.
   </Step>
 </Steps>
 
@@ -567,12 +550,12 @@ Here are practical structures for common scenarios:
 
 ## Next up
 
-Your campaigns are structured. Now let's talk about finding the right people to show your ads to.
+Your campaigns are structured and organized. Now let's talk about the most exciting part — finding exactly the right people to show your ads to.
 
 <Card
   title="Targeting"
   icon="arrow-right"
   href="/concepts/targeting"
 >
-  How to find your perfect audience — from demographics to lookalikes.
+  How to find your perfect audience — from demographics to lookalikes and everything in between.
 </Card>

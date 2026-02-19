@@ -3,586 +3,173 @@ title: "TikTok Ads Account Setup"
 description: "Complete step-by-step guide to creating your TikTok Ads Manager account, installing the TikTok Pixel and SDK, setting up Events Manager, business verification, and payment configuration."
 ---
 
-## Getting everything connected before you spend a dollar
+# TikTok Ads Account Setup
 
-TikTok's ad platform has matured significantly. The setup is similar to Meta's Business Manager — create an account, install tracking, configure events, and set up payment. There are a few extra steps compared to Apple Search Ads, but each one is straightforward.
+This guide walks you through every step of setting up your TikTok Ads Manager account — from creating the account to installing tracking, verifying your business, and configuring payment. Follow along step by step.
 
-This guide walks through every step, including code examples for installing the TikTok SDK in your app.
+<Tip>
+**Before you start**: You need a TikTok account (personal or business) and either a website or a published app that you want to advertise. You do not need a large following — you can start advertising even with zero TikTok followers.
+</Tip>
 
-## Prerequisites
+---
 
-| Requirement | Details | Notes |
-|------------|---------|-------|
-| **Email address** | For your TikTok Ads Manager account | Does not need to match a TikTok account |
-| **Business information** | Legal name, address, phone, website or app store URL | Must be real — fake info gets accounts banned |
-| **Payment method** | Credit card, debit card, or PayPal (in some regions) | Must match your business information |
-| **App store listing** (for app campaigns) | Your app must be live on the App Store or Google Play | TikTok needs to verify your app exists |
-| **TikTok account** (optional but recommended) | For running Spark Ads and building organic presence | Free to create at tiktok.com |
-
-<Note>
-  **You do NOT need a TikTok account to run ads.** The Ads Manager is a separate system. However, having a TikTok account lets you run Spark Ads (boosted organic posts), which are often the best-performing format.
-</Note>
-
-## Step 1: Create your TikTok Business Account
-
-A TikTok Business Account is a free upgrade to a regular TikTok account that gives you access to analytics, the commercial music library, and the ability to link to Ads Manager.
+## Step 1: Create Your TikTok Ads Manager Account
 
 <Steps>
-  <Step title="Go to TikTok for Business">
-    Visit [business.tiktok.com](https://business.tiktok.com) and click **Create Now** or **Get Started**.
+  <Step title="Go to ads.tiktok.com">
+    Open your browser and navigate to [ads.tiktok.com](https://ads.tiktok.com). Click **"Create an Ad"** or **"Get Started"**.
   </Step>
-  <Step title="Create or log in">
-    You can either:
-    - **Create a new account** with your email
-    - **Log in with an existing TikTok account** and upgrade it to a Business Account
+  <Step title="Sign up or log in">
+    You can sign up with:
+    - An existing TikTok account
+    - An email address
+    - A phone number
 
-    If you already have a TikTok account with followers, log in with that — you will be able to use your organic content as Spark Ads.
+    If you already have a TikTok Business Account, use those same credentials.
   </Step>
-  <Step title="Select your business category">
-    Choose the category that best describes your business. This helps TikTok with ad review and does not affect targeting.
+  <Step title="Enter your business information">
+    TikTok will ask for:
+    - **Business name**: Your company or app name
+    - **Industry**: Select the closest match from the dropdown
+    - **Country/Region**: Where your business is registered
+    - **Currency**: The currency you want to use for billing (cannot be changed later, so choose carefully)
+    - **Time zone**: Your local time zone (affects when "daily" budgets reset)
+    - **Phone number**: For account verification
   </Step>
-  <Step title="Complete your business profile">
-    Add:
-    - Business name
-    - Profile photo (your app icon works great)
-    - Bio (brief description of what your app does)
-    - Website URL or app store link
+  <Step title="Accept the terms">
+    Review and accept TikTok's advertising terms of service and privacy policy.
   </Step>
-</Steps>
-
-## Step 2: Set up TikTok Ads Manager
-
-TikTok Ads Manager is the separate dashboard where you create, manage, and analyze your ad campaigns.
-
-<Steps>
-  <Step title="Go to TikTok Ads Manager">
-    Visit [ads.tiktok.com](https://ads.tiktok.com) and click **Create an Ad** or **Get Started**.
-  </Step>
-  <Step title="Register your account">
-    Enter:
-    - **Email address** — will be your login
-    - **Password** — create a strong password
-    - **Verification code** — TikTok sends a code to your email
-
-    If you already logged in with your TikTok account, some of this may be pre-filled.
-  </Step>
-  <Step title="Enter business information">
-    Fill in all required fields:
-
-    | Field | What to enter | Example |
-    |-------|-------------|---------|
-    | **Country/Region** | Where your business is registered | United States |
-    | **Industry** | Your app's category | Technology / Apps |
-    | **Legal business name** | Your company's legal name | YourApp Inc. |
-    | **Business address** | Your registered business address | 123 Main St, San Francisco, CA |
-    | **Phone number** | Business phone number | +1-555-123-4567 |
-    | **Business website** | Your website or app store URL | https://apps.apple.com/app/yourapp/id12345 |
-    | **Tax information** | Tax ID or VAT number (if applicable) | May be required in some regions |
-
-    <Warning>
-      **Use real, accurate business information.** TikTok actively verifies this. Mismatched names, addresses that do not exist, or obviously fake information will get your account rejected or banned. If you are a solo developer, use your real name and address.
-    </Warning>
-  </Step>
-  <Step title="Wait for account review">
-    TikTok reviews new accounts. This can take:
-    - **Instant** — some accounts are auto-approved
-    - **24 hours** — standard review time
-    - **2-3 days** — if additional verification is needed
-
-    You will receive an email when your account is approved.
-  </Step>
-  <Step title="Log in to your approved account">
-    Once approved, log in to [ads.tiktok.com](https://ads.tiktok.com). You will see the Ads Manager dashboard with sections for Campaigns, Assets, Reporting, and more.
-  </Step>
-</Steps>
-
-## Step 3: Business verification (recommended)
-
-Business verification is optional for basic ad campaigns but gives you additional benefits and trust signals.
-
-<Steps>
-  <Step title="Navigate to business verification">
-    In Ads Manager, go to **Account Settings** (gear icon) > **Business Verification**.
-  </Step>
-  <Step title="Upload documents">
-    TikTok may ask for:
-    - Business registration certificate
-    - Tax documents
-    - Proof of address
-    - Government-issued ID of the account owner
-
-    The exact requirements vary by country.
-  </Step>
-  <Step title="Wait for verification">
-    Verification typically takes 2-5 business days. Once verified, your account gets:
-    - Higher spending limits
-    - Access to more ad features
-    - Better support priority
-    - Lower risk of account suspension
+  <Step title="Verify your email or phone">
+    TikTok sends a verification code. Enter it to confirm your account.
   </Step>
 </Steps>
 
 <Tip>
-  **You can start running ads without business verification.** Do not let this step delay your launch. Start advertising and complete verification in parallel.
+**Pro Tip**: Choose your **currency** and **time zone** carefully during setup — these cannot be changed after account creation. If you choose the wrong currency, you will need to create an entirely new account.
 </Tip>
 
-## Step 4: Set up payment
+---
+
+## Step 2: Complete Business Verification
+
+TikTok requires business verification to unlock full advertising features. Without verification, you may have limited functionality.
 
 <Steps>
-  <Step title="Navigate to payment settings">
-    In Ads Manager, go to **Account Settings** > **Payment** > **Payment Method**.
+  <Step title="Navigate to Account Settings">
+    In your Ads Manager dashboard, click your account name in the top right, then **Account Settings** or **Business Verification**.
+  </Step>
+  <Step title="Submit your business documents">
+    TikTok accepts various documents depending on your business type:
+
+    | Business Type | Accepted Documents |
+    |---|---|
+    | **Corporation/LLC** | Business license, articles of incorporation, tax registration certificate |
+    | **Sole proprietor** | Business license, government-issued ID |
+    | **Individual** | Government-issued ID (passport, driver's license) |
+  </Step>
+  <Step title="Wait for review">
+    Verification typically takes **1-3 business days**. You will receive an email notification when it is approved.
+
+    During the review period, you can still set up campaigns and tracking — you just cannot publish live ads until verification is complete.
+  </Step>
+</Steps>
+
+<Tip>
+**Pro Tip**: Submit your verification documents right away, even before you are ready to launch campaigns. The 1-3 day waiting period can be frustrating if you are ready to go but still waiting for approval. Get it out of the way early.
+</Tip>
+
+---
+
+## Step 3: Set Up Payment
+
+You need a valid payment method before launching any campaigns.
+
+### Payment Options
+
+| Payment Method | Availability | Notes |
+|---|---|---|
+| **Credit Card** | All regions | Visa, Mastercard, American Express, JCB |
+| **Debit Card** | All regions | Must support recurring online payments |
+| **PayPal** | Select regions | Check availability in your country |
+| **Manual Payment** | Select regions | Pre-pay a balance, ads run until it is depleted |
+| **Automatic Payment** | Most regions | TikTok charges your card automatically |
+
+<Steps>
+  <Step title="Go to Payment Settings">
+    In Ads Manager, navigate to **Account > Payment** or click the billing/wallet icon.
   </Step>
   <Step title="Choose payment type">
-    TikTok offers two payment models:
-
-    | Type | How it works | Best for |
-    |------|-------------|----------|
-    | **Automatic payments** | TikTok charges your card when you hit a threshold or at the end of billing cycle | Most advertisers (recommended) |
-    | **Manual payments** | You prepay a balance and TikTok deducts from it | Strict budget control |
+    - **Automatic Payment**: TikTok charges your card when your balance reaches a threshold (recommended for most advertisers)
+    - **Manual Payment**: You add funds in advance and ads stop when the balance runs out (good for strict budget control)
   </Step>
   <Step title="Add your payment method">
-    **For automatic payments:**
-    - Enter credit or debit card details (Visa, Mastercard, AMEX)
-    - PayPal is available in some regions
-    - The billing address must match your card
-
-    **For manual payments:**
-    - Choose a prepayment amount (minimum varies by region)
-    - Pay via credit card, PayPal, or local payment methods
-    - Your balance appears in the account and is deducted as ads run
-  </Step>
-  <Step title="Set a spending limit (recommended)">
-    Go to **Account Settings** > **Account Budget** and set a maximum spending limit. This prevents accidental overspending while you learn.
-
-    **Recommended starting limit:** $500 - $1,000 for your first month.
+    Enter your credit/debit card details or connect PayPal. TikTok may make a small verification charge that is immediately refunded.
   </Step>
 </Steps>
 
-### Understanding TikTok billing
+<Tip>
+**Pro Tip for beginners**: If you are worried about overspending, use **Manual Payment**. You add a specific amount (say $200), and once that money is spent, your ads stop automatically. No surprise bills. It is like a prepaid phone plan for advertising.
+</Tip>
 
-| Billing aspect | Details |
-|---------------|---------|
-| **Billing threshold** | Starts low ($20-50), increases as you build payment history |
-| **When you are charged** | When you hit the threshold OR at month end |
-| **Currency** | Based on your billing country |
-| **Payment failure** | All campaigns pause until resolved; fix within 24 hours |
-| **Refunds** | TikTok generally does not refund ad spend |
-| **Invoice** | Available in Account Settings > Billing |
+---
 
-## Step 5: Connect your app to TikTok
+## Step 4: Connect Your App or Website
 
-Before you can run app install campaigns, TikTok needs to know about your app.
+TikTok needs to know what you are promoting so it can track conversions and optimize your campaigns.
+
+### For App Advertisers
 
 <Steps>
-  <Step title="Go to Events Manager">
-    In Ads Manager, navigate to **Assets** > **Events**.
+  <Step title="Navigate to Assets > App">
+    In Ads Manager, go to **Assets** in the top navigation, then click **App**.
   </Step>
-  <Step title="Click 'Manage' under App Events">
-    Select **App Events** and click **Manage**.
+  <Step title="Add your app">
+    Click **"Add App"** and enter your app's download URL:
+    - **iOS**: Your App Store URL (e.g., `https://apps.apple.com/app/yourapp/id123456789`)
+    - **Android**: Your Google Play URL (e.g., `https://play.google.com/store/apps/details?id=com.yourapp`)
   </Step>
-  <Step title="Create a new app">
-    Click **Create App** and enter:
-    - **App name** — your app's name
-    - **App Store URL** or **Google Play URL** — the link to your app listing
-    - **Platform** — iOS, Android, or both
-
-    TikTok will verify that your app exists in the store.
-  </Step>
-  <Step title="Choose your integration method">
-    This is a critical choice:
-
-    | Method | When to use | Effort |
-    |--------|-------------|--------|
-    | **TikTok SDK** | You want direct integration with no third-party tools | Medium |
-    | **Third-party MMP** (AppsFlyer, Adjust, Branch, Singular, Kochava) | You already use an MMP or plan to run ads on multiple platforms | Low (MMP handles it) |
-    | **Events API** (server-to-server) | You want server-side tracking for maximum reliability | Higher |
-
-    <Tip>
-      **If you are running ads on multiple platforms (Meta, Google, Apple, TikTok), use an MMP.** It gives you unified attribution across all channels and avoids double-counting installs. AppsFlyer and Adjust are the most popular choices.
-    </Tip>
+  <Step title="TikTok fetches your app info">
+    TikTok automatically pulls your app name, icon, and description from the store listing. Verify that everything looks correct.
   </Step>
 </Steps>
 
-## Step 6: Install TikTok tracking
-
-<Tabs>
-  <Tab title="TikTok SDK — iOS (Swift)">
-    ### Step 1: Install via CocoaPods
-
-    Add to your `Podfile`:
-
-    ```ruby
-    pod 'TikTokBusinessSDK'
-    ```
-
-    Then run:
-
-    ```bash
-    cd ios && pod install
-    ```
-
-    ### Step 2: Configure your App ID
-
-    Get your TikTok App ID from **Events Manager** > **App Events** > your app > **Details**.
-
-    ### Step 3: Initialize the SDK
-
-    In your `AppDelegate.swift`:
-
-    ```swift
-    import UIKit
-    import TikTokBusinessSDK
-
-    @main
-    class AppDelegate: UIResponder, UIApplicationDelegate {
-
-        func application(
-            _ application: UIApplication,
-            didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
-        ) -> Bool {
-
-            // Configure TikTok SDK
-            let config = TikTokConfig(appId: "YOUR_APP_ID", tiktokAppId: "YOUR_TIKTOK_APP_ID")
-
-            // Enable automatic event tracking (recommended)
-            config.setLogLevel(.info) // Use .none in production
-
-            // Initialize
-            TikTokBusiness.initializeSdk(config) { success, error in
-                if success {
-                    print("TikTok SDK initialized successfully")
-                } else {
-                    print("TikTok SDK initialization failed: \(String(describing: error))")
-                }
-            }
-
-            return true
-        }
-    }
-    ```
-
-    ### Step 4: Track events
-
-    ```swift
-    import TikTokBusinessSDK
-
-    // Track app install (automatic with SDK)
-
-    // Track registration
-    TikTokBusiness.trackEvent("CompleteRegistration", withProperties: [
-        "method": "email"
-    ])
-
-    // Track purchase
-    TikTokBusiness.trackEvent("Purchase", withProperties: [
-        "value": 9.99,
-        "currency": "USD",
-        "content_type": "subscription",
-        "content_id": "premium_monthly"
-    ])
-
-    // Track add to cart
-    TikTokBusiness.trackEvent("AddToCart", withProperties: [
-        "value": 29.99,
-        "currency": "USD",
-        "content_id": "product_123"
-    ])
-
-    // Track custom events
-    TikTokBusiness.trackEvent("LevelComplete", withProperties: [
-        "level": 5,
-        "score": 1200
-    ])
-    ```
-
-    ### Step 5: Handle iOS App Tracking Transparency (ATT)
-
-    iOS 14.5+ requires user permission for tracking. Add to `Info.plist`:
-
-    ```xml
-    <key>NSUserTrackingUsageDescription</key>
-    <string>We use this to provide you with a better ad experience.</string>
-    ```
-
-    Request permission in your app:
-
-    ```swift
-    import AppTrackingTransparency
-
-    func requestTrackingPermission() {
-        if #available(iOS 14, *) {
-            ATTrackingManager.requestTrackingAuthorization { status in
-                switch status {
-                case .authorized:
-                    print("Tracking authorized")
-                case .denied:
-                    print("Tracking denied")
-                case .notDetermined:
-                    print("Tracking not determined")
-                case .restricted:
-                    print("Tracking restricted")
-                @unknown default:
-                    break
-                }
-            }
-        }
-    }
-    ```
-
-    <Warning>
-      **Ask for tracking permission AFTER the user has experienced value from your app.** Asking on first launch results in very low opt-in rates (15-25%). Asking after the user has completed onboarding or used a feature results in much higher rates (35-50%).
-    </Warning>
-  </Tab>
-  <Tab title="TikTok SDK — Android (Kotlin)">
-    ### Step 1: Add the dependency
-
-    In your app's `build.gradle`:
-
-    ```groovy
-    dependencies {
-        implementation 'com.tiktok.business.sdk:tiktok-business-android-sdk:1.+'
-    }
-    ```
-
-    Add the TikTok Maven repository if not already present:
-
-    ```groovy
-    // In your project-level build.gradle or settings.gradle
-    repositories {
-        maven { url "https://artifact.bytedance.com/repository/releases/" }
-    }
-    ```
-
-    ### Step 2: Initialize the SDK
-
-    In your `Application` class:
-
-    ```kotlin
-    import android.app.Application
-    import com.tiktok.TikTokBusinessSdk
-
-    class MyApplication : Application() {
-
-        override fun onCreate() {
-            super.onCreate()
-
-            // Configure TikTok SDK
-            val config = TikTokBusinessSdk.TTConfig(this)
-                .setAppId("YOUR_APP_ID")
-                .setTTAppId("YOUR_TIKTOK_APP_ID")
-                .setLogLevel(TikTokBusinessSdk.LogLevel.INFO) // Use NONE in production
-
-            // Initialize
-            TikTokBusinessSdk.initializeSdk(config)
-        }
-    }
-    ```
-
-    ### Step 3: Track events
-
-    ```kotlin
-    import com.tiktok.TikTokBusinessSdk
-    import org.json.JSONObject
-
-    // Track registration
-    val regProps = JSONObject().apply {
-        put("method", "email")
-    }
-    TikTokBusinessSdk.trackEvent("CompleteRegistration", regProps)
-
-    // Track purchase
-    val purchaseProps = JSONObject().apply {
-        put("value", 9.99)
-        put("currency", "USD")
-        put("content_type", "subscription")
-        put("content_id", "premium_monthly")
-    }
-    TikTokBusinessSdk.trackEvent("Purchase", purchaseProps)
-
-    // Track custom events
-    val customProps = JSONObject().apply {
-        put("level", 5)
-        put("score", 1200)
-    }
-    TikTokBusinessSdk.trackEvent("LevelComplete", customProps)
-    ```
-
-    ### Step 4: Add required permissions
-
-    In `AndroidManifest.xml`:
-
-    ```xml
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- Optional: for better attribution -->
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
-    ```
-  </Tab>
-  <Tab title="React Native">
-    ### Option A: Using a third-party MMP (recommended)
-
-    If you use AppsFlyer, Adjust, or Branch, the MMP SDK handles TikTok attribution automatically. You configure the TikTok integration in your MMP dashboard and do not need the TikTok SDK in your app.
-
-    **Example with AppsFlyer:**
-
-    ```bash
-    npm install react-native-appsflyer
-    cd ios && pod install
-    ```
-
-    ```typescript
-    import appsFlyer from 'react-native-appsflyer';
-
-    // Initialize AppsFlyer (which handles TikTok attribution)
-    appsFlyer.initSdk({
-      devKey: 'YOUR_APPSFLYER_DEV_KEY',
-      isDebug: false,
-      appId: 'YOUR_IOS_APP_ID', // iOS only
-      onInstallConversionDataListener: true,
-    });
-
-    // Track events (forwarded to TikTok automatically)
-    appsFlyer.logEvent('af_purchase', {
-      af_revenue: 9.99,
-      af_currency: 'USD',
-      af_content_id: 'premium_monthly',
-    });
-    ```
-
-    Then in the AppsFlyer dashboard, enable TikTok as an integrated partner and enter your TikTok App ID.
-
-    ### Option B: Direct TikTok SDK integration
-
-    If you want to use the TikTok SDK directly in React Native, you need a native module bridge since there is no official React Native package.
-
-    **iOS side** (`ios/TikTokSDKBridge.swift`):
-
-    ```swift
-    import Foundation
-    import TikTokBusinessSDK
-
-    @objc(TikTokSDKBridge)
-    class TikTokSDKBridge: NSObject {
-
-      @objc
-      func initialize(
-        _ appId: String,
-        tiktokAppId: String,
-        resolver resolve: @escaping RCTPromiseResolveBlock,
-        rejecter reject: @escaping RCTPromiseRejectBlock
-      ) {
-        let config = TikTokConfig(appId: appId, tiktokAppId: tiktokAppId)
-        TikTokBusiness.initializeSdk(config) { success, error in
-          if success {
-            resolve(true)
-          } else {
-            reject("INIT_FAILED", "TikTok SDK init failed", error)
-          }
-        }
-      }
-
-      @objc
-      func trackEvent(
-        _ eventName: String,
-        properties: NSDictionary,
-        resolver resolve: @escaping RCTPromiseResolveBlock,
-        rejecter reject: @escaping RCTPromiseRejectBlock
-      ) {
-        if let props = properties as? [String: Any] {
-          TikTokBusiness.trackEvent(eventName, withProperties: props)
-        } else {
-          TikTokBusiness.trackEvent(eventName)
-        }
-        resolve(true)
-      }
-
-      @objc
-      static func requiresMainQueueSetup() -> Bool {
-        return false
-      }
-    }
-    ```
-
-    **Objective-C bridge** (`ios/TikTokSDKBridge.m`):
-
-    ```objc
-    #import <React/RCTBridgeModule.h>
-
-    @interface RCT_EXTERN_MODULE(TikTokSDKBridge, NSObject)
-
-    RCT_EXTERN_METHOD(initialize:(NSString *)appId
-                      tiktokAppId:(NSString *)tiktokAppId
-                      resolver:(RCTPromiseResolveBlock)resolve
-                      rejecter:(RCTPromiseRejectBlock)reject)
-
-    RCT_EXTERN_METHOD(trackEvent:(NSString *)eventName
-                      properties:(NSDictionary *)properties
-                      resolver:(RCTPromiseResolveBlock)resolve
-                      rejecter:(RCTPromiseRejectBlock)reject)
-
-    @end
-    ```
-
-    **TypeScript usage:**
-
-    ```typescript
-    import { NativeModules, Platform } from 'react-native';
-
-    const { TikTokSDKBridge } = NativeModules;
-
-    // Initialize on app startup
-    async function initTikTokSDK(): Promise<void> {
-      if (Platform.OS === 'ios') {
-        try {
-          await TikTokSDKBridge.initialize(
-            'YOUR_APP_ID',
-            'YOUR_TIKTOK_APP_ID'
-          );
-          console.log('TikTok SDK initialized');
-        } catch (error) {
-          console.error('TikTok SDK init failed:', error);
-        }
-      }
-    }
-
-    // Track events
-    async function trackTikTokEvent(
-      eventName: string,
-      properties: Record<string, any> = {}
-    ): Promise<void> {
-      try {
-        await TikTokSDKBridge.trackEvent(eventName, properties);
-      } catch (error) {
-        console.error('TikTok event tracking failed:', error);
-      }
-    }
-
-    // Usage examples
-    trackTikTokEvent('CompleteRegistration', { method: 'email' });
-    trackTikTokEvent('Purchase', {
-      value: 9.99,
-      currency: 'USD',
-      content_id: 'premium_monthly',
-    });
-    ```
-  </Tab>
-  <Tab title="TikTok Pixel (Web)">
-    If you drive traffic to a website or landing page before the app store, install the TikTok Pixel.
-
-    ### Step 1: Create a Pixel
-
-    In Ads Manager, go to **Assets** > **Events** > **Web Events** > **Manage** > **Create Pixel**.
-
-    Name your pixel and choose the installation method:
-
-    | Method | Best for |
-    |--------|---------|
-    | **Manual installation** | Developers who want full control |
-    | **Partner integration** | Shopify, WordPress, Google Tag Manager, etc. |
-
-    ### Step 2: Install the base code
-
-    Add this code to the `<head>` section of every page on your website:
+### For Website Advertisers
+
+<Steps>
+  <Step title="Navigate to Assets > Website">
+    Go to **Assets > Website** and click **"Add Website"**.
+  </Step>
+  <Step title="Enter your domain">
+    Enter your website domain (e.g., `www.yoursite.com`). TikTok will need to verify domain ownership.
+  </Step>
+  <Step title="Verify domain ownership">
+    TikTok offers several verification methods:
+    - Add a meta tag to your HTML `<head>`
+    - Upload an HTML file to your web server
+    - Add a DNS TXT record
+  </Step>
+</Steps>
+
+---
+
+## Step 5: Install TikTok Pixel (For Websites)
+
+The TikTok Pixel is a JavaScript snippet that tracks user actions on your website. It is essential for conversion tracking and campaign optimization.
+
+<Steps>
+  <Step title="Create your Pixel">
+    Go to **Assets > Events > Web Events** and click **"Create Pixel"**. Name your pixel something descriptive (e.g., "Main Website Pixel").
+  </Step>
+  <Step title="Choose installation method">
+    TikTok offers two options:
+
+    | Method | Best For | Difficulty |
+    |---|---|---|
+    | **Manual install** | Custom websites, developers | Moderate |
+    | **Partner integration** | Shopify, WordPress, Google Tag Manager | Easy |
+  </Step>
+  <Step title="Install the base code">
+    For manual installation, add this code to the `<head>` section of every page on your website:
 
     ```html
     <script>
@@ -590,8 +177,7 @@ Before you can run app install campaigns, TikTok needs to know about your app.
       w.TiktokAnalyticsObject=t;
       var ttq=w[t]=w[t]||[];
       ttq.methods=["page","track","identify","instances","debug","on","off",
-        "once","ready","alias","group","enableCookie","disableCookie",
-        "holdConsent","revokeConsent","grantConsent"];
+        "once","ready","alias","group","enableCookie","disableCookie"];
       ttq.setAndDefer=function(t,e){
         t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}
       };
@@ -603,14 +189,14 @@ Before you can run app install campaigns, TikTok needs to know about your app.
         return e
       };
       ttq.load=function(e,n){
-        var o="https://analytics.tiktok.com/i18n/pixel/events.js",
-            s=n&&n.partner;
-        ttq._i=ttq._i||{};ttq._i[e]=[];ttq._i[e]._u=o;
-        ttq._t=ttq._t||{};ttq._t[e+\"_\"+n]=+new Date;
-        var r=d.createElement("script");
-        r.type="text/javascript";r.async=!0;r.src=o+"?sdkid="+e+"&lib="+t;
-        var a=d.getElementsByTagName("script")[0];
-        a.parentNode.insertBefore(r,a)
+        var i="https://analytics.tiktok.com/i18n/pixel/events.js";
+        ttq._i=ttq._i||{};ttq._i[e]=[];ttq._i[e]._u=i;
+        ttq._t=ttq._t||{};ttq._t[e]=+new Date;
+        ttq._o=ttq._o||{};ttq._o[e]=n||{};
+        var o=document.createElement("script");
+        o.type="text/javascript";o.async=!0;o.src=i+"?sdkid="+e+"&lib="+t;
+        var a=document.getElementsByTagName("script")[0];
+        a.parentNode.insertBefore(o,a)
       };
       ttq.load('YOUR_PIXEL_ID');
       ttq.page();
@@ -618,347 +204,340 @@ Before you can run app install campaigns, TikTok needs to know about your app.
     </script>
     ```
 
-    Replace `YOUR_PIXEL_ID` with your actual pixel ID from Events Manager.
-
-    ### Step 3: Track events
-
-    Add event tracking code where relevant actions occur:
+    Replace `YOUR_PIXEL_ID` with the pixel ID from your Ads Manager.
+  </Step>
+  <Step title="Set up events">
+    Track specific user actions by adding event code to the relevant pages:
 
     ```javascript
-    // Page view (automatic with ttq.page() above)
+    // Track a page view (already included in base code via ttq.page())
 
-    // User clicks "Download" button
-    ttq.track('ClickButton', {
-      content_name: 'Download App',
-      content_id: 'download_cta'
-    });
-
-    // User signs up on your website
-    ttq.track('CompleteRegistration', {
-      content_name: 'Website Signup'
-    });
-
-    // User makes a purchase on your website
-    ttq.track('CompletePayment', {
-      value: 29.99,
-      currency: 'USD',
-      content_type: 'product',
-      content_id: 'premium_plan'
-    });
-
-    // User adds item to cart
+    // Track 'Add to Cart'
     ttq.track('AddToCart', {
-      value: 29.99,
-      currency: 'USD',
-      content_id: 'premium_plan'
+      content_id: 'product_123',
+      content_type: 'product',
+      content_name: 'Premium Plan',
+      quantity: 1,
+      price: 9.99,
+      value: 9.99,
+      currency: 'USD'
     });
 
-    // User views a product/content page
-    ttq.track('ViewContent', {
-      content_name: 'Pricing Page',
-      content_id: 'pricing'
+    // Track a purchase
+    ttq.track('CompletePayment', {
+      content_id: 'product_123',
+      content_type: 'product',
+      content_name: 'Premium Plan',
+      quantity: 1,
+      price: 9.99,
+      value: 9.99,
+      currency: 'USD'
     });
+
+    // Track a registration/sign-up
+    ttq.track('CompleteRegistration');
+    ```
+  </Step>
+  <Step title="Verify the pixel is working">
+    Install the **TikTok Pixel Helper** Chrome extension. Visit your website and check that events are firing correctly. Green checkmarks mean everything is working.
+  </Step>
+</Steps>
+
+<Tip>
+**Pro Tip**: If you use **Shopify**, **WordPress/WooCommerce**, or **Google Tag Manager**, use TikTok's partner integration instead of manual installation. It is much easier and handles event tracking automatically. Just search for the TikTok integration in your platform's app store or plugin directory.
+</Tip>
+
+---
+
+## Step 6: Install TikTok SDK (For Apps)
+
+If you are promoting a mobile app, install the TikTok SDK to track installs and in-app events.
+
+<Tabs>
+  <Tab title="iOS (Swift)">
+    **Step 1: Add the SDK via CocoaPods**
+
+    ```ruby
+    # Podfile
+    pod 'TikTokBusinessSDK'
     ```
 
-    ### Step 4: Install via Google Tag Manager (alternative)
+    Run `pod install` in your terminal.
 
-    If you use Google Tag Manager:
+    **Step 2: Initialize the SDK**
 
-    1. In GTM, create a new **Custom HTML** tag
-    2. Paste the TikTok Pixel base code
-    3. Set the trigger to **All Pages**
-    4. Create additional tags for event tracking
-    5. Publish your GTM container
+    ```swift
+    import TikTokBusinessSDK
+
+    // In your AppDelegate
+    func application(
+      _ application: UIApplication,
+      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
+
+      let config = TikTokConfig(appId: "YOUR_APP_ID", tiktokAppId: "YOUR_TIKTOK_APP_ID")
+      config.setLogLevel(.debug) // Remove in production
+      TikTokBusiness.initializeSdk(config)
+
+      return true
+    }
+    ```
+
+    **Step 3: Track events**
+
+    ```swift
+    // Track a purchase
+    TikTokBusiness.trackEvent("Purchase", withProperties: [
+      "content_id": "premium_plan",
+      "content_type": "product",
+      "currency": "USD",
+      "value": 9.99
+    ])
+
+    // Track registration
+    TikTokBusiness.trackEvent("CompleteRegistration")
+
+    // Track a custom event
+    TikTokBusiness.trackEvent("LevelComplete", withProperties: [
+      "level": 10
+    ])
+    ```
   </Tab>
-  <Tab title="Events API (Server-to-Server)">
-    The Events API lets you send events directly from your server to TikTok. This is the most reliable method and works even when the SDK or Pixel cannot fire (ad blockers, iOS privacy restrictions).
+  <Tab title="Android (Kotlin)">
+    **Step 1: Add the SDK via Gradle**
 
-    ### Step 1: Generate an access token
+    ```kotlin
+    // build.gradle (app level)
+    dependencies {
+      implementation 'com.tiktok.business.sdk:tiktok-business-android-sdk:1.+'
+    }
+    ```
 
-    In Ads Manager, go to **Assets** > **Events** > your app or pixel > **Settings** > **Generate Access Token**.
+    **Step 2: Initialize the SDK**
 
-    Save this token securely — it is used to authenticate your API calls.
+    ```kotlin
+    import com.tiktok.TikTokBusinessSdk
 
-    ### Step 2: Send events
+    class MyApplication : Application() {
+      override fun onCreate() {
+        super.onCreate()
 
-    ```python
-    import requests
-    import json
-    import hashlib
-    import time
+        val config = TikTokBusinessSdk.TTConfig(this)
+          .setAppId("YOUR_APP_ID")
+          .setTTAppId("YOUR_TIKTOK_APP_ID")
+          .setLogLevel(TikTokBusinessSdk.LogLevel.DEBUG) // Remove in production
 
-    ACCESS_TOKEN = "your_access_token"
-    PIXEL_CODE = "your_pixel_code"  # or App ID
+        TikTokBusinessSdk.initializeSdk(config)
+      }
+    }
+    ```
 
-    def send_event_to_tiktok(event_name, user_data, properties=None):
-        """Send a conversion event to TikTok Events API."""
+    **Step 3: Track events**
 
-        url = "https://business-api.tiktok.com/open_api/v1.3/event/track/"
+    ```kotlin
+    // Track a purchase
+    TikTokBusinessSdk.trackEvent("Purchase", JSONObject().apply {
+      put("content_id", "premium_plan")
+      put("content_type", "product")
+      put("currency", "USD")
+      put("value", 9.99)
+    })
 
-        # Hash user identifiers (required by TikTok)
-        hashed_email = hashlib.sha256(
-            user_data.get("email", "").lower().encode()
-        ).hexdigest() if user_data.get("email") else None
-
-        hashed_phone = hashlib.sha256(
-            user_data.get("phone", "").encode()
-        ).hexdigest() if user_data.get("phone") else None
-
-        payload = {
-            "pixel_code": PIXEL_CODE,
-            "event": event_name,
-            "event_id": f"{event_name}_{int(time.time())}",  # Deduplicate
-            "timestamp": int(time.time()),
-            "context": {
-                "user_agent": user_data.get("user_agent", ""),
-                "ip": user_data.get("ip", ""),
-            },
-            "properties": properties or {},
-        }
-
-        # Add hashed user data
-        if hashed_email:
-            payload["context"]["user"] = {"email": hashed_email}
-        if hashed_phone:
-            payload["context"]["user"]["phone_number"] = hashed_phone
-
-        headers = {
-            "Access-Token": ACCESS_TOKEN,
-            "Content-Type": "application/json",
-        }
-
-        response = requests.post(
-            url,
-            headers=headers,
-            data=json.dumps({"data": [payload]})
-        )
-
-        return response.json()
-
-
-    # Example usage
-    result = send_event_to_tiktok(
-        event_name="CompleteRegistration",
-        user_data={
-            "email": "user@example.com",
-            "ip": "123.45.67.89",
-            "user_agent": "Mozilla/5.0...",
-        },
-        properties={
-            "content_name": "Premium Signup",
-        }
-    )
-    print(result)
+    // Track registration
+    TikTokBusinessSdk.trackEvent("CompleteRegistration")
+    ```
+  </Tab>
+  <Tab title="React Native">
+    ```bash
+    # Install the package
+    npm install tiktok-business-sdk-react-native
+    # or
+    yarn add tiktok-business-sdk-react-native
     ```
 
     ```typescript
-    // Node.js / TypeScript version
-    import crypto from 'crypto';
+    import TikTokBusiness from 'tiktok-business-sdk-react-native';
 
-    const ACCESS_TOKEN = 'your_access_token';
-    const PIXEL_CODE = 'your_pixel_code';
+    // Initialize (typically in App.tsx or index.js)
+    TikTokBusiness.initializeSdk({
+      appId: 'YOUR_APP_ID',
+      tiktokAppId: 'YOUR_TIKTOK_APP_ID',
+      debug: __DEV__, // Enable debug in development only
+    });
 
-    interface UserData {
-      email?: string;
-      phone?: string;
-      ip?: string;
-      userAgent?: string;
-    }
+    // Track events
+    TikTokBusiness.trackEvent('Purchase', {
+      content_id: 'premium_plan',
+      content_type: 'product',
+      currency: 'USD',
+      value: 9.99,
+    });
 
-    async function sendTikTokEvent(
-      eventName: string,
-      userData: UserData,
-      properties?: Record<string, any>
-    ): Promise<any> {
-      const hashedEmail = userData.email
-        ? crypto.createHash('sha256').update(userData.email.toLowerCase()).digest('hex')
-        : undefined;
-
-      const payload = {
-        data: [{
-          pixel_code: PIXEL_CODE,
-          event: eventName,
-          event_id: `${eventName}_${Date.now()}`,
-          timestamp: Math.floor(Date.now() / 1000),
-          context: {
-            user_agent: userData.userAgent || '',
-            ip: userData.ip || '',
-            user: hashedEmail ? { email: hashedEmail } : undefined,
-          },
-          properties: properties || {},
-        }],
-      };
-
-      const response = await fetch(
-        'https://business-api.tiktok.com/open_api/v1.3/event/track/',
-        {
-          method: 'POST',
-          headers: {
-            'Access-Token': ACCESS_TOKEN,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(payload),
-        }
-      );
-
-      return response.json();
-    }
-
-    // Usage
-    await sendTikTokEvent(
-      'CompleteRegistration',
-      { email: 'user@example.com', ip: '123.45.67.89' },
-      { content_name: 'Premium Signup' }
-    );
+    TikTokBusiness.trackEvent('CompleteRegistration');
     ```
-
-    <Tip>
-      **Use both SDK/Pixel AND Events API for maximum accuracy.** Send events from both client and server, and use the `event_id` field to deduplicate. TikTok recommends this "dual setup" approach.
-    </Tip>
   </Tab>
 </Tabs>
 
-## Step 7: Configure events in Events Manager
+---
 
-After installing tracking, configure which events TikTok should optimize for.
+## Step 7: Set Up Events API (Server-to-Server)
+
+The Events API sends conversion data from your server directly to TikTok, bypassing browser limitations. This provides more reliable tracking, especially with iOS privacy changes.
+
+```python
+# Python example using requests
+import requests
+import hashlib
+import json
+import time
+
+PIXEL_CODE = "YOUR_PIXEL_ID"
+ACCESS_TOKEN = "YOUR_ACCESS_TOKEN"
+
+def send_event_to_tiktok(event_name, email, event_id, value=None):
+    url = f"https://business-api.tiktok.com/open_api/v1.3/pixel/track/"
+
+    # Hash the email (TikTok requires SHA256 hashing)
+    hashed_email = hashlib.sha256(email.lower().strip().encode()).hexdigest()
+
+    payload = {
+        "pixel_code": PIXEL_CODE,
+        "event": event_name,
+        "event_id": event_id,  # Use same event_id as client-side for deduplication
+        "timestamp": int(time.time()),
+        "context": {
+            "user": {
+                "email": hashed_email
+            }
+        }
+    }
+
+    if value:
+        payload["properties"] = {
+            "value": value,
+            "currency": "USD"
+        }
+
+    headers = {
+        "Access-Token": ACCESS_TOKEN,
+        "Content-Type": "application/json"
+    }
+
+    response = requests.post(url, headers=headers, data=json.dumps(payload))
+    return response.json()
+
+# Example usage
+send_event_to_tiktok(
+    event_name="CompletePayment",
+    email="user@example.com",
+    event_id="unique-event-id-123",
+    value=29.99
+)
+```
+
+<Tip>
+**Pro Tip**: When using both client-side (Pixel/SDK) and server-side (Events API) tracking, use the same **event_id** for each conversion. TikTok uses this ID to deduplicate events, so the same conversion is not counted twice. This is critical for accurate reporting.
+</Tip>
+
+---
+
+## Step 8: Configure Events in Events Manager
 
 <Steps>
   <Step title="Go to Events Manager">
-    In Ads Manager, navigate to **Assets** > **Events**.
+    In Ads Manager, navigate to **Assets > Events**. You will see your Pixel and/or App events listed.
   </Step>
-  <Step title="Select your app or pixel">
-    Click on the app or pixel you configured.
-  </Step>
-  <Step title="Review detected events">
-    If your SDK or Pixel is working, you should see events appearing. TikTok shows:
-    - Event name
-    - Event count
-    - Last received timestamp
-  </Step>
-  <Step title="Configure optimization events">
-    For each event, decide if it should be available as an optimization goal in campaigns:
+  <Step title="Verify events are firing">
+    TikTok shows recent events in real-time. Visit your website or open your app and trigger some events. They should appear in the Events Manager within a few minutes.
 
-    | Event | When to fire | Priority for optimization |
-    |-------|-------------|-------------------------|
-    | **InstallApp** | App is installed (automatic with SDK) | High — use for app install campaigns |
-    | **CompleteRegistration** | User creates an account | High — use if registration is your key metric |
-    | **CompletePurchase** | User makes an in-app purchase | High — use for revenue optimization |
-    | **AddToCart** | User adds item to cart | Medium — good for e-commerce |
-    | **ViewContent** | User views key content | Medium — good for engagement |
-    | **Subscribe** | User starts a subscription | High — use for subscription apps |
-    | **StartTrial** | User starts a free trial | High — good for freemium apps |
-    | Custom events | Your own events | Depends on your business |
+    | Status | Meaning | Action |
+    |---|---|---|
+    | **Active (green)** | Events are firing correctly | No action needed |
+    | **No recent activity (yellow)** | No events received recently | Check installation |
+    | **Inactive (red)** | No events ever received | Installation may be incorrect |
+  </Step>
+  <Step title="Set up event optimization">
+    Tell TikTok which events you want to optimize for. In your ad campaign, you will select one of these events as your **optimization goal**. Common choices:
+
+    - **App install**: Optimize for the most installs at the lowest cost
+    - **CompleteRegistration**: Optimize for users who sign up
+    - **Purchase / CompletePayment**: Optimize for users who buy something
+    - **AddToCart**: Optimize for users who show purchase intent
   </Step>
 </Steps>
 
-## Step 8: Verify everything works
+---
 
-Before spending money on ads, verify that tracking is functioning correctly.
+## Step 9: Set Up TikTok Business Account (Optional but Recommended)
 
-### For SDK (app tracking)
+A TikTok Business Account (on the TikTok app itself, not Ads Manager) gives you additional features:
+
+- **Profile analytics**: See who visits your TikTok profile
+- **Content analytics**: Detailed data on your organic TikToks
+- **Bio link**: Add a clickable link to your profile
+- **Commercial music library**: Access to music you can use in ads without copyright issues
+- **Spark Ads eligibility**: Boost your organic content as paid ads
 
 <Steps>
-  <Step title="Enable debug mode">
-    Set the SDK log level to debug/info during testing (see code examples above).
+  <Step title="Open the TikTok app">
+    Go to your TikTok profile and tap the **three lines** menu icon.
   </Step>
-  <Step title="Install the app on a test device">
-    Install your app from TestFlight (iOS) or an APK (Android).
+  <Step title="Go to Settings > Account">
+    Tap **Settings and privacy > Account > Switch to Business Account**.
   </Step>
-  <Step title="Perform test actions">
-    Open the app, create an account, make a test purchase — trigger each event you configured.
-  </Step>
-  <Step title="Check Events Manager">
-    In Events Manager, look for your test events. They should appear within 5-15 minutes.
-
-    If events are not appearing:
-    - Check that the App ID and TikTok App ID are correct
-    - Verify the SDK is initialized before events are tracked
-    - Check your device's internet connection
-    - Look at debug logs for error messages
+  <Step title="Choose your category">
+    Select the category that best describes your business. This does not affect your ads — it just helps TikTok provide relevant tips and insights.
   </Step>
 </Steps>
 
-### For Pixel (web tracking)
+<Tip>
+**Pro Tip**: Even if you do not plan to post organic TikToks, switch to a Business Account. It unlocks Spark Ads, which let you boost other creators' content (with their permission). Spark Ads consistently outperform regular In-Feed Ads because they look like organic content.
+</Tip>
 
-<Steps>
-  <Step title="Install TikTok Pixel Helper">
-    Install the **TikTok Pixel Helper** Chrome extension from the Chrome Web Store. It shows you whether the pixel is firing correctly on your website.
-  </Step>
-  <Step title="Visit your website">
-    Open your website in Chrome. The Pixel Helper icon should light up green, showing detected events.
-  </Step>
-  <Step title="Trigger events">
-    Click buttons, fill forms, and complete the actions that should fire events. Verify each one appears in the Pixel Helper.
-  </Step>
-  <Step title="Check Events Manager">
-    Verify events appear in Events Manager. They should show within minutes.
-  </Step>
-</Steps>
+---
 
-### For Events API
+## Pre-Flight Checklist
 
-<Steps>
-  <Step title="Send a test event">
-    Use the code examples above to send a test event from your server.
-  </Step>
-  <Step title="Check the API response">
-    A successful response looks like:
-    ```json
-    {
-      "code": 0,
-      "message": "OK",
-      "data": {}
-    }
-    ```
-  </Step>
-  <Step title="Verify in Events Manager">
-    Check that the test event appears in Events Manager within a few minutes.
-  </Step>
-</Steps>
+Before launching your first campaign, verify everything is set up:
 
-## Step 9: Set up TikTok Events Manager advanced features
+| Item | Status | Notes |
+|---|---|---|
+| Ads Manager account created | Required | At ads.tiktok.com |
+| Business verification submitted | Required | 1-3 day review period |
+| Payment method added | Required | Credit card or manual payment |
+| App or website connected | Required | App store URL or verified domain |
+| TikTok Pixel installed (web) | Required for web | Verify with Pixel Helper extension |
+| TikTok SDK installed (app) | Required for apps | Test events in Events Manager |
+| Events API set up | Recommended | Server-side backup for tracking |
+| Events verified in Events Manager | Required | Green "Active" status |
+| Business Account on TikTok app | Recommended | Enables Spark Ads and analytics |
 
-### Custom conversions
+---
 
-Custom conversions let you create conversion events from URL rules (for web) or event parameters (for app).
+## Common Setup Issues
 
-Example: Create a "High Value Purchase" custom conversion that only fires when the purchase amount is above $50.
+<AccordionGroup>
+  <Accordion title="My Pixel events are not showing up">
+    Common causes: (1) Ad blocker in your browser is blocking the pixel, (2) the pixel code is not on the page you are testing, (3) you need to wait a few minutes for events to appear. Try disabling ad blockers and using the TikTok Pixel Helper Chrome extension to debug.
+  </Accordion>
+  <Accordion title="Business verification is taking too long">
+    Typical review time is 1-3 business days. If it has been longer, check your email for requests for additional documents. You can also contact TikTok support through the Ads Manager help center.
+  </Accordion>
+  <Accordion title="I chose the wrong currency">
+    Unfortunately, currency cannot be changed after account creation. You will need to create a new Ads Manager account with the correct currency. This is a common mistake, so double-check before confirming.
+  </Accordion>
+  <Accordion title="My SDK is not tracking app installs">
+    Make sure you have: (1) added the correct App ID and TikTok App ID, (2) initialized the SDK before any events fire, (3) tested on a real device (not just a simulator), and (4) given it a few minutes for data to appear in Events Manager.
+  </Accordion>
+  <Accordion title="Can I use an MMP instead of TikTok's SDK?">
+    Yes. If you use an MMP like AppsFlyer, Adjust, or Airbridge, you can configure TikTok as a partner in your MMP dashboard. The MMP handles tracking and sends postbacks to TikTok. This is actually the preferred approach if you advertise on multiple platforms, because it gives you deduplicated attribution across all channels.
+  </Accordion>
+</AccordionGroup>
 
-1. Go to **Events Manager** > **Custom Conversions**
-2. Click **Create Custom Conversion**
-3. Set the rules (e.g., event = Purchase AND value > 50)
-4. Name it and save
+---
 
-### Audience creation from events
+## Next Step
 
-You can create audiences based on event data for retargeting:
+Your account is set up and tracking is configured. Head to the next page to create your first campaign:
 
-1. Go to **Assets** > **Audiences**
-2. Click **Create Audience** > **Custom Audience**
-3. Choose **App Activity** or **Website Traffic**
-4. Define the audience (e.g., "Users who added to cart but didn't purchase in the last 7 days")
-5. Save the audience for use in ad targeting
-
-## Account setup checklist
-
-Before creating your first campaign, verify everything is complete:
-
-- [ ] TikTok Business Account created
-- [ ] TikTok Ads Manager account created and approved
-- [ ] Business verification submitted (optional but recommended)
-- [ ] Payment method added
-- [ ] Account spending limit set
-- [ ] App connected in Events Manager (for app campaigns)
-- [ ] TikTok SDK or Pixel installed
-- [ ] Events API configured (optional but recommended)
-- [ ] Key events configured and visible in Events Manager
-- [ ] Test events verified
-- [ ] TikTok account linked (for Spark Ads)
-
-<Card
-  title="Your First TikTok Campaign"
-  icon="arrow-right"
-  href="/platforms/tiktok/first-campaign"
->
-  Everything set up? Let's create your first TikTok ad campaign — screen by screen.
-</Card>
+**[Your First TikTok Campaign](/platforms/tiktok/first-campaign)** — Complete walkthrough of creating a TikTok ad campaign, including objective selection, targeting, bidding, creative production, and Spark Ads.

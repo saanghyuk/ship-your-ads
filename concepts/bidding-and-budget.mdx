@@ -1,250 +1,255 @@
 ---
 title: "Bidding & Budget"
-description: "Everything about how ad auctions work, bid strategies, budget types, pacing, scaling, and how to spend your money wisely across campaigns."
+description: "Everything about how ad auctions work, bid strategies, budget types, pacing, scaling, and how to spend your money wisely — explained for complete beginners."
 ---
 
-## The two money decisions
+## The two money decisions you always make
 
 Every time you run ads, you make two fundamental decisions:
 
 1. **Budget:** How much total money am I willing to spend?
 2. **Bid:** How much am I willing to pay for a single result (a click, an install, a purchase)?
 
-These two levers control everything about your campaign's scale and efficiency. Get them right, and your ads print money. Get them wrong, and you burn through cash with nothing to show for it.
+Think of it like going to an auction house. Your **budget** is how much cash you brought in your wallet. Your **bid** is the maximum you will raise your paddle for any single item. Get these right, and your ads become a money-making machine. Get them wrong, and you burn through cash with nothing to show for it.
+
+<Tip>
+  **Pro Tip: Do not overthink this as a beginner.** Start with automatic bidding and a reasonable daily budget. You can always fine-tune later once you have real data. The worst thing you can do is get paralyzed by the options and never launch.
+</Tip>
 
 ---
 
 ## How ad auctions actually work
 
-Every time a user opens an app or loads a webpage with ad space, an **auction** happens in milliseconds. Here is what is really going on behind the scenes:
+Here is something amazing: every time someone opens Instagram, loads a webpage, or scrolls through TikTok, an **auction** happens in milliseconds. Millions of auctions happen every second, all day, every day. Let's peek behind the curtain.
 
 ```mermaid
 sequenceDiagram
     participant U as User opens app
-    participant P as Platform
+    participant P as Ad Platform
     participant A1 as Advertiser 1 (You)
     participant A2 as Advertiser 2
     participant A3 as Advertiser 3
 
-    U->>P: Opens app / loads page
-    P->>P: Identifies available ad slot
-    P->>A1: Eligible? Check targeting + budget
-    P->>A2: Eligible? Check targeting + budget
-    P->>A3: Eligible? Check targeting + budget
+    U->>P: Opens app / scrolls feed
+    P->>P: Ad slot available!
+    P->>A1: You eligible? (targeting + budget check)
+    P->>A2: You eligible?
+    P->>A3: You eligible?
     A1->>P: Bid: $2.00 + Quality Score
     A2->>P: Bid: $3.00 + Quality Score
     A3->>P: Bid: $1.50 + Quality Score
-    P->>P: Calculate Total Value for each
-    P->>U: Shows winning ad
-    P->>A2: Charges (often less than bid)
+    P->>P: Calculates Total Value for each
+    P->>U: Shows the winning ad
+    P->>A1: You win! (Charges less than $2.00)
 ```
 
-### The auction formula
+Wait — the person with the **lowest bid** won? How? That brings us to the most important concept in ad auctions.
 
-Most platforms do **not** simply pick the highest bidder. They calculate a **Total Value** score for each advertiser:
+### The auction formula: it is NOT just about money
+
+Most platforms do NOT simply pick the highest bidder. They calculate a **Total Value** score:
 
 ```
 Total Value = Bid Amount x Estimated Action Rate x Ad Quality Score
 ```
 
-| Component | What it means | How you control it |
-|-----------|-------------|-------------------|
+| Component | What it means | How you influence it |
+|---|---|---|
 | **Bid Amount** | How much you are willing to pay | Set directly or let the platform decide |
-| **Estimated Action Rate** | How likely THIS user is to take the desired action | Improve with better targeting and historical data |
-| **Ad Quality Score** | How good/relevant your ad is (engagement, feedback, landing page) | Create better ads, improve landing pages |
+| **Estimated Action Rate** | How likely THIS specific user is to take your desired action | Better targeting, historical performance data |
+| **Ad Quality Score** | How good, relevant, and engaging your ad is | Create better ads! Better images, videos, copy |
 
 <Tip>
-  **This means you do not always need the highest bid to win.** An advertiser bidding $1.50 with an excellent ad quality score can beat an advertiser bidding $3.00 with a poor quality score. Invest in great creatives — they literally save you money in auctions.
+  **Pro Tip: This formula is the reason why great ads literally SAVE you money.** An advertiser bidding $1.50 with an excellent ad quality score can beat an advertiser bidding $3.00 with a boring ad. The platforms WANT to show good ads because good ads keep users on the platform. Investing in creative quality is not just about performance — it directly reduces your costs in every single auction.
 </Tip>
 
-### Second-price vs. first-price auctions
+### What you actually pay (it is less than you think)
 
-| Auction type | What you pay | Used by |
-|-------------|-------------|---------|
-| **Second-price** | The second-highest bid + $0.01 | Historically used by most platforms |
-| **First-price** | Exactly what you bid | Increasingly common (Google Ad Exchange, programmatic) |
-| **VCG (Vickrey-Clarke-Groves)** | Based on the marginal value of your participation | Meta (a modified version) |
+Here is another surprise: you usually pay LESS than your maximum bid.
+
+| Auction type | What you pay | Where it is used |
+|---|---|---|
+| **Second-price auction** | The second-highest bid + $0.01 | Historically most platforms |
+| **VCG auction (modified)** | The minimum needed to win | Meta uses a version of this |
+| **First-price auction** | Exactly what you bid | Programmatic / Google Ad Exchange |
+
+**Example:** You bid $5 per install. The next-best advertiser's Total Value only required $2.50 from you to beat. You pay approximately $2.50 — not $5. Your actual CPI is often significantly lower than your bid.
 
 <Note>
-  **You usually pay less than your maximum bid.** On Meta, you are charged the minimum amount needed to win the auction. If you bid $5 but the next highest Total Value required only $2.50, you pay approximately $2.50. This is why your actual CPC or CPI is often lower than your bid cap.
+  This is why your dashboard might show a CPI of $2.50 even though you set a bid cap of $5. The platform is not overcharging you — it is charging the minimum needed to win each auction. This is how ad auctions are designed.
 </Note>
+
+---
+
+## All the pricing models explained
+
+Before we talk about bid strategies, let's make sure you understand HOW you can be charged. These are the "currencies" of digital advertising:
+
+| Model | Full name | You pay when... | Typical range | Best analogy |
+|---|---|---|---|---|
+| **CPM** | Cost Per Mille (1,000 impressions) | Your ad is shown 1,000 times | $2 - $30 | Paying for a billboard: you pay for eyeballs, whether anyone acts or not |
+| **CPC** | Cost Per Click | Someone taps your ad | $0.10 - $5.00 | Paying only when someone walks into your store |
+| **CPI** | Cost Per Install | Someone installs your app | iOS ~$3.6, Android ~$1.2 (global avg) | Paying only when someone downloads and opens your app |
+| **CPA** | Cost Per Action | Someone takes a specific action | $1 - $50+ | Paying only when someone makes a purchase or signs up |
+| **CPV** | Cost Per View | Someone watches your video | $0.01 - $0.10 | Paying only when someone watches your video ad |
+
+### CPI benchmarks by category (know your numbers!)
+
+These are the numbers you need to know to set realistic expectations:
+
+| App category | Android CPI (global) | iOS CPI (global) |
+|---|---|---|
+| **All apps average** | ~$1.2 | ~$3.6 |
+| **Casual games** | ~$1.5 | ~$2.5 |
+| **Finance / Fintech** | $3 - $8+ | $5 - $8+ |
+| **Social / Communication** | $1 - $3 | $2 - $5 |
+| **Health & Fitness** | $1.5 - $4 | $2.5 - $6 |
+| **E-commerce** | $1.5 - $4 | $2.5 - $6 |
+
+<Tip>
+  **Pro Tip: iOS installs cost about 3x more than Android on average.** If you are budget-constrained, Android campaigns give you more installs per dollar. But iOS users tend to spend more money in apps, so the higher CPI can be worth it. Always consider lifetime value, not just install cost.
+</Tip>
 
 ---
 
 ## All bid strategies explained
 
-Different bid strategies give you different levels of control. Here is every major option:
+Now the main event: how do you tell the platform what to bid? Different strategies give you different levels of control. Let's go through every major option, from simplest to most advanced.
 
-### Automatic / Algorithm-controlled strategies
+### Automatic strategies (let the machine decide)
 
 <AccordionGroup>
-  <Accordion title="Lowest Cost (Maximize Results)">
-    **What it does:** The platform tries to get you the most results possible within your budget, at the lowest cost per result.
+  <Accordion title="Lowest Cost / Maximize Conversions (Start here!)">
+    **What it does:** The platform tries to get you the MOST results possible within your budget, at the lowest cost per result.
 
-    **How it works:** The platform sets bids automatically, adjusting up or down to find the cheapest conversions available.
+    **The car analogy:** It is like telling a taxi driver "Take me downtown as fast as possible, I have $20." The driver picks the best route based on traffic conditions.
 
     **Pros:**
-    - Simplest strategy — set your budget and go
-    - Great for learning what a reasonable CPA is
+    - Simplest strategy — set budget, press go
+    - Great for discovering what a reasonable CPA/CPI looks like
     - Maximizes volume within your budget
 
     **Cons:**
-    - No control over how much each result costs
-    - Costs can spike during competitive periods (holidays, events)
-    - May prioritize cheap-but-low-quality users
+    - No control over how much each individual result costs
+    - Costs can spike during competitive periods (holidays, big events)
+    - May find cheap-but-low-quality users
 
-    **Available on:** Meta (Lowest Cost), Google (Maximize Conversions without target), TikTok (Lowest Cost)
+    **Available on:** Meta (Lowest Cost), Google (Maximize Conversions), TikTok (Lowest Cost)
 
-    **Best for:** Beginners, new campaigns, exploring a new market.
+    **Best for:** Beginners, new campaigns, exploring a new market, establishing baselines.
   </Accordion>
 
-  <Accordion title="Maximize Conversions">
-    **What it does:** Google's version of Lowest Cost. The algorithm tries to get you the most conversions within your daily budget.
+  <Accordion title="Maximize Conversion Value (for revenue-focused apps)">
+    **What it does:** Instead of maximizing the NUMBER of conversions, this maximizes the total VALUE (revenue) of conversions.
 
-    **How it works:** Google's Smart Bidding uses machine learning to set the optimal bid for each auction based on hundreds of real-time signals (device, location, time, browser, demographics, and more).
+    **The analogy:** Instead of getting the most fish possible, you are fishing for the biggest, most valuable fish.
 
-    **Pros:**
-    - Fully automated, no bid management needed
-    - Uses Google's vast data to optimize
+    **How it works:** The algorithm prioritizes users who are likely to spend more money in your app, even if it means fewer total installs.
 
-    **Cons:**
-    - May spend your entire daily budget even when results are expensive
-    - Less predictable costs
+    **Available on:** Google Ads, Meta (with value optimization)
 
-    **Available on:** Google Ads
-
-    **Best for:** Getting started with Google Ads, understanding your baseline conversion volume.
-  </Accordion>
-
-  <Accordion title="Maximize Conversion Value">
-    **What it does:** Instead of maximizing the number of conversions, this maximizes the total value (revenue) of conversions.
-
-    **How it works:** The algorithm prioritizes users who are likely to generate higher revenue, even if it means fewer total conversions.
-
-    **Available on:** Google Ads
-
-    **Best for:** E-commerce apps, subscription apps, any app where users have varying lifetime values.
+    **Best for:** E-commerce apps, subscription apps, gaming apps with in-app purchases — any app where different users have different monetary values.
   </Accordion>
 </AccordionGroup>
 
-### Target-based strategies
+### Target-based strategies (give the machine a goal)
 
 <AccordionGroup>
   <Accordion title="Target CPA (Cost Per Action)">
-    **What it does:** You tell the platform "I want to pay approximately $X per conversion" and it tries to hit that target on average.
+    **What it does:** You tell the platform "I want to pay approximately $X per conversion" and it tries to hit that target on average over time.
 
-    **How it works:** The algorithm bids higher for users likely to convert cheaply and lower for users likely to be expensive. Over time, the average cost per conversion should approximate your target.
+    **The analogy:** Telling a real estate agent "I want to buy a house for around $300K." Some houses may be $280K, others $330K, but the average should be around $300K.
 
-    **Example:** You set Target CPA = $3.00. Some conversions may cost $1.50, others $5.00, but the average over time should be around $3.00.
+    **Example:** You set Target CPA = $3.00. Some installs may cost $1.50, others $5.00, but over a week or two the average should converge around $3.00.
 
     **Pros:**
-    - Predictable costs
+    - Predictable, stable costs over time
     - Algorithm focuses on efficiency, not just volume
     - Good balance of control and automation
 
     **Cons:**
-    - If target is too low, the platform will not spend your budget (delivery is limited)
-    - Needs historical data to work well (at least 30-50 conversions in the past 30 days)
-    - Target is an average, not a guarantee — individual conversions can be much higher
+    - If your target is too aggressive (too low), the platform will simply not spend your budget
+    - Needs historical data to work well (Meta recommends at least **50 conversions per week**)
+    - Target is an average, NOT a guarantee — individual conversions will vary
 
     **Available on:** Meta (Cost Per Result Goal), Google (Target CPA), TikTok (Cost Cap)
 
-    **Best for:** Campaigns with established baselines where you know your acceptable CPA.
+    **Best for:** Campaigns where you already know your acceptable CPA from at least 2 weeks of running at "Lowest Cost."
   </Accordion>
 
   <Accordion title="Target ROAS (Return On Ad Spend)">
-    **What it does:** You tell the platform "I want to earn $X in revenue for every $1 spent on ads" and it optimizes toward that ratio.
+    **What it does:** You tell the platform "I want to earn $X in revenue for every $1 I spend on ads" and it optimizes toward that ratio.
 
-    **How it works:** If you set Target ROAS = 400%, the platform aims to generate $4 in revenue for every $1 you spend. It prioritizes high-value users.
-
-    **Example:** Target ROAS = 300%. You spend $100 → the platform aims to generate $300 in revenue from those conversions.
+    **Example:** You set Target ROAS = 300%. You spend $100, and the platform aims to generate $300 in revenue from those ad-driven users.
 
     **Pros:**
-    - Directly tied to revenue
+    - Directly tied to revenue and profitability
     - Platform optimizes for quality of users, not just quantity
-    - Ideal for revenue-driven campaigns
+    - Ideal when you can measure user spending
 
     **Cons:**
-    - Requires revenue tracking (purchase values sent back to the platform)
-    - Needs significant data (usually 50+ conversions with revenue values)
+    - Requires revenue tracking (purchase values must be sent back to the platform)
+    - Needs significant data volume (50+ purchases with revenue values)
     - Not suitable for apps without clear purchase events
 
     **Available on:** Meta (ROAS Goal), Google (Target ROAS), TikTok (ROAS Goal)
 
-    **Best for:** E-commerce, subscription apps, gaming apps with IAP (in-app purchases).
+    **Best for:** E-commerce, subscription apps, gaming apps with IAP.
   </Accordion>
 </AccordionGroup>
 
-### Manual / cap-based strategies
+### Manual / cap-based strategies (you take the wheel)
 
 <AccordionGroup>
-  <Accordion title="Manual CPC (Cost Per Click)">
-    **What it does:** You set the maximum amount you are willing to pay per click. The platform will not bid more than this amount.
-
-    **How it works:** You research keyword or audience CPCs, set a max CPC, and the platform bids up to that amount per click.
-
-    **Pros:**
-    - Maximum control over click costs
-    - Predictable spend per click
-    - Good for testing
-
-    **Cons:**
-    - Requires constant monitoring and adjustment
-    - You might set bids too low (no traffic) or too high (overpaying)
-    - Does not optimize for conversions — just clicks
-    - Being deprecated or de-emphasized on many platforms
-
-    **Available on:** Google Ads (Enhanced or Manual CPC), Apple Search Ads
-
-    **Best for:** Experienced advertisers who want granular control, Apple Search Ads keyword bidding.
-  </Accordion>
-
   <Accordion title="Cost Cap">
-    **What it does:** You set a maximum average cost per result. The platform tries to get conversions at or below this cost, but will not spend your budget if it cannot find cheap enough conversions.
+    **What it does:** You set a MAXIMUM average cost per result. The platform tries to stay at or below this number and will REDUCE spending rather than exceed it.
 
-    **How it works:** Similar to Target CPA, but with a stricter cap. The platform will reduce spend rather than exceed your cost cap.
-
-    **Difference from Target CPA:** Target CPA is a target average (can exceed it sometimes). Cost Cap is more of a ceiling — the platform will slow spend to avoid exceeding it.
+    **How it differs from Target CPA:** Target CPA is a soft target (an average, can go above sometimes). Cost Cap is more of a hard ceiling — the platform will slow down spending to avoid going over.
 
     **Available on:** Meta (Cost Per Result Goal), TikTok (Cost Cap)
 
-    **Best for:** When you have strict CPA requirements and would rather not spend than overspend.
+    **Best for:** When you have strict unit economics — you would rather spend LESS than spend at a higher CPA.
   </Accordion>
 
-  <Accordion title="Bid Cap">
-    **What it does:** You set the maximum bid in each auction. The platform will never bid more than this amount, even if it means losing auctions.
+  <Accordion title="Bid Cap (advanced)">
+    **What it does:** You set the maximum bid in each individual auction. The platform will NEVER bid above this amount, even if it means losing auctions and getting fewer results.
 
-    **How it works:** You say "never bid more than $2.00." In any auction where the winning price would be above $2.00, you simply do not compete.
+    **The analogy:** At an auction house, you write "$200 maximum" on your paddle. If the bidding goes to $201, you sit down. Even if the item is amazing.
 
-    **Pros:**
-    - Maximum cost control at the auction level
-    - Prevents overspending in competitive moments
-
-    **Cons:**
-    - Most restrictive strategy
-    - May severely limit reach if set too low
-    - Requires deep understanding of auction dynamics
+    **Pros:** Maximum cost control at the individual auction level
+    **Cons:** Most restrictive strategy — may severely limit your reach and volume
 
     **Available on:** Meta (Bid Cap), TikTok (Bid Cap)
 
-    **Best for:** Advanced advertisers with strict unit economics who understand their margins precisely.
+    **Best for:** Advanced advertisers who deeply understand their unit economics and margins.
+  </Accordion>
+
+  <Accordion title="Manual CPC (the old school way)">
+    **What it does:** You set the exact maximum amount you will pay per click. The platform bids up to that amount and no more.
+
+    **Pros:** Maximum control over click costs, very predictable
+    **Cons:** Requires constant babysitting, does not optimize for conversions (just clicks), being deprecated on many platforms
+
+    **Available on:** Google Ads (Manual CPC), Apple Search Ads
+
+    **Best for:** Apple Search Ads keyword bidding, experienced search advertisers.
   </Accordion>
 </AccordionGroup>
 
 ### Strategy comparison at a glance
 
-| Strategy | Control level | Risk | Best for |
-|----------|-------------|------|----------|
-| **Lowest Cost** | Low (auto) | Costs may spike | Beginners, exploration |
-| **Maximize Conversions** | Low (auto) | May spend full budget inefficiently | Getting started on Google |
-| **Target CPA** | Medium | Under-delivery if target too low | Known CPA targets |
+| Strategy | Control level | Risk level | Best for |
+|---|---|---|---|
+| **Lowest Cost** | Low (fully auto) | Costs may spike | Beginners, exploration |
+| **Maximize Conversions** | Low (fully auto) | May spend full budget inefficiently | Getting started on Google |
+| **Target CPA** | Medium | Under-delivery if target too low | Known CPA targets (need 50 conv/week) |
 | **Target ROAS** | Medium | Under-delivery if target too high | Revenue-focused apps |
-| **Cost Cap** | Medium-High | Reduced spend volume | Strict CPA requirements |
-| **Bid Cap** | High (manual) | Severely limited reach | Advanced, precise economics |
+| **Cost Cap** | Medium-High | Reduced volume | Strict CPA requirements |
+| **Bid Cap** | High | Severely limited reach | Advanced, precise economics |
 | **Manual CPC** | Highest | Requires constant management | Search ads, experienced users |
 
 <Warning>
-  **Do not start with manual bidding or strict caps.** When you first launch a campaign, you do not know what a reasonable CPA or CPC is. Start with **Lowest Cost / Maximize Conversions** to establish baselines, then switch to target-based or capped strategies once you have data.
+  **Do NOT start with manual bidding or strict caps.** When you first launch, you have no idea what a reasonable CPA or CPC is for your app. Start with **Lowest Cost / Maximize Conversions** to establish baselines for 2-4 weeks. THEN switch to target-based or capped strategies once you have real data. Putting a cap on before you know the market price is like going to a foreign country and not knowing the exchange rate.
 </Warning>
 
 ---
@@ -252,128 +257,77 @@ Different bid strategies give you different levels of control. Here is every maj
 ## Daily budget vs. lifetime budget
 
 <Tabs>
-  <Tab title="Daily Budget">
-    **How it works:** You set a maximum spend per day. The platform tries to spend up to this amount each day.
+  <Tab title="Daily Budget (Start Here)">
+    **How it works:** You set a maximum spend per day. The platform spends up to this amount each day, running indefinitely until you pause.
 
-    **Important details:**
-    - The platform can spend up to **25% more** than your daily budget on high-opportunity days, but averages to your daily budget over the week
-    - If you set $10/day, you might see $12 spent on Monday and $8 on Tuesday — but the weekly average will be ~$10/day
-    - You can change your daily budget anytime (takes effect immediately)
-    - Campaign runs indefinitely until you pause it or set an end date
+    **Important detail:** The platform can spend up to **25% more** than your daily budget on high-opportunity days, but it averages out over the week. So if you set $10/day, Monday might be $12 and Tuesday $8, but the weekly total will be around $70.
 
-    **Best for:** Ongoing campaigns, beginners, when you want easy budget control.
+    **Pros:**
+    - Dead simple to understand and manage
+    - Easy to adjust anytime (increase or decrease instantly)
+    - Continuous delivery — your ads keep running
 
-    | Advantage | Disadvantage |
-    |-----------|-------------|
-    | Simple to understand and manage | Less efficient for short campaigns |
-    | Easy to adjust on the fly | Cannot control exact total spend |
-    | Continuous delivery | Day-to-day variance |
+    **Cons:**
+    - Less efficient for time-limited promotions
+    - Daily spend can vary (up to 25% higher on any given day)
+
+    **Best for:** Ongoing campaigns, beginners, when you want easy control.
   </Tab>
   <Tab title="Lifetime Budget">
-    **How it works:** You set a total spend for the entire campaign duration (e.g., $500 over 14 days). The platform distributes this spend across the days.
+    **How it works:** You set a total spend for the entire campaign duration (e.g., "$500 over 14 days"). The platform distributes that spend across the days, spending more on good days and less on bad ones.
 
-    **Important details:**
-    - The platform will optimize daily spend based on opportunities (spend more on good days, less on bad)
-    - Enables **dayparting** (running ads only during specific hours) on some platforms
-    - Cannot increase the budget easily without resetting the learning phase
-    - Campaign stops when the budget is exhausted or the end date is reached
+    **Pros:**
+    - Exact total spend control (you will never spend more than $500)
+    - Platform optimizes daily pacing automatically
+    - Enables dayparting (running ads only during specific hours) on some platforms
+
+    **Cons:**
+    - Harder to adjust mid-campaign
+    - Changing the budget can reset the learning phase
+    - Campaign stops when budget is exhausted
 
     **Best for:** Fixed promotions, events, testing with a set budget.
-
-    | Advantage | Disadvantage |
-    |-----------|-------------|
-    | Exact total spend control | Harder to adjust mid-campaign |
-    | Platform optimizes daily pacing | May not spend evenly |
-    | Better for time-limited promotions | Changing budget resets learning |
   </Tab>
 </Tabs>
 
 <Tip>
-  **For your first campaign, use a daily budget.** It is simpler, more forgiving, and you can pause anytime. Switch to lifetime budgets when you have a specific promotion with a fixed timeline.
+  **Pro Tip: For your first campaign, use a daily budget. Period.** It is simpler, more forgiving, and you can pause anytime without stress. Switch to lifetime budgets later when you have specific promotions with fixed timelines and you want the platform to optimize pacing for you.
 </Tip>
 
 ---
 
 ## Understanding pacing
 
-Pacing is how the platform distributes your budget throughout the day.
+Pacing is how the platform distributes your budget throughout the day. Think of it like how a runner manages their energy in a marathon.
 
-### Standard pacing (default)
+### Standard pacing (use this)
 
 The platform spreads your budget evenly throughout the day. If your daily budget is $100 and ads run for 20 hours, it spends roughly $5/hour.
 
-**Advantage:** Consistent delivery, reaches users at all times of day.
-**Disadvantage:** Might miss high-value moments by holding budget back.
+Like a marathon runner keeping a steady pace — consistent delivery, reaching users at all times.
 
-### Accelerated pacing
+### Accelerated pacing (almost never use this)
 
-The platform spends your budget as fast as possible, entering every eligible auction. Once the budget runs out, ads stop for the day.
+The platform spends your budget as fast as possible. Once it runs out, ads stop for the rest of the day.
 
-**Advantage:** Maximum reach early in the day, good for time-sensitive promotions.
-**Disadvantage:** Budget runs out quickly (often by noon), missing later audiences.
+Like a sprinter — blows through all energy in the first few minutes.
 
 <Warning>
-  **Accelerated pacing is rarely a good idea.** It typically leads to higher CPMs (more aggressive bidding to spend fast) and misses users who are active later in the day. Stick with standard pacing unless you have a specific reason.
+  **Accelerated pacing is almost never a good idea.** It leads to higher costs (more aggressive bidding to spend fast) and misses users who are active later in the day. Stick with standard pacing. Meta has actually removed the accelerated option entirely because it was so rarely beneficial.
 </Warning>
 
-### Pacing by platform
-
-| Platform | Standard pacing | Accelerated pacing | Notes |
-|----------|----------------|-------------------|-------|
-| **Meta** | Default | Not available (removed) | Meta optimizes pacing automatically |
-| **Google** | Default | Available (being deprecated) | Google recommends standard |
-| **TikTok** | Default | Available | Use with caution |
-| **Apple** | Default | Not available | Apple paces automatically |
-
 ---
 
-## Auction mechanics deep dive
+## The learning phase: why patience is everything
 
-Let's walk through what happens in a real auction with real numbers:
+When you launch a new campaign (or make significant changes), the platform enters a **learning phase**. During this period, the algorithm experiments with different audiences, placements, and delivery times to figure out the best way to spend your money.
 
-### Example: Meta auction for an app install
-
-```
-User: Sarah, 28, fitness enthusiast, scrolling Instagram Feed in New York
-
-Advertiser A (You - Fitness App):
-  Bid: $3.00 per install
-  Estimated Action Rate: 2.5% (platform thinks Sarah is likely to install)
-  Ad Quality: High (great engagement metrics)
-  Total Value = $3.00 × 0.025 × 1.2 = 0.090
-
-Advertiser B (Meditation App):
-  Bid: $5.00 per install
-  Estimated Action Rate: 0.8% (less relevant to Sarah)
-  Ad Quality: Medium
-  Total Value = $5.00 × 0.008 × 1.0 = 0.040
-
-Advertiser C (E-commerce App):
-  Bid: $4.00 per install
-  Estimated Action Rate: 1.2%
-  Ad Quality: Low (some negative feedback)
-  Total Value = $4.00 × 0.012 × 0.7 = 0.034
-
-Winner: Advertiser A (You!) ✅
-You pay: ~$1.80 (enough to beat Advertiser B's Total Value, not your full $3.00 bid)
-```
-
-<Note>
-  Notice how you won despite having the **lowest bid** of the three. Your ad's relevance (high estimated action rate) and quality score made up for the lower bid. **This is why creative quality and targeting relevance directly reduce your costs.**
-</Note>
-
----
-
-## The learning phase
-
-When you launch a new campaign (or make significant changes), the platform enters a **learning phase** where it experiments with different audiences, placements, and times to figure out the best way to deliver your ads.
-
-### What happens during the learning phase
+### What happens during learning
 
 ```mermaid
 graph LR
-    A["Day 1-2<br/>Exploration<br/>High CPA, inconsistent"] --> B["Day 3-5<br/>Learning<br/>CPA stabilizing"]
-    B --> C["Day 5-7+<br/>Optimized<br/>Consistent CPA"]
+    A["Day 1-2<br/>Exploration<br/>Costs are high and wild"] --> B["Day 3-5<br/>Learning<br/>Costs stabilizing"]
+    B --> C["Day 5-7+<br/>Optimized<br/>Stable, predictable costs"]
 
     style A fill:#FF6B6B,color:#fff
     style B fill:#FFA500,color:#fff
@@ -381,148 +335,145 @@ graph LR
 ```
 
 | Phase | What the platform does | What you see | What to do |
-|-------|----------------------|-------------|------------|
-| **Exploration (Day 1-2)** | Tests broadly — different users, placements, times | Expensive, inconsistent results | Do nothing. Wait. |
-| **Learning (Day 3-5)** | Starts identifying winning patterns | Results improving, still variable | Still wait. |
-| **Optimized (Day 5-7+)** | Focuses on what works | Stable, predictable results | Now you can evaluate and optimize |
+|---|---|---|---|
+| **Exploration (Day 1-2)** | Tests broadly — many different users, placements, times | Expensive, erratic results | **Do nothing. Wait.** |
+| **Learning (Day 3-5)** | Starts finding patterns | Results improving but still variable | **Still wait. Do not touch it.** |
+| **Optimized (Day 5-7+)** | Focuses on what works | Stable, predictable results | NOW you can evaluate and optimize |
 
-### What exits the learning phase
+### The magic number: 50 conversions per week
 
-The typical requirement is **50 optimization events** (conversions, installs, etc.) within a 7-day window. Once achieved, the platform has enough data to predict performance reliably.
+Meta recommends approximately **50 conversion events per week** per ad set to exit the learning phase. Google and TikTok have similar thresholds. This is why budget and structure matter so much — you need enough volume to generate those 50 events.
 
-### What resets the learning phase
-
-Be careful — these changes restart the learning phase:
+### What resets the learning phase (be careful!)
 
 | Change | Resets learning? |
-|--------|-----------------|
-| Significant budget change (more than 20-30%) | Yes |
+|---|---|
+| Large budget change (more than 20-30%) | Yes |
 | Changing bid strategy | Yes |
-| Changing targeting significantly | Yes |
+| Significant targeting changes | Yes |
 | Pausing for more than 7 days | Usually yes |
-| Adding new creatives | Partial (for the new creatives) |
-| Minor budget adjustments (under 20%) | Usually no |
-| Editing ad text only | Sometimes |
+| Adding new ads to the ad set | Partial (for the new ads) |
+| Small budget adjustments (under 20%) | Usually no |
 
 <Warning>
-  **The number one beginner mistake:** Seeing poor results on Day 1-2 and immediately pausing the campaign or making big changes. This restarts the learning phase and you never get to the optimized stage. **Give every campaign at least 5-7 days and 50 conversions before judging performance.**
+  **The #1 beginner mistake with bidding: panicking on Day 1-2.** You see terrible results — high costs, few installs — and immediately pause the campaign or make drastic changes. This RESTARTS the learning phase and you never reach optimization. **Give every campaign at least 5-7 days and ideally 50 conversions before judging performance.** The first few days are supposed to be ugly.
 </Warning>
 
 ---
 
-## Budget allocation across campaigns
+## A real auction example with numbers
 
-When you have multiple campaigns running, how should you distribute your total budget?
+Let's walk through an actual auction to make this concrete:
 
-### The 70/20/10 framework
+```
+User: Sarah, 28, fitness enthusiast, scrolling Instagram in New York
+
+Advertiser A (You - Fitness App):
+  Bid: $3.00 per install
+  Estimated Action Rate: 2.5% (platform thinks Sarah is very likely to install)
+  Ad Quality: High (great engagement history)
+  Total Value = $3.00 x 0.025 x 1.2 = 0.090
+
+Advertiser B (Meditation App):
+  Bid: $5.00 per install
+  Estimated Action Rate: 0.8% (less relevant to Sarah)
+  Ad Quality: Medium
+  Total Value = $5.00 x 0.008 x 1.0 = 0.040
+
+Advertiser C (E-commerce App):
+  Bid: $4.00 per install
+  Estimated Action Rate: 1.2%
+  Ad Quality: Low (some "hide ad" reports)
+  Total Value = $4.00 x 0.012 x 0.7 = 0.034
+
+WINNER: You (Advertiser A)!
+You pay: ~$1.80 (enough to beat Advertiser B's Total Value, NOT your full $3.00 bid)
+```
+
+You won despite having the **lowest bid** of all three! Your ad's relevance to Sarah (high estimated action rate) and quality score saved you money AND won the auction. This is why creative quality and targeting relevance are so important — they literally put money back in your pocket.
+
+---
+
+## Budget allocation: the 70/20/10 framework
+
+When you have multiple campaigns running, how should you split your total budget?
 
 | Allocation | Percentage | What it funds |
-|-----------|-----------|---------------|
-| **Proven performers** | 70% | Campaigns that are delivering results at your target CPA/ROAS |
-| **Scaling tests** | 20% | Expanding winning campaigns — new geos, audiences, or budgets |
-| **Experimentation** | 10% | New platforms, creative concepts, audience ideas |
+|---|---|---|
+| **Proven performers** | 70% | Campaigns delivering results at your target CPA/ROAS |
+| **Scaling tests** | 20% | Expanding winners to new geos, audiences, or higher budgets |
+| **Experiments** | 10% | New platforms, new creative concepts, wild ideas |
 
-### Example: $100/day total budget
+### Example with $100/day
 
 ```
 Total daily budget: $100
 
-$70/day → Campaign: "US Install - Broad" (proven, CPI = $2.50) ✅
-$20/day → Campaign: "UK Install - Test" (scaling to new geo) 🔄
-$10/day → Campaign: "TikTok Experiment" (testing new platform) 🧪
+$70/day --> Campaign: "US Installs - Broad" (proven, CPI = $2.50)
+$20/day --> Campaign: "UK Installs - Test" (scaling to new country)
+$10/day --> Campaign: "TikTok Experiment" (testing new platform)
 ```
 
 <Tip>
-  **Review allocation weekly.** If an experimental campaign starts outperforming, move it to the 70% bucket and start a new experiment. If a proven campaign starts declining, investigate before cutting it.
+  **Pro Tip: Review your allocation weekly.** If an experiment starts crushing it, graduate it to the 70% bucket and start a new experiment. If a "proven" campaign starts declining, investigate before cutting. The 70/20/10 split is not permanent — it is a dynamic framework.
 </Tip>
 
 ---
 
-## Scaling budgets safely
+## Scaling budgets without breaking things
 
-When a campaign is performing well, the natural instinct is to double or triple the budget. But scaling too fast can break performance.
+When a campaign is working well, the natural instinct is to double or triple the budget. But scaling too fast is like flooring the gas pedal — you might spin out.
 
-### Why scaling breaks things
+### Why scaling too fast breaks performance
 
-When you dramatically increase budget, the platform must suddenly find many more users. It starts showing your ads to less optimal users, and your CPA increases. The learning phase may also reset.
+When you dramatically increase budget, the platform must suddenly find MANY more users. It shows your ads to less optimal people, your CPA increases, and the learning phase may restart.
 
-### Safe scaling rules
+### The safe scaling rules
 
 <Steps>
-  <Step title="Scale gradually — 20-30% at a time">
-    If your daily budget is $50, increase to $60-65 (not $100). Wait 3-5 days to stabilize, then increase again.
+  <Step title="Scale gradually: 20-30% at a time">
+    If your daily budget is $50, increase to $60-65. NOT $100. Wait 3-5 days to stabilize, then increase again. Think of it like turning up the heat slowly.
   </Step>
-  <Step title="Scale through duplication">
-    Instead of increasing one ad set's budget, duplicate the winning ad set and give the duplicate its own budget. This gives you two ad sets both operating at their optimal level.
+  <Step title="Scale by duplicating, not just increasing">
+    Instead of making one ad set's budget huge, duplicate the winning ad set with its own budget. Now you have two ad sets both operating at their comfortable level.
   </Step>
   <Step title="Scale by expanding targeting">
-    Instead of spending more on the same audience, expand to new audiences, geos, or placements. This accesses new pools of users rather than exhausting the same pool.
+    Instead of spending more on the same people, expand to new audiences, new countries, or new placements. Access new pools of users instead of exhausting the same pool.
   </Step>
   <Step title="Scale horizontally across platforms">
-    If Meta is working, try the same creative concept on TikTok or Google. Different platforms have different user pools — scaling across them avoids audience saturation.
+    If Meta is working, try the same creative concept on TikTok or Google. Different platforms have different users — scaling across them avoids audience saturation on any single platform.
   </Step>
   <Step title="Monitor CPA closely during scaling">
-    Expect CPA to increase 10-20% during scaling. If it increases more than 30%, you are scaling too fast. Pull back and stabilize.
+    Expect CPA to increase 10-20% during scaling. That is normal. If it increases more than 30%, you are scaling too fast. Pull back and stabilize.
   </Step>
 </Steps>
 
-### Scaling timeline example
+### A realistic scaling timeline
 
 ```
-Week 1: $20/day → Establishing baseline CPI of $2.50
-Week 2: $26/day (+30%) → CPI stable at $2.60 ✅
-Week 3: $34/day (+30%) → CPI at $2.80 ✅
-Week 4: $44/day (+30%) → CPI at $3.10 (watch closely)
-Week 5: $44/day (hold) → CPI stabilizes at $2.90 ✅
-Week 6: $57/day (+30%) → Continue scaling
+Week 1: $20/day --> Baseline CPI of $2.50
+Week 2: $26/day (+30%) --> CPI stable at $2.60 (great!)
+Week 3: $34/day (+30%) --> CPI at $2.80 (still good)
+Week 4: $44/day (+30%) --> CPI at $3.10 (watch closely)
+Week 5: $44/day (hold) --> CPI stabilizes at $2.90 (phew)
+Week 6: $57/day (+30%) --> Continue scaling
 ```
+
+Notice: you went from $20/day to $57/day in 6 weeks. That is a nearly 3x increase — but done gradually and safely.
 
 ---
 
-## What does it actually cost? Benchmarks
+## Budget math: the formulas you need
 
-Real-world cost benchmarks vary enormously by category, country, platform, and creative quality. Here are rough guides:
-
-### Cost benchmarks by platform
-
-| Metric | Meta | Google Search | Google App | TikTok | Apple Search Ads |
-|--------|------|-------------|-----------|--------|-----------------|
-| **CPM** | $5-15 | N/A | $2-8 | $3-10 | N/A |
-| **CPC** | $0.30-2.00 | $0.50-5.00 | N/A | $0.20-1.50 | $0.50-3.00 |
-| **CPI** | $1.00-5.00 | $1.50-5.00 | $1.00-4.00 | $1.00-4.00 | $1.00-4.00 |
-| **CPA** (purchase) | $5-50 | $10-80 | $5-40 | $5-30 | $10-50 |
-
-### Cost benchmarks by app category
-
-| App category | Average CPI (Global) | Average CPI (US) | Notes |
-|-------------|---------------------|------------------|-------|
-| **Games (casual)** | $0.50-2.00 | $1.50-4.00 | High volume, lower quality |
-| **Games (midcore/hardcore)** | $2.00-6.00 | $4.00-10.00 | Higher quality users |
-| **Social / Communication** | $1.00-3.00 | $2.00-5.00 | Competitive but scalable |
-| **E-commerce / Shopping** | $1.50-4.00 | $2.50-6.00 | Revenue offsets cost |
-| **Finance / Fintech** | $3.00-10.00 | $5.00-15.00 | Highest value users |
-| **Health & Fitness** | $1.50-4.00 | $2.50-6.00 | Seasonal spikes in January |
-| **Education** | $1.00-3.00 | $2.00-5.00 | Back-to-school seasonality |
-| **Utilities / Productivity** | $1.00-3.00 | $2.00-5.00 | Broad audience |
-| **Entertainment / Streaming** | $2.00-5.00 | $3.00-8.00 | High competition |
-
-<Note>
-  **These are rough averages.** Your actual costs depend on your creative quality, targeting, competition level, time of year, and many other factors. Use these as a sanity check, not a guarantee.
-</Note>
-
----
-
-## Budget math: essential formulas
-
-### How much to spend for a given number of installs
+### How much budget to get X installs
 
 ```
 Monthly budget = Target installs x Expected CPI
 
 Example:
-  Want 1,000 installs/month
-  Expected CPI = $2.50
-  Monthly budget = 1,000 x $2.50 = $2,500/month (~$83/day)
+  Want: 1,000 installs/month
+  Expected CPI: $2.50
+  Budget: 1,000 x $2.50 = $2,500/month (~$83/day)
 ```
 
 ### How to calculate ROAS
@@ -531,33 +482,33 @@ Example:
 ROAS = Revenue from ads / Cost of ads x 100%
 
 Example:
-  Spent $1,000 on ads
-  Generated $3,000 in revenue from those users
-  ROAS = $3,000 / $1,000 x 100% = 300%
+  Spent: $1,000 on ads
+  Revenue from those users: $3,000
+  ROAS: $3,000 / $1,000 x 100% = 300% (you earned 3x what you spent)
 ```
 
-### Break-even CPA
+### Break-even CPA (critical number!)
 
 ```
 Break-even CPA = Average Revenue Per User (ARPU)
 
 Example:
-  Average user generates $5.00 in lifetime revenue
-  Break-even CPA = $5.00
-  Target CPA for profitability = $3.00-$4.00 (some margin)
+  Average user generates: $5.00 in lifetime revenue
+  Break-even CPA: $5.00
+  Target CPA for profitability: $3.00-$4.00 (leave some margin)
 ```
 
 ### Recommended starting budgets
 
-| Platform | Minimum daily | Recommended daily | First test budget |
-|----------|--------------|-------------------|-------------------|
-| **Meta** | $5/day | $15-30/day | $200-400 total |
-| **Google Ads** | $10/day | $20-40/day | $300-500 total |
-| **TikTok** | $20/day | $30-50/day | $400-700 total |
-| **Apple Search Ads** | $5/day | $10-20/day | $150-300 total |
+| Platform | Minimum daily | Recommended daily | First test total budget |
+|---|---|---|---|
+| **Meta** | $5/day | $15-30/day | $200-400 |
+| **Google Ads** | $10/day | $20-40/day | $300-500 |
+| **TikTok** | $20/day | $30-50/day | $400-700 |
+| **Apple Search Ads** | $5/day | $10-20/day | $150-300 |
 
 <Tip>
-  **First-time budget:** Allocate $200-500 for your very first campaign. Run it for 7-14 days. The goal is **learning**, not scaling. You want to understand your CPI, which creatives work, and which audiences convert. Once you have data, you can make informed scaling decisions.
+  **Pro Tip for your first budget: Allocate $200-500 total for your very first campaign.** Run it for 7-14 days. The goal is LEARNING, not scaling. You want to discover your CPI, which creatives resonate, and which audiences convert. That data is worth its weight in gold. Once you have it, you can make smart scaling decisions instead of guessing.
 </Tip>
 
 ---
@@ -566,22 +517,22 @@ Example:
 
 <Steps>
   <Step title="Auctions reward quality, not just money">
-    Higher bids do not guarantee wins. Better ads and higher relevance can beat bigger budgets. Invest in creative quality.
+    Higher bids do not guarantee wins. Better ads with higher relevance can beat bigger budgets. Creative quality literally saves you money in every auction.
   </Step>
   <Step title="Start with automatic bidding">
-    Use Lowest Cost or Maximize Conversions for your first campaigns. Establish baselines before adding bid constraints.
+    Use Lowest Cost or Maximize Conversions for your first campaigns. Establish baselines for 2-4 weeks before adding any bid constraints.
   </Step>
   <Step title="Respect the learning phase">
-    Give campaigns 5-7 days and 50+ conversions before judging. Early results are not representative.
+    Give campaigns 5-7 days and 50+ conversions before judging. The first couple of days are SUPPOSED to look bad. Do not panic.
   </Step>
-  <Step title="Scale gradually">
-    Increase budgets by 20-30% at a time. Dramatic increases (doubling or tripling) almost always hurt performance.
+  <Step title="Scale gradually — 20-30% at a time">
+    Dramatic budget increases almost always hurt performance. Patience pays off. Go from $20/day to $60/day over 4-6 weeks, not overnight.
   </Step>
   <Step title="Use the 70/20/10 framework">
-    70% on proven campaigns, 20% on scaling tests, 10% on experiments. Review weekly.
+    70% on proven campaigns, 20% on scaling tests, 10% on experiments. Review and rebalance weekly.
   </Step>
-  <Step title="Track your unit economics">
-    Know your CPI, CPA, ROAS, and break-even point. These numbers drive every budget and bidding decision.
+  <Step title="Know your numbers">
+    CPI benchmarks: iOS ~$3.6, Android ~$1.2 globally. Finance apps can be $8+ on iOS. Casual games: ~$1.5 Android, ~$2.5 iOS. Know what is normal for YOUR category so you can set realistic expectations.
   </Step>
 </Steps>
 
@@ -589,12 +540,12 @@ Example:
 
 ## Next up
 
-Your money is set. Now let's talk about the thing that makes people actually tap your ad — the creative.
+Your budget is set and you understand how auctions work. Now let's talk about the single most impactful thing in all of advertising — the creative.
 
 <Card
   title="Creatives"
   icon="arrow-right"
   href="/concepts/creatives"
 >
-  How to make ads that stop the scroll and drive action.
+  How to make ads that stop the scroll, capture attention, and drive people to install your app.
 </Card>

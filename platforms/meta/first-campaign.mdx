@@ -1,686 +1,548 @@
 ---
 title: "Your First Meta Campaign"
-description: "A screen-by-screen walkthrough of creating your first Meta ad campaign. Every setting, every option, every screen explained for complete beginners."
+description: "A complete step-by-step guide to creating your first Meta ad campaign. Every screen, every setting, every option explained for complete beginners."
 ---
 
-## Let's actually do this
+## You Are About to Launch Your First Ad
 
-You have your account set up and tracking installed. Now it is time to create your first real campaign. We will walk through every screen, every setting, and explain what each option means so you never feel lost.
+This is the exciting part. You have set up your accounts, installed your tracking, and now it is time to actually create an ad that real people will see on Facebook and Instagram. We will walk through every single screen and every single setting together.
 
-**Total time needed:** About 30-45 minutes for your first campaign. It gets much faster after that.
-
----
-
-## Before you start
-
-Make sure you have all of these ready:
-
-- [ ] Meta Ads Manager access (from account setup)
-- [ ] Meta SDK or Pixel installed and verified working in Events Manager
-- [ ] At least one image or video for your ad
-  - Images: 1080x1080px minimum (square), 1080x1920px for stories/reels (vertical)
-  - Videos: 15-60 seconds, MP4 or MOV format, under 4GB
-- [ ] Ad copy written (we will cover how to write it below)
-- [ ] Your app published in the App Store and/or Google Play
-- [ ] A daily budget in mind ($10-20/day is a good starting point)
-
----
-
-## Naming conventions (set this up first)
-
-Before creating anything, establish a naming system. This seems unimportant now, but when you have 20+ campaigns running, naming is the difference between organized and chaos.
-
-Here is a proven naming convention:
-
-```
-Campaign: [Objective] - [Market] - [Audience Type] - [Date]
-Ad Set:   [Targeting Details] - [Placement] - [Optimization]
-Ad:       [Format] - [Creative Concept] - [Version]
-
-Examples:
-Campaign: Installs - US - Broad - 2026-02
-Ad Set:   18-44 All - Auto Placements - App Installs
-Ad:       Video - App Demo - v1
-Ad:       Image - Social Proof - v2
-Ad:       Video - Problem/Solution - v1
-```
+By the end of this guide, you will have a live ad campaign running on Meta's platform. Let us do this step by step.
 
 <Tip>
-  Keep your naming convention consistent across your entire team. When someone else looks at your Ads Manager, they should be able to understand what each campaign is testing just from the name.
+Before you start, make sure you have the following ready: (1) your Meta Pixel is installed and verified, (2) a payment method is added to your ad account, (3) at least one image or video you want to use in your ad, and (4) a clear idea of what you want people to do after seeing your ad (install your app, visit your website, make a purchase, etc.).
 </Tip>
 
 ---
 
-## Screen 1: Starting a new campaign
+## Understanding the Three Levels (Quick Refresher)
 
-<Steps>
-  <Step title="Open Ads Manager">
-    Go to [adsmanager.facebook.com](https://adsmanager.facebook.com). You will land on the Campaigns tab, which shows all your existing campaigns (empty if this is your first time).
-  </Step>
-  <Step title="Click the green '+ Create' button">
-    It is in the top-left corner. This opens the campaign creation flow.
+Remember from the Overview guide that Meta ads have three levels:
 
-    You will see a choice between **Manual** campaign creation and **Advantage+ App Campaign** (automated). For your first campaign, choose **Manual** so you understand every setting. You can try Advantage+ later once you know the basics.
-  </Step>
-</Steps>
+1. **Campaign** — Where you choose your goal (what do you want to achieve?)
+2. **Ad Set** — Where you choose your audience, budget, and schedule (who sees it, how much do you spend?)
+3. **Ad** — Where you create the actual content people see (what does the ad look like?)
+
+You will configure all three levels in the process below. Meta walks you through them in order.
 
 ---
 
-## Screen 2: Choose your campaign objective
+## Step 1: Open Ads Manager and Start a New Campaign
 
-This is the most important decision. Your objective tells Meta what result to optimize for.
-
-You will see 6 objective categories. Here is what each one means and when to choose it:
-
-| Objective | What Meta optimizes for | Choose this when... |
-|-----------|------------------------|---------------------|
-| **Awareness** | Showing your ad to as many people as possible | You want brand recognition, not direct action |
-| **Traffic** | Getting people to click a link | You want visits to your website or app store page |
-| **Engagement** | Getting likes, comments, shares, video views | You want social proof and interaction |
-| **Leads** | Getting people to submit their contact info | You want email signups or waitlist registrations |
-| **App Promotion** | Getting people to install or use your app | **This is what you want for app installs** |
-| **Sales** | Getting people to purchase something | You want purchases on your website or in-app |
-
-**For your first app install campaign, select App Promotion.**
-
-After selecting, you may see an option to choose between:
-- **App installs** — optimize for new installs
-- **App events** — optimize for specific in-app actions (requires existing install data)
-- **Value** — optimize for highest-value users (requires purchase data)
-
-**Select App installs** for your first campaign.
+1. Open your web browser and go to **[adsmanager.facebook.com](https://adsmanager.facebook.com)**
+2. Make sure you are in the correct ad account (check the dropdown at the top of the page)
+3. Click the **green "+ Create" button** in the top-left area of the Campaigns tab
+4. A new window will appear asking you to choose your campaign objective
 
 ---
 
-## Screen 3: Campaign settings
+## Step 2: Choose Your Campaign Objective
 
-After choosing your objective, you land on the campaign settings screen. Here is every option:
+This is the most important decision in the entire setup. Your objective tells Meta what result you want, and Meta will optimize its entire algorithm to deliver that result.
 
-### Campaign name
+You will see these objective options:
 
-Enter a name following your naming convention:
-```
-Installs - US - Broad - 2026-02
-```
+### For Your First Campaign, We Recommend:
 
-### Special ad categories
+- **If you want app installs:** Choose **App Promotion**
+- **If you want website purchases:** Choose **Sales**
+- **If you want website traffic:** Choose **Traffic**
+- **If you want sign-ups/leads:** Choose **Leads**
 
-<Warning>
-  If your app relates to **credit, employment, housing, or social/political issues**, you must declare this here. These categories have restricted targeting options (no age, gender, or detailed targeting). Not declaring when you should can get your account permanently banned.
-</Warning>
+For this walkthrough, we will use **Sales** as our example, since it is one of the most common objectives. The steps are very similar for other objectives.
 
-For most app developers, leave this as **None**.
-
-### Campaign details
-
-**Buying type:** Leave as **Auction** (the default). The other option, "Reservation," is for large brands buying guaranteed impressions and is not relevant for beginners.
-
-### Advantage Campaign Budget (formerly CBO)
-
-This is a toggle that controls how your budget is managed:
-
-| Setting | How it works | When to use |
-|---------|-------------|-------------|
-| **ON (Advantage Campaign Budget)** | You set ONE budget for the entire campaign. Meta distributes it across your ad sets based on performance. | When you have multiple ad sets and want Meta to allocate budget to the best performer automatically. Recommended for most cases. |
-| **OFF (Ad Set Budget)** | Each ad set has its own separate budget. You control how much each ad set spends. | When you want equal spend across ad sets for fair testing, or when you need precise control over budget allocation. |
-
-**For your first campaign, turn this ON** and set a campaign-level daily budget. Start with $15-20/day.
-
-### Campaign bid strategy
-
-If Advantage Campaign Budget is ON, you will see bid strategy options:
-
-| Strategy | How it works | When to use |
-|----------|-------------|-------------|
-| **Highest Volume** (default) | Meta gets you as many results as possible for your budget. No cost cap. | Best for beginners. Let Meta find the cheapest installs. |
-| **Cost Per Result Goal** | You set a target CPI. Meta tries to hit that target on average. | When you know your target CPI from previous campaigns. |
-| **Bid Cap** | You set the maximum you will pay per result. Meta never exceeds this. | When you have strict cost requirements. Can limit delivery. |
-| **ROAS Goal** | You set a target return on ad spend. | When you track revenue and want profitable campaigns. |
-
-**For your first campaign, use Highest Volume.** You do not have enough data yet to set meaningful cost targets.
-
-### A/B Test
-
-You will see an option to create an A/B test. **Skip this for your first campaign.** You can test effectively by running multiple ads within the same ad set. True A/B tests are useful later when you need statistically rigorous results.
-
-Click **Next** to move to the ad set level.
-
----
-
-## Screen 4: Ad set settings
-
-The ad set is where you configure WHO sees your ad, WHERE they see it, WHEN they see it, and HOW MUCH you spend. This screen has many options — we will cover every one.
-
-### Ad set name
-
-Name it descriptively:
-```
-18-44 All - Auto Placements - Installs
-```
-
-### App selection
-
-**App:** Select your app from the dropdown. If it does not appear, go back to Business Settings and make sure your app is registered and assigned to this ad account.
-
-**App Store:** Select the store(s) — iOS (App Store), Android (Google Play), or both. If you select both, Meta will show the correct store link based on the user's device.
-
-### Optimization & delivery
-
-**Optimization for ad delivery:** This tells Meta what specific result to optimize for within your objective.
-
-| Option | What it means |
-|--------|--------------|
-| **App installs** (default) | Meta shows your ad to people most likely to install your app |
-| **App events** | Meta shows your ad to people most likely to take a specific in-app action (e.g., purchase, signup). Requires existing event data. |
-| **Value** | Meta shows your ad to people likely to generate the most revenue. Requires purchase data with value tracking. |
-| **Link clicks** | Meta shows your ad to people most likely to click (not necessarily install). Generally worse for app campaigns. |
-
-**Choose App installs** for your first campaign.
-
-**Cost per result goal (optional):** Leave this empty for now. You do not have enough historical data to set a realistic target.
-
-### Budget & schedule
-
-If you turned OFF Advantage Campaign Budget at the campaign level, you will set the budget here for this specific ad set.
-
-**Budget type:**
-
-| Type | How it works | When to use |
-|------|-------------|-------------|
-| **Daily budget** | Meta spends roughly this amount each day (can vary up to 25% on any given day, but averages out over the week) | Most situations. Gives you predictable daily spend. |
-| **Lifetime budget** | Meta spends this total amount over the date range you set. It optimizes when to spend (more on good days, less on bad days). | When you have a fixed total budget and specific date range. |
-
-**Choose Daily budget** and enter your amount. For your first campaign:
-- Minimum recommended: $10/day (gives the algorithm enough data)
-- Ideal starting point: $15-20/day
-- You can always increase or decrease later
-
-**Schedule:**
-
-| Option | How it works |
-|--------|-------------|
-| **Start immediately, run continuously** | Campaign starts as soon as it is approved and runs until you pause it. This is the default and recommended option. |
-| **Set a start and end date** | Campaign runs only during the specified date range. Use this for time-limited promotions or when you want automatic stopping. |
-
-**Choose "Start immediately, run continuously"** for your first campaign. You will pause it manually when you are ready.
-
-**Ad scheduling (available with lifetime budget only):** Lets you run ads only during specific hours or days of the week. Not needed for your first campaign.
-
-### Audience
-
-This is where you define who sees your ad. For your first campaign, keep it broad and let the algorithm find the right people.
-
-**Custom audiences:**
-- **Include:** Leave empty for now (you do not have custom audiences yet)
-- **Exclude:** If you have existing app users, exclude them here so you do not pay to show ads to people who already installed your app
-
-**Locations:**
-
-Start with **one country** — your primary market. Options include:
-- **People living in or recently in this location** (default, recommended)
-- **People living in this location** — only permanent residents
-- **People recently in this location** — includes travelers
-- **People traveling in this location** — only travelers
-
-You can target:
-- Entire countries
-- States/provinces/regions
-- Cities (with a radius around them)
-- ZIP/postal codes
-- A custom radius around a dropped pin
-
-**For your first campaign, target one country (e.g., "United States") with "People living in or recently in this location."**
-
-**Age:**
-
-The age range slider goes from 18 to 65+.
-
-- **For your first campaign, leave it at 18-65+** (maximum range). Meta's algorithm is extremely good at finding the right age group within a broad range. Restricting it prematurely limits the algorithm's ability to optimize.
-- Only narrow the age range if your app is genuinely unsuitable for certain ages (e.g., a retirement planning app would target 40-65+).
-
-**Gender:**
-
-Options are All, Men, or Women.
-
-- **For your first campaign, select All.** Again, let the algorithm find the right gender split. You can check the breakdown report after a week to see which gender performs better.
-
-**Detailed targeting:**
-
-This is where you can target people by interests, behaviors, and demographics. You have three options:
-
-| Approach | Description | When to use |
-|----------|-------------|-------------|
-| **Broad (no detailed targeting)** | Leave this completely empty and let Meta find the right users using its algorithm | Recommended when you have good creative and trust the algorithm. Works surprisingly well. |
-| **Interest-based** | Add 3-5 interests related to your app | When you want some directional guidance for the algorithm |
-| **Stacked interests** | Add many interests, each one expanding your audience | Not recommended — makes audiences too large and gives Meta no useful signal |
-
-**For your first campaign, you have two good options:**
-
-**Option A: Go completely broad (recommended)**
-Leave detailed targeting empty. Meta's algorithm is now sophisticated enough to find good users without interest targeting, especially for app install campaigns. This gives it the maximum freedom to optimize.
-
-**Option B: Add a few relevant interests**
-Click **Browse** or **Search** and add 3-5 interests related to your app:
-- For a fitness app: "Fitness", "Running", "Workout"
-- For a cooking app: "Cooking", "Recipes", "Food"
-- For a game: The genre name, competitor game names, "Mobile gaming"
-
-Available interest categories include:
-- **Demographics**: Education, life events, job titles, relationship status
-- **Interests**: Business, entertainment, fitness, food, hobbies, shopping, sports, technology
-- **Behaviors**: Purchase behavior, device usage, travel patterns, digital activities
-
-<Note>
-  **Advantage+ Audience:** You may see a toggle for "Advantage+ Audience" (previously "Advantage Detailed Targeting"). When enabled, Meta treats your targeting inputs as **suggestions** rather than restrictions, and will expand beyond them if it finds better results. For your first campaign, leave this ON — it gives Meta more flexibility.
-</Note>
-
-**Languages:**
-
-Leave this empty unless you are targeting a multilingual country and your ad is in a specific language. For example, if you are targeting the US with an English ad, you do not need to set "English" — Meta will handle this.
-
-### Placements
-
-This controls where your ad appears across Meta's network.
-
-| Option | What it does | When to use |
-|--------|-------------|-------------|
-| **Advantage+ Placements** (recommended) | Meta automatically places your ads wherever they will perform best across Facebook, Instagram, Messenger, and the Audience Network | Always use this. Meta's placement optimization is very effective. |
-| **Manual Placements** | You manually select which placements to include or exclude | Only when you have specific reasons (e.g., you only have square images that look bad in Stories) |
-
-**Choose Advantage+ Placements.** The algorithm will figure out the best mix.
-
-If you do choose Manual Placements, here are the available options grouped by platform:
-
-<AccordionGroup>
-  <Accordion title="Facebook placements">
-    - Feed (mobile and desktop)
-    - Marketplace
-    - Video feeds
-    - Right column (desktop)
-    - Stories
-    - Reels
-    - In-stream videos
-    - Search results
-    - Instant Articles
-  </Accordion>
-  <Accordion title="Instagram placements">
-    - Feed
-    - Explore
-    - Explore home
-    - Stories
-    - Reels
-    - Shop
-    - Profile feed
-  </Accordion>
-  <Accordion title="Messenger placements">
-    - Inbox
-    - Stories
-    - Sponsored messages
-  </Accordion>
-  <Accordion title="Audience Network placements">
-    - Native, banner, and interstitial
-    - Rewarded video
-  </Accordion>
-</AccordionGroup>
-
-Click **Next** to move to the ad level.
-
----
-
-## Screen 5: Ad creation
-
-Now for the fun part — creating the actual ad that people will see.
-
-### Ad name
-
-Following your naming convention:
-```
-Video - App Demo - v1
-```
-
-### Identity
-
-**Facebook Page:** Select the Facebook Page that will represent your ad. Your page name and profile picture will appear at the top of the ad.
-
-**Instagram Account:** Select your connected Instagram account (optional but recommended). If you do not connect one, your Facebook Page name will appear on Instagram ads, which looks less professional.
-
-### Ad setup
-
-**Create ad:** You have several options:
-
-| Option | What it means |
-|--------|-------------|
-| **Create ad** (default) | Build a new ad from scratch |
-| **Use existing post** | Turn an existing Facebook or Instagram post into an ad |
-| **Use Creative Hub mockup** | Use a mockup you created in Meta's Creative Hub tool |
-| **Use catalog** | Dynamically pull products from a product catalog (e-commerce) |
-
-**Choose "Create ad"** for your first campaign.
-
-### Ad format
-
-Choose how your ad will look:
-
-| Format | What it looks like | When to use | Recommended for beginners? |
-|--------|-------------------|-------------|---------------------------|
-| **Single image** | One static image | Simple, fast to create, great for testing messaging | Yes |
-| **Single video** | One video (up to 240 minutes, but keep it short) | Best performing format for app installs — shows your app in action | Yes |
-| **Carousel** | 2-10 swipeable cards, each with its own image/video and link | Showing multiple features, testimonials, or steps | After your first campaign |
-| **Collection** | A cover image/video with a grid of products below | E-commerce apps with product catalogs | No (too complex for beginners) |
-
-**For your first campaign, use Single image or Single video.** Video tends to perform better for app installs because you can show the app in action, but a strong image can also work well.
-
-### Ad creative
-
-This is the heart of your ad. Here is every field:
-
-**Media (image or video):**
-
-Upload your creative asset. Technical specifications:
-
-| Spec | Feed (square) | Stories/Reels (vertical) | Recommended |
-|------|---------------|--------------------------|-------------|
-| **Aspect ratio** | 1:1 | 9:16 | Provide both |
-| **Image resolution** | 1080x1080px | 1080x1920px | Higher is fine |
-| **Video resolution** | 1080x1080px | 1080x1920px | Higher is fine |
-| **Video length** | 1s-240min | 1s-120s | 15-30 seconds |
-| **File size (image)** | Max 30MB | Max 30MB | Under 5MB |
-| **File size (video)** | Max 4GB | Max 4GB | Under 500MB |
-| **File format (image)** | JPG, PNG | JPG, PNG | JPG |
-| **File format (video)** | MP4, MOV, GIF | MP4, MOV | MP4 (H.264) |
+5. Click on **Sales**
+6. Click **Continue**
 
 <Tip>
-  **Upload multiple aspect ratios.** Click the crop/resize icon on your media and provide a square (1:1) version for feed placements and a vertical (9:16) version for Stories/Reels. If you only provide one aspect ratio, Meta will auto-crop it for other placements, which often looks bad.
-</Tip>
-
-**Advantage+ Creative (toggle):**
-When enabled, Meta will automatically:
-- Adjust image brightness and contrast
-- Apply artistic filters
-- Adjust aspect ratios
-- Add music to video ads
-- Show different text combinations
-
-**Leave this ON for your first campaign.** The automatic enhancements are generally helpful.
-
-**Primary text:**
-
-This is the main body text that appears above your ad image/video. You can add up to 5 variations (Meta will test which one performs best).
-
-- **Character limit:** 125 characters are visible before "See more" (total limit is 2,200)
-- **Best practice:** Keep your primary message within 125 characters
-- **Write 2-3 variations** to give Meta options to test
-
-Here is a framework for writing primary text:
-
-```
-Variation 1 (Problem/Solution):
-"Tired of [problem]? [App Name] makes it easy to [solution].
-Try it free today."
-
-Variation 2 (Social proof):
-"Join 50,000+ people who [benefit]. [App Name] — the #1 app for [category]."
-
-Variation 3 (Direct benefit):
-"[Key benefit] in just [time/effort]. Download [App Name] and [specific outcome]."
-
-Example for a task management app:
-V1: "Tired of forgetting important tasks? TaskFlow keeps everything
-    organized in one place. Try it free."
-V2: "Join 50,000+ productive people who never miss a deadline.
-    TaskFlow — the #1 task manager."
-V3: "Get organized in 2 minutes. Download TaskFlow and never
-    forget a task again."
-```
-
-**Headline:**
-
-The bold text that appears below your image/video (in feed placements). You can add up to 5 variations.
-
-- **Character limit:** 27 characters are visible in most placements (total limit is 255)
-- **Best practice:** Keep it under 5 words — short and punchy
-- **Write 2-3 variations**
-
-```
-Examples:
-"Never forget a task"
-"Get organized instantly"
-"Free task manager"
-"Your tasks, simplified"
-```
-
-**Description:**
-
-Additional text that appears below the headline (not shown on all placements). You can add up to 5 variations.
-
-- **Character limit:** 27 characters visible (total limit is 255)
-- **Best practice:** Reinforce the headline or add a secondary benefit
-- Often not visible on mobile, so do not put critical info here
-
-```
-Examples:
-"Free download. No credit card required."
-"4.8 stars from 10,000+ reviews"
-"Available on iOS and Android"
-```
-
-**Call to Action (CTA):**
-
-The button that appears on your ad. Select from Meta's predefined options:
-
-| CTA | When to use |
-|-----|-------------|
-| **Install Now** | Default for app install campaigns — clear and direct |
-| **Download** | Alternative to Install Now, slightly softer |
-| **Use App** | For re-engagement campaigns (existing users) |
-| **Learn More** | When sending to a landing page first |
-| **Sign Up** | For lead generation or registration |
-| **Get Offer** | For promotional campaigns |
-| **Play Game** | For game apps specifically |
-| **Try Free** | For apps with free trials |
-| **Get Started** | General-purpose, works for most apps |
-
-**For your first app install campaign, choose "Install Now" or "Download."**
-
-**Website URL / Deep link:**
-
-For app install campaigns, Meta automatically directs users to the correct app store. You can optionally add:
-- A **deep link** to a specific screen in your app (for re-engagement campaigns)
-- A **website URL** as a fallback for users who cannot install the app
-- **URL parameters** for tracking (e.g., `utm_source=meta&utm_campaign=installs_broad`)
-
-**Display link (optional):**
-
-A shortened URL that appears on the ad for cosmetic purposes (does not affect where users go). Example: "taskflow.app"
-
-### Tracking
-
-**App events:** Make sure your app is selected and events are being tracked. You should see your Meta Pixel or App listed here with a green indicator.
-
-**URL parameters (optional):**
-
-Add UTM parameters to track campaign performance in your analytics tool:
-```
-utm_source=meta&utm_medium=paid&utm_campaign={{campaign.name}}&utm_content={{ad.name}}
-```
-
-Meta supports dynamic parameters that auto-fill:
-| Parameter | What it inserts |
-|-----------|----------------|
-| `{{campaign.id}}` | Campaign ID number |
-| `{{campaign.name}}` | Campaign name |
-| `{{adset.id}}` | Ad set ID number |
-| `{{adset.name}}` | Ad set name |
-| `{{ad.id}}` | Ad ID number |
-| `{{ad.name}}` | Ad name |
-| `{{placement}}` | Where the ad was shown |
-
----
-
-## Screen 6: Preview your ad
-
-Before publishing, preview how your ad will look across different placements. Meta shows previews for:
-
-- Facebook Feed (mobile)
-- Facebook Feed (desktop)
-- Instagram Feed
-- Instagram Stories
-- Instagram Reels
-- Facebook Stories
-- Audience Network
-- And more
-
-**Check each preview carefully:**
-- Is the image/video cropped correctly?
-- Is text readable at mobile size?
-- Does the headline make sense without the primary text (some placements show only the headline)?
-- Is the CTA button clear?
-
-<Tip>
-  You can also use the **"Share" button** to send a preview link to your phone or team members. This lets you see exactly what the ad will look like in the actual Facebook or Instagram app, which is much more realistic than the desktop preview.
+If you are not sure which objective to pick, ask yourself: "What is the ONE action I most want people to take after seeing my ad?" If the answer is "buy something," choose Sales. If it is "install my app," choose App Promotion. If it is "visit my website," choose Traffic. Do not overthink it — you can always create another campaign with a different objective later.
 </Tip>
 
 ---
 
-## Screen 7: Review and publish
+## Step 3: Configure Your Campaign Settings
 
-Click the **Publish** button. Before your ad goes live, Meta reviews it against their advertising policies.
+You are now on the Campaign level. Here is what you will see and what to do:
 
-### The review process
+### Campaign Name
 
-| Step | What happens | Time |
-|------|-------------|------|
-| **Automated check** | Meta's AI scans your ad for policy violations (prohibited content, misleading claims, etc.) | Usually within 15 minutes |
-| **Manual review (if flagged)** | A human reviewer checks your ad if the AI flags something | Can take 24-48 hours |
-| **Approved** | Your ad starts delivering to your audience | Delivery begins within minutes of approval |
-| **Rejected** | Your ad was flagged for a policy violation | You will receive a notification explaining why |
+7. Meta will auto-generate a name like "Sales campaign." **Change this** to something descriptive that will help you identify this campaign later. For example:
+   - "US - Website Purchases - February 2026"
+   - "App Install - iOS - First Test"
+   - "Spring Sale - All Audiences"
 
-### Common reasons ads get rejected
+### Special Ad Categories
 
-<AccordionGroup>
-  <Accordion title="Ad text has too much text on the image">
-    Meta penalizes ads where text covers more than 20% of the image. Use Meta's Text Overlay Tool to check before submitting. Keep text minimal — let the image tell the story and put text in the primary text and headline fields instead.
-  </Accordion>
-  <Accordion title="Misleading claims">
-    Claims like "Guaranteed to make you money" or "Lose 30 pounds in a week" will be rejected. Be truthful and realistic about what your app does.
-  </Accordion>
-  <Accordion title="Before/after images (health/fitness)">
-    Dramatic before/after comparisons are restricted or prohibited in health and fitness categories. Focus on the experience of using your app instead.
-  </Accordion>
-  <Accordion title="Missing or broken landing page">
-    If your link leads to a broken page, 404 error, or a page that does not match the ad content, your ad will be rejected. Test all links before submitting.
-  </Accordion>
-  <Accordion title="Prohibited content">
-    Ads cannot promote illegal products, adult content, discriminatory practices, tobacco, weapons, or other prohibited categories. See Meta's full policy list at [facebook.com/policies/ads](https://www.facebook.com/policies/ads).
-  </Accordion>
-  <Accordion title="Personal attributes">
-    Your ad cannot assert or imply things about the viewer, like "Struggling with debt?" or "Are you overweight?". Rephrase as general statements: "Many people find budgeting challenging."
-  </Accordion>
-</AccordionGroup>
+8. Meta will ask if your ad falls into any special categories:
+   - **Credit** — Ads for credit cards, loans, or financial services
+   - **Employment** — Ads for job listings or job fairs
+   - **Housing** — Ads for real estate or rentals
+   - **Social issues, elections, or politics** — Ads about social or political topics
 
-### What to do if your ad is rejected
+9. If your ad does NOT fall into any of these categories, leave them all unchecked and move on. If it does, check the appropriate box — this will limit some targeting options to comply with regulations.
 
-<Steps>
-  <Step title="Read the rejection reason">
-    Check your notifications in Ads Manager. Meta will specify which policy your ad violated.
-  </Step>
-  <Step title="Fix the issue">
-    Edit your ad to address the specific violation. Often it is a simple text change or image swap.
-  </Step>
-  <Step title="Resubmit for review">
-    After editing, your ad automatically goes through review again.
-  </Step>
-  <Step title="Appeal if you believe the rejection is wrong">
-    In your ad, click the "Request Review" button to appeal. Meta will have a human reviewer take another look. This can take 24-48 hours.
-  </Step>
-</Steps>
+### Advantage Campaign Budget (Optional)
+
+10. You will see an option called **Advantage Campaign Budget** (previously called Campaign Budget Optimization or CBO)
+11. If you turn this ON, Meta will automatically distribute your budget across all ad sets in this campaign, giving more budget to the best-performing ad sets
+12. If you turn this OFF, you will set individual budgets for each ad set
+
+**For your first campaign:** Turn this OFF. Setting individual budgets for each ad set gives you more control while you are learning.
+
+### A/B Test (Optional)
+
+13. You will see an option to create an A/B test
+14. **For your first campaign:** Skip this. A/B testing is for later when you want to compare different strategies. Click **Next** to continue.
 
 ---
 
-## Adding more ads to your ad set (recommended)
+## Step 4: Configure Your Ad Set
 
-After publishing your first ad, go back and create 3-5 total ad variations within the same ad set. This is the simplest and most effective way to improve results.
+You are now on the Ad Set level. This is where you define who sees your ad, how much you spend, and when your ad runs.
 
-### What to vary
+### Ad Set Name
 
-<CardGroup cols={2}>
-  <Card title="Best: Different creative" icon="image">
-    Use the same text but different images or videos. Visual creative has the biggest impact on performance. Try different styles:
-    - App screenshot in a device mockup
-    - Video showing the app in use
-    - Lifestyle image of someone benefiting from the app
-    - Text-heavy graphic with a bold statement
-  </Card>
-  <Card title="Good: Different angles" icon="pen">
-    Use the same image but different copy angles:
-    - Problem/solution messaging
-    - Social proof (ratings, user count)
-    - Direct benefit statement
-    - Curiosity/intrigue hook
-  </Card>
-</CardGroup>
+15. Give your ad set a descriptive name. A good naming convention includes the audience and key settings:
+   - "US 25-44 - Broad Interests - $20/day"
+   - "Lookalike 1% - US - Daily Budget"
 
-Meta will automatically show the best-performing ad more often. After 5-7 days, you will see clear winners and losers in your ad-level reporting.
+### Conversion Location
 
----
+16. Choose where you want conversions to happen:
+   - **Website** — If you want people to take actions on your website
+   - **App** — If you want people to take actions in your app
+   - **Website and App** — If you want both
+   - **Messaging** — If you want people to message you
+17. For this walkthrough, select **Website**
 
-## Recommended first campaign settings summary
+### Conversion Event (Performance Goal)
 
-Here is the complete cheat sheet:
+18. Choose what specific action you want to optimize for. This dropdown shows the events from your Meta Pixel:
+   - **Purchase** — Optimize for people most likely to buy
+   - **Add to Cart** — Optimize for people most likely to add items to cart
+   - **Lead** — Optimize for people most likely to submit a form
+   - **Complete Registration** — Optimize for people most likely to create an account
 
-| Setting | Recommended value | Why |
-|---------|------------------|-----|
-| **Objective** | App Promotion > App Installs | Direct install goal |
-| **Advantage Campaign Budget** | ON | Let Meta distribute budget to best ad sets |
-| **Bid strategy** | Highest Volume | No cost caps to limit delivery |
-| **Daily budget** | $15-20/day | Enough data without burning cash |
-| **Schedule** | Start immediately, run continuously | Maximum flexibility |
-| **Location** | One country (your primary market) | Focused optimization |
-| **Age** | 18-65+ | Let the algorithm find the best age |
-| **Gender** | All | Let the algorithm find the best gender |
-| **Detailed targeting** | Broad (empty) or 3-5 relevant interests | Do not over-restrict |
-| **Advantage+ Audience** | ON | Let Meta expand if it finds better results |
-| **Placements** | Advantage+ Placements | Let Meta find the best placements |
-| **Ad format** | Single image or single video | Simple, fast to test |
-| **Number of ad variations** | 3-5 | Enough to test without diluting budget |
-| **CTA** | Install Now | Clear and direct |
-| **Duration** | Run for 7+ days minimum | Algorithm needs time to learn |
+19. Select the event that matches your goal. If you want purchases, select **Purchase**.
+
+<Tip>
+Choose the event that represents the most valuable action for your business. If you want purchases but your Pixel is brand new and has very few purchase events, you might need to start with a higher-funnel event like "Add to Cart" first. Meta needs data to optimize, and it learns faster with more frequent events. Once you get about **50 conversions per week**, Meta's algorithm performs best.
+</Tip>
 
 ---
 
-## What happens after you publish
+## Step 5: Set Your Budget and Schedule
 
-| Time | What to expect | What to do |
-|------|---------------|------------|
-| **0-2 hours** | Ad in review. Status shows "In Review" in Ads Manager. | Wait. Check for rejection notifications. |
-| **2-24 hours** | Ad approved, starts delivering slowly. You may see a few impressions and clicks. | Confirm events are tracking in Events Manager. |
-| **Day 1-3** | "Learning" phase. Results are volatile — CPI might be $10 one day and $2 the next. This is normal. | **Do not change anything.** Do not panic about high costs. |
-| **Day 4-7** | Algorithm is stabilizing. You can start to see patterns — which ads get more spend, which get lower CPI. | Check daily but resist making changes. |
-| **Day 7+** | You have enough data to make informed decisions. | Pause the worst-performing ad variations. Consider adjustments. |
+### Budget
 
-<Warning>
-  **The number one beginner mistake is making changes too early.** Do not touch your campaign for at least 3-4 days after launch. Do not change the budget, audience, creative, or any other setting during the learning phase. Every significant change resets the learning phase and you start over.
-</Warning>
+20. Choose your budget type:
+   - **Daily Budget** — Meta will spend approximately this amount every day (it may vary up to 25% on any given day but will average out over the week)
+   - **Lifetime Budget** — Meta will spend this total amount over the entire campaign duration
+
+21. **For your first campaign, choose Daily Budget**
+
+22. Enter your daily budget amount:
+   - Meta's minimum is **$5/day**
+   - We recommend starting with **$10–$20/day** for your first campaign
+   - This gives Meta enough budget to learn and find the right people
+   - You can always increase or decrease this later
+
+### Schedule
+
+23. Choose when your campaign should run:
+   - **Start date:** You can start immediately or choose a future date
+   - **End date:** You can set an end date or let the campaign run indefinitely
+
+24. **For your first campaign:** Start immediately and do NOT set an end date. You can pause the campaign manually at any time. Setting an end date limits Meta's ability to optimize.
+
+<Tip>
+Start with $10–$20/day and plan to let your campaign run for at least **7 days** before making any major decisions. Meta's algorithm needs time to learn who responds best to your ads. Making changes too early (like turning off the campaign after 2 days because you have not seen results yet) is the number one beginner mistake. Be patient.
+</Tip>
 
 ---
 
-## Your first-week daily checklist
+## Step 6: Define Your Target Audience
 
-Check these things once per day (not more):
+This is where you tell Meta who should see your ad. You have several options:
 
-| Check | Where to look | What you want to see |
-|-------|--------------|---------------------|
-| Is the campaign spending? | Ads Manager > Campaigns tab | "Active" status with spend increasing |
-| Is the ad approved? | Ads Manager > Ads tab | "Active" status (not "In Review" or "Rejected") |
-| Are installs tracking? | Events Manager > App | Install events appearing |
-| What is my CPI? | Ads Manager > Columns > Performance | Within expected range for your category (do not worry if high in week 1) |
-| Which ads are performing? | Ads Manager > Ads tab | Some ads will have lower CPI and higher spend — these are your winners |
-| Is frequency too high? | Ads Manager > Columns > Delivery | Keep below 3.0 in week 1 |
+### Option A: Advantage+ Audience (Recommended for Beginners)
 
-<Card
-  title="Meta Audiences"
-  icon="arrow-right"
-  href="/platforms/meta/audiences"
->
-  Campaign is live? Now learn how to build powerful audiences to improve your targeting.
-</Card>
+25. Meta now offers **Advantage+ Audience**, which uses AI to automatically find the best audience for your ad. You can provide "audience suggestions" to guide the AI, but Meta will go beyond those suggestions if it finds better results.
+
+26. If you choose Advantage+ Audience:
+   - Enter **audience suggestions** like interests, demographics, or behaviors
+   - Meta will use these as starting points but may expand beyond them
+   - This is the simplest option and often performs very well
+
+### Option B: Original Audience (Manual Targeting)
+
+If you prefer more control, switch to original audience options:
+
+27. **Locations:** Click **Edit** next to Locations
+   - Type in the countries, states, cities, or zip codes you want to target
+   - You can also exclude locations
+   - For your first campaign, start with 1-2 countries where your primary audience lives
+
+28. **Age:** Set the minimum and maximum age range
+   - Think about who your product is for
+   - If you are not sure, start broad (18-65) and let Meta's algorithm figure out who converts best
+
+29. **Gender:** Choose All, Men, or Women
+   - Unless your product is gender-specific, start with **All**
+
+30. **Detailed Targeting:** This is where you can add interests, behaviors, and demographics
+   - Click **Browse** to explore categories, or type keywords in the search box
+   - Examples: "Online shopping," "Mobile app enthusiasts," "Fitness," "Technology"
+   - Add 3-5 interests that are relevant to your product
+   - Meta will show your ads to people who match ANY of the interests you add (not all of them)
+
+31. **Languages:** Leave this blank unless your ad is in a specific language and you are targeting a multilingual country
+
+<Tip>
+For your first campaign, we recommend using **Advantage+ Audience** with a few audience suggestions. Meta's AI is remarkably good at finding the right people, and broad targeting often outperforms narrow targeting because it gives the algorithm more room to work. You can always test more specific audiences in future campaigns.
+</Tip>
+
+---
+
+## Step 7: Choose Your Placements
+
+Placements determine where your ad appears — Facebook Feed, Instagram Stories, Reels, etc.
+
+32. You will see two options:
+   - **Advantage+ Placements** (recommended) — Meta automatically shows your ad wherever it performs best
+   - **Manual Placements** — You manually choose which platforms and placements to use
+
+33. **For your first campaign:** Select **Advantage+ Placements**. Meta's algorithm is very good at distributing your ad across placements for the best results. Manually restricting placements limits the algorithm's ability to optimize.
+
+### If You Choose Manual Placements:
+
+34. You can select or deselect:
+   - **Facebook:** Feed, Stories, Reels, In-stream video, Search, Right column, Marketplace
+   - **Instagram:** Feed, Stories, Reels, Explore
+   - **Messenger:** Inbox, Stories
+   - **Audience Network:** Native, banner, interstitial, rewarded video
+
+35. For each placement, you can preview how your ad will look
+
+---
+
+## Step 8: Click "Next" to Move to the Ad Level
+
+36. Review all your ad set settings one final time
+37. Click **Next** to move to the Ad creation level
+
+---
+
+## Step 9: Create Your Ad
+
+Now for the creative part — designing the actual ad that people will see.
+
+### Ad Name
+
+38. Give your ad a descriptive name:
+   - "Video - Product Demo - V1"
+   - "Image - Lifestyle Shot - CTA Download"
+   - "Carousel - 3 Features"
+
+### Identity (Which Page the Ad Comes From)
+
+39. Select your **Facebook Page** from the dropdown — this is the page name that will appear on your ad
+40. Select your **Instagram account** if you connected one (optional but recommended)
+
+### Ad Setup
+
+41. Choose how to create your ad:
+   - **Create Ad** — Build a new ad from scratch (select this)
+   - **Use Existing Post** — Promote a post you already published on your Page
+   - **Use Creative Hub Mockup** — Use a mockup you created in Creative Hub
+
+42. Select **Create Ad**
+
+### Ad Format
+
+43. Choose your ad format:
+   - **Single Image or Video** — One image or one video. The simplest and most common format.
+   - **Carousel** — Multiple scrollable images or videos, each with its own link
+   - **Collection** — A cover image/video with product images below (best for e-commerce)
+
+44. **For your first ad:** Select **Single Image or Video**
+
+<Tip>
+Start with a single image ad for your very first campaign. It is the simplest format to create and test. Once you see initial results and understand how the system works, you can experiment with video, carousel, and other formats in future campaigns. Many top-performing ads are actually simple, well-designed single images.
+</Tip>
+
+---
+
+## Step 10: Add Your Creative (Image or Video)
+
+### Adding an Image:
+
+45. Click **Add Media** → **Add Image**
+46. You can:
+   - **Upload** a new image from your computer
+   - **Browse** images from your Page or Instagram
+   - Use **free stock images** from Meta's built-in library
+47. Select or upload your image
+48. Click **Next** or **Done**
+
+### Image Best Practices:
+
+- **Recommended size:** 1080 x 1080 pixels (square) for Feed, or 1080 x 1920 pixels (vertical 9:16) for Stories/Reels
+- **File type:** JPG or PNG
+- **Keep text minimal on the image** — Meta's algorithm tends to favor images with little to no text overlay
+- **Use bright, eye-catching colors** that stand out in the feed
+- **Show your product or app in action** — people scroll quickly, so your image needs to grab attention instantly
+
+### Adding a Video:
+
+45. Click **Add Media** → **Add Video**
+46. Upload a video from your computer or choose from existing videos
+47. Meta accepts most common video formats (MP4 is best)
+48. Video recommendations:
+   - Keep it under 30 seconds (15 seconds is ideal for most placements)
+   - Vertical (9:16) for Stories and Reels
+   - Square (1:1) for Feed
+   - Start with something attention-grabbing in the first 3 seconds
+   - Add captions — most people watch with sound off
+
+---
+
+## Step 11: Write Your Ad Copy
+
+This is where you write the text that accompanies your image or video.
+
+### Primary Text (Main Body Copy)
+
+49. Write the main text that appears above your image/video. This is where you make your pitch.
+
+**Tips for writing great primary text:**
+- Start with a hook that grabs attention (a question, a bold statement, or a problem your audience has)
+- Keep the first sentence short and impactful
+- Explain the benefit of your product (focus on what it does for the customer, not features)
+- Include a clear call to action
+- Keep it under 125 characters to avoid the "See More" truncation (though longer copy can work too)
+
+**Example:**
+```
+Tired of forgetting your daily habits?
+
+Our app sends gentle reminders and tracks your streaks
+so you never miss a day. Join 50,000+ people who are
+building better routines.
+
+Download free today.
+```
+
+### Headline
+
+50. Write a short, punchy headline that appears below your image/video (usually in bold).
+- Keep it under 40 characters
+- Make it action-oriented
+- Focus on the key benefit
+
+**Examples:**
+- "Build Better Habits in 5 Minutes/Day"
+- "Free Habit Tracker - Download Now"
+- "Your Best Self Starts Here"
+
+### Description
+
+51. Write a short description that appears below the headline (not always visible on all placements).
+- This is optional but recommended
+- Keep it under 30 characters
+- Add extra context or a secondary benefit
+
+**Example:**
+- "Rated 4.8 stars by 10,000+ users"
+- "No credit card required"
+
+<Tip>
+The headline and primary text are the two most impactful text elements. Spend 80% of your copywriting time on these. A great headline paired with a compelling first sentence of primary text can dramatically improve your ad's performance. When in doubt, lead with the biggest benefit your product offers.
+</Tip>
+
+---
+
+## Step 12: Add Your Call to Action and Destination
+
+### Call-to-Action Button
+
+52. Select a **call-to-action (CTA) button** from the dropdown. Options include:
+   - **Shop Now** — For e-commerce/purchases
+   - **Learn More** — For informational/educational offers
+   - **Sign Up** — For registration/email collection
+   - **Download** — For app installs
+   - **Get Offer** — For promotions/discounts
+   - **Book Now** — For services/appointments
+
+53. Choose the CTA that best matches what you want people to do
+
+### Website URL (Destination)
+
+54. Enter the **URL** where people will go when they click your ad:
+   - Your product page
+   - Your app store listing
+   - Your landing page
+   - Your sign-up page
+
+55. Make sure the URL works correctly — click it yourself to test
+
+### URL Parameters (Optional)
+
+56. You can add **URL parameters** to track where traffic comes from:
+   - Click **Build a URL Parameter**
+   - Add UTM parameters like `utm_source=meta&utm_medium=paid&utm_campaign=first_campaign`
+   - This helps you track Meta ad traffic in Google Analytics or other analytics tools
+
+---
+
+## Step 13: Preview Your Ad
+
+Before publishing, preview how your ad will look across different placements.
+
+57. On the right side of the screen, you will see an **ad preview panel**
+58. Click through different placements to see how your ad looks:
+   - Facebook Feed (mobile)
+   - Facebook Feed (desktop)
+   - Instagram Feed
+   - Instagram Stories
+   - Facebook Stories
+   - Reels
+59. Check that:
+   - Your image/video looks good and is not cropped awkwardly
+   - Your text is readable and not cut off
+   - Your headline makes sense
+   - The CTA button is appropriate
+
+<Tip>
+Pay special attention to the **mobile preview**. Over 98% of Meta's users access the platform on mobile devices. If your ad looks great on desktop but the text is cut off or the image is cropped poorly on mobile, you need to fix it. Mobile is where your ad will actually be seen.
+</Tip>
+
+---
+
+## Step 14: Review and Publish
+
+60. Click the **Publish** button (green button at the bottom right)
+61. Meta will show you a **review summary** with all your campaign settings:
+   - Campaign objective
+   - Budget and schedule
+   - Audience targeting
+   - Ad creative and copy
+62. Review everything one final time
+63. If everything looks good, click **Publish** to confirm
+
+### What Happens After You Publish:
+
+64. Your campaign status will change to **"In Review"**
+65. Meta reviews every ad to make sure it complies with their advertising policies
+66. This review process usually takes **less than 24 hours** (often just a few hours)
+67. Once approved, your ad status will change to **"Active"** and it will start showing to people
+68. If your ad is rejected, Meta will tell you why, and you can edit and resubmit it
+
+<Tip>
+Meta's ad review usually completes within **24 hours**, but most ads are reviewed much faster — often within 1-2 hours. If your ad has not been reviewed after 24 hours, try duplicating it and submitting the duplicate. Occasionally ads get stuck in the review queue, and creating a fresh copy resolves the issue.
+</Tip>
+
+---
+
+## Step 15: What to Expect in the First 48 Hours
+
+### The Learning Phase
+
+After your ad is approved and starts running, Meta enters the **learning phase**. Here is what to expect:
+
+- **Hours 1-6:** You may see very few impressions and results. This is normal. Meta is just getting started.
+- **Hours 6-24:** Results will start trickling in, but they may be inconsistent. Some hours will look great, others will look terrible.
+- **Hours 24-48:** Results should start to stabilize. You will begin to see patterns in who is responding to your ad.
+- **Days 3-7:** The algorithm gets progressively smarter. Results should improve each day.
+
+### What NOT to Do:
+
+- **Do not turn off your campaign after 24 hours** because results look bad. Give it at least 5-7 days.
+- **Do not change your budget, audience, or creative** during the first 3-5 days. Changes reset the learning phase.
+- **Do not panic** if your cost per result seems high at first. It almost always comes down as the algorithm learns.
+
+### Key Metrics to Watch:
+
+- **Impressions:** How many times your ad was shown
+- **Reach:** How many unique people saw your ad
+- **Clicks:** How many people clicked on your ad
+- **CTR (Click-Through Rate):** The percentage of people who saw your ad and clicked (good CTR is 1-3% for most industries)
+- **CPC (Cost Per Click):** How much each click costs
+- **Conversions:** How many people took your desired action (purchase, sign-up, etc.)
+- **Cost Per Result:** How much each conversion costs — this is your most important metric
+
+---
+
+## Troubleshooting Common First-Campaign Issues
+
+### "My ad was rejected"
+
+**Common rejection reasons:**
+- Your ad mentions personal attributes ("Are you overweight?" is not allowed)
+- Your image has too much text
+- Your landing page does not match what the ad promises
+- Your product is in a restricted category
+- The image or video violates community standards
+
+**What to do:**
+1. Read the rejection reason carefully
+2. Fix the issue in your ad
+3. Resubmit for review
+
+### "My ad is approved but getting zero impressions"
+
+**Possible causes:**
+- Your audience is too narrow
+- Your budget is too low
+- Your bid is not competitive
+- There is an issue with your payment method
+
+**What to do:**
+1. Check that your payment method is valid
+2. Try broadening your audience
+3. Increase your budget slightly
+4. Check that your ad set is not paused
+
+### "I am getting clicks but no conversions"
+
+**Possible causes:**
+- Your Pixel is not firing correctly on the conversion page
+- Your landing page does not match the ad's promise
+- Your checkout or sign-up process has friction
+- You need more time (some products have longer consideration periods)
+
+**What to do:**
+1. Verify your Pixel is working with the Meta Pixel Helper
+2. Test your entire conversion flow yourself
+3. Make sure your landing page is fast and mobile-friendly
+4. Wait at least 5-7 days before drawing conclusions
+
+---
+
+## Your First Campaign Checklist
+
+- [ ] Campaign created with the correct objective
+- [ ] Campaign named descriptively
+- [ ] Ad set configured with target audience
+- [ ] Budget set to $10-20/day
+- [ ] Schedule set to start immediately, no end date
+- [ ] Advantage+ placements selected
+- [ ] Ad creative (image or video) uploaded
+- [ ] Primary text written with a clear hook and CTA
+- [ ] Headline written (under 40 characters)
+- [ ] Call-to-action button selected
+- [ ] Destination URL entered and tested
+- [ ] Ad previewed on mobile and desktop
+- [ ] Campaign published and in review
+
+---
+
+## What Comes Next
+
+Congratulations — you have launched your first Meta ad campaign. This is a significant milestone. Give your campaign at least 5-7 days to gather data, and resist the urge to make changes during this initial period.
+
+In the **Audiences** guide, we will dive deep into Custom Audiences, Lookalike Audiences, and advanced targeting strategies that you can use in your next campaigns. These audience tools are incredibly powerful and can dramatically improve your results.
+
+<Tip>
+Set a reminder on your calendar for 7 days from now to review your campaign results. When that day comes, look at your cost per result (the most important metric) and compare it to what you are willing to pay for each conversion. If it is profitable, consider increasing the budget. If it is too expensive, the Optimization guide will show you how to improve it.
+</Tip>

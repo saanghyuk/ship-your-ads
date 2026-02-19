@@ -3,761 +3,462 @@ title: "Your First TikTok Campaign"
 description: "Screen-by-screen walkthrough for creating your first TikTok ad campaign — objective selection, targeting, bidding, ad creation, Spark Ads, creative best practices, and Automated Creative Optimization."
 ---
 
-## Time to make your first TikTok ad
+# Your First TikTok Campaign
 
-TikTok campaigns follow a three-level structure, just like Meta: **Campaign > Ad Group > Ad.** Each level controls different settings. The campaign sets your objective and overall budget. The ad group defines who sees your ad, when, and for how much. The ad is the actual creative — the video people watch.
+Your TikTok Ads Manager account is set up, tracking is configured, and you are ready to launch your first campaign. This guide walks you through the entire process — from choosing your objective to creating your ad creative and optimizing in the first week.
 
-This guide walks through every screen and every setting, so you never have to guess what to click.
+Remember TikTok's golden rule: **"Don't make ads, make TikToks."** Keep this in mind throughout the entire process.
 
-## Before you start — have these ready
+---
 
-| What you need | Details | Why |
-|--------------|---------|-----|
-| **TikTok Ads Manager account** | Approved and payment method added | Cannot create ads without it |
-| **Tracking installed and verified** | SDK, Pixel, or MMP sending events | Required for conversion optimization |
-| **1-3 vertical videos** | 9:16 aspect ratio, 15-30 seconds each | Your ad creative |
-| **Ad copy** | Short, punchy text (2-3 variations) | Displayed below the video |
-| **CTA text** | "Download," "Install Now," "Learn More" | The button users tap |
-| **Budget** | At least $50/day for the campaign | TikTok's minimum for campaign budgets |
-| **TikTok account** (if using Spark Ads) | With your organic videos posted | For boosting organic content |
+## Understanding TikTok's Campaign Structure
 
-<Note>
-  **Do not have video yet?** That is okay. Read through this guide first to understand the full setup, then come back when you have creative. We also cover how to create videos quickly at the end of this guide.
-</Note>
-
-## The campaign creation walkthrough
-
-### Level 1: Campaign setup
-
-<Steps>
-  <Step title="Go to Campaign page">
-    In TikTok Ads Manager ([ads.tiktok.com](https://ads.tiktok.com)), click **Campaign** in the top navigation, then click the blue **Create** button.
-
-    TikTok may ask if you want **Simplified Mode** or **Custom Mode**:
-    - **Simplified Mode** — fewer options, TikTok makes decisions for you (similar to Apple Search Ads Basic)
-    - **Custom Mode** — full control over every setting
-
-    **Choose Custom Mode.** It gives you all the options this guide covers. You can always simplify later.
-  </Step>
-  <Step title="Choose your advertising objective">
-    TikTok asks what you want to achieve. Each objective optimizes for a different outcome.
-
-    **For app install campaigns:**
-
-    | Objective | What it optimizes for | When to use |
-    |-----------|---------------------|-------------|
-    | **App Promotion** | App installs and in-app events | You want people to install your app |
-    | **Website Conversions** | Actions on your website | You want web signups or purchases |
-    | **Traffic** | Link clicks | You want visitors to your landing page |
-    | **Reach** | Maximum impressions | You want brand awareness (not direct response) |
-    | **Video Views** | Video watch time | You want people to watch your video content |
-    | **Community Interaction** | Follows, profile visits | You want to grow your TikTok following |
-    | **Lead Generation** | Form submissions | You want to collect leads within TikTok |
-
-    **Select "App Promotion"** for app install campaigns. This tells TikTok to find users who are most likely to install your app.
-  </Step>
-  <Step title="Choose your optimization type (App Promotion only)">
-    Under App Promotion, TikTok asks what you want to optimize for:
-
-    | Option | What it means | When to use |
-    |--------|-------------|-------------|
-    | **App Install** | Optimize for maximum installs | Start here — highest volume |
-    | **App Event** | Optimize for specific in-app actions (purchase, registration) | After you have install data, optimize for deeper events |
-    | **Value** | Optimize for highest revenue from in-app purchases | Advanced — requires significant purchase data |
-
-    **Select "App Install"** for your first campaign. Once you have 100+ installs, you can test optimizing for deeper events.
-  </Step>
-  <Step title="Name your campaign">
-    Use a clear naming convention:
-
-    **Pattern:** `[Platform] - [Country] - [Objective] - [Creative Type] - [Date]`
-
-    **Examples:**
-    - `TikTok - US - Installs - UGC Style - Feb2026`
-    - `TikTok - UK - Installs - Screen Recording - Feb2026`
-    - `TikTok - US - Purchase Opt - Spark Ads - Mar2026`
-  </Step>
-  <Step title="Set campaign budget">
-    Choose your budget type:
-
-    | Budget type | How it works | Recommendation |
-    |------------|-------------|----------------|
-    | **Daily budget** | Maximum spend per day across all ad groups in the campaign | Recommended for ongoing campaigns |
-    | **Lifetime budget** | Total maximum spend over the campaign's lifetime | Good for time-limited promotions |
-    | **No limit** | Budget controlled at the ad group level only | For advanced users with multiple ad groups |
-
-    **Set a daily budget of $50-100/day** for your first campaign.
-
-    <Warning>
-      **TikTok's minimum campaign daily budget is $50.** If you set less, TikTok will not let you proceed. If $50/day is too much for your total budget, consider starting with Apple Search Ads or Meta first.
-    </Warning>
-  </Step>
-  <Step title="Campaign settings (optional)">
-    - **Create Split Test:** Leave OFF for your first campaign
-    - **Campaign Budget Optimization (CBO):** Turn ON — this lets TikTok distribute budget across ad groups to maximize results
-
-    <Tip>
-      **Campaign Budget Optimization (CBO) is usually better than manual allocation.** TikTok's algorithm is good at finding which ad group performs best and shifting budget toward it automatically.
-    </Tip>
-  </Step>
-</Steps>
-
-### Level 2: Ad group setup
-
-The ad group level is where you define WHO sees your ad, WHEN they see it, and HOW MUCH you pay.
-
-<Steps>
-  <Step title="Select your app">
-    Choose your app from the dropdown. If it is not listed, go back to Events Manager and add it (see account setup guide).
-
-    Select the platform: **iOS**, **Android**, or both. If you want separate data, create separate ad groups per platform.
-  </Step>
-  <Step title="Choose placements">
-    Placements determine WHERE your ad appears:
-
-    | Option | Where your ad shows | Recommendation |
-    |--------|-------------------|----------------|
-    | **Automatic Placement** | TikTok, Pangle (partner network), and other TikTok apps | Gives TikTok maximum flexibility |
-    | **Select Placement** | You choose specifically | Choose "TikTok" only for your first campaign |
-
-    **For your first campaign, select "Select Placement" and choose only TikTok.** This gives you the clearest data. Pangle (TikTok's partner ad network) can sometimes dilute performance with lower-quality inventory.
-
-    <Note>
-      **What is Pangle?** Pangle is TikTok's ad network for partner apps — similar to Google's Display Network or Meta's Audience Network. Your ads appear in other apps, not in TikTok itself. Quality varies. Test it later once you have baseline TikTok performance.
-    </Note>
-  </Step>
-  <Step title="Turn on/off Automated Creative Optimization">
-    **Automated Creative Optimization (ACO)** lets you upload multiple videos, texts, and CTAs. TikTok automatically combines them and tests different variations to find the best performer.
-
-    | ACO setting | When to use |
-    |------------|-------------|
-    | **ON** | You have 3+ video variations and want TikTok to test combinations |
-    | **OFF** | You want to control exactly which video goes with which text |
-
-    **Turn ACO ON for your first campaign** if you have multiple videos. It accelerates learning.
-  </Step>
-  <Step title="Set up targeting">
-    This is where you define your audience. Here are all the targeting options:
-
-    **Demographics:**
-
-    | Setting | Options | First campaign recommendation |
-    |---------|---------|------------------------------|
-    | **Location** | Countries, states, cities, or radius | One country only (your primary market) |
-    | **Age** | 13-17, 18-24, 25-34, 35-44, 45-54, 55+ | 18-44 (or All if unsure) |
-    | **Gender** | Male, Female, All | All (unless your app is gender-specific) |
-    | **Language** | Specific languages | Leave open (TikTok targets by location already) |
-
-    **Interests and behaviors:**
-
-    | Targeting type | How it works | Example |
-    |---------------|-------------|---------|
-    | **Interest categories** | Target users based on their content interests | Fitness, Technology, Food, Travel |
-    | **Interaction behaviors** | Target based on how they interact with content | Liked fitness videos, shared recipe content |
-    | **Creator interactions** | Target followers of specific creator categories | People who follow fitness creators |
-    | **Hashtag interactions** | Target users who engaged with specific hashtags | Users who interacted with #workout |
-    | **Video interactions** | Target based on video engagement patterns | Users who watch videos to completion |
-
-    **Device targeting:**
-
-    | Setting | Options | When to use |
-    |---------|---------|-------------|
-    | **Operating system** | iOS, Android | Already set by your app selection |
-    | **OS version** | Minimum version | If your app requires a specific OS version |
-    | **Device model** | Specific devices | Rarely needed |
-    | **Device price** | Price ranges | Target premium device users (higher spending potential) |
-    | **Connection type** | Wi-Fi, Cellular | Rarely needed |
-    | **Carrier** | Specific carriers | Rarely needed |
-
-    <Tip>
-      **For your first campaign, keep targeting BROAD.** Set location and age, and leave everything else open. TikTok's algorithm is very good at finding the right users within a broad audience. Narrow targeting too early limits the algorithm's ability to learn and can result in higher costs.
-    </Tip>
-
-    **Custom audiences (advanced — skip for first campaign):**
-
-    | Audience type | What it is | When to use |
-    |-------------|-----------|-------------|
-    | **Customer File** | Upload a list of emails/phone numbers | Retarget existing users |
-    | **App Activity** | Users who performed actions in your app | Retarget engaged users |
-    | **Website Traffic** | Users who visited your website | Retarget website visitors |
-    | **Engagement** | Users who interacted with your TikTok content | Target warm audiences |
-    | **Lead Generation** | Users who submitted a lead form | Follow up with leads |
-
-    **Lookalike audiences (advanced — skip for first campaign):**
-
-    Create audiences that "look like" your best customers:
-    1. Upload a source audience (e.g., your paying customers)
-    2. Choose the audience size: Narrow (1%), Balanced (5%), or Broad (10%)
-    3. TikTok finds new users with similar characteristics
-
-    <Note>
-      **Lookalike audiences require a source of at least 1,000 users.** Build this data first with broad targeting campaigns, then create lookalikes to improve performance.
-    </Note>
-  </Step>
-  <Step title="Set budget and schedule">
-    **Ad group budget:**
-    - Minimum: $20/day
-    - Recommended: Set to roughly (campaign budget / number of ad groups)
-    - If using CBO (campaign budget optimization), you can skip individual ad group budgets
-
-    **Schedule:**
-    - Start date: Today or a future date
-    - End date: Leave open for ongoing campaigns (you can always pause manually)
-    - Dayparting: Leave as "All day" for your first campaign
-
-    **Optimization goal:**
-    - For App Install campaigns: **Install** is automatically selected
-    - For App Event campaigns: Choose the event (purchase, registration, etc.)
-  </Step>
-  <Step title="Choose your bidding strategy">
-    | Strategy | How it works | Best for |
-    |----------|-------------|----------|
-    | **Lowest Cost** | TikTok gets you the most installs at the lowest possible cost. No bid cap. | First campaigns — let TikTok find the market price |
-    | **Cost Cap** | You set a target CPI and TikTok tries to stay near it. May get fewer installs. | When you know your target CPI from prior data |
-    | **Bid Cap** | You set a maximum CPM/CPC/CPI bid. Strict control. | Advanced optimization when you know exact economics |
-
-    **Select "Lowest Cost" for your first campaign.** This gives TikTok maximum flexibility to find cheap installs while the algorithm learns.
-
-    <Tip>
-      **After 1-2 weeks of data, switch to Cost Cap** with a target CPI based on what you learned. This gives you more predictable costs while still letting TikTok optimize.
-    </Tip>
-  </Step>
-</Steps>
-
-### Level 3: Ad creation
-
-This is where you create the actual ad that users see. The quality of your ad creative determines 80%+ of your campaign's performance.
-
-<Tabs>
-  <Tab title="Regular In-Feed Ads">
-    <Steps>
-      <Step title="Choose your identity">
-        The "identity" is the TikTok account name and avatar that appears on the ad.
-
-        | Option | What it means |
-        |--------|-------------|
-        | **Use TikTok account** | Your ad appears to come from your TikTok account. Users can visit your profile. | Recommended if you have a TikTok account |
-        | **Custom identity** | Enter a display name and upload an avatar. No linked profile. | Use if you do not have a TikTok account |
-
-        **Use your TikTok account** if you have one. It adds credibility and lets users follow you.
-      </Step>
-      <Step title="Upload your video">
-        Click **Upload** to add your video file.
-
-        **Video specifications:**
-
-        | Spec | Requirement |
-        |------|------------|
-        | **Aspect ratio** | 9:16 (vertical, full screen) |
-        | **Resolution** | 540x960 minimum, 1080x1920 recommended |
-        | **Duration** | 5-60 seconds (15-30 seconds recommended) |
-        | **File size** | Up to 500 MB |
-        | **Format** | MP4, MOV, MPEG, AVI |
-        | **Sound** | Required — TikTok is a sound-on platform |
-
-        <Warning>
-          **Never use horizontal (16:9) or square (1:1) video on TikTok.** It will appear letterboxed with black bars, and performance will be terrible. Always shoot and export in 9:16 vertical format.
-        </Warning>
-      </Step>
-      <Step title="Write your ad text">
-        The ad text appears below the video, near the bottom of the screen. Keep it short.
-
-        **Character limit:** 100 characters (some languages allow more)
-
-        **Good ad text examples:**
-        - "Finally, an app that makes budgeting simple"
-        - "Track your workouts in 10 seconds"
-        - "The sleep app 2M+ people swear by"
-        - "Learn a new language in just 5 min/day"
-
-        **Bad ad text examples:**
-        - "Download our revolutionary AI-powered productivity enhancement application today" (too long, too corporate)
-        - "Best app 2026! Limited time offer! Download NOW!!!" (spammy)
-        - "Our app has features including task management, calendar integration, and..." (boring feature list)
-
-        <Tip>
-          **Write ad text like a TikTok caption, not like a billboard.** Casual, conversational, maybe a little playful. TikTok users scroll past anything that feels like traditional advertising.
-        </Tip>
-      </Step>
-      <Step title="Choose your CTA (Call to Action)">
-        Select the button text that appears at the bottom of your ad:
-
-        | CTA option | Best for |
-        |-----------|---------|
-        | **Download** | App install campaigns (most common) |
-        | **Install Now** | App install with urgency |
-        | **Learn More** | When you want to educate before the install |
-        | **Shop Now** | E-commerce apps |
-        | **Sign Up** | Subscription or registration focused |
-        | **Play Game** | Gaming apps |
-
-        **"Download" is the safest choice** for app install campaigns.
-      </Step>
-      <Step title="Add your destination URL">
-        For app install campaigns, enter your app store URL:
-        - **iOS:** `https://apps.apple.com/app/yourapp/id12345`
-        - **Android:** `https://play.google.com/store/apps/details?id=com.yourapp`
-
-        TikTok will also use your tracking link if you are using an MMP. Enter the MMP tracking URL instead of the direct store link.
-      </Step>
-      <Step title="Add multiple ads (recommended)">
-        Click **Add Ad** or **+ New Ad** to add more video variations. You should launch with at least 3-5 different videos.
-
-        **Why multiple ads matter:**
-        - TikTok's algorithm tests each ad against your target audience
-        - Within a few days, it identifies which video performs best
-        - More variations = faster learning and better results
-        - Creative diversity is the #1 lever for TikTok ad performance
-      </Step>
-    </Steps>
-  </Tab>
-  <Tab title="Spark Ads (Boosted Organic Posts)">
-    Spark Ads let you turn existing TikTok posts into paid ads. The ad links to the real TikTok post, keeping all engagement (likes, comments, shares).
-
-    <Steps>
-      <Step title="Post organic content first">
-        Create and post TikTok videos from your TikTok account. These should feature your app naturally, following the creative best practices in this guide.
-      </Step>
-      <Step title="Identify high-performing posts">
-        After a few days, check your TikTok analytics. Look for videos with:
-        - Above-average watch time
-        - Good engagement (likes, comments, shares)
-        - Content that showcases your app
-
-        These are your Spark Ad candidates.
-      </Step>
-      <Step title="Generate an authorization code">
-        **If boosting YOUR OWN post:**
-        1. Open TikTok and go to the video
-        2. Tap the three dots (**...**) > **Ad settings** > **Authorize**
-        3. Enable **Ad authorization**
-        4. Generate an **authorization code** (valid for 7, 30, or 60 days)
-        5. Copy the code
-
-        **If boosting a CREATOR'S post:**
-        1. The creator follows the same steps on their video
-        2. They send you the authorization code
-        3. You use it in Ads Manager
-      </Step>
-      <Step title="Create the Spark Ad in Ads Manager">
-        In your ad group, when creating a new ad:
-        1. Under **Identity**, select **Use TikTok account post (Spark Ad)**
-        2. Click **Authorization Code**
-        3. Paste the code from the previous step
-        4. Select the video from the list
-        5. Add your CTA button and destination URL
-        6. Submit
-      </Step>
-    </Steps>
-
-    **Why Spark Ads outperform regular ads:**
-
-    | Factor | Regular In-Feed Ad | Spark Ad |
-    |--------|-------------------|----------|
-    | **Profile link** | Custom identity or brand | Real TikTok profile |
-    | **Engagement** | Engagement is on the ad only | Engagement adds to original post |
-    | **Credibility** | Users know it is an ad | Feels like organic content |
-    | **Music** | Limited to commercial music library | Can use ANY TikTok sound |
-    | **Avg CTR** | 0.5-1.5% | 1-3% (typically higher) |
-    | **Avg CPI** | Baseline | Often 20-40% lower |
-
-    <Tip>
-      **The best TikTok ad strategy: Post organic content regularly, then Spark Ad the winners.** This is essentially free A/B testing. Let organic engagement tell you what works, then put money behind the proven winners.
-    </Tip>
-  </Tab>
-</Tabs>
-
-## Smart Creative features
-
-TikTok offers AI-powered tools to help you create and optimize ads.
-
-### Automated Creative Optimization (ACO)
-
-ACO lets you upload multiple creative elements, and TikTok's AI tests every combination to find the best performer.
-
-**How to use ACO:**
-
-1. Turn on ACO in your ad group settings (during setup)
-2. Upload 3-5 different videos
-3. Write 3-5 different ad text variations
-4. Select 2-3 different CTAs
-5. TikTok creates all possible combinations (e.g., 5 videos x 5 texts x 3 CTAs = 75 combinations)
-6. The algorithm tests them and shifts budget to winners automatically
-
-| ACO element | How many to provide | Tips |
-|------------|-------------------|------|
-| **Videos** | 3-5 minimum | Make them visually different, not minor edits |
-| **Ad text** | 3-5 variations | Try different angles: benefit, curiosity, social proof |
-| **CTA** | 2-3 options | Download, Install Now, Learn More |
-| **Display name** | 1-2 | Your brand name vs. a persona name |
-
-<Note>
-  **ACO is one of TikTok's strongest features.** It automates the most time-consuming part of advertising — creative testing. Use it whenever you have multiple creative assets.
-</Note>
-
-### Smart Video features
-
-TikTok's built-in video editor offers AI-powered tools:
-
-| Feature | What it does |
-|---------|-------------|
-| **Smart Video** | Automatically generates video from your images and text |
-| **Video Templates** | Pre-built templates you can customize |
-| **Smart Text** | AI-generated ad copy suggestions |
-| **Auto-Subtitles** | Automatically adds captions to your video |
-| **Smart Soundtrack** | Suggests trending music that fits your video |
-
-### TikTok Video Editor
-
-TikTok Ads Manager includes a built-in video editor. You do not need external tools.
-
-**To access it:**
-1. In the ad creation screen, click **Create a Video** instead of uploading
-2. Choose from templates or start from scratch
-3. Add clips, text overlays, music, transitions, and effects
-4. Export directly as your ad creative
-
-<Tip>
-  **The TikTok Video Editor is surprisingly good for quick ad creation.** If you do not have video editing software, this tool can produce TikTok-native content that performs well. Templates are especially useful for your first ads.
-</Tip>
-
-## Creative best practices — what actually works
-
-Your creative determines 80%+ of your campaign's performance. Here is exactly what to do.
-
-### The anatomy of a high-performing TikTok ad
-
-```
-[0-2 seconds] HOOK — Grab attention immediately
-    "Wait, this app actually..."
-    "I can't believe I just found..."
-    "POV: You discover the app that..."
-
-[2-5 seconds] PROBLEM/RELATABILITY — Connect with the viewer
-    "I used to spend hours every week..."
-    "Does anyone else struggle with..."
-    "I was SO frustrated with..."
-
-[5-15 seconds] SOLUTION — Show your app in action
-    - Screen recording of the app
-    - Person demonstrating the app
-    - Before/after of using the app
-
-[15-25 seconds] PROOF/RESULT — Show the outcome
-    "Now I save 2 hours every week"
-    "My screen time dropped by 40%"
-    Show the end result on screen
-
-[Last 2-3 seconds] CTA — Tell them what to do
-    "Link in bio" or "Download below"
-    (The CTA button also appears automatically)
-```
-
-### Hook formulas that stop the scroll
-
-Your first 2 seconds determine everything. Here are proven hooks:
-
-<AccordionGroup>
-  <Accordion title="The Question Hook">
-    Ask a question your target user would immediately relate to.
-
-    - "Did you know you can learn a language while you commute?"
-    - "Why is no one talking about this app?"
-    - "Is it just me, or is budgeting the most boring thing ever?"
-  </Accordion>
-  <Accordion title="The Bold Claim Hook">
-    Make a surprising statement that demands attention.
-
-    - "This app replaced 5 others on my phone"
-    - "I made $500 in my first week using this"
-    - "This is the only fitness app you'll ever need"
-  </Accordion>
-  <Accordion title="The Problem Hook">
-    Start with a relatable frustration.
-
-    - "I used to waste 3 hours every Sunday meal planning..."
-    - "My sleep schedule was completely destroyed until..."
-    - "I was spending $200/month on subscriptions I forgot about..."
-  </Accordion>
-  <Accordion title="The Trending Sound Hook">
-    Use a currently trending sound and format, adapted to your app.
-
-    - Check TikTok's Creative Center for trending sounds
-    - Use the "trending" tab in TikTok's music library
-    - Adapt the format to showcase your app
-  </Accordion>
-  <Accordion title="The POV Hook">
-    Immerse the viewer in a scenario.
-
-    - "POV: You just found the app that fixes your morning routine"
-    - "POV: Your friend shows you the budgeting app that changed their life"
-    - "POV: You realize you've been studying wrong this whole time"
-  </Accordion>
-  <Accordion title="The Tutorial Hook">
-    Promise to teach something valuable.
-
-    - "Here's how I memorize 50 vocabulary words per day"
-    - "The 10-second trick to tracking your spending"
-    - "How to build a workout plan in under a minute"
-  </Accordion>
-</AccordionGroup>
-
-### Video production tips
-
-| Tip | Why it matters |
-|-----|---------------|
-| **Shoot vertically (9:16)** | Full-screen experience; horizontal video is immediately skipped |
-| **Use natural lighting** | Overly produced content feels out of place on TikTok |
-| **Film with a phone** | Phone-quality video looks native to the platform |
-| **Include sound** | 88% of TikTok users have sound on; it is not optional |
-| **Add captions** | Even with sound on, captions increase engagement by 25%+ |
-| **Move fast** | Cut every 2-3 seconds. Long static shots lose attention |
-| **Show the app on screen** | Do not just talk about it — demonstrate it visually |
-| **Face to camera** | Videos with a human face outperform faceless content by 2x on average |
-| **Use trending sounds** | The algorithm gives a boost to content using trending audio |
-| **Keep it 15-30 seconds** | Completion rate is a key signal; shorter videos complete more often |
-
-### Content types ranked by performance (for app installs)
-
-| Rank | Content type | Why it works | Effort level |
-|------|-------------|-------------|-------------|
-| 1 | **Person-to-camera testimonial** | Most trusted format; feels like a friend recommending | Medium |
-| 2 | **Screen recording with voiceover** | Shows the app in action; very convincing | Low |
-| 3 | **Before/after transformation** | Visual proof of value; compelling narrative | Medium |
-| 4 | **Trending format adaptation** | Rides algorithm boost from trending content | Medium |
-| 5 | **Day-in-my-life featuring app** | Shows app in context of real daily use | Medium |
-| 6 | **App review / "honest review"** | Feels authentic and informational | Low |
-| 7 | **Creator duet/stitch** | Leverages existing creator credibility | Low |
-| 8 | **Tutorial / how-to** | Delivers value while showcasing the app | Medium |
-
-### Creative refresh cadence
-
-TikTok creative fatigues faster than any other platform. Plan for regular refreshes:
-
-| Timeframe | Action |
-|-----------|--------|
-| **Week 1** | Launch with 3-5 video variations |
-| **Week 2** | Identify top 1-2 performers. Create 2-3 new variations inspired by winners |
-| **Week 3** | Pause underperformers. Launch new creative. Test a different creative format |
-| **Week 4** | Repeat. You should always have fresh creative being tested |
-| **Monthly** | Completely refresh your creative approach every 4-6 weeks |
-
-<Warning>
-  **Creative fatigue is the #1 reason TikTok campaigns die.** Even your best-performing ad will stop working after 2-4 weeks. Always have new creative in production. Budget time for video creation every single week.
-</Warning>
-
-## Recommended first campaign settings
-
-Here is the exact configuration for your first campaign:
-
-| Setting | Recommended value | Notes |
-|---------|------------------|-------|
-| **Objective** | App Promotion > App Install | Start with installs |
-| **Campaign budget** | $50-100/day | TikTok minimum is $50/day |
-| **CBO** | ON | Let TikTok allocate budget across ad groups |
-| **Placement** | TikTok only | Skip Pangle for now |
-| **ACO** | ON (if you have 3+ videos) | Let TikTok test combinations |
-| **Location** | One country (your primary market) | Focus for clear data |
-| **Age** | 18-44 | Broad to start |
-| **Gender** | All | Unless your app is gender-specific |
-| **Interests** | None (broad) | Let the algorithm find your audience |
-| **Custom audience** | None | Not enough data yet |
-| **Bidding** | Lowest Cost | Let TikTok find the market price |
-| **Ad group budget** | $20-50/day | If not using CBO |
-| **Number of ads** | 3-5 video variations | More variations = faster learning |
-| **Video length** | 15-30 seconds | Short enough for high completion |
-| **CTA** | Download | Standard for app installs |
-
-## Review and submit
-
-<Steps>
-  <Step title="Review all settings">
-    Before submitting, review every setting on the summary screen:
-    - Campaign: objective, budget, name
-    - Ad group: targeting, placements, budget, bidding
-    - Ads: videos, text, CTA, destination URL
-  </Step>
-  <Step title="Submit for review">
-    Click **Submit**. TikTok reviews all new ads before they go live.
-
-    **Review timeline:**
-    | Scenario | Time |
-    |----------|------|
-    | Standard review | 15 minutes to 2 hours |
-    | Flagged for manual review | 2-24 hours |
-    | Rejected | Immediate notification with reason |
-
-    **Common rejection reasons:**
-    - Video contains prohibited content (weapons, drugs, misleading claims)
-    - Ad text makes unsubstantiated claims ("best app ever," "#1 rated")
-    - Landing page does not match the ad
-    - Video is too low resolution
-    - Music copyright issues (use TikTok's commercial music library)
-  </Step>
-  <Step title="Ad goes live">
-    Once approved, your ad starts serving immediately. You will see impressions, clicks, and installs in the Ads Manager dashboard.
-  </Step>
-</Steps>
-
-## What to expect after launch
-
-### The learning phase
-
-When a new campaign launches, TikTok enters a **learning phase** where the algorithm experiments with different audiences to find who responds best.
-
-| Learning phase aspect | Details |
-|----------------------|---------|
-| **Duration** | 3-7 days typically |
-| **Events needed** | 50 conversion events (installs) to exit learning |
-| **Performance** | Volatile — CPI may be high and inconsistent |
-| **What to do** | NOTHING. Do not change settings during learning. |
-
-<Warning>
-  **Do not make changes during the learning phase.** Every significant edit (budget change of 30%+, targeting change, new ads) restarts the learning phase. Be patient for the first week.
-</Warning>
-
-### Week-by-week expectations
-
-| Time | What happens | What to do |
-|------|-------------|-----------|
-| **Day 1** | Ads in review, then start serving | Wait |
-| **Day 2-3** | First impressions and clicks. CPI may be high. | Check that events are tracking correctly |
-| **Day 4-7** | Learning phase continues. Results volatile. | Do not touch settings |
-| **Week 2** | Performance stabilizing. Clear winners and losers emerging. | Pause ads with 1,000+ impressions and 0 installs. Do not change anything else yet. |
-| **Week 3** | Steady performance. You know your baseline CPI. | Scale winning ads by increasing budget 20%. Add 2-3 new creative variations. |
-| **Week 4** | Established campaign. | Test new audiences, new creative formats, consider Spark Ads. |
-
-## Optimization playbook
-
-After the learning phase, here is how to optimize:
-
-### Quick wins
-
-| Action | When to do it | Expected impact |
-|--------|-------------|----------------|
-| **Pause losing ads** | Ad has 1,000+ impressions, 0 installs | Saves wasted budget |
-| **Scale winners** | Ad has CPI below target | Increase budget 20% every 3 days |
-| **Add new creative** | Every 1-2 weeks | Prevents fatigue, finds new winners |
-| **Check placement breakdown** | Weekly | Pangle may drag down performance — disable if so |
-| **Review audience insights** | After 2 weeks | See which demographics convert best, narrow targeting |
-
-### Scaling strategy
+TikTok Ads uses a three-level structure, just like Meta (Facebook):
 
 ```mermaid
-flowchart TD
-    A[Launch with broad targeting + 3-5 ads] --> B[Wait for learning phase - 7 days]
-    B --> C[Identify winning ads and audiences]
-    C --> D[Scale winners: +20% budget every 3 days]
-    C --> E[Create new ads inspired by winners]
-    C --> F[Build lookalike audiences from converters]
-    D --> G[Monitor for fatigue]
-    E --> H[Test new creative in separate ad group]
-    F --> I[Launch lookalike campaign]
-    G -->|CPI rising| E
-    G -->|CPI stable| D
+graph TD
+    C["Campaign<br/>(Objective + Overall Budget)"] --> AG1["Ad Group 1<br/>(Targeting + Bidding + Schedule)"]
+    C --> AG2["Ad Group 2<br/>(Different targeting)"]
+    AG1 --> A1["Ad 1<br/>(Creative + CTA)"]
+    AG1 --> A2["Ad 2<br/>(Different creative)"]
+    AG2 --> A3["Ad 3<br/>(Creative + CTA)"]
+    AG2 --> A4["Ad 4<br/>(Different creative)"]
 ```
 
-### Advanced optimization techniques
+| Level | What You Set | Analogy |
+|---|---|---|
+| **Campaign** | Objective (what you want), overall budget | The "what" and "how much" |
+| **Ad Group** | Who sees the ad, when, where, and bidding strategy | The "who" and "when" |
+| **Ad** | The actual video creative and call-to-action | The "how" |
+
+---
+
+## Step 1: Create a New Campaign
+
+<Steps>
+  <Step title="Click 'Create' in Ads Manager">
+    Log into [ads.tiktok.com](https://ads.tiktok.com) and click the **"Create"** button (or **"Campaign > Create"** in the top navigation).
+  </Step>
+  <Step title="Choose your advertising objective">
+    TikTok groups objectives into three categories:
+
+    | Category | Objectives | Best For |
+    |---|---|---|
+    | **Awareness** | Reach | Brand awareness, getting seen by as many people as possible |
+    | **Consideration** | Traffic, Video Views, Community Interaction | Driving website visits, video engagement, follower growth |
+    | **Conversion** | App Install, Website Conversion, Lead Generation | Getting people to download your app, make a purchase, or sign up |
+
+    **For beginners**:
+    - If you have an app: choose **App Install**
+    - If you have a website/online store: choose **Website Conversion**
+    - If you just want traffic: choose **Traffic**
+
+    The objective you choose determines how TikTok's algorithm optimizes your campaign. Choose the one that matches your actual business goal.
+  </Step>
+  <Step title="Name your campaign">
+    Use a descriptive name. Include the date, objective, and any other identifying info:
+
+    Good: `2024-03 App Install - US - Broad Targeting`
+    Bad: `Campaign 1`
+  </Step>
+  <Step title="Set campaign budget">
+    Remember TikTok's minimums:
+    - **Daily budget**: Minimum $50 per day
+    - **Lifetime budget**: Minimum $500
+
+    **For beginners**: Start with a **daily budget of $50-$100**. This gives you enough data to learn without a huge financial commitment. You can always increase later.
+
+    Choose **"Daily Budget"** rather than lifetime if you want more control over when you spend.
+  </Step>
+</Steps>
+
+<Tip>
+**Pro Tip**: If you want to test multiple creatives (you should), set your campaign budget high enough to support them. With a $50/day budget and 3-4 ad creatives, each creative gets about $12-$17/day in spend. That is enough for initial testing, but increase to $100-$200/day as soon as you find a winning creative.
+</Tip>
+
+---
+
+## Step 2: Configure Your Ad Group
+
+The ad group is where you define who sees your ad and how you bid.
+
+### Targeting Options
+
+<Steps>
+  <Step title="Choose your placement">
+    TikTok offers several placement options:
+
+    - **Automatic Placement**: TikTok decides where to show your ad (recommended for beginners)
+    - **Select Placement**: Choose manually (TikTok, Pangle, etc.)
+
+    **For beginners**: Use **Automatic Placement**. TikTok's algorithm is good at finding where your ads perform best.
+  </Step>
+  <Step title="Select your target audience">
+    You can target by:
+
+    | Targeting Type | Options | Notes |
+    |---|---|---|
+    | **Location** | Countries, states, cities, DMAs | Start with your primary market |
+    | **Age** | 13-17, 18-24, 25-34, 35-44, 45-54, 55+ | Select ranges relevant to your product |
+    | **Gender** | All, Male, Female | Start with "All" unless your product is gender-specific |
+    | **Language** | Any language | Match your ad creative's language |
+    | **Interests** | 15+ categories with subcategories | Based on content users engage with |
+    | **Behaviors** | Video interactions, creator interactions | Based on recent actions on TikTok |
+    | **Device** | OS, model, carrier, connection type | Useful for app campaigns (iOS vs Android) |
+
+    **For beginners**: Start **broad**. Select your target country, age range (18-44 is a safe starting point for most products), and leave other targeting open. TikTok's algorithm is very good at finding the right people within a broad audience. Over-targeting limits the algorithm's ability to learn and find your best users.
+  </Step>
+  <Step title="Set your optimization goal">
+    This tells TikTok what to optimize for:
+
+    - **App Install campaigns**: Optimize for installs
+    - **Conversion campaigns**: Optimize for a specific pixel event (Purchase, AddToCart, Registration)
+    - **Traffic campaigns**: Optimize for clicks
+
+    Select the event that matches your actual business goal. If you want purchases, optimize for purchases — not clicks or installs.
+  </Step>
+  <Step title="Set your bid strategy">
+    TikTok offers several bidding options:
+
+    | Strategy | How It Works | Best For |
+    |---|---|---|
+    | **Lowest Cost** | TikTok gets you the most results at the lowest possible cost | Beginners, scaling |
+    | **Cost Cap** | TikTok tries to keep your average cost near your target | Controlling costs |
+    | **Bid Cap** | TikTok never exceeds your maximum bid | Strict cost control |
+
+    **For beginners**: Start with **Lowest Cost**. It is the simplest option and lets TikTok's algorithm do the heavy lifting. You can switch to Cost Cap later when you have a clear CPI/CPA target.
+  </Step>
+  <Step title="Set your schedule">
+    Choose when your campaign runs:
+    - **Start immediately** or set a specific start date
+    - **Run continuously** or set an end date
+    - **Dayparting** (optional): Run ads only during specific hours
+
+    **For beginners**: Start immediately and run continuously. You need data as fast as possible to learn what works.
+  </Step>
+</Steps>
+
+<Tip>
+**Pro Tip**: Resist the urge to narrow your targeting too much. TikTok's algorithm works best with **broad audiences** because it needs enough data to learn. A common beginner mistake is targeting "women aged 25-34 in Los Angeles who are interested in yoga." That is too narrow. Start with "women aged 18-44 in the United States" and let TikTok find your ideal customers within that broader group.
+</Tip>
+
+---
+
+## Step 3: Create Your Ad
+
+This is the most important step. On TikTok, **creative quality determines 80% of your campaign's success**. The best targeting and bidding strategy cannot save a boring ad.
+
+### Option A: Create a Standard In-Feed Ad
+
+<Steps>
+  <Step title="Upload your video">
+    Upload a video file or create one using TikTok's built-in video editor.
+
+    **Video requirements**:
+    - **Aspect ratio**: 9:16 (vertical) — this is not optional
+    - **Resolution**: 720x1280 minimum (1080x1920 recommended)
+    - **Length**: 15-60 seconds (15-30 seconds is the sweet spot)
+    - **File size**: Up to 500MB
+    - **Format**: MP4 or MOV
+  </Step>
+  <Step title="Write your ad text">
+    The text appears above your video. Keep it short (1-2 lines) and compelling:
+
+    Good: "This app helped me sleep in 5 minutes (seriously)"
+    Bad: "Download our premium meditation app with 500+ sessions, sleep stories, and breathing exercises. Limited time offer."
+
+    The text should complement your video, not replace it. Most users watch the video first and read the text second.
+  </Step>
+  <Step title="Choose your call-to-action (CTA)">
+    Select from TikTok's CTA options:
+
+    | CTA | Best For |
+    |---|---|
+    | **Download Now** | App install campaigns |
+    | **Shop Now** | E-commerce |
+    | **Learn More** | Lead gen, content marketing |
+    | **Sign Up** | SaaS, subscriptions |
+    | **Contact Us** | Services, lead generation |
+  </Step>
+  <Step title="Set your landing page">
+    - For apps: TikTok automatically links to your App Store/Play Store page
+    - For websites: Enter the URL where you want to send traffic
+  </Step>
+</Steps>
+
+### Option B: Create a Spark Ad (Recommended)
+
+Spark Ads boost existing organic TikToks. They consistently outperform regular ads because they look native.
+
+<Steps>
+  <Step title="Find or create an organic TikTok">
+    You need either:
+    - An organic TikTok on your own Business Account
+    - A TikTok from a creator who has authorized you to boost it
+
+    If you do not have organic content yet, post a few TikToks first and see which ones get the best engagement. Then boost the winner.
+  </Step>
+  <Step title="Get the authorization code (for creator content)">
+    If using someone else's TikTok:
+    1. The creator goes to their TikTok video settings
+    2. They enable **"Ad Authorization"**
+    3. They generate an **authorization code** and share it with you
+    4. The code is valid for a set number of days
+  </Step>
+  <Step title="Create the Spark Ad in Ads Manager">
+    In the ad creation screen:
+    1. Select **"Spark Ad"** as the ad format
+    2. Enter the authorization code or select your own organic TikTok
+    3. TikTok pulls in the video, caption, and all existing engagement (likes, comments, shares)
+  </Step>
+  <Step title="Add your CTA and tracking">
+    Even though it looks like an organic TikTok, you can still add a CTA button and tracking link. Users see the organic post with a subtle CTA overlay.
+  </Step>
+</Steps>
+
+<Tip>
+**Pro Tip**: Spark Ads are the secret weapon of TikTok advertising. They combine the authenticity of organic content with the reach of paid distribution. Start with Spark Ads whenever possible — boost organic TikToks that already have some engagement (even just a few hundred views). The existing social proof (likes, comments) makes new viewers more likely to watch and engage.
+</Tip>
+
+---
+
+## Step 4: Set Up Automated Creative Optimization (ACO)
+
+ACO is TikTok's automated creative testing feature. Instead of manually testing different ads, you provide multiple creative elements and TikTok automatically tests combinations.
+
+<Steps>
+  <Step title="Enable ACO in your ad group">
+    When creating an ad group, toggle on **"Automated Creative Optimization."**
+  </Step>
+  <Step title="Upload multiple creative elements">
+    Provide:
+    - **3-5 different videos** (different hooks, different styles, different lengths)
+    - **2-3 different ad texts** (different angles, different CTAs)
+    - **Multiple CTA buttons** (Download Now vs. Learn More vs. Shop Now)
+  </Step>
+  <Step title="TikTok tests all combinations">
+    TikTok automatically creates combinations of your videos, texts, and CTAs, then tests them against each other. It allocates more budget to winning combinations and pauses losers.
+  </Step>
+  <Step title="Review results">
+    After a few days, check which creative combinations are performing best. Use these insights to create new creative variations — take the best-performing hook and pair it with new visuals, or take the best-performing visual and try new hooks.
+  </Step>
+</Steps>
+
+<Tip>
+**Pro Tip**: ACO is one of the most powerful features in TikTok Ads Manager. It does in hours what would take you weeks to test manually. Always use ACO when you have multiple creative assets. Your goal is to feed TikTok at least 3-5 video variations per ad group so the algorithm has enough material to test and optimize.
+</Tip>
+
+---
+
+## Creative Production: Making Your TikTok Ad
+
+You do not need a professional video studio. Some of the best-performing TikTok ads are filmed on phones. Here is a practical framework for creating your first ad.
+
+### The 3-Part Video Structure
+
+| Part | Duration | Purpose | Example |
+|---|---|---|---|
+| **Hook** | 0-3 seconds | Stop the scroll | "This one trick changed everything..." |
+| **Body** | 3-20 seconds | Deliver your message | Show the product/app in action |
+| **CTA** | Last 3-5 seconds | Tell them what to do | "Download free — link below" |
+
+### Hook Formulas That Work
+
+Try these proven hook patterns for your first few ads:
+
+1. **"I just discovered..."** — Personal discovery format
+2. **"Stop scrolling if you..."** — Direct address
+3. **"POV: You just found the app that..."** — POV format (native TikTok style)
+4. **"Here's why everyone is talking about..."** — Social proof
+5. **"This vs. That"** — Comparison format
+6. **"3 reasons why..."** — List format
+7. **"Wait for the end..."** — Curiosity hook
+
+### Production Tips for Non-Video-Makers
+
+If you have never made a TikTok before:
+
+1. **Use your phone**. Seriously. TikTok users expect phone-quality video. A perfectly lit studio video will look out of place.
+2. **Film in good lighting**. Natural light (by a window) is free and looks great.
+3. **Talk to the camera**. A person talking directly to the viewer is one of the highest-performing ad formats.
+4. **Show, do not tell**. Screen recording of your app with a voiceover is simple and effective.
+5. **Use TikTok's built-in editor**. It has text overlays, effects, and music that make your content feel native.
+6. **Keep it under 30 seconds**. For your first ad, shorter is better.
+
+<Tip>
+**Pro Tip**: If you are not comfortable on camera, use **screen recordings with voiceover**. Record yourself using your app while explaining what it does and why it is useful. Add text overlays for key points. This format is easy to produce, works well for app campaigns, and does not require any on-camera presence.
+</Tip>
+
+---
+
+## Your First Week: What to Expect and Do
+
+### Day 1-2: Learning Phase
+
+- TikTok's algorithm is exploring — showing your ad to different people to learn who responds
+- Costs may be higher than average during this phase
+- You might see inconsistent results (great one hour, nothing the next)
+- **Do NOT change anything.** Let the algorithm learn.
+
+### Day 3-4: Data Accumulates
+
+- You should start seeing consistent impressions and some conversions
+- The algorithm is narrowing down who responds best to your ad
+- Check your **creative performance** — which video is getting the most engagement?
+
+### Day 5-7: First Optimization
+
+<Steps>
+  <Step title="Check your creative performance">
+    Go to the ad level and look at each creative's metrics:
+
+    | Metric | What to Look For |
+    |---|---|
+    | **CTR (Click-Through Rate)** | Which creative gets the most clicks? |
+    | **CPA/CPI** | Which creative converts at the lowest cost? |
+    | **Video completion rate** | Which creative keeps people watching? |
+    | **Engagement rate** | Which creative gets the most likes/comments/shares? |
+
+    The creative with the best combination of completion rate and conversion rate is your winner.
+  </Step>
+  <Step title="Kill the losers, scale the winners">
+    - **Pause** any creative that has spent at least 2x your target CPI with zero conversions
+    - **Keep** creatives that are hitting your targets
+    - **Increase budget** for the winning ad group by 20-30% if it is performing well
+  </Step>
+  <Step title="Create new creative variations">
+    Based on what you learned:
+    - If Hook A worked best, create 2-3 new videos with Hook A but different body content
+    - If Video Style B (e.g., screen recording) worked best, make more videos in that style
+    - Always be testing new creatives — even winning ads fatigue over time
+  </Step>
+  <Step title="Check your audience insights">
+    TikTok Ads Manager shows you which demographics, interests, and devices are performing best. Use this to inform (but not rigidly constrain) your future targeting.
+  </Step>
+</Steps>
+
+---
+
+## Ongoing Creative Strategy
+
+TikTok ads **fatigue faster** than ads on other platforms because users scroll through content so quickly. A creative that works great in week 1 might stop working in week 3-4. Plan for continuous creative production.
+
+### Recommended Creative Cadence
+
+| Phase | Frequency | Goal |
+|---|---|---|
+| **Testing** | 3-5 new creatives per week | Find winning hooks, formats, and styles |
+| **Scaling** | 2-3 new creatives per week | Keep feeding winning formulas with fresh content |
+| **Maintenance** | 1-2 new creatives per week | Replace fatigued ads, prevent performance decline |
+
+<Tip>
+**Pro Tip**: Think of TikTok creative production like content marketing — it is an ongoing process, not a one-time project. The advertisers who succeed on TikTok are the ones who consistently produce new creative. Set up a simple production process: brainstorm hooks on Monday, film on Tuesday, edit on Wednesday, launch on Thursday.
+</Tip>
+
+---
+
+## Smart Performance Campaigns (Alternative Approach)
+
+If all of the above feels overwhelming, TikTok offers **Smart Performance Campaigns (SPC)** — an AI-powered campaign type that automates almost everything.
+
+<Steps>
+  <Step title="Create a Smart Performance Campaign">
+    In the campaign creation screen, select **"Smart Performance Campaign"** instead of the regular workflow.
+  </Step>
+  <Step title="Provide your basics">
+    - Upload 3-5 video creatives
+    - Set your daily budget ($50+)
+    - Choose your optimization goal (installs, purchases, etc.)
+    - Set your target country
+  </Step>
+  <Step title="Let TikTok handle the rest">
+    TikTok's AI handles targeting, bidding, and creative optimization automatically. You do not set any audience targeting, bid amounts, or placements.
+  </Step>
+</Steps>
+
+<Tip>
+**Pro Tip**: Smart Performance Campaigns are genuinely good for beginners. They let you focus on what matters most on TikTok — the **creative** — while the algorithm handles everything else. Start with SPC, learn what creative styles work, and then graduate to manual campaigns when you want more control.
+</Tip>
+
+---
+
+## Common Beginner Mistakes to Avoid
 
 <AccordionGroup>
-  <Accordion title="Audience segmentation">
-    After 2-4 weeks of data, check your audience analytics:
-    1. Go to **Reporting** > **Audience**
-    2. See performance breakdown by age, gender, interest, device
-    3. Create new ad groups targeting your best-performing segments
-    4. Exclude poor-performing segments
+  <Accordion title="Making ads that look like ads">
+    The number one mistake. If your video starts with a logo, uses corporate voiceover, and looks like a TV commercial, people will swipe past it in 1 second. Make content that feels like a TikTok first and an ad second.
   </Accordion>
-  <Accordion title="Retargeting campaigns">
-    Create retargeting campaigns for users who engaged with your content but did not install:
-    1. Create a custom audience: users who watched 75%+ of your ad
-    2. Create another: users who clicked but did not install
-    3. Target these warm audiences with different creative (address objections, show social proof)
-    4. Budget: 10-20% of your total TikTok spend
+  <Accordion title="Targeting too narrowly">
+    TikTok's algorithm needs room to explore. If your audience is too small, the algorithm cannot find enough data to optimize. Start broad and let TikTok narrow down.
   </Accordion>
-  <Accordion title="Lookalike expansion">
-    Once you have 1,000+ installs:
-    1. Create a custom audience from your installers
-    2. Create a lookalike audience (start with 1% - most similar)
-    3. Launch a new campaign targeting this lookalike
-    4. Test 1%, 3%, 5%, and 10% lookalike sizes
+  <Accordion title="Only making one creative">
+    TikTok rewards creative diversity. If you launch with only one video, you are betting everything on that one piece of content. Launch with 3-5 variations minimum so TikTok can test and find the best performer.
   </Accordion>
-  <Accordion title="Event optimization">
-    Once you have 100+ of a deeper event (registrations, purchases):
-    1. Create a new campaign with "App Event" optimization
-    2. Select the event you want to optimize for
-    3. TikTok will find users more likely to perform that action (not just install)
-    4. CPI may increase, but in-app conversion quality improves significantly
+  <Accordion title="Changing things too quickly">
+    The algorithm needs 3-5 days to learn. Making changes every day resets the learning phase and prevents optimization. Be patient.
   </Accordion>
-  <Accordion title="Creative iteration process">
-    The ongoing creative process:
-    1. Analyze your top-performing ad — what hook, format, length, and style work?
-    2. Create 3-5 new variations that share the winning elements but change something (different hook, different person, different app feature)
-    3. Launch in a test ad group with 20% of budget
-    4. After 1 week, move winners to your main campaign
-    5. Repeat every 2 weeks
+  <Accordion title="Ignoring video completion rate">
+    Many beginners focus only on clicks and installs. But video completion rate is the leading indicator of ad success on TikTok. If people are not watching your video, nothing else matters. Improve your hook.
+  </Accordion>
+  <Accordion title="Using horizontal video">
+    TikTok is a vertical platform. Horizontal (16:9) video with black bars above and below looks terrible and performs terribly. Always shoot in 9:16 vertical.
+  </Accordion>
+  <Accordion title="Setting budget too low">
+    With the $50/day minimum at the campaign level and $20/day at the ad group level, you need enough budget to generate meaningful data. If you split $50/day across 5 ad groups, each gets only $10/day — not enough for the algorithm to learn.
   </Accordion>
 </AccordionGroup>
 
-## Common mistakes to avoid
+---
 
-| Mistake | Why it hurts | What to do instead |
-|---------|-------------|-------------------|
-| **Using horizontal or square video** | Gets immediately scrolled past | Always shoot 9:16 vertical |
-| **No hook in first 2 seconds** | Users scroll past before seeing your message | Lead with a strong hook every time |
-| **Too polished / too corporate** | Feels like an ad, users skip | Make it look native to TikTok |
-| **No sound** | 88% of TikTok is sound-on; silence is weird | Always include sound, voiceover, or music |
-| **Only 1 ad variation** | No data to compare, slower learning | Always launch with 3-5 variations minimum |
-| **Narrow targeting from day 1** | Algorithm cannot learn, higher CPIs | Start broad, narrow after data |
-| **Changing settings during learning** | Restarts the learning phase | Wait 7 days before making changes |
-| **Not refreshing creative** | Fatigue kills performance after 2-4 weeks | Produce new creative every 1-2 weeks |
-| **Ignoring Spark Ads** | Missing the best-performing format | Post organic content and boost winners |
-| **Budget too low** | Cannot exit learning phase | At least $50/day campaign, $20/day ad group |
+## Key Metrics Cheat Sheet
 
-## Quick-start video creation guide
+| Metric | What It Means | Good Target |
+|---|---|---|
+| **Impressions** | Times your ad was shown | More is generally better |
+| **CTR (Click-Through Rate)** | Clicks / Impressions | 0.5-2%+ for TikTok |
+| **CPC (Cost Per Click)** | Average cost per click | $0.35-$1.00 |
+| **CPM (Cost Per 1,000 Impressions)** | Cost to reach 1,000 people | $4-$9 |
+| **CPI (Cost Per Install)** | Average cost per app install | Varies, below your target |
+| **CVR (Conversion Rate)** | Conversions / Clicks | Varies by goal |
+| **Video Completion Rate** | % who watched the full video | 15%+ is good for ads |
+| **Engagement Rate** | (Likes + Comments + Shares) / Impressions | 2%+ is good |
 
-If you do not have video yet, here are three ways to create your first ads quickly:
+---
 
-### Method 1: Screen recording + voiceover (30 minutes)
+## Scaling Your TikTok Campaigns
 
-1. Open your app on your phone
-2. Start screen recording (built into iOS and Android)
-3. Walk through your app's best feature for 20-30 seconds
-4. Stop recording
-5. Add a voiceover explaining what you are doing
-6. Add captions
-7. Export as 9:16
+Once you find winning creatives and profitable campaigns, here is how to scale:
 
-### Method 2: Person-to-camera on your phone (20 minutes)
+<Steps>
+  <Step title="Increase budget gradually">
+    Increase your daily budget by **20-30% every 2-3 days**. Dramatic budget increases (doubling overnight) can reset the learning phase and hurt performance.
+  </Step>
+  <Step title="Duplicate winning ad groups">
+    Create copies of your best-performing ad group with slightly different targeting (different age ranges, different interests, different geos).
+  </Step>
+  <Step title="Expand to new markets">
+    If you are profitable in the US, try UK, Canada, Australia, or other English-speaking markets. Then expand to non-English markets with localized creative.
+  </Step>
+  <Step title="Test new creative formats">
+    If screen recordings work, try talking-head videos. If single-person videos work, try duet-style formats. Continuously experiment with new styles.
+  </Step>
+  <Step title="Partner with creators">
+    Use the TikTok Creator Marketplace to find creators in your niche. Creator content can be boosted as Spark Ads and often outperforms brand-produced content.
+  </Step>
+</Steps>
 
-1. Prop your phone up vertically
-2. Sit in a well-lit spot (near a window works great)
-3. Talk to the camera like you are telling a friend about your app
-4. Show your phone screen briefly when demonstrating the app
-5. Keep it under 30 seconds
-6. No editing needed — raw is fine
+---
 
-### Method 3: TikTok's built-in video editor (15 minutes)
+## Next Steps
 
-1. In TikTok Ads Manager, click **Create a Video** during ad creation
-2. Choose a template that fits your app's category
-3. Upload 5-10 screenshots or screen recordings
-4. Add text overlays and music
-5. Export and use directly
+Congratulations — you have launched your first TikTok ad campaign! Here is what to do now:
 
-## Next steps
+1. **Wait 3-5 days** before making significant changes
+2. **Monitor creative performance** and identify winners and losers
+3. **Plan your next batch of creatives** based on what you learned
+4. **Read the [Creative Testing guide](/playbook/creative-testing)** for a structured approach to testing
+5. **Read the [Budget Planning guide](/playbook/budget-planning)** to understand how TikTok fits into your overall ad budget
 
-Once your TikTok campaign is running:
-
-1. **Wait 7 days** — let the learning phase complete
-2. **Optimize** — pause losers, scale winners
-3. **Create new creative** — start your weekly creative refresh cycle
-4. **Explore Spark Ads** — post organic content and boost what works
-5. **Build audiences** — create retargeting and lookalike audiences as you gather data
-
-<Card
-  title="Budget Planning"
-  icon="arrow-right"
-  href="/playbook/budget-planning"
->
-  Running campaigns on multiple platforms? Learn how to plan and allocate your overall ad budget.
-</Card>
+<Tip>
+**Final encouragement**: TikTok is one of the most creative and fun advertising platforms in the world. Unlike other platforms where you compete mainly with money, TikTok rewards authenticity, creativity, and understanding of the culture. The fact that you are taking the time to learn the platform properly already puts you ahead of most advertisers. Have fun with it, experiment fearlessly, and remember: don't make ads, make TikToks.
+</Tip>

@@ -6,122 +6,96 @@ icon: "telescope"
 
 # Ad Tech Deep Dive
 
-Welcome to the deep end of the pool. This section is for developers who aren't satisfied with just *using* ad tech -- you want to understand how the entire system works under the hood.
+Welcome to the Ad Tech Deep Dive — a comprehensive guide to how digital advertising actually works behind the scenes. If you have ever wondered what happens in the milliseconds between a webpage loading and an ad appearing, or how companies like Google and Meta make billions from showing ads, this section is for you.
 
-<Note>
-This section is supplementary reading. You don't need any of this to use Ship Your Ads effectively. But if you're the kind of developer who reads RFCs for fun, you're in the right place.
-</Note>
-
-## What is Ad Tech?
-
-**Ad Tech** (advertising technology) is the collective infrastructure -- servers, protocols, algorithms, and data pipelines -- that enables digital advertising at scale. Think of it as the "cloud infrastructure" of the advertising world.
-
-If you've ever wondered:
-- How does an ad appear on a webpage in under 100 milliseconds?
-- Why does that shoe ad follow you across the internet?
-- How do advertisers know their ads actually worked?
-- Why is Google facing antitrust lawsuits over ad tech?
-
-...then this section has your answers.
+The digital advertising industry generates over **$600 billion per year** globally. It is the economic engine that funds most of the free internet — search engines, social media, news sites, mobile apps, and streaming services. Understanding how it works is not just academically interesting — it is practical knowledge that makes you a better marketer, developer, and business person.
 
 <Tip>
-**Software engineering analogy**: Ad tech is essentially a massive distributed system for matching supply (publisher ad space) with demand (advertiser budgets), with real-time auctions, complex attribution pipelines, and fraud detection -- all operating at millions of requests per second.
+**Who is this for?** This section is written for curious beginners, developers, and marketers who want to understand the technology behind advertising. We use analogies from software engineering to make complex concepts accessible, but no technical background is required. If you can follow a conversation about how websites work, you can follow this.
 </Tip>
 
-## A Brief History of Advertising
+---
 
-Advertising is one of the oldest professions. Here's the speed run:
+## A Brief History of Digital Advertising
 
-<Steps>
-  <Step title="Ancient Times (~3000 BC)">
-    The earliest known advertisement was found on an Egyptian papyrus -- a notice for a runaway slave. Romans painted walls with political campaign messages. The concept is timeless: **someone has something to say, and they'll pay to reach an audience**.
-  </Step>
-  <Step title="Print Era (1440s - 1900s)">
-    Gutenberg's printing press enabled the first mass advertising. Newspapers started carrying ads in the 1600s. By the 1800s, ad agencies emerged to broker deals between advertisers and newspapers.
-  </Step>
-  <Step title="Broadcast Era (1920s - 1990s)">
-    Radio and television transformed advertising into a mass medium. The "Mad Men" era of the 1960s established modern brand advertising. A 30-second Super Bowl spot became the pinnacle of advertising reach.
-  </Step>
-  <Step title="The Internet Changes Everything (1994 - Present)">
-    On **October 27, 1994**, the first banner ad appeared on HotWired.com. AT&T paid for a 468x60 pixel banner that read "Have you ever clicked your mouse right HERE? You will." It achieved a **44% click-through rate** -- a number that would make any modern advertiser weep with joy (today's average display CTR is about 0.1%).
-  </Step>
-</Steps>
+To understand where ad tech is today, it helps to know where it came from:
 
-## How the Internet Changed Advertising Forever
+| Year | Milestone | Why It Matters |
+|---|---|---|
+| **1994** | First banner ad (AT&T on HotWired.com) | 44% CTR — the beginning of everything |
+| **1996** | DoubleClick founded | First real ad server — the technology that serves, tracks, and reports on ads |
+| **1998** | Google Search launched | Search advertising would become the most profitable ad model in history |
+| **2000** | Google AdWords (now Google Ads) | Pay-per-click model revolutionizes advertising — you only pay when someone clicks |
+| **2003** | Google AdSense | Lets any website monetize with Google ads — creates the long tail of publishing |
+| **2004** | Facebook launched | The beginning of social advertising |
+| **2007** | iPhone launched | Mobile advertising starts (and eventually becomes bigger than desktop) |
+| **2007** | First DSPs and SSPs emerge | Programmatic advertising is born — machines replace human ad buyers |
+| **2009** | Real-Time Bidding (RTB) | Auctions for individual ad impressions in under 100ms |
+| **2012** | Facebook IPO | Social advertising becomes a multi-billion dollar industry |
+| **2015** | Header bidding invented | Publishers fight back against Google's ad server monopoly |
+| **2018** | GDPR takes effect | Privacy regulation begins reshaping the entire industry |
+| **2021** | iOS 14.5 (ATT) | Apple's privacy changes cost Meta $10B+ and fundamentally change mobile advertising |
+| **2024** | AI-powered campaigns dominate | Meta's Advantage+, Google's Performance Max, TikTok's Smart Campaigns use ML for everything |
 
-The internet didn't just add a new channel for advertising -- it fundamentally rewrote the rules:
+---
 
-| Before Internet | After Internet |
-|---|---|
-| Buy ad space in bulk, hope the right people see it | Target specific users based on behavior and context |
-| Wait weeks/months to measure results | Measure impressions, clicks, conversions in real-time |
-| Fixed pricing negotiated by humans | Automated auctions in milliseconds |
-| One creative shown to everyone | Dynamic creative optimized per user |
-| Attribution is guesswork | Multi-touch attribution across channels |
-| Buying requires phone calls and faxes | Programmatic buying via APIs |
+## What You Will Learn
 
-<Accordion title="For the curious: Why digital advertising is a $600B+ market">
-Digital advertising surpassed traditional advertising in global spend around 2019. By 2024, global digital ad spend exceeded **$600 billion**. The reasons are straightforward:
+This section covers the entire ad tech stack, from the basics to the cutting edge:
 
-1. **Measurability**: Unlike a billboard, you can measure exactly how many people saw your digital ad, clicked on it, and ultimately purchased something.
-2. **Targeting precision**: Instead of showing a car ad to everyone watching a TV show, you can show it only to people who recently searched for "best SUV 2024."
-3. **Programmatic efficiency**: Machines can evaluate billions of ad opportunities per day and make optimal buying decisions.
-4. **Lower barrier to entry**: A small business can start advertising on Google with $10/day. Try buying a Super Bowl spot with that budget.
-
-The market is dominated by a few players: **Google** (~28% of global digital ad revenue), **Meta** (~20%), **Amazon** (~7%), with the rest split among thousands of smaller platforms.
-</Accordion>
-
-## Who This Section Is For
-
-This deep dive is written for:
-
-- **Developers** who work with ad tech APIs and want to understand the bigger picture
-- **Product managers** building features that touch advertising
-- **Data engineers** working with attribution and measurement data
-- **Curious technologists** who want to understand one of the internet's largest distributed systems
-
-We assume you're comfortable with concepts like APIs, distributed systems, databases, and basic web architecture. We'll use software engineering analogies throughout to make ad tech concepts click.
-
-## Reading Map
-
-Here's what we'll cover, and a suggested reading order:
+### Reading Map
 
 <CardGroup cols={2}>
   <Card title="The Ad Tech Ecosystem" icon="users" href="/adtech/ecosystem-players">
-    Meet the players: advertisers, publishers, agencies, and the walled gardens that dominate the industry. Understand how money flows through the system.
+    Meet the players: advertisers, publishers, agencies, and the walled gardens (Google, Meta, Apple, Amazon) that dominate the industry. Learn how money flows from advertisers to publishers and who takes a cut along the way.
   </Card>
   <Card title="Ad Servers & Ad Networks" icon="server" href="/adtech/ad-servers-and-networks">
-    The foundational infrastructure of ad tech. How ad servers work, the rise of ad networks, and the story of DoubleClick.
+    The foundational infrastructure. How ad servers store, decide, serve, and track ads. The rise (and problems) of ad networks. The story of DoubleClick and how Google came to dominate.
   </Card>
   <Card title="Programmatic Advertising" icon="robot" href="/adtech/programmatic">
-    SSPs, DSPs, Ad Exchanges -- the automated machinery that replaced human ad buyers. The LUMAscape decoded.
+    SSPs, DSPs, and Ad Exchanges — the automated machinery that replaced human ad buyers and processes billions of transactions per day. Plus the LUMAscape and Google's antitrust case.
   </Card>
   <Card title="Real-Time Bidding (RTB)" icon="bolt" href="/adtech/rtb">
-    The auction that happens in 100ms every time you load a webpage. OpenRTB protocol, auction mechanics, and header bidding.
+    The auction that happens in 100ms every time you load a webpage. OpenRTB protocol, first-price vs. second-price auctions, header bidding, and programmatic deal types.
   </Card>
   <Card title="Targeting Technology" icon="crosshairs" href="/adtech/targeting-deep-dive">
-    How ads find the right users: cookies, behavioral targeting, DMPs, and the privacy revolution that's changing everything.
+    How ads find the right users. Contextual targeting, behavioral tracking, cookies, device fingerprinting, DMPs, the privacy revolution, and the algorithms that optimize ad delivery.
   </Card>
-  <Card title="Attribution & Measurement" icon="chart-line" href="/adtech/attribution-deep-dive">
-    How the industry measures what works: impression tracking, click tracking, conversion attribution, and the rise of MMPs.
+  <Card title="Attribution Deep Dive" icon="chart-line" href="/adtech/attribution-deep-dive">
+    How the industry measures whether ads actually work. Click-through vs. view-through, attribution models, SKAdNetwork, MMPs, and the decline of device-level tracking.
   </Card>
-  <Card title="Ad Fraud & Privacy" icon="shield" href="/adtech/fraud-and-privacy">
-    The dark side: bot traffic, click fraud, ad blocking. Plus the privacy landscape: GDPR, iOS ATT, Privacy Sandbox.
+  <Card title="Ad Fraud & Privacy" icon="shield-halved" href="/adtech/fraud-and-privacy">
+    The dark side: $84B+ in annual ad fraud, from click farms to SDK spoofing. Plus GDPR, CCPA, iOS ATT, cookie deprecation, and the privacy-first future of advertising.
   </Card>
 </CardGroup>
 
+---
+
+## How to Read This Section
+
+You can read these pages in order (they build on each other) or jump to whatever interests you most:
+
+- **If you are a marketer** who wants to understand what happens when you "run an ad": Start with [Ecosystem Players](/adtech/ecosystem-players), then [Programmatic](/adtech/programmatic), then [Attribution](/adtech/attribution-deep-dive)
+- **If you are a developer** building ad tech or integrating SDKs: Start with [Ad Servers](/adtech/ad-servers-and-networks), then [RTB](/adtech/rtb), then [Targeting](/adtech/targeting-deep-dive)
+- **If you care about privacy** and want to understand the regulatory landscape: Jump to [Fraud & Privacy](/adtech/fraud-and-privacy)
+- **If you want the full picture**: Read everything in order, starting with [Ecosystem Players](/adtech/ecosystem-players)
+
 <Tip>
-**Recommended reading order**: Start with the Ecosystem overview, then Ad Servers & Networks, then Programmatic, then RTB. After that, Targeting, Attribution, and Fraud & Privacy can be read in any order based on your interest.
+**Pro Tip**: Each page in this section is self-contained — you do not need to read them all to understand any individual page. But the concepts connect and reinforce each other. Reading the full series gives you a holistic understanding of how the $600B digital advertising industry actually works.
 </Tip>
 
-## Conventions Used in This Section
+---
 
-Throughout these pages, you'll see:
+## Why This Knowledge Matters
 
-- **Software engineering analogies** in tip callouts to map ad tech concepts to familiar developer concepts
-- **"For the curious"** accordions with extra technical depth
-- **Mermaid diagrams** showing system architecture and data flows
-- **Real company names and stories** -- this isn't abstract theory, it's how the industry actually works
-- **Code examples** showing actual protocol formats (like OpenRTB bid requests)
+Understanding ad tech makes you better at everything advertising-related:
 
-Let's dive in.
+| If You Are... | This Knowledge Helps You... |
+|---|---|
+| **An app developer** | Understand why SDKs track what they track, how attribution works, and what data flows where |
+| **A marketer** | Make better decisions about where to spend, how to measure, and what metrics actually mean |
+| **A product manager** | Build better data pipelines, understand privacy constraints, and design for advertising use cases |
+| **A founder** | Have informed conversations with agencies, understand your ad spend, and avoid fraud |
+| **Just curious** | Understand how the free internet is funded and why you see the ads you see |
+
+Let's dive in. Start with **[The Ad Tech Ecosystem](/adtech/ecosystem-players)** to meet the players that make it all work.

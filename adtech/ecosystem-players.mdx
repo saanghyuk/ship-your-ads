@@ -6,388 +6,197 @@ icon: "users"
 
 # The Ad Tech Ecosystem
 
-Before we dive into protocols and algorithms, you need to understand **who** the players are and **how money flows** between them. The ad tech ecosystem is like a complex microservices architecture -- many specialized components communicating through well-defined interfaces.
-
-## The Two Fundamental Sides
-
-Every advertising transaction has two sides:
-
-```mermaid
-graph LR
-    A["Advertiser<br/>(Has money,<br/>wants attention)"] -->|"$$"| B["Ad Tech<br/>Infrastructure"]
-    B -->|"$$"| C["Publisher<br/>(Has attention,<br/>wants money)"]
-    C -->|"Ad space"| B
-    B -->|"Ads"| A
-
-    style A fill:#4CAF50,color:#fff
-    style B fill:#2196F3,color:#fff
-    style C fill:#FF9800,color:#fff
-```
-
-Everything in ad tech exists to connect these two sides more efficiently.
-
-## Advertisers
-
-An **advertiser** is any entity that pays money to show messages to an audience. This ranges from a solo developer promoting their indie app to multinational corporations spending billions annually.
-
-### Types of Advertisers
-
-| Type | Examples | Typical Annual Spend |
-|---|---|---|
-| Global Enterprise | Procter & Gamble, Samsung, Unilever | $1B - $10B+ |
-| Large Brand | Nike, Coca-Cola, Toyota | $100M - $1B |
-| Mid-Market | Regional retailers, SaaS companies | $1M - $100M |
-| Small Business | Local restaurants, indie developers | $1K - $1M |
-| Performance Marketers | App developers, e-commerce, D2C | Varies widely |
-
-<Accordion title="For the curious: The world's biggest advertisers">
-The top global advertisers by annual ad spend (approximate):
-
-1. **Procter & Gamble**: ~$8B/year -- yes, the company that makes Tide and Pampers is the world's largest advertiser
-2. **Amazon**: ~$7B/year -- spending heavily to promote Prime, AWS, and marketplace sellers
-3. **Unilever**: ~$6B/year -- Dove, Axe, Ben & Jerry's
-4. **Samsung**: ~$5B/year
-5. **Google (Alphabet)**: ~$5B/year -- even Google advertises (mostly on its own platforms)
-
-The interesting thing: most of the world's largest advertisers are **consumer packaged goods (CPG)** companies. They sell low-margin, high-volume products where brand recognition is everything.
-</Accordion>
-
-### What Advertisers Want
-
-Advertisers have different objectives, and these map directly to how ad tech systems optimize:
-
-<Tabs>
-  <Tab title="Brand Awareness">
-    **Goal**: Get as many people as possible to see the ad.
-    **Key Metric**: Impressions, Reach, CPM (Cost Per Mille / 1,000 impressions)
-    **Analogy**: Like broadcasting a message to a Kafka topic -- you want maximum subscribers to consume it.
-  </Tab>
-  <Tab title="Consideration">
-    **Goal**: Get people to engage with the brand (visit website, watch video).
-    **Key Metric**: Clicks, CTR (Click-Through Rate), CPC (Cost Per Click), Video Completion Rate
-    **Analogy**: Like optimizing for API engagement -- not just sending requests, but getting meaningful responses.
-  </Tab>
-  <Tab title="Conversion">
-    **Goal**: Get people to take a specific action (purchase, sign up, install app).
-    **Key Metric**: Conversions, CPA (Cost Per Acquisition), ROAS (Return on Ad Spend)
-    **Analogy**: Like optimizing a funnel -- you track from first touch to final conversion.
-  </Tab>
-</Tabs>
-
-## Publishers
-
-A **publisher** is any entity that has an audience and can display ads to them. If advertisers are the demand side, publishers are the supply side.
-
-### Types of Publishers
-
-| Type | Examples | How They Monetize |
-|---|---|---|
-| Premium Publishers | NYTimes.com, ESPN.com, CNN.com | High-CPM direct deals + programmatic |
-| Social Platforms | Facebook, Instagram, TikTok, X | Native ad formats within feeds |
-| Search Engines | Google Search, Bing | Search ads (intent-based, highest CPMs) |
-| App Developers | Game developers, utility apps | In-app ads (banners, interstitials, rewarded video) |
-| Content Creators | YouTubers, bloggers, podcasters | Revenue share from platform ads |
-| Long-tail Publishers | Millions of small websites and apps | Programmatic-only, lower CPMs |
+Before we dive into how ad tech works technically, let's meet the people and companies involved. Digital advertising is an ecosystem — a complex web of players who each serve a different role. Understanding who does what (and who pays whom) is the foundation for everything that follows.
 
 <Tip>
-**Software engineering analogy**: Think of publishers as API providers. They have a valuable resource (user attention), and they expose it through standardized interfaces (ad slots) that advertisers can consume. Premium publishers are like enterprise APIs with SLAs -- they offer guaranteed quality and direct support. Long-tail publishers are like public APIs -- high volume, lower individual quality, accessed through aggregators.
+**Think of it like a city**: Advertisers are the businesses who want customers. Publishers are the real estate owners with space to rent. Agencies are the real estate agents. And ad tech companies are the infrastructure — the roads, power lines, and payment systems that make it all work. The "walled gardens" (Google, Meta, Amazon) are like mega-malls that own everything from the shops to the parking lots.
 </Tip>
-
-### Publisher Inventory Types
-
-Publishers categorize their ad space (called **inventory**) into tiers:
-
-<Steps>
-  <Step title="Premium Inventory">
-    The most valuable ad placements -- homepage takeovers, above-the-fold positions on major sites. Typically sold through **direct deals** with advertisers. Think of this as reserved capacity -- pre-allocated and guaranteed.
-  </Step>
-  <Step title="Remnant Inventory">
-    Ad slots that weren't sold through direct deals. This is where **ad networks** and **programmatic** come in -- they fill unsold inventory automatically. Like spot instances in cloud computing -- available but not guaranteed.
-  </Step>
-  <Step title="Long-tail Inventory">
-    Ad space on millions of small websites and apps. Individually low value, but massive in aggregate. Only accessible through **programmatic** channels. Like the long tail of microservices -- each one is small, but together they handle enormous traffic.
-  </Step>
-</Steps>
-
-## Ad Agencies
-
-Between advertisers and the ad tech stack sits a crucial intermediary: the **advertising agency**.
-
-### What Agencies Do
-
-Agencies act as outsourced marketing departments. Most advertisers -- even huge ones -- don't have the internal expertise to manage all aspects of advertising. Agencies provide:
-
-1. **Creative Services**: Designing the actual ads (images, videos, copy)
-2. **Media Planning**: Deciding *where* to place ads (which channels, platforms, audiences)
-3. **Media Buying**: Actually purchasing the ad space (negotiating deals, operating DSPs)
-4. **Strategy**: Developing the overall advertising approach
-5. **Measurement & Analytics**: Tracking results and optimizing campaigns
-
-### The Agency Holding Companies
-
-The agency world is consolidated into a few massive holding companies, each owning dozens of specialized agencies:
-
-| Holding Company | Headquarters | Major Agencies | Revenue |
-|---|---|---|---|
-| **WPP** | London | GroupM, Ogilvy, Wunderman Thompson | ~$17B |
-| **Omnicom** | New York | BBDO, DDB, OMD, Hearts & Science | ~$14B |
-| **Publicis Groupe** | Paris | Starcom, Zenith, Sapient, Epsilon | ~$14B |
-| **Interpublic Group (IPG)** | New York | McCann, UM, Mediabrands | ~$10B |
-| **Dentsu** | Tokyo | Carat, iProspect, Merkle | ~$9B |
-
-<Accordion title="For the curious: Why agencies are structured this way">
-You might wonder: why do these holding companies own so many agencies instead of consolidating them?
-
-The answer is **conflict management**. A single agency can't simultaneously serve Coca-Cola and Pepsi -- they'd have access to each other's confidential strategies. By maintaining separate agencies under one corporate umbrella, holding companies can serve competing clients through different subsidiaries while sharing back-office operations (finance, HR, technology platforms).
-
-This is similar to how a cloud provider might run separate dedicated clusters for competing enterprise clients -- shared infrastructure, strict isolation at the application layer.
-</Accordion>
-
-### The Agency Fee Structure
-
-Agencies typically charge advertisers through one of these models:
-
-- **Commission**: Historically 15% of media spend (declining)
-- **Fee-based**: Fixed retainer or hourly rates
-- **Performance-based**: Tied to campaign outcomes (growing trend)
-- **Hybrid**: Combination of the above
-
-## How Money Flows Through the Ecosystem
-
-This is where it gets interesting -- and controversial. Let's trace a dollar from advertiser to publisher.
-
-```mermaid
-graph TD
-    A["Advertiser pays $1.00"] --> B["Agency Fee<br/>~7-15 cents"]
-    A --> C["DSP Fee<br/>~10-15 cents"]
-    C --> D["Ad Exchange Fee<br/>~5-10 cents"]
-    D --> E["SSP Fee<br/>~10-15 cents"]
-    E --> F["Publisher receives<br/>~$0.51"]
-
-    B --> G["Verification/Data Fees<br/>~5-10 cents"]
-
-    style A fill:#4CAF50,color:#fff
-    style F fill:#FF9800,color:#fff
-    style B fill:#9E9E9E,color:#fff
-    style C fill:#9E9E9E,color:#fff
-    style D fill:#9E9E9E,color:#fff
-    style E fill:#9E9E9E,color:#fff
-    style G fill:#9E9E9E,color:#fff
-```
-
-### The PwC/ISBA "Programmatic Supply Chain Transparency" Study
-
-In 2020, the **ISBA** (Incorporated Society of British Advertisers) commissioned **PwC** to trace how money flows through the programmatic advertising supply chain. The findings were sobering:
-
-<Warning>
-**For every $1.00 an advertiser spends**, only about **$0.51** reaches the publisher. The other $0.49 is consumed by intermediaries -- and **$0.15** (15%) couldn't even be attributed to any specific entity. It simply vanished into the supply chain as an "unknown delta."**
-</Warning>
-
-| Component | Share of Advertiser Dollar |
-|---|---|
-| Publisher (content creator) | ~51% |
-| DSP fees | ~10% |
-| SSP fees | ~8% |
-| Ad Exchange fees | ~5% |
-| Agency/trading desk fees | ~7% |
-| Data & verification fees | ~4% |
-| **Unknown / unattributable** | **~15%** |
-
-<Tip>
-**Software engineering analogy**: Imagine if 15% of your API requests disappeared without any trace in your observability stack. No logs, no metrics, no traces. That's essentially what's happening in the programmatic supply chain. It's as if someone built a complex microservices architecture without proper distributed tracing -- and significant value leaks through the cracks.
-</Tip>
-
-This study was a wake-up call for the industry and drove significant efforts toward **supply path optimization (SPO)** -- essentially reducing the number of intermediaries between advertiser and publisher.
-
-## Walled Gardens
-
-The biggest players in ad tech don't operate in the open ecosystem at all. They've built **walled gardens** -- closed platforms where they control the entire advertising experience.
-
-### What Is a Walled Garden?
-
-A walled garden is a platform that:
-
-1. **Owns the user relationship** (login, identity, behavior data)
-2. **Owns the ad inventory** (the actual surfaces where ads appear)
-3. **Owns the ad buying tools** (you must use their interface/API to buy ads)
-4. **Controls measurement** (they tell you how your ads performed -- trust them!)
-
-<Tabs>
-  <Tab title="Google">
-    **Properties**: Google Search, YouTube, Gmail, Google Maps, Google Play, Chrome, Android
-    **Ad Platform**: Google Ads (formerly AdWords + DoubleClick)
-    **Revenue**: ~$225B/year in ad revenue (2023)
-    **Superpower**: **Intent data**. When someone searches "buy running shoes," Google knows they want to buy running shoes. This makes search ads the highest-ROI advertising format.
-    **Also operates**: The largest open ad tech stack (DV360, Google Ad Manager, AdMob, AdSense)
-  </Tab>
-  <Tab title="Meta">
-    **Properties**: Facebook, Instagram, WhatsApp, Messenger, Threads
-    **Ad Platform**: Meta Ads (formerly Facebook Ads)
-    **Revenue**: ~$130B/year in ad revenue (2023)
-    **Superpower**: **Social graph + engagement data**. Meta knows your friends, interests, demographics, and behavior patterns. This enables remarkably precise audience targeting.
-    **Vulnerability**: Heavily impacted by Apple's iOS ATT (App Tracking Transparency) -- lost ~$10B in 2022 alone.
-  </Tab>
-  <Tab title="Amazon">
-    **Properties**: Amazon.com, Prime Video, Twitch, Alexa, AWS
-    **Ad Platform**: Amazon Ads
-    **Revenue**: ~$47B/year in ad revenue (2023)
-    **Superpower**: **Purchase data**. Amazon knows what you actually *buy*, not just what you click on. This makes their targeting and attribution more concrete than any other platform.
-    **Growth**: The fastest-growing major ad platform, with ad revenue growing 20%+ year-over-year.
-  </Tab>
-  <Tab title="Apple">
-    **Properties**: App Store, Apple News, Apple Maps, Apple TV+
-    **Ad Platform**: Apple Search Ads
-    **Revenue**: ~$7B/year in ad revenue (estimated, Apple doesn't break this out)
-    **Superpower**: **Device-level control + privacy positioning**. Apple controls the hardware, OS, and app distribution. With ATT, they've kneecapped competitors' tracking while building their own ad business.
-    **Controversy**: Many in the industry see Apple's privacy moves as strategically self-serving -- weakening competitors while growing their own ad platform.
-  </Tab>
-</Tabs>
-
-### Walled Gardens vs. The Open Internet
-
-```mermaid
-pie title Global Digital Ad Spend Distribution (Approximate)
-    "Google" : 28
-    "Meta" : 20
-    "Amazon" : 7
-    "Apple" : 2
-    "Other Walled Gardens (TikTok, Snap, etc.)" : 8
-    "Open Internet (Programmatic)" : 35
-```
-
-The open internet -- all the ad tech infrastructure we'll discuss in the following pages -- accounts for roughly 35% of digital ad spend. The walled gardens capture the rest. This concentration is a source of ongoing tension, regulation, and antitrust action.
-
-## Self-Reporting Networks (SRNs)
-
-Also called **Self-Attributing Networks (SANs)**, these are platforms that:
-
-1. **Run ads** on their own properties
-2. **Measure results** of those ads themselves
-3. **Report performance** back to advertisers using their own data
-
-<Warning>
-The fundamental conflict of interest is obvious: the platform selling you ads is also the one grading their own homework. It's like if AWS told you how many requests your competitor's service handled -- you'd want independent verification.
-</Warning>
-
-### Major SRNs
-
-The most significant SRNs include:
-
-- **Google** (Google Ads, YouTube)
-- **Meta** (Facebook, Instagram)
-- **Apple** (Apple Search Ads)
-- **Amazon** (Amazon Ads)
-- **Snap** (Snapchat Ads)
-- **TikTok** (TikTok For Business)
-- **X/Twitter**
-- **Pinterest**
-
-### How SRNs Work with MMPs
-
-SRNs don't share raw user-level data with external measurement platforms. Instead, they operate through a **claim-based system**:
-
-<Steps>
-  <Step title="User Sees/Clicks Ad">
-    The SRN records the impression or click internally using its own user identity.
-  </Step>
-  <Step title="Conversion Happens">
-    The advertiser's MMP (Mobile Measurement Partner) detects a conversion (app install, purchase, etc.).
-  </Step>
-  <Step title="MMP Queries SRNs">
-    The MMP sends the conversion event to all active SRNs asking: "Did you show an ad to this user?"
-  </Step>
-  <Step title="SRNs Respond with Claims">
-    Each SRN that believes it contributed to the conversion responds with a claim, including timestamp data.
-  </Step>
-  <Step title="MMP Deduplicates">
-    The MMP applies attribution logic (typically last-touch) to determine which SRN gets credit.
-  </Step>
-</Steps>
-
-<Accordion title="For the curious: Why SRN partnerships are limited">
-Not every measurement company can integrate with every SRN. Google and Meta, in particular, maintain **limited partnership programs** -- only about 6 MMPs have certified integrations with both Google and Meta. This creates a significant competitive moat for established MMPs.
-
-To become a certified partner, an MMP must:
-- Meet strict technical requirements (privacy, security, data handling)
-- Have significant advertiser scale (the SRNs don't bother with small players)
-- Agree to the SRN's terms (which often favor the SRN)
-- Submit to regular audits
-
-This is why the MMP market has consolidated around a handful of players -- the SRN partnerships are an enormous barrier to entry. We'll cover this in detail in the [Attribution & Measurement](/adtech/attribution-deep-dive) section.
-</Accordion>
-
-## The Complete Ecosystem Map
-
-Here's how all the pieces fit together:
-
-```mermaid
-graph TB
-    subgraph Demand["DEMAND SIDE (Money)"]
-        ADV["Advertisers"]
-        AG["Agencies"]
-        TD["Trading Desks"]
-        DSP["DSPs"]
-    end
-
-    subgraph Supply["SUPPLY SIDE (Inventory)"]
-        PUB["Publishers"]
-        AS["Ad Servers"]
-        SSP["SSPs"]
-    end
-
-    subgraph Marketplace["MARKETPLACE"]
-        AX["Ad Exchanges"]
-        AN["Ad Networks"]
-    end
-
-    subgraph Data["DATA & MEASUREMENT"]
-        DMP["DMPs"]
-        MMP["MMPs"]
-        VER["Verification"]
-    end
-
-    subgraph WG["WALLED GARDENS"]
-        GOO["Google"]
-        META["Meta"]
-        AMZN["Amazon"]
-    end
-
-    ADV --> AG
-    AG --> TD
-    TD --> DSP
-    DSP --> AX
-    AX --> SSP
-    SSP --> AS
-    AS --> PUB
-
-    DSP --> AN
-    AN --> PUB
-
-    DMP --> DSP
-    MMP --> ADV
-    VER --> ADV
-
-    ADV --> WG
-
-    style Demand fill:#E8F5E9
-    style Supply fill:#FFF3E0
-    style Marketplace fill:#E3F2FD
-    style Data fill:#F3E5F5
-    style WG fill:#FFEBEE
-```
-
-<Note>
-Don't worry if this looks overwhelming. We'll break down each component in the following pages. By the time you finish this section, you'll be able to redraw this diagram from memory.
-</Note>
-
-## Key Takeaways
-
-1. **Two-sided market**: Advertisers have money, publishers have attention. Everything else is infrastructure connecting them.
-2. **The "ad tech tax"**: Nearly half of every advertising dollar goes to intermediaries, not content creators.
-3. **Walled gardens dominate**: Google, Meta, Amazon, and Apple control ~57% of digital ad spend and don't play by the same rules as the open ecosystem.
-4. **Self-reporting conflict**: The biggest platforms grade their own homework -- independent measurement is critical but limited.
-5. **Consolidation is real**: From agencies to ad tech to measurement, the ecosystem is dominated by a handful of major players.
 
 ---
 
-**Next up**: [Ad Servers & Ad Networks](/adtech/ad-servers-and-networks) -- the foundational infrastructure that started it all.
+## The Core Players
+
+### Advertisers (The Buyers)
+
+**Advertisers** are the companies that pay to show ads. They want to reach potential customers and convince them to take an action — download an app, buy a product, sign up for a service.
+
+Every company that runs ads is an advertiser: Nike, your local pizza shop, the indie developer promoting their meditation app, and the Fortune 500 brand launching a global campaign.
+
+| Advertiser Type | Budget Range | How They Buy Ads |
+|---|---|---|
+| **Small business / indie developer** | $100 - $5,000/month | Self-service platforms (Meta Ads, Google Ads) |
+| **Mid-market company** | $5,000 - $100,000/month | Self-service + sometimes an agency |
+| **Enterprise / large brand** | $100,000 - $10M+/month | Agencies, trading desks, direct deals |
+| **Performance marketer** | Varies | Self-service, data-driven, focused on ROI |
+
+### Publishers (The Sellers)
+
+**Publishers** are the owners of the digital real estate where ads appear. They have audiences and they monetize that attention by selling ad space.
+
+| Publisher Type | Examples | How They Sell Ads |
+|---|---|---|
+| **Premium publishers** | NYT, ESPN, WSJ, Vogue | Direct sales teams + programmatic |
+| **Social platforms** | Facebook, Instagram, TikTok, YouTube | Self-service ad platforms |
+| **App developers** | Game studios, utility apps | Ad networks, mediation platforms |
+| **Long-tail publishers** | Blogs, niche websites, small apps | Google AdSense, programmatic only |
+
+### Agencies (The Middlemen)
+
+**Agencies** help advertisers plan, create, buy, and manage their advertising. They exist because advertising is complex and many companies do not have in-house expertise.
+
+| Agency Type | What They Do | Examples |
+|---|---|---|
+| **Creative agency** | Makes the ads (video, images, copy) | Wieden+Kennedy, BBDO, Ogilvy |
+| **Media agency** | Plans where ads run and buys the media | GroupM, Omnicom Media, Publicis Media |
+| **Performance agency** | Focuses on measurable results (CPI, ROAS) | Tinuiti, MuteSix, Jellyfish |
+| **Full-service agency** | Does everything | Large holding companies (WPP, Omnicom, Publicis) |
+
+---
+
+## How Money Flows
+
+This is one of the most important things to understand: **where does the advertiser's dollar actually go?**
+
+```mermaid
+graph LR
+    ADV["Advertiser<br/>Pays $1.00"] --> AG["Agency<br/>Takes 10-15%"]
+    AG --> DSP["DSP<br/>Takes 10-15%"]
+    DSP --> AX["Ad Exchange<br/>Takes 5-15%"]
+    AX --> SSP["SSP<br/>Takes 10-15%"]
+    SSP --> PUB["Publisher<br/>Receives $0.40-0.60"]
+```
+
+### The Ad Tech Tax
+
+A landmark study by PwC and ISBA (a UK advertiser trade body) in 2020 tracked where advertisers' money actually goes in the programmatic supply chain:
+
+| Recipient | Share of $1.00 | What They Do |
+|---|---|---|
+| **Publisher** | ~$0.51 | Creates the content and serves the ad |
+| **DSP fees** | ~$0.10 | Platform the advertiser uses to buy |
+| **SSP fees** | ~$0.08 | Platform the publisher uses to sell |
+| **Ad exchange fees** | ~$0.05 | Marketplace where the auction happens |
+| **Agency/trading desk fees** | ~$0.12 | Manages campaigns for the advertiser |
+| **Verification/data fees** | ~$0.03 | Fraud detection, viewability, targeting data |
+| **Unknown / unattributable** | ~$0.11 | Could not be traced to any specific party |
+
+<Tip>
+**Pro Tip**: The fact that ~15% of ad spend was "unknown/unattributable" is alarming. This is the "ad tech tax" in action — money disappearing into the intermediary chain. This opacity is one of the biggest criticisms of programmatic advertising and a major reason why some brands are bringing ad buying in-house.
+</Tip>
+
+---
+
+## The Walled Gardens
+
+The most important concept in modern advertising is the **walled garden** — a platform that controls the entire advertising experience from start to finish: the content users see, the data about those users, the ad buying interface, and the measurement.
+
+### The Big Four
+
+| Walled Garden | Properties | Ad Revenue (2024) | Key Advantage |
+|---|---|---|---|
+| **Google** | Search, YouTube, Maps, Gmail, Android, Chrome | ~$250B+ | Search intent + massive data |
+| **Meta** | Facebook, Instagram, WhatsApp, Messenger | ~$130B+ | Social graph + engagement data |
+| **Amazon** | Amazon.com, Twitch, IMDb, Fire TV | ~$50B+ | Purchase data (knows what you actually buy) |
+| **Apple** | App Store, Apple Search Ads, Apple News | ~$7B+ (growing fast) | Privacy-first positioning + iOS control |
+
+### Rising Walled Gardens
+
+| Platform | Ad Business | Why They Matter |
+|---|---|---|
+| **TikTok** | ~$20B+ and growing fast | Captures younger demographics, creative-driven |
+| **Microsoft** | LinkedIn, Bing, Xbox | Professional audience (LinkedIn), gaming (Xbox) |
+| **Spotify** | Audio ads in music and podcasts | Captive audio audience, mood-based targeting |
+| **Netflix** | Ad-supported tier launched 2022 | Premium CTV inventory, brand-safe |
+| **Uber** | Ads in the Uber and Uber Eats apps | Location + purchase intent data |
+| **Retail Media** (Walmart, Instacart, Target) | Growing fast | Point-of-purchase advertising |
+
+### Why Walled Gardens Dominate
+
+1. **They own the user relationship**: Users are logged in, providing deterministic identity data
+2. **They own the content**: Users come for the content (search results, social feed, videos), not the ads
+3. **They own the measurement**: They report their own numbers — advertisers have limited ability to independently verify
+4. **They own the data**: First-party data from billions of users gives targeting accuracy that open-internet players cannot match
+5. **Privacy changes help them**: iOS ATT and cookie deprecation hurt smaller ad tech companies more than walled gardens because walled gardens have logged-in user data
+
+<Tip>
+**Pro Tip**: Approximately **70-80% of all digital ad spend** goes to walled gardens (primarily Google and Meta). The remaining 20-30% flows through the "open internet" via programmatic advertising. If you are an advertiser, you will almost certainly start by advertising within walled gardens before venturing into programmatic.
+</Tip>
+
+---
+
+## Self-Reporting Networks (SRNs)
+
+SRNs (also called SANs — Self-Attributing Networks) are platforms that perform their own attribution rather than relying on independent measurement. The major SRNs are: **Google, Meta, Apple Search Ads, Amazon, Snap, TikTok, and X (Twitter)**.
+
+Why this matters: When you use an MMP to track your campaigns, SRNs report their own attribution claims to the MMP. The MMP then deduplicates across all sources. But each SRN sees only its own data — creating a built-in conflict of interest where every SRN wants to claim credit.
+
+---
+
+## The Open Internet
+
+Everything outside the walled gardens is the "open internet" — the millions of websites, apps, and digital properties that monetize through programmatic advertising.
+
+| Aspect | Walled Gardens | Open Internet |
+|---|---|---|
+| **Buying interface** | Platform's own tool (Meta Ads Manager, Google Ads) | DSPs (The Trade Desk, DV360) |
+| **Inventory** | Only that platform's properties | Millions of websites and apps |
+| **Data** | First-party data from logged-in users | Third-party data + contextual |
+| **Measurement** | Self-reported | MMP, third-party verification |
+| **Transparency** | Limited | Higher (but complex) |
+
+---
+
+## The Ad Tech Stack: Visual Overview
+
+Here is how all the pieces fit together:
+
+```mermaid
+graph TB
+    subgraph DEMAND["DEMAND SIDE (Buyers)"]
+        ADV["Advertisers"] --> AG["Agencies"]
+        AG --> DSP["DSPs"]
+    end
+
+    subgraph MIDDLE["MARKETPLACE"]
+        AX["Ad Exchanges"]
+    end
+
+    subgraph SUPPLY["SUPPLY SIDE (Sellers)"]
+        SSP["SSPs"] --> PUB["Publishers"]
+    end
+
+    subgraph DATA["DATA & MEASUREMENT"]
+        DMP["DMPs / CDPs"]
+        MMP["MMPs"]
+        VERIFY["Verification<br/>(IAS, DV)"]
+    end
+
+    DSP <--> AX
+    AX <--> SSP
+    DMP -.-> DSP
+    DMP -.-> SSP
+    MMP -.-> ADV
+    VERIFY -.-> ADV
+
+    style DEMAND fill:#E8F5E9
+    style MIDDLE fill:#E3F2FD
+    style SUPPLY fill:#FFF3E0
+    style DATA fill:#F3E5F5
+```
+
+Each of these components is covered in detail in the subsequent pages of this section.
+
+---
+
+## Key Takeaways
+
+1. **Advertisers pay, publishers receive** — but intermediaries take 40-60% of every dollar
+2. **Walled gardens dominate** — Google, Meta, and Amazon capture 70-80% of all digital ad spend
+3. **Agencies help navigate complexity** — but you can start without one using self-service platforms
+4. **The ad tech tax is real** — money is lost to intermediaries and opacity in the supply chain
+5. **SRNs self-report** — each platform wants to claim credit, which is why independent measurement (MMPs) matters
+6. **Privacy changes favor walled gardens** — they have the most first-party data and are best positioned for a cookieless future
+
+---
+
+**Next up**: [Ad Servers & Ad Networks](/adtech/ad-servers-and-networks) — the foundational infrastructure that started it all, from the first banner ad to the DoubleClick acquisition that gave Google its ad tech empire.

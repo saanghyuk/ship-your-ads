@@ -1,636 +1,596 @@
 ---
 title: "Google Search Ads"
-description: "Complete guide to Google Search Ads. Keyword research, match types, Responsive Search Ads, ad extensions, Quality Score, negative keywords, bidding strategies, and campaign structure for apps."
+description: "A complete beginner's guide to creating Google Search campaigns — keyword research, match types, writing Responsive Search Ads, ad assets, Quality Score optimization, and campaign structure."
 ---
 
-## Catch people at the moment of need
+## The Most Powerful Ad Type on the Internet
 
-Search Ads are the original Google ad format, and they're still one of the most effective. When someone types "best meditation app" into Google, your ad can be the first thing they see. That's **intent-based advertising** at its finest -- you're not interrupting people, you're answering their question.
+Google Search Ads are unique in the advertising world because they reach people at their highest moment of intent. Someone types a query into Google because they need something RIGHT NOW. Your ad appears as the answer. No other ad format on any platform offers this level of timing and relevance.
 
-## How Search Ads work
-
-Here's what happens in milliseconds every time someone searches on Google:
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant Google
-    participant Auction as Ad Auction
-    participant Ads as Search Results
-
-    User->>Google: Searches "habit tracker app"
-    Google->>Auction: Finds all advertisers targeting this keyword
-    Auction->>Auction: Calculates Ad Rank for each advertiser
-    Note over Auction: Ad Rank = Bid x Quality Score x Extensions
-    Auction->>Ads: Winners appear at top of results
-    User->>Ads: Clicks on an ad
-    Note over Ads: Advertiser pays (CPC)
-```
-
-### What you pay and why
-
-You only pay when someone **clicks** your ad (Cost Per Click / CPC). Impressions (people seeing your ad) are free. Your actual CPC is usually less than your maximum bid because you only pay the minimum needed to beat the advertiser below you.
-
-**Key factors that determine your cost:**
-
-| Factor | Impact | You control? |
-|--------|--------|-------------|
-| **Keyword competition** | More advertisers bidding = higher cost | No (market-driven) |
-| **Quality Score** | Higher score = lower CPC | Yes (relevance + ad quality) |
-| **Your max bid** | Your ceiling for what you'll pay | Yes |
-| **Ad Rank thresholds** | Google's minimum quality bar | No (Google-set) |
-| **Search context** | Device, location, time of day, other signals | Partially (bid adjustments) |
-
-## Keyword research: the foundation of Search Ads
-
-Keywords are the words and phrases you tell Google to target. When someone's search matches your keyword, your ad is eligible to appear. Choosing the right keywords is the single most important decision in Search Ads.
-
-### Where to find keywords
-
-<Steps>
-  <Step title="Google Keyword Planner (free, built into Google Ads)">
-    Go to **Tools & Settings** > **Planning** > **Keyword Planner**.
-
-    Two options:
-    - **Discover new keywords:** Enter words related to your app. Google suggests related keywords with search volume and competition data.
-    - **Get search volume and forecasts:** Enter keywords you already have in mind and see estimated traffic.
-
-    **What to look for:**
-    - Monthly search volume (higher = more traffic potential)
-    - Competition level (low/medium/high)
-    - Suggested bid (gives you a cost estimate)
-    - Trends (is search volume growing or shrinking?)
-  </Step>
-  <Step title="Google Search autocomplete">
-    Go to Google and start typing your app's category. The autocomplete suggestions are real search queries that people frequently use. These are gold.
-
-    Example: Type "habit tracker" and you might see:
-    - habit tracker app
-    - habit tracker app free
-    - habit tracker for students
-    - habit tracker with reminders
-    - habit tracker that works
-
-    Each of these is a potential keyword.
-  </Step>
-  <Step title="Google 'People Also Ask' and 'Related Searches'">
-    Search for your main keyword and scroll down. Google shows:
-    - **"People Also Ask"** boxes with common questions
-    - **"Related searches"** at the bottom of the page
-
-    These reveal how people think about your app category and what language they use.
-  </Step>
-  <Step title="Competitor research">
-    Search for your competitors' app names. Look at:
-    - What ads appear? (These are their keywords)
-    - What language do they use in ad copy?
-    - What keywords do they rank for organically?
-
-    You can also use tools like **SpyFu**, **SEMrush**, or **Ahrefs** (paid) to see competitors' keywords.
-  </Step>
-  <Step title="App Store search suggestions">
-    Go to the App Store or Google Play and start typing your app category. The suggestions show what people search for when looking for apps specifically.
-  </Step>
-  <Step title="Your own analytics">
-    If you have a website or existing app:
-    - **Google Search Console** shows what queries people use to find your site
-    - **Firebase Analytics** shows search terms that led to installs
-    - **Customer support tickets** reveal the language your users use
-  </Step>
-</Steps>
-
-### Keyword strategy for apps
-
-Organize your keywords into four intent-based categories:
-
-| Category | Examples | Intent Level | Expected CPC | Expected Conversion Rate |
-|----------|---------|-------------|-------------|------------------------|
-| **Brand** | "yourapp," "yourapp download" | Highest | Lowest ($0.10-0.50) | Highest (20-40%) |
-| **Direct / Product** | "habit tracker app," "download habit app" | Very High | Medium ($0.50-2.00) | High (10-20%) |
-| **Problem / Solution** | "how to build habits," "stop procrastinating app" | High | Medium ($0.50-2.00) | Medium (5-15%) |
-| **Competitor** | "[competitor] alternative," "apps like [competitor]" | High | Higher ($1.00-3.00) | Medium (5-15%) |
-| **Category / Broad** | "best productivity apps," "top self-improvement apps" | Medium | Lower ($0.30-1.50) | Lower (3-8%) |
+In this guide, we will build a complete Google Search campaign from scratch. We will start with keyword research, move to ad writing, and finish with campaign setup and optimization. Every click, every setting, every decision explained.
 
 <Tip>
-  **Start with Brand + Direct keywords.** These are the easiest wins because people are already looking for what you offer. Expand to Problem and Competitor keywords after you have baseline data. Save Category keywords for when you have budget to spare.
+A well-optimized Google Search campaign can be the most cost-effective advertising channel in your entire marketing mix. The key is matching the right keywords with the right ads and the right landing pages. We call this the "relevance trifecta" — and this guide will teach you how to nail all three.
 </Tip>
 
-## Match types explained
+---
 
-Match types control how loosely or strictly Google matches your keyword to actual search queries. This is one of the most important concepts in Search Ads.
+## Step 1: Keyword Research with Google Keyword Planner
 
-### The three match types
+Before you create any ads, you need to know what people are actually searching for. Keyword Planner is a free tool included with every Google Ads account.
 
-<AccordionGroup>
-  <Accordion title="Exact Match [brackets] — Most restrictive">
-    **Syntax:** `[habit tracker app]`
+### How to Access Keyword Planner:
 
-    **Shows your ad for:** The exact keyword and very close variants (misspellings, plurals, reordering).
+1. Log into **[ads.google.com](https://ads.google.com)**
+2. Click the **wrench icon** (Tools and Settings) in the top navigation
+3. Under **Planning**, click **Keyword Planner**
+4. You will see two options:
+   - **Discover new keywords** — Find new keyword ideas
+   - **Get search volume and forecasts** — Check volume for keywords you already have
 
-    **Examples of matching queries:**
-    - "habit tracker app" (exact)
-    - "habit tracking app" (close variant)
-    - "app habit tracker" (reordering)
-    - "habit tracker apps" (plural)
+### Discovering New Keywords:
 
-    **Does NOT match:**
-    - "best habit tracker app" (added word)
-    - "free habit tracker" (missing word "app")
-    - "daily routine tracker" (different meaning)
+5. Click **Discover new keywords**
+6. Enter a few seed keywords related to your business. For example, if you have a habit tracking app:
+   - "habit tracker"
+   - "daily routine app"
+   - "habit building app"
+7. Optionally, enter your **website URL** — Keyword Planner will analyze your site for additional ideas
+8. Select your **target location** (e.g., United States)
+9. Select your **language** (e.g., English)
+10. Click **Get Results**
 
-    **Best for:** Your highest-value, most proven keywords. Maximum control, but lowest reach.
-  </Accordion>
-  <Accordion title="Phrase Match &quot;quotes&quot; — Medium restrictive">
-    **Syntax:** `"habit tracker app"`
+### Understanding the Results:
 
-    **Shows your ad for:** Searches that include the meaning of your keyword. Can include words before or after, and can match related meanings.
+Keyword Planner will show you a table with these columns:
 
-    **Examples of matching queries:**
-    - "habit tracker app" (exact)
-    - "best habit tracker app" (added word before)
-    - "habit tracker app free download" (added words after)
-    - "habit tracking application" (same meaning)
-    - "app to track my habits" (same meaning, different wording)
+| Column | What It Means | What to Look For |
+|---|---|---|
+| **Keyword** | The search term | Relevance to your business |
+| **Avg. monthly searches** | How many times this is searched per month | Higher = more traffic potential |
+| **Competition** | How many advertisers bid on this keyword (Low/Medium/High) | Lower competition = potentially cheaper |
+| **Top of page bid (low range)** | Estimated CPC to show at the top of results (conservative) | Budget planning |
+| **Top of page bid (high range)** | Estimated CPC to show at the top of results (aggressive) | Budget planning |
 
-    **Does NOT match:**
-    - "daily routine planner" (different enough meaning)
-    - "habit breaker app" (opposite intent)
+### Selecting Your Keywords:
 
-    **Best for:** Your primary keywords. Good balance of reach and relevance.
-  </Accordion>
-  <Accordion title="Broad Match — Least restrictive (no symbols)">
-    **Syntax:** `habit tracker app`
+11. Look for keywords that are:
+    - **Relevant** to your product or service
+    - **Have reasonable search volume** (at least 100-500 monthly searches)
+    - **Show clear intent** (someone searching this would actually want your product)
+    - **Within your budget** (check the estimated CPC)
 
-    **Shows your ad for:** Any search that Google considers related to your keyword, even loosely. Google uses AI to determine relevance.
+12. Download your keyword list by clicking **Download keyword ideas** (CSV or Google Sheets)
 
-    **Examples of matching queries:**
-    - "habit tracker app" (exact)
-    - "best daily routine app" (related concept)
-    - "productivity tools for building habits" (loosely related)
-    - "self improvement app" (broader category)
-    - "how to be more disciplined" (very broad interpretation)
+**Keyword categories to research:**
 
-    **Best for:** Maximum reach. Works well with Smart Bidding (Target CPA / ROAS) because Google's AI filters for converting queries. Risky without Smart Bidding because you'll pay for a lot of irrelevant clicks.
-  </Accordion>
-</AccordionGroup>
+- **Brand keywords:** Your brand or app name (usually cheapest and highest converting)
+- **Category keywords:** General terms for your product type ("habit tracker app," "budget planner")
+- **Problem keywords:** What problems your product solves ("how to build habits," "track daily goals")
+- **Competitor keywords:** Competitor brand names ("competitor name alternative")
+- **Feature keywords:** Specific features of your product ("streak tracking app," "habit reminder app")
 
-### Match type strategy for beginners
+<Tip>
+Google Keyword Planner is **completely free** with your Google Ads account — you do not need to spend any money on ads to use it. Start by entering 3-5 seed keywords and let Keyword Planner generate hundreds of ideas. Then filter for keywords with at least 100 monthly searches and competition that is not too high. This will give you a strong starting list for your first campaign.
+</Tip>
 
-| Phase | Recommended approach |
-|-------|---------------------|
-| **Week 1-2** | Start with **Phrase Match** for most keywords, **Exact Match** for your most important 5-10 keywords |
-| **Week 3-4** | Review Search Terms Report. Add converting search terms as Exact Match. Add non-converting terms as negative keywords |
-| **Month 2+** | Consider testing **Broad Match** on your top-performing keywords with Target CPA bidding. Monitor closely |
-| **Ongoing** | Regularly move proven phrases from Phrase to Exact match for tighter control |
+---
 
-<Warning>
-  **Broad Match without Smart Bidding is budget suicide.** Google will match your keywords to extremely loose queries and you'll pay for every click. Only use Broad Match if you have conversion tracking set up AND you're using Target CPA or Target ROAS bidding (so Google's AI filters out bad queries automatically).
-</Warning>
+## Step 2: Understand Keyword Match Types
 
-## Responsive Search Ads (RSAs): how to write them
+When you add keywords to your campaign, you need to choose a **match type** that determines how broadly Google interprets your keyword.
 
-Google now primarily uses **Responsive Search Ads**. Instead of writing one fixed ad, you provide multiple headlines and descriptions. Google tests combinations and shows the best-performing mix.
+### The Three Match Types:
 
-### RSA structure
+#### Broad Match (Default)
+
+**Format:** `habit tracker` (just the keywords, no special formatting)
+
+**What it does:** Shows your ad for searches that are RELATED to your keyword, even if they do not contain the exact words. Google uses AI to determine relevance.
+
+**Example keyword:** `habit tracker`
+**Could trigger ads for:**
+- "best app to build daily habits"
+- "routine planner for students"
+- "how to track my exercise goals"
+- "habit building tips" (informational — might not convert)
+
+**Pros:** Maximum reach, lets Google find relevant searches you might not think of
+**Cons:** Can trigger for irrelevant searches, may waste budget
+
+#### Phrase Match
+
+**Format:** `"habit tracker"` (keywords in quotation marks)
+
+**What it does:** Shows your ad for searches that include the MEANING of your keyword. The search must contain the concept of your keyword, but can include additional words before or after.
+
+**Example keyword:** `"habit tracker"`
+**Could trigger ads for:**
+- "best habit tracker app"
+- "free habit tracker for iPhone"
+- "habit tracker with reminders"
+- "daily habit tracker review"
+
+**Would NOT trigger for:**
+- "how to build habits" (different meaning — no tracking)
+
+**Pros:** Good balance between reach and relevance
+**Cons:** Less reach than Broad Match
+
+#### Exact Match
+
+**Format:** `[habit tracker]` (keywords in square brackets)
+
+**What it does:** Shows your ad ONLY for searches that have the SAME MEANING as your keyword. May include slight variations (plurals, misspellings, synonyms).
+
+**Example keyword:** `[habit tracker]`
+**Could trigger ads for:**
+- "habit tracker"
+- "habit trackers"
+- "habits tracker"
+
+**Would NOT trigger for:**
+- "best habit tracker app" (too different from exact keyword)
+- "habit building app" (different concept)
+
+**Pros:** Most precise, best for high-intent keywords with proven performance
+**Cons:** Lowest reach
+
+### Which Match Type Should You Start With?
+
+For beginners, we recommend this strategy:
+
+1. **Start with Phrase Match** for most keywords — it gives you a good balance of reach and control
+2. **Use Exact Match** for your brand keywords — you want maximum precision for your brand name
+3. **Use Broad Match sparingly** (or not at all initially) — only add broad match once you have built up a solid negative keyword list (see below)
+
+<Tip>
+Many beginners use Broad Match for all their keywords because it is the default. This is usually a mistake — Broad Match can quickly burn through your budget on irrelevant searches. Start with Phrase Match for your main keywords and Exact Match for your brand terms. You can always expand to Broad Match later once you understand which searches convert.
+</Tip>
+
+---
+
+## Step 3: Build Your Negative Keyword List
+
+Negative keywords are words or phrases that PREVENT your ad from showing. They are just as important as your regular keywords.
+
+### Why Negative Keywords Matter:
+
+Without negative keywords, your ad for "habit tracker app" might show for:
+- "habit tracker **free**" (if you have a paid app)
+- "habit tracker **Excel spreadsheet**" (not your product)
+- "**how to break bad habits**" (informational, not looking for an app)
+- "**job at** habit tracking company" (looking for employment, not your product)
+
+Each of these clicks wastes your money because the searcher does not want what you are offering.
+
+### Common Negative Keywords to Add:
 
 ```
-You provide:
-├── Up to 15 headlines (30 characters each)
-├── Up to 4 descriptions (90 characters each)
-├── Final URL (your landing page)
-└── Display URL path (optional, e.g., yoursite.com/habit-tracker)
-
-Google creates combinations like:
-┌──────────────────────────────────────────────────────┐
-│ Headline 1 | Headline 2 | Headline 3                │
-│ Description 1                                        │
-│ Description 2                                        │
-│ yoursite.com/habit-tracker                           │
-└──────────────────────────────────────────────────────┘
+free (if you are selling a paid product)
+cheap
+download free
+how to
+what is
+tutorial
+review
+jobs
+career
+salary
+template
+spreadsheet
+excel
+pdf
+reddit
+quora
+wikipedia
 ```
 
-### How to write effective RSA headlines
+### How to Add Negative Keywords:
 
-Provide at least **10-15 headlines** covering different angles:
+13. In your Google Ads campaign, click on **Keywords** in the left sidebar
+14. Click **Negative keywords**
+15. Click the **+** button
+16. Add your negative keywords
+17. Choose the level:
+    - **Campaign level** — Applies to all ad groups in the campaign
+    - **Ad group level** — Applies to a specific ad group only
+18. Click **Save**
 
-| Angle | Example Headlines | How many |
-|-------|-------------------|----------|
-| **What it is** | "HabitFlow - Habit Tracker App" | 2-3 |
-| **Key benefit** | "Build Better Habits in 5 Min/Day" | 2-3 |
-| **Social proof** | "Join 500K+ Happy Users" | 1-2 |
-| **Call to action** | "Download Free Today" | 2-3 |
-| **Differentiator** | "The Only Tracker With AI Coaching" | 1-2 |
-| **Urgency / offer** | "Start Your Free 7-Day Trial" | 1-2 |
-| **Keyword inclusion** | "Best Habit Tracker for 2026" | 1-2 |
+### Building Your Negative List Over Time:
 
-**Headline writing rules:**
-- Each headline should make sense on its own (they can appear in any position)
-- Don't repeat the same message in different words
-- Include your primary keyword in at least 2-3 headlines
-- Use Title Case For Headlines
-- Max 30 characters (this is tight -- every character counts)
+19. After your campaign runs for a few days, check the **Search Terms report**:
+    - Go to your campaign → **Keywords** → **Search terms**
+    - This shows you the ACTUAL searches that triggered your ads
+    - Look for irrelevant searches and add them as negative keywords
+20. Review this report weekly to continuously refine your targeting
 
-### How to write effective RSA descriptions
+---
 
-Provide **4 descriptions** covering different value propositions:
+## Step 4: Create Your Search Campaign
+
+Now let us create the actual campaign in Google Ads.
+
+### Starting the Campaign:
+
+21. Log into **[ads.google.com](https://ads.google.com)**
+22. Click **Campaigns** in the left sidebar
+23. Click the **blue "+" button** → **New campaign**
+24. Choose your campaign goal:
+    - **Sales** — If you want website purchases
+    - **Leads** — If you want form submissions or sign-ups
+    - **Website traffic** — If you want more visitors to your site
+25. Select **Search** as the campaign type
+26. Select the **conversion actions** you want to optimize for (the ones you created in the Conversion Tracking guide)
+27. Click **Continue**
+
+### Campaign Settings:
+
+28. **Campaign name:** Enter a descriptive name like "Search - Non-Brand - US"
+
+29. **Networks:** You will see options for:
+    - **Google Search Network** — Keep this ON (this is the core search experience)
+    - **Google Search Partners** — Optional. These are other search engines that use Google's ad system. Keep it ON initially; you can turn it off later if it does not perform well.
+    - **Google Display Network** — Turn this OFF. If you want Display ads, create a separate Display campaign. Mixing Search and Display in one campaign makes optimization difficult.
+
+30. **Locations:** Click **Enter another location** and type your target country, state, or city
+    - Select **Presence: People in or regularly in your targeted locations** (not "Presence or interest" which shows ads to people who are just interested in the location)
+
+31. **Languages:** Select the languages your audience speaks
+
+32. **Budget:** Enter your daily budget
+    - Google recommends **$10–$50/day** for beginners
+    - Start at the lower end if you are testing; increase once you see results
+
+33. **Bidding:** Choose your bid strategy:
+    - **Maximize conversions** — Google automatically sets bids to get the most conversions within your budget (recommended for beginners)
+    - **Maximize conversion value** — Google optimizes for the highest total conversion value
+    - **Target CPA** — You set a target cost per conversion (use after you have enough data)
+    - **Manual CPC** — You set bids manually for each keyword (most control, most work)
+
+For your first campaign, select **Maximize conversions**.
+
+34. Click **Next** to proceed to Ad Group setup
+
+<Tip>
+Always uncheck **"Google Display Network"** when creating a Search campaign. If you leave it checked, Google will show your text ads on random websites as Display ads, which performs terribly compared to dedicated Display campaigns. Keep Search and Display campaigns separate for much better results.
+</Tip>
+
+---
+
+## Step 5: Create Your Ad Groups
+
+Ad groups organize your keywords and ads into themed groups. Each ad group should focus on one specific topic.
+
+### How to Structure Ad Groups:
+
+35. **Ad Group name:** Give it a descriptive name like "Habit Tracker - General"
+36. **Keywords:** Add your keywords with the appropriate match types:
 
 ```
-Description 1 (primary value prop):
-"Struggling to stick to new habits? HabitFlow uses science-backed
-techniques and daily reminders to help you build lasting routines."
-
-Description 2 (features):
-"Track unlimited habits, set custom reminders, view streak charts,
-and join a supportive community. Works offline. No account required."
-
-Description 3 (social proof + CTA):
-"Rated 4.8 stars by 500K+ users. Named Best Productivity App 2025.
-Download free and start building better habits today."
-
-Description 4 (offer / urgency):
-"Get started in under 60 seconds. Free forever with optional premium
-features. No credit card needed. Try HabitFlow now."
+"habit tracker app"
+"daily habit tracker"
+"habit tracking app"
+[habit tracker]
+"best habit tracker"
 ```
 
-### Pinning headlines (use sparingly)
+37. Click **+ New ad group** to create additional ad groups:
 
-You can "pin" a headline to always appear in a specific position (1, 2, or 3). This is useful when:
-- Your brand name should always appear (pin to position 1)
-- A disclaimer or offer must always show
-- You want to guarantee a specific CTA appears
+**Example structure:**
 
-<Warning>
-  **Pinning reduces Google's ability to optimize.** Every pinned headline means fewer combinations Google can test. Only pin when you have a strong business reason. For most advertisers, no pinning produces the best results.
-</Warning>
+```
+Campaign: Search - Non-Brand - US
+├── Ad Group: Habit Tracker - General
+│   ├── "habit tracker app"
+│   ├── "daily habit tracker"
+│   └── "habit tracking app"
+├── Ad Group: Routine - General
+│   ├── "daily routine app"
+│   ├── "morning routine tracker"
+│   └── "routine planner app"
+└── Ad Group: Goal Tracking
+    ├── "goal tracking app"
+    ├── "daily goals app"
+    └── "track my goals"
+```
 
-### Ad Strength indicator
+### Best Practices for Ad Groups:
 
-Google gives each RSA an "Ad Strength" rating: Poor, Average, Good, or Excellent. To improve it:
-- Add more unique headlines (aim for 10+)
-- Make headlines distinct from each other
-- Include popular keywords in headlines
-- Add all 4 descriptions
-- Use varied messaging angles
+- **5-15 keywords per ad group** is the sweet spot
+- All keywords in an ad group should be closely related
+- The ad copy should match the keywords in the ad group
+- If a keyword does not match the theme, it belongs in a different ad group
 
-<Note>
-  **Ad Strength is a guide, not a performance metric.** An "Average" ad can outperform an "Excellent" one. Use it as a checklist to make sure you're providing enough variety, but don't obsess over it. Actual performance (CTR, conversions) is what matters.
-</Note>
+---
 
-## Ad extensions (now called "Assets")
+## Step 6: Write Your Responsive Search Ads (RSAs)
 
-Ad extensions add extra information below your ad, making it bigger and more clickable. They're free to add and can significantly improve CTR.
+Responsive Search Ads are Google's standard ad format for Search campaigns. You provide multiple headlines and descriptions, and Google automatically tests different combinations to find the best-performing versions.
 
-### Extension types for app advertisers
+### How RSAs Work:
 
-<AccordionGroup>
-  <Accordion title="Sitelink Extensions — Additional links below your ad">
-    Add 4-8 sitelinks pointing to different pages:
-    - "Features" -> your features page
-    - "Pricing" -> your pricing page
-    - "Reviews" -> your testimonials page
-    - "Download Now" -> direct app store link
+- You provide up to **15 headlines** (30 characters each)
+- You provide up to **4 descriptions** (90 characters each)
+- Google mixes and matches combinations to create different ad versions
+- Over time, Google shows the best-performing combinations more often
 
-    Each sitelink has a headline (25 chars) and optional description (35 chars x 2 lines).
-  </Accordion>
-  <Accordion title="Callout Extensions — Short highlight phrases">
-    Add 4-6 callout phrases (25 chars each):
-    - "Free Download"
-    - "No Ads"
-    - "Works Offline"
+### Creating Your RSA:
+
+38. After setting up your ad group, click **+ New ad**
+39. You will see the Responsive Search Ad editor
+
+**Headlines (up to 15, at least 3 required):**
+
+Write headlines that cover different angles. Here are examples for a habit tracker app:
+
+```
+Headline 1:  "Habit Tracker App"              (keyword match)
+Headline 2:  "Build Better Habits Today"       (benefit)
+Headline 3:  "Free Habit Tracking App"         (offer)
+Headline 4:  "#1 Rated Habit Tracker"          (social proof)
+Headline 5:  "Track Habits in 2 Minutes/Day"   (time benefit)
+Headline 6:  "10,000+ 5-Star Reviews"          (credibility)
+Headline 7:  "Start Your Free Trial Now"       (CTA)
+Headline 8:  "Build Streaks & Stay Motivated"  (feature)
+Headline 9:  "Simple Daily Habit Tracking"     (simplicity)
+Headline 10: "Download Free on iOS & Android"  (availability)
+```
+
+**Descriptions (up to 4, at least 2 required):**
+
+```
+Description 1: "Track your daily habits, build streaks, and stay motivated with smart reminders. Download free and start building better routines today."
+
+Description 2: "Join 50,000+ people using our app to build positive habits. Simple, beautiful, and backed by behavioral science. Try it free."
+
+Description 3: "Set goals, track progress, and celebrate streaks. Our habit tracker makes it easy to build the routines that change your life."
+
+Description 4: "Rated 4.8 stars with 10,000+ reviews. Build habits that stick with daily reminders, progress charts, and community support."
+```
+
+40. Enter your **Final URL** — the landing page people will visit after clicking
+41. Enter your **Display path** — the shortened URL shown in the ad (e.g., `yourapp.com/habits`)
+42. Click **Save**
+
+### RSA Writing Best Practices:
+
+- **Include your keyword in at least 2-3 headlines** — This improves Quality Score and relevance
+- **Make each headline unique** — Do not write 5 variations of the same idea
+- **Include at least one headline with a CTA** (Call to Action) — "Download Now," "Start Free Trial," "Get Started"
+- **Include numbers and specifics** — "4.8 stars," "50,000+ users," "2 minutes/day"
+- **Use "pinning" sparingly** — You can pin specific headlines to specific positions, but this limits Google's ability to test combinations
+
+<Tip>
+Write your headlines so that ANY combination of three headlines would make sense together. Google will show three headlines side by side, and you cannot control which three it picks. Read through random combinations of your headlines and make sure they do not contradict each other or repeat the same message. If Headline 1 is "Free Habit Tracker" and Headline 3 is "Start Your Free Trial," showing them together is redundant.
+</Tip>
+
+---
+
+## Step 7: Add Ad Assets (Extensions)
+
+Ad assets (previously called "ad extensions") add extra information to your ad, making it larger and more informative. They are free to add and can significantly improve your CTR and Quality Score.
+
+### Sitelink Assets
+
+Additional links below your ad that take people to specific pages on your website.
+
+43. In your campaign, go to **Ads & assets** → **Assets**
+44. Click the **+** button → **Sitelink**
+45. Add 4-8 sitelinks, each with:
+    - **Link text:** Short description (25 characters) — e.g., "Features," "Pricing," "Reviews"
+    - **Description 1:** Additional detail (35 characters)
+    - **Description 2:** Additional detail (35 characters)
+    - **Final URL:** The page this sitelink links to
+
+### Callout Assets
+
+Short phrases that highlight key benefits (no links).
+
+46. Click **+** → **Callout**
+47. Add 4-6 callouts (25 characters each):
+    - "Free Trial Available"
+    - "No Credit Card Required"
     - "4.8 Star Rating"
-    - "24/7 Support"
-    - "Privacy First"
+    - "Available on iOS & Android"
+    - "24/7 Customer Support"
 
-    These appear as a single line of text below your ad.
-  </Accordion>
-  <Accordion title="Structured Snippet Extensions — Category highlights">
-    Select a header category and list values:
-    - **Features:** Reminders, Streaks, Charts, Community, Coaching
-    - **Types:** Daily Habits, Weekly Goals, Monthly Challenges
-    - **Brands:** (if your app integrates with known services)
-  </Accordion>
-  <Accordion title="App Extension — Direct app download link">
-    Shows a link to download your app directly below the ad. Essential for app advertisers running Search Ads (not App Campaigns, which handle this automatically).
-  </Accordion>
-  <Accordion title="Call Extension — Phone number">
-    Adds your phone number. Only useful if you have phone support. Probably skip this for most apps.
-  </Accordion>
-  <Accordion title="Price Extension — Pricing information">
-    Shows pricing cards below your ad:
-    - "Free Plan - $0/month"
-    - "Pro Plan - $4.99/month"
-    - "Annual Plan - $29.99/year"
+### Structured Snippet Assets
 
-    Great for apps with clear pricing tiers.
-  </Accordion>
-  <Accordion title="Promotion Extension — Special offers">
-    Highlights a promotion or discount:
-    - "50% off first 3 months"
-    - "Free premium trial"
-    - "Back to school special"
+Predefined categories with specific values.
 
-    Can be scheduled to start and end on specific dates.
-  </Accordion>
-</AccordionGroup>
+48. Click **+** → **Structured snippet**
+49. Choose a header (e.g., "Features") and add values:
+    - Header: "Features"
+    - Values: "Streak Tracking," "Smart Reminders," "Progress Charts," "Habit Templates"
+
+### Call Assets
+
+Add your phone number to ads (great for businesses that handle phone inquiries).
+
+### Price Assets
+
+Show your pricing directly in the ad.
+
+### Image Assets
+
+Add images alongside your text ads.
+
+50. Click **+** → **Image**
+51. Upload relevant images (1200 x 1200 for square, 1200 x 628 for landscape)
+52. These appear next to your text ad on mobile
 
 <Tip>
-  **At minimum, add Sitelinks, Callouts, and Structured Snippets to every campaign.** These three extensions are the easiest to set up and have the biggest impact on CTR. They make your ad take up more space on the page, pushing competitors further down.
+Add as many ad assets as possible. They are free, they make your ad larger (taking up more screen space), and they improve your Quality Score. Google does not always show all your assets — it picks the ones most likely to improve performance. But you want to give Google plenty of options. At minimum, add **sitelinks**, **callouts**, and **structured snippets** to every campaign.
 </Tip>
 
-## Negative keywords: protecting your budget
+---
 
-Negative keywords prevent your ads from showing on irrelevant searches. They're one of the most underused features in Google Ads, and one of the most powerful for saving money.
+## Step 8: Understanding and Improving Quality Score
 
-### Starter negative keyword list
+Quality Score is a 1-10 rating that Google assigns to each of your keywords. It directly affects your cost per click and ad position. Improving Quality Score is one of the most impactful things you can do in Google Ads.
 
-Add these immediately to every Search campaign:
+### The Three Components of Quality Score:
 
-```
-Negative keywords for most app campaigns:
+#### 1. Expected Click-Through Rate (CTR)
 
-Jobs & careers:
--job, -jobs, -career, -careers, -salary, -hiring, -interview, -resume
+Google predicts how likely people are to click your ad when it appears for this keyword.
 
-Educational/informational (low intent):
--what is, -definition, -wikipedia, -meaning, -tutorial (unless your app teaches)
+**How to improve it:**
+- Write compelling headlines that match the search intent
+- Include the keyword in your headlines
+- Use strong CTAs
+- Test multiple ad variations
 
-Wrong intent:
--review, -reviews (people reading reviews, not downloading)
--complaints, -problems, -issues, -broken
--login (existing users, not new installs)
+#### 2. Ad Relevance
 
-Irrelevant modifiers:
--free (only if your app is paid)
--android (only if you're iOS-only)
--iphone (only if you're Android-only)
--desktop, -windows, -mac (if mobile-only)
+How closely your ad matches the intent behind the search query.
 
-Competitors you don't want to target:
--[specific competitor names if you're not running competitor campaigns]
-```
+**How to improve it:**
+- Make sure the keyword appears in your ad headlines and descriptions
+- Create tightly themed ad groups (all keywords in a group should relate to the same topic)
+- Write ad copy that directly addresses what the searcher is looking for
 
-### Negative match types
+#### 3. Landing Page Experience
 
-Negative keywords also have match types, but they work differently from regular keywords:
+How useful and relevant your landing page is after someone clicks.
 
-| Negative Match Type | Blocks ads for... | Example: `-free app` |
-|-------------------|------------------|---------------------|
-| **Negative Broad** | Queries containing ALL negative terms (any order) | Blocks "free habit app" but NOT "free habit tracker" |
-| **Negative Phrase** | Queries containing the exact phrase | Blocks "best free app" but NOT "free to use app" |
-| **Negative Exact** | Only the exact query | Only blocks "free app" exactly |
+**How to improve it:**
+- Make sure the landing page content matches the ad and keyword
+- Ensure the page loads quickly (under 3 seconds on mobile)
+- Make the page mobile-friendly
+- Have clear navigation and a clear CTA on the landing page
+- Include the keyword naturally on the landing page
 
-<Note>
-  **Negative broad match is the safest default for negative keywords.** It blocks the broadest range of irrelevant queries. Use negative exact match only when you need to block a very specific query without affecting related terms.
-</Note>
+### How to Check Quality Score:
 
-### Negative keyword lists (shared across campaigns)
+53. Go to **Keywords** in your campaign
+54. Click the **Columns** icon → **Modify columns**
+55. Expand **Quality Score** and add:
+    - Quality Score
+    - Expected CTR
+    - Ad Relevance
+    - Landing Page Experience
+56. Click **Apply**
+57. Each keyword will now show its Quality Score and the three component ratings
 
-Create shared negative keyword lists under **Tools & Settings** > **Shared Library** > **Negative keyword lists**. Apply the same list to multiple campaigns:
+### What the Scores Mean:
 
-- **"Universal negatives"** -- terms that are always irrelevant (jobs, free, etc.)
-- **"Competitor exclusions"** -- competitors you don't target in non-competitor campaigns
-- **"Brand protection"** -- prevent non-brand campaigns from competing with brand campaigns
-
-## Bidding strategies for Search Ads
-
-### All bidding options explained
-
-<AccordionGroup>
-  <Accordion title="Maximize Conversions — Best for beginners">
-    **How it works:** Google automatically sets bids to get you the most conversions within your daily budget. No target cost.
-
-    **When to use:** When you're starting out and want Google to learn what works. Requires conversion tracking.
-
-    **Pros:** Simple to set up. Google finds conversion opportunities you'd miss manually.
-
-    **Cons:** No cost control. Google may spend aggressively to maximize volume. CPA can be high initially.
-
-    **Recommended starting point for new campaigns.**
-  </Accordion>
-  <Accordion title="Target CPA (tCPA) — Best for controlled growth">
-    **How it works:** You tell Google your target cost per conversion (e.g., $3 per install). Google adjusts bids to hit that target on average.
-
-    **When to use:** After you have 30+ conversions and know your target cost. Switch from Maximize Conversions once you have enough data.
-
-    **Pros:** Cost control. Predictable CPA. Scales efficiently.
-
-    **Cons:** Requires enough historical data. Setting target too low kills volume. Google may underspend if target is too aggressive.
-
-    **Tip:** Start with tCPA equal to or slightly above your current average CPA, then gradually lower it.
-  </Accordion>
-  <Accordion title="Target ROAS (tROAS) — Best for revenue optimization">
-    **How it works:** You set a target return on ad spend (e.g., 300% means $3 revenue for every $1 spent). Google bids higher for users likely to generate more revenue.
-
-    **When to use:** When you're tracking revenue values with your conversions and want to maximize profitability, not just volume.
-
-    **Pros:** Optimizes for value, not just volume. Can be very profitable.
-
-    **Cons:** Requires revenue data in conversions. Needs significant conversion volume. Can dramatically reduce traffic if target is too high.
-  </Accordion>
-  <Accordion title="Maximize Clicks — Best for traffic/data gathering">
-    **How it works:** Google sets bids to get you the most clicks within your budget. No conversion optimization.
-
-    **When to use:** When you don't have conversion tracking yet (not recommended, but sometimes necessary) or when you need raw traffic data quickly.
-
-    **Pros:** Maximum traffic. Simple.
-
-    **Cons:** No conversion optimization. You'll get clicks, but many won't convert. Usually the most expensive strategy per conversion.
-  </Accordion>
-  <Accordion title="Manual CPC — For full control (advanced)">
-    **How it works:** You set the maximum bid for each keyword manually. You can also enable "Enhanced CPC" which lets Google adjust your bids up to 30% in either direction.
-
-    **When to use:** When you want full control over every keyword's bid. Useful for small accounts or when you have deep expertise.
-
-    **Pros:** Complete control. You decide what each click is worth.
-
-    **Cons:** Time-intensive. You'll miss optimization opportunities that automated bidding catches. Doesn't scale well.
-  </Accordion>
-</AccordionGroup>
-
-### Bidding strategy progression
-
-```mermaid
-graph LR
-    A[Start: Maximize Conversions] -->|30+ conversions| B[Switch to Target CPA]
-    B -->|Stable CPA for 2 weeks| C[Lower tCPA by 10%]
-    C -->|If revenue tracking enabled| D[Switch to Target ROAS]
-    C -->|If volume is goal| E[Increase budget on winners]
-```
-
-## Ad scheduling and location targeting
-
-### Ad scheduling (dayparting)
-
-You can choose which days and hours your ads run. Useful for:
-- Limiting ads to business hours (if you have a support team)
-- Reducing bids during low-converting hours
-- Focusing budget on high-performance days
-
-**How to set it up:**
-1. Go to your campaign > **Ad schedule**
-2. Click **+ Edit** to add day/time blocks
-3. Set bid adjustments (e.g., -50% for overnight hours, +20% for peak hours)
+| Quality Score | What It Means | What to Do |
+|---|---|---|
+| 8-10 | Excellent. You are doing great. | Maintain what you are doing. |
+| 6-7 | Good. Room for improvement. | Review the component below average and improve it. |
+| 4-5 | Below average. Needs work. | Focus on improving the weakest component. |
+| 1-3 | Poor. Significantly hurting performance. | Major changes needed — possibly pause keyword and rewrite ad. |
 
 <Tip>
-  **Don't set a schedule until you have 2+ weeks of data.** Run ads 24/7 initially, then check your performance by day and hour. You might be surprised -- some apps convert best on Sunday evenings or during commute hours.
+Quality Score directly affects your cost per click. A keyword with Quality Score 10 might cost $1.00 per click, while the same keyword with Quality Score 3 could cost $3.00 or more. That is a 3x cost difference for the same keyword. Investing time in improving Quality Score literally saves you money on every single click.
 </Tip>
 
-### Location targeting
+---
 
-Choose where your ads appear geographically:
+## Step 9: Launch and Initial Setup Verification
 
-<Steps>
-  <Step title="Set your target locations">
-    In your campaign settings > **Locations**, choose:
-    - Countries (e.g., United States)
-    - States / regions (e.g., California)
-    - Cities (e.g., San Francisco)
-    - Radius around a point (e.g., 25 miles around New York)
-  </Step>
-  <Step title="Choose the location option (important!)">
-    Under **Location options**, you'll see two choices:
-    - **"Presence or interest"** (default) -- Shows ads to people IN the location OR who've shown interest in it
-    - **"Presence"** -- Shows ads ONLY to people physically in the location
+58. Review all your campaign settings one final time:
+    - Campaign name, budget, and bidding strategy
+    - Location and language targeting
+    - Ad group themes and keywords
+    - Ad copy and assets
+    - Negative keywords
 
-    **Always choose "Presence" unless you have a reason not to.** "Presence or interest" can show your ads to people in other countries who merely searched about your target location.
-  </Step>
-  <Step title="Set location bid adjustments">
-    After gathering data, increase bids in high-performing locations and decrease in low-performing ones:
-    - +20% for states with high conversion rates
-    - -30% for regions with low conversion rates
-    - Exclude locations that never convert
-  </Step>
-</Steps>
+59. Click **Publish campaign**
 
-<Warning>
-  **The default "Presence or interest" location targeting is one of Google's biggest hidden traps.** It sounds reasonable but can waste significant budget showing ads to people outside your target market. Always switch to "Presence" (also called "People in or regularly in your targeted locations").
-</Warning>
+60. Google will review your ads (usually within a few hours, but can take up to 24 hours)
 
-## Complete campaign structure for apps
+### Post-Launch Checklist (First 48 Hours):
 
-Here's a full example of how to structure a Search Ads campaign for a habit-tracking app:
+61. Check that your ads are **Approved** (go to Ads & assets and check the Status column)
+62. Check that your keywords are **Eligible** (go to Keywords and check the Status column)
+63. Verify that impressions and clicks are being recorded
+64. Review the **Search Terms report** for any irrelevant searches to add as negative keywords
+65. Check that conversions are being tracked (if someone converts)
 
-```
-Campaign: Search - US - Habit Tracker
-├── Settings:
-│   ├── Budget: $20/day
-│   ├── Bidding: Maximize Conversions
-│   ├── Networks: Search only (uncheck Display partners)
-│   ├── Locations: United States (Presence only)
-│   └── Language: English
-│
-├── Ad Group: Brand Keywords
-│   ├── Keywords:
-│   │   ├── [habitflow] (exact)
-│   │   ├── [habitflow app] (exact)
-│   │   └── "habitflow download" (phrase)
-│   └── Ads: RSA focused on brand + features
-│
-├── Ad Group: Direct / Product Keywords
-│   ├── Keywords:
-│   │   ├── [habit tracker app] (exact)
-│   │   ├── "habit tracking app" (phrase)
-│   │   ├── "daily habit tracker" (phrase)
-│   │   └── "habit tracker with reminders" (phrase)
-│   └── Ads: RSA focused on app features + download CTA
-│
-├── Ad Group: Problem / Solution Keywords
-│   ├── Keywords:
-│   │   ├── "how to build habits" (phrase)
-│   │   ├── "how to stick to habits" (phrase)
-│   │   ├── "stop procrastinating app" (phrase)
-│   │   └── "build better routines" (phrase)
-│   └── Ads: RSA focused on solving the problem
-│
-├── Ad Group: Competitor Keywords
-│   ├── Keywords:
-│   │   ├── "[competitor1] alternative" (phrase)
-│   │   ├── "[competitor2] vs" (phrase)
-│   │   └── "apps like [competitor3]" (phrase)
-│   └── Ads: RSA focused on differentiation
-│
-└── Negative Keywords (campaign level):
-    ├── -job, -jobs, -career, -salary
-    ├── -review, -reviews
-    ├── -login
-    └── -free (if app is paid)
-```
+---
 
-<Note>
-  **Uncheck "Display partners" in your Search campaign settings.** By default, Google includes the Display Network in Search campaigns. This shows your text ads on random websites and usually results in low-quality clicks. Keep Search campaigns Search-only for the best results.
-</Note>
+## Troubleshooting Common Search Ad Issues
 
-## Search Terms Report: your weekly must-do
+### "My ad was disapproved"
 
-The Search Terms Report shows the **actual queries** people typed that triggered your ads. This is different from your keywords -- your keywords are what you target, search terms are what users actually searched.
+**Common reasons:**
+- Trademark violations in your ad text
+- Misleading claims or exaggerated promises
+- Landing page does not match ad content
+- Prohibited products or services
 
-**How to use it:**
+**What to do:**
+1. Check the disapproval reason in the Status column
+2. Fix the issue and resubmit
+3. If you believe it was a mistake, request a review
 
-1. Go to **Keywords** > **Search terms** (or **Insights** > **Search terms**)
-2. Sort by cost or impressions to see the biggest spenders
-3. For each search term, make one of three decisions:
+### "I am getting impressions but no clicks"
 
-| Search term quality | Action | Example |
-|--------------------|--------|---------|
-| **Relevant + converting** | Add as Exact Match keyword | "habit tracker with streaks" -> add as [habit tracker with streaks] |
-| **Relevant + not converting yet** | Keep monitoring | "daily routine app" -> check again next week |
-| **Irrelevant** | Add as negative keyword | "habit tracker job openings" -> add "-job openings" as negative |
+**Possible causes:**
+- Your ad copy is not compelling enough
+- Your ad is appearing in low positions (below competitors)
+- Your Quality Score is low
+
+**Fixes:**
+1. Rewrite your headlines to be more engaging and relevant
+2. Increase your bids slightly
+3. Add more ad assets to make your ad larger
+
+### "I am getting clicks but no conversions"
+
+**Possible causes:**
+- Your landing page does not match the ad promise
+- The landing page loads too slowly
+- Your conversion tracking is not working
+- Your keywords are attracting the wrong audience
+
+**Fixes:**
+1. Check that your landing page matches the ad message
+2. Test landing page speed on Google PageSpeed Insights
+3. Verify conversion tracking with Google Tag Assistant
+4. Review the Search Terms report for irrelevant queries
+
+### "My Quality Score is very low"
+
+**Possible causes:**
+- Keyword is not in your ad copy
+- Ad group has too many unrelated keywords
+- Landing page is not relevant to the keyword
+
+**Fixes:**
+1. Include the keyword in at least 2 headlines
+2. Split large ad groups into smaller, more focused groups
+3. Create dedicated landing pages for each ad group theme
+
+---
+
+## Your Search Campaign Checklist
+
+- [ ] Keyword research completed with Keyword Planner
+- [ ] Keywords organized into themed ad groups (5-15 per group)
+- [ ] Appropriate match types selected (Phrase Match recommended for beginners)
+- [ ] Negative keyword list created and applied
+- [ ] RSAs created with 10+ headlines and 4 descriptions
+- [ ] Ad assets added (sitelinks, callouts, structured snippets at minimum)
+- [ ] Landing pages match ad messaging for each ad group
+- [ ] Campaign settings verified (Expert Mode, Search only, correct location)
+- [ ] Budget set to $10-$50/day
+- [ ] Bidding strategy set to Maximize Conversions
+- [ ] Campaign published and ads approved
+- [ ] Search Terms report reviewed within first 48 hours
+- [ ] Quality Score checked and components reviewed
+
+---
+
+## What Comes Next
+
+Your Google Search campaign is now live, reaching people at their highest moment of intent. Over the next few days, you will start seeing data flow in — impressions, clicks, and hopefully conversions.
+
+In the **Display Ads** guide, we will create Display campaigns that complement your Search campaigns. While Search captures people who are actively looking for you, Display reaches people while they browse websites and apps — perfect for building awareness and retargeting website visitors.
 
 <Tip>
-  **Review your Search Terms Report every week for the first 2 months.** This is the single highest-ROI activity in Search Ads management. You'll find surprising terms that convert well (add them) and budget-wasting terms that don't (block them). After 2 months, shift to biweekly reviews.
+Check the **Search Terms report** every day for the first week. This is where you will find the actual searches that triggered your ads. Add irrelevant searches as negative keywords immediately. This daily habit of refining negative keywords is what separates profitable Search campaigns from money-wasting ones. After the first week, weekly reviews are sufficient.
 </Tip>
-
-## Launching your first Search campaign: step by step
-
-<Steps>
-  <Step title="Create a new campaign">
-    In Google Ads, click **+ New Campaign**. Choose your goal:
-    - **App promotion** (if driving installs)
-    - **Sales** or **Leads** (if driving website conversions)
-    - **Create a campaign without a goal's guidance** (for full control)
-
-    Select **Search** as the campaign type.
-  </Step>
-  <Step title="Configure campaign settings">
-    - **Campaign name:** Follow your naming convention (e.g., "Search - US - Habit Tracker - 2026-02")
-    - **Networks:** UNCHECK "Include Google Display Network" and "Include Google search partners"
-    - **Locations:** Your target market, using "Presence" targeting
-    - **Language:** Match your target audience
-    - **Budget:** $15-20/day to start
-    - **Bidding:** "Maximize Conversions" (change to tCPA after 30+ conversions)
-  </Step>
-  <Step title="Create ad groups and add keywords">
-    Create 2-4 ad groups following the structure above. For each:
-    - Add 10-20 keywords in phrase and exact match
-    - Keep keywords tightly themed within each ad group
-  </Step>
-  <Step title="Write your Responsive Search Ads">
-    Create 1-2 RSAs per ad group:
-    - 10+ headlines covering different angles
-    - 4 descriptions with different value propositions
-    - Set your final URL (app landing page or app store link)
-  </Step>
-  <Step title="Add extensions">
-    At the campaign level, add:
-    - 4+ sitelinks
-    - 4+ callouts
-    - 1+ structured snippets
-    - App extension (with your app store link)
-  </Step>
-  <Step title="Add negative keywords">
-    Apply your starter negative keyword list at the campaign level.
-  </Step>
-  <Step title="Review and launch">
-    Preview your ads. Check that everything looks right. Hit **Publish**.
-
-    Then **don't touch anything for 7-14 days** while Google's algorithm learns.
-  </Step>
-</Steps>
-
-<Card
-  title="Google Display Ads"
-  icon="arrow-right"
-  href="/platforms/google/display-ads"
->
-  Search Ads capturing high-intent users? Expand your reach with Display Ads across 35 million websites.
-</Card>
