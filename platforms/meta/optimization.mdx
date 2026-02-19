@@ -213,12 +213,18 @@ This slow increase gives Meta's algorithm time to adjust without resetting the l
 Instead of increasing the budget on one ad set, create NEW ad sets targeting different audiences.
 
 **Example:**
-```
-Campaign: Product Sales
-├── Ad Set 1: Lookalike 1% (US) - $20/day [original winner]
-├── Ad Set 2: Lookalike 1% (UK) - $15/day [new]
-├── Ad Set 3: Lookalike 3-5% (US) - $15/day [new]
-└── Ad Set 4: Interest-based (Fitness) - $15/day [new]
+
+```mermaid
+graph TD
+    Camp["Campaign: Product Sales"] --> AS1["Ad Set 1\nLookalike 1% (US)\n$20/day — Original winner"]
+    Camp --> AS2["Ad Set 2\nLookalike 1% (UK)\n$15/day — New"]
+    Camp --> AS3["Ad Set 3\nLookalike 3-5% (US)\n$15/day — New"]
+    Camp --> AS4["Ad Set 4\nInterest-based (Fitness)\n$15/day — New"]
+
+    style AS1 fill:#e8f5e9
+    style AS2 fill:#e3f2fd
+    style AS3 fill:#e3f2fd
+    style AS4 fill:#e3f2fd
 ```
 
 Each new ad set gets its own budget, so you are spending more overall without disrupting the original winner.

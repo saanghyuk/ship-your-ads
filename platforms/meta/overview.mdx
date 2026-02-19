@@ -194,15 +194,17 @@ Think of the ad as answering the question: "What will people actually see?"
 
 Here is how the three levels relate to each other:
 
-```
-Campaign (Objective: App Installs)
-├── Ad Set 1 (Audience: 18-34, US, Budget: $20/day)
-│   ├── Ad A (Video showing app features)
-│   ├── Ad B (Image with testimonial)
-│   └── Ad C (Carousel of screenshots)
-└── Ad Set 2 (Audience: 25-44, UK, Budget: $15/day)
-    ├── Ad D (Same video, different headline)
-    └── Ad E (Different image)
+```mermaid
+graph TD
+    Camp["Campaign (Objective: App Installs)"] --> AS1["Ad Set 1\nAudience: 18-34, US\nBudget: $20/day"]
+    Camp --> AS2["Ad Set 2\nAudience: 25-44, UK\nBudget: $15/day"]
+
+    AS1 --> AdA["Ad A: Video showing app features"]
+    AS1 --> AdB["Ad B: Image with testimonial"]
+    AS1 --> AdC["Ad C: Carousel of screenshots"]
+
+    AS2 --> AdD["Ad D: Same video, different headline"]
+    AS2 --> AdE["Ad E: Different image"]
 ```
 
 ---

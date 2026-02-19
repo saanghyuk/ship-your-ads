@@ -168,12 +168,8 @@
       }
     ]
   },
-  "navbar": {
-    "primary": {
-      "type": "button",
-      "label": "Start Shipping",
-      "href": "/why-ads"
-    }
+  "search": {
+    "prompt": "Search the docs..."
   },
   "footer": {
     "socials": {

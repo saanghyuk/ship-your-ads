@@ -25,29 +25,17 @@ As platforms move toward automated targeting (Meta's Advantage+, Google's Perfor
 
 Every ad, regardless of platform, has these building blocks:
 
-```
-+------------------------------------+
-|  Brand name / Profile              |
-|  Sponsored label                   |
-|                                    |
-|  +------------------------------+  |
-|  |                              |  |
-|  |     VISUAL ASSET             |  |
-|  |     (Image, Video,           |  |
-|  |      Carousel, etc.)         |  |
-|  |                              |  |
-|  +------------------------------+  |
-|                                    |
-|  Primary text / Body copy          |
-|  "Your main message here..."      |
-|                                    |
-|  Headline (bold text)              |
-|  Description (supporting text)     |
-|                                    |
-|  [ Call to Action Button ]         |
-|                                    |
-|  Destination: App Store link       |
-+------------------------------------+
+```mermaid
+graph TD
+    A["Brand Name / Profile + Sponsored Label"] --> B["Primary Text / Body Copy\n'Your main message here...'"]
+    B --> C["Visual Asset\n(Image, Video, Carousel)\nLargest section — first thing users notice"]
+    C --> D["Headline + Description\nBold text grabs attention;\nsupporting text adds context"]
+    D --> E["Call to Action Button\n'Install Now' · 'Learn More' · 'Shop Now'"]
+    E --> F["Destination\nApp Store · Website · Landing Page"]
+
+    style A fill:#f3e5f5
+    style C fill:#e3f2fd
+    style E fill:#e8f5e9
 ```
 
 | Component | Purpose | Meta character limits | Key tip |

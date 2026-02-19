@@ -497,17 +497,14 @@ sequenceDiagram
     - **Hierarchical source identifier**: Up to 4 digits (replacing campaign ID), with more digits revealed as install volume increases
     - **Crowd anonymity tiers**: Privacy thresholds that determine how much data you receive
 
-    ```
-    Crowd Anonymity Tiers:
-    +-----------+------------------+--------------------+
-    | Tier      | Install Volume   | Data Available     |
-    +-----------+------------------+--------------------+
-    | Tier 0    | Very low         | No conversion data |
-    | Tier 1    | Low              | Coarse values only |
-    | Tier 2    | Medium           | Fine values, 2-dig |
-    | Tier 3    | High             | Fine values, 4-dig |
-    +-----------+------------------+--------------------+
-    ```
+    **Crowd Anonymity Tiers:**
+
+    | Tier | Install Volume | Data Available |
+    |---|---|---|
+    | Tier 0 | Very low | No conversion data |
+    | Tier 1 | Low | Coarse values only |
+    | Tier 2 | Medium | Fine values, 2-digit source |
+    | Tier 3 | High | Fine values, 4-digit source |
 
     - **Web-to-app attribution**: Support for Safari-to-app flows
     - Apple later rebranded this to **AdAttributionKit** starting with iOS 17.4, adding re-engagement measurement support

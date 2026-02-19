@@ -279,20 +279,15 @@ Ad groups organize your keywords and ads into themed groups. Each ad group shoul
 
 **Example structure:**
 
-```
-Campaign: Search - Non-Brand - US
-├── Ad Group: Habit Tracker - General
-│   ├── "habit tracker app"
-│   ├── "daily habit tracker"
-│   └── "habit tracking app"
-├── Ad Group: Routine - General
-│   ├── "daily routine app"
-│   ├── "morning routine tracker"
-│   └── "routine planner app"
-└── Ad Group: Goal Tracking
-    ├── "goal tracking app"
-    ├── "daily goals app"
-    └── "track my goals"
+```mermaid
+graph TD
+    Camp["Campaign: Search - Non-Brand - US"] --> AG1["Ad Group: Habit Tracker - General"]
+    Camp --> AG2["Ad Group: Routine - General"]
+    Camp --> AG3["Ad Group: Goal Tracking"]
+
+    AG1 --> K1["'habit tracker app'\n'daily habit tracker'\n'habit tracking app'"]
+    AG2 --> K2["'daily routine app'\n'morning routine tracker'\n'routine planner app'"]
+    AG3 --> K3["'goal tracking app'\n'daily goals app'\n'track my goals'"]
 ```
 
 ### Best Practices for Ad Groups:

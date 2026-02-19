@@ -74,20 +74,22 @@ Let us walk through each major fraud type, from the simple to the sophisticated.
     - **Hidden ads**: Ads placed behind page content, in invisible iframes, or positioned off-screen
     - **Auto-refresh**: Automatically refreshing ads at high frequency (every few seconds) to rack up impressions while the user stares at the same page
 
+    **Ad Stacking Example:**
+
+    ```mermaid
+    graph TD
+        Slot["Ad Slot on Web Page"] --- L1["Ad 1 — TOP (visible to user)"]
+        L1 --- L2["Ad 2 — Hidden layer (invisible)"]
+        L2 --- L3["Ad 3 — Hidden layer (invisible)"]
+        L3 --- L4["Ad 4 — Hidden layer (invisible)"]
+
+        style L1 fill:#e8f5e9,stroke:#4caf50,stroke-width:2px
+        style L2 fill:#ffcdd2,stroke:#e57373
+        style L3 fill:#ffcdd2,stroke:#e57373
+        style L4 fill:#ffcdd2,stroke:#e57373
     ```
-    Ad Stacking Example:
-    +---------------------+
-    |  Visible Ad (Ad 1)  |  <-- User sees this one
-    |---------------------|
-    |  Hidden Ad (Ad 2)   |  <-- Stacked behind, invisible
-    |---------------------|
-    |  Hidden Ad (Ad 3)   |  <-- Stacked behind, invisible
-    |---------------------|
-    |  Hidden Ad (Ad 4)   |  <-- Stacked behind, invisible
-    +---------------------+
-    All 4 ads report impressions and bill advertisers.
-    Only 1 was actually seen by a human.
-    ```
+
+    All 4 ads report impressions and bill advertisers. Only 1 was actually seen by a human.
   </Tab>
   <Tab title="Install Fraud (Mobile)">
     **What it is**: Generating fake app installs to steal CPI (cost-per-install) payouts.
@@ -368,7 +370,7 @@ The ad industry has developed several collaborative standards and tools to fight
     rubiconproject.com, 8910, RESELLER, 0bfd66d529a55807
     ```
 
-    **Format**: `<exchange domain>, <seller account ID>, <relationship>, <TAG ID>`
+    **Format**: `[exchange domain], [seller account ID], [relationship], [TAG ID]`
 
     - **DIRECT**: The publisher has a direct business relationship with this exchange
     - **RESELLER**: This entity is authorized to resell the publisher's inventory through the exchange

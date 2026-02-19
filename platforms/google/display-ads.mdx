@@ -353,30 +353,24 @@ Remarketing deserves special attention because it is the highest-converting Disp
 
 Create separate ad groups for different remarketing segments:
 
-```
-Campaign: Display - Remarketing
-├── Ad Group 1: All Visitors (last 30 days)
-│   ├── Audience: All website visitors
-│   ├── Exclusion: Converters
-│   ├── Bid: Base bid
-│   └── Ad message: "Remember us? Come back and check out..."
-│
-├── Ad Group 2: Product Page Visitors (last 14 days)
-│   ├── Audience: Visited product/pricing pages
-│   ├── Exclusion: Converters
-│   ├── Bid: Higher bid (warmer audience)
-│   └── Ad message: "Still interested? Here is a special offer..."
-│
-├── Ad Group 3: Cart Abandoners (last 7 days)
-│   ├── Audience: Added to cart but did not purchase
-│   ├── Exclusion: Converters
-│   ├── Bid: Highest bid (hottest audience)
-│   └── Ad message: "You left something in your cart! Complete your order..."
-│
-└── Ad Group 4: Past Customers (last 180 days)
-    ├── Audience: Converted users
-    ├── Bid: Medium bid
-    └── Ad message: "Welcome back! Check out what is new..."
+**Campaign: Display - Remarketing**
+
+```mermaid
+graph TD
+    R["Campaign: Display - Remarketing"] --> A["Ad Group 1: All Visitors (30 days)"]
+    R --> B["Ad Group 2: Product Page Visitors (14 days)"]
+    R --> C["Ad Group 3: Cart Abandoners (7 days)"]
+    R --> D["Ad Group 4: Past Customers (180 days)"]
+
+    A --> A1["Audience: All website visitors\nExclude: Converters\nBid: Base\nMessage: 'Remember us? Come back...'"]
+    B --> B1["Audience: Visited product/pricing pages\nExclude: Converters\nBid: Higher (warmer)\nMessage: 'Still interested? Special offer...'"]
+    C --> C1["Audience: Added to cart, did not purchase\nExclude: Converters\nBid: Highest (hottest)\nMessage: 'You left something in your cart...'"]
+    D --> D1["Audience: Converted users\nExclude: None\nBid: Medium\nMessage: 'Welcome back! What is new...'"]
+
+    style A1 fill:#e8f5e9
+    style B1 fill:#fff3e0
+    style C1 fill:#fce4ec
+    style D1 fill:#e3f2fd
 ```
 
 ### Remarketing Best Practices:

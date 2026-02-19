@@ -278,11 +278,15 @@ The quality of your Lookalike Audience depends entirely on the quality of your s
 
 Create multiple Lookalike sizes and test them in separate ad sets:
 
-```
-Campaign: Product Launch
-├── Ad Set 1: 1% Lookalike (Purchasers) - $15/day
-├── Ad Set 2: 1-3% Lookalike (Purchasers) - $15/day
-└── Ad Set 3: 3-5% Lookalike (Purchasers) - $10/day
+```mermaid
+graph TD
+    Camp["Campaign: Product Launch"] --> AS1["Ad Set 1\n1% Lookalike (Purchasers)\n$15/day"]
+    Camp --> AS2["Ad Set 2\n1-3% Lookalike (Purchasers)\n$15/day"]
+    Camp --> AS3["Ad Set 3\n3-5% Lookalike (Purchasers)\n$10/day"]
+
+    style AS1 fill:#e8f5e9
+    style AS2 fill:#fff3e0
+    style AS3 fill:#fce4ec
 ```
 
 The 1% will usually be the cheapest per conversion but has the smallest reach. The 3-5% has more reach but may cost more per conversion. Testing helps you find the sweet spot.

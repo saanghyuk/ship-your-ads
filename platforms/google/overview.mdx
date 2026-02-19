@@ -231,20 +231,23 @@ If you are new to Google Ads, start with a **Search campaign**. It is the most s
 
 Google Ads is organized in three levels (similar to Meta):
 
-```
-Account (your Google Ads account)
-├── Campaign 1 (Search - Brand Keywords)
-│   ├── Ad Group 1 (Brand name variations)
-│   │   ├── Keywords: "my app name," "myapp download"
-│   │   ├── Ad 1: Responsive Search Ad
-│   │   └── Ad 2: Responsive Search Ad
-│   └── Ad Group 2 (Product keywords)
-│       ├── Keywords: "habit tracker app," "daily routine app"
-│       └── Ad 1: Responsive Search Ad
-└── Campaign 2 (Display - Retargeting)
-    └── Ad Group 1 (All website visitors)
-        ├── Targeting: Website visitors (last 30 days)
-        └── Ad 1: Responsive Display Ad
+```mermaid
+graph TD
+    A[Account: Your Google Ads Account] --> B["Campaign 1: Search - Brand Keywords"]
+    A --> C["Campaign 2: Display - Retargeting"]
+
+    B --> D["Ad Group 1: Brand name variations"]
+    B --> E["Ad Group 2: Product keywords"]
+
+    D --> F["Keywords: 'my app name,' 'myapp download'"]
+    D --> G["Ad 1 & 2: Responsive Search Ads"]
+
+    E --> H["Keywords: 'habit tracker app,' 'daily routine app'"]
+    E --> I["Ad 1: Responsive Search Ad"]
+
+    C --> J["Ad Group 1: All website visitors"]
+    J --> K["Targeting: Website visitors (last 30 days)"]
+    J --> L["Ad 1: Responsive Display Ad"]
 ```
 
 - **Account:** Your top-level container. One per business is typical.

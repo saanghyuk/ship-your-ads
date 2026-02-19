@@ -225,33 +225,22 @@ A well-organized account structure makes optimization much easier down the road.
 
 ### Recommended Campaign Structure:
 
-```
-Google Ads Account
-├── Campaign 1: Search - Brand Keywords
-│   └── Ad Group 1: Brand name variations
-│       ├── Keywords: [your brand name], "your brand name app"
-│       └── Ads: Brand-focused ad copy
-│
-├── Campaign 2: Search - Non-Brand Keywords
-│   ├── Ad Group 1: Category keywords
-│   │   ├── Keywords: "habit tracker app," "daily routine app"
-│   │   └── Ads: Category-focused ad copy
-│   ├── Ad Group 2: Problem keywords
-│   │   ├── Keywords: "how to build habits," "track daily habits"
-│   │   └── Ads: Problem-focused ad copy
-│   └── Ad Group 3: Competitor keywords
-│       ├── Keywords: "competitor name alternative"
-│       └── Ads: Comparison ad copy
-│
-├── Campaign 3: Display - Retargeting
-│   └── Ad Group 1: All website visitors
-│       ├── Audience: Website visitors (last 30 days)
-│       └── Ads: Retargeting display ads
-│
-└── Campaign 4: Display - Prospecting (later)
-    └── Ad Group 1: Interest-based
-        ├── Audience: In-market audiences
-        └── Ads: Awareness display ads
+```mermaid
+graph TD
+    Acct["Google Ads Account"] --> C1["Campaign 1:\nSearch - Brand Keywords"]
+    Acct --> C2["Campaign 2:\nSearch - Non-Brand Keywords"]
+    Acct --> C3["Campaign 3:\nDisplay - Retargeting"]
+    Acct --> C4["Campaign 4:\nDisplay - Prospecting (later)"]
+
+    C1 --> AG1["Ad Group 1: Brand name variations\nKeywords: your brand name,\n'your brand name app'\nAds: Brand-focused ad copy"]
+
+    C2 --> AG2["Ad Group 1: Category keywords\nKeywords: 'habit tracker app',\n'daily routine app'"]
+    C2 --> AG3["Ad Group 2: Problem keywords\nKeywords: 'how to build habits',\n'track daily habits'"]
+    C2 --> AG4["Ad Group 3: Competitor keywords\nKeywords: 'competitor name alternative'"]
+
+    C3 --> AG5["Ad Group 1: All website visitors\nAudience: Website visitors (last 30 days)\nAds: Retargeting display ads"]
+
+    C4 --> AG6["Ad Group 1: Interest-based\nAudience: In-market audiences\nAds: Awareness display ads"]
 ```
 
 ### Why Separate Campaigns:
